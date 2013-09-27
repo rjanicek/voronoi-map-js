@@ -1,0 +1,21 @@
+{
+	"folders":
+	[
+		{
+			"path": "/D/data/projects/voronoi-map-js"
+		}
+	],
+    "build_systems":
+    [
+        {
+            "name": "Grunt",
+            "cmd": ["grunt"],
+            "shell": true
+        },
+        {
+            "name": "Grunt - Debug",
+            "cmd": ["grunt", "debug"],
+            "shell": true
+        }
+    ]        
+}

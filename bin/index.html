@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+	<title>voronoi-map.js</title>
+	<meta charset="utf-8">
+	
+	<style>
+	
+	fieldset {
+		position:absolute;
+		top:10px;
+		left:10px;
+		padding-top:10px;
+		font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333;
+		background:#C38EC7;
+		-moz-border-radius:5px;  
+		border-radius: 5px;  
+		-webkit-border-radius: 5px;
+	}
+	
+	label {
+		clear: both;
+		display: block;
+		width: 125px;
+		float: left;
+	}
+	
+	input[type=text], input[type=file], input[type=range] {
+		width: 110px;
+	}
+	
+	input[type=file] {
+		color: #C38EC7;
+	}
+	
+	input[type=range] {
+		border-bottom-left-radius: 5px;
+	}
+	
+	#seed,#shapeSeed {
+		width: 50px;
+	}
+	
+	img {
+		width: 110px;
+	}
+	
+	.section {
+		margin-top: 10px;
+	}
+
+	.hide { display: none; }
+	
+	</style>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</head>
+<body style="margin:0px;padding:0px;">
+	<fieldset id="fieldset">
+		<div id="fields">
+			<div style="font-size:15px;">voronoi-map-js</div>
+			<br/>
+			<a href="https://github.com/rjanicek/voronoi-map-js">source code on GitHub</a>
+			<br/><br/>
+			<div><label for="seed" title="integer or text">seed</label><input id="seed" type="text" value="voronoi!" /><button id="random">random</button></div>
+			<div>
+				<label for="islandShape">island shape</label>
+				<select id="islandShape">
+					<option>bitmap</option>
+					<option>blob</option>
+					<option>noise</option>
+					<option selected>perlin</option>
+					<option>radial</option>
+					<option>square</option>
+				</select>
+			</div>
+			<div><label for="shapeSeed" title="integer or text">island shape seed</label><input id="shapeSeed" type="text" value="voronoi!" /><button id="shapeRandom">random</button></div>
+			<div style="display:none;"><label for="imageFile" title="black & white images work best">image file</label><input type="file" id="imageFile" name="files[]" /></div>
+			<div style="display:none;"><label for="imageThumb">&nbsp;</label><img id="imageThumb" /></div>
+			<div style="display:none;"><label for="invertImage">invert image?</label><input id="invertImage" type="checkbox" checked /></div>
+			<div style="display:none;"><label for="imageThreshold" title="0 to 255">threshold</label><input id="imageThreshold" type="range" min="0" max="255" value="127" /></div>
+			<div style="display:none;"><label for="islandFactor" title="1.0 means no small islands; 2.0 leads to a lot">island factor</label><input id="islandFactor" type="text" value="1.07" /></div>
+			<div><label for="oceanRatio" title="0 = least ocean, 1 = most ocean">ocean ratio</label><input id="oceanRatio" type="text" value="0.5" /></div>
+			<div><label for="width">width</label><input id="width" type="text" /></div>
+			<div><label for="height">height</label><input id="height" type="text" /></div>
+			<div><label for="numberOfPoints">number of points</label><input id="numberOfPoints" type="text" value="1000" /></div>
+			<div><label for="numberOfLands">number of lands</label><input id="numberOfLands" type="text" value="" /></div>
+			<div><label for="lakeThreshold" title="0 to 1, fraction of water corners for water polygon">lake threshold</label><input id="lakeThreshold" type="text" value="0.3" /></div>
+			<div><label for="lloydIterations">number of lloyd iterations</label><input id="lloydIterations" type="text" value="2" /></div>
+			<div><label for="riverChance" title="0 = no rivers, &gt; 0 = more rivers">river chance</label><input id="riverChance" type="text" value="100" /></div>
+			<div><label for="edgeNoise" title="0 = noisy edges, &gt; 1 = smooth edges">edge noise</label><input id="edgeNoise" type="text" value="0.5" /></div>
+			<div style="display:none;"><label for="roadElevationThresholds" title="list of floats between 0.0 and 1.0">road elevation thresholds</label><input id="roadElevationThresholds" type="text" value="0, 0.05, 0.37, 0.64" /></div>
+			<br/>
+			<div style="text-align:center;">
+				<button id="generate">generate</button>
+			</div>
+			<div class="section">
+				<label for="view">view</label>
+				<select id="view">
+					<option>debug polygons</option>
+					<option selected>smooth</option>
+				</select>
+			</div>
+			<div><label for="viewRivers">rivers?</label><input id="viewRivers" type="checkbox" checked /></div>
+			<div><label for="viewRoads">roads?</label><input id="viewRoads" type="checkbox" /></div>
+			
+			<div><label for="viewBridges">bridges?</label><input id="viewBridges" type="checkbox" /></div>
+			<div><label for="viewWatersheds">watersheds?</label><input id="viewWatersheds" type="checkbox" /></div>
+			<div><label for="viewEdges">edges?</label><input id="viewEdges" type="checkbox" /></div>
+			<div><label for="addNoise">add noise?</label><input id="addNoise" type="checkbox" checked /></div>
+		</div>
+		<a id="toggle" style="float:right;">hide</a>
+	</fieldset>
+	<script src="voronoi-map.js"></script>
+</body>
+</html>
