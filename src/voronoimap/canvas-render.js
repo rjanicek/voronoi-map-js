@@ -17,12 +17,12 @@ exports.graphicsReset = function (c, mapWidth, mapHeight, displayColors) {
     c.fillRect(0, 0, core.toInt(mapWidth), core.toInt(mapHeight));
 };
 
-var lightVector = vector3d.make(-1, -1, 0);
+var lightVector = vector3d(-1, -1, 0);
 
 exports.calculateLighting = function (p, r, s) {
-    var A = vector3d.make(p.point.x, p.point.y, p.elevation);
-    var B = vector3d.make(r.point.x, r.point.y, r.elevation);
-    var C = vector3d.make(s.point.x, s.point.y, s.elevation);
+    var A = vector3d(p.point.x, p.point.y, p.elevation);
+    var B = vector3d(r.point.x, r.point.y, r.elevation);
+    var C = vector3d(s.point.x, s.point.y, s.elevation);
     var normal = B.subtract(A).crossProduct(C.subtract(A));
     if (normal.z < 0) { normal.scaleBy(-1); }
     normal.normalize();
@@ -191,10 +191,10 @@ function drawGradientTriangle(graphics, v1, v2, v3, colors, fillFunction, fillX,
     N.normalize();
 
     // Gradient vector in x-y plane pointing in the direction of increasing z
-    var G = vector3d.make(-N.x / N.z, -N.y / N.z, 0);
+    var G = vector3d(-N.x / N.z, -N.y / N.z, 0);
 
     // Center of the color gradient
-    var C = vector3d.make(V.x - G.x * ((V.z - 0.5) / G.length / G.length), V.y - G.y * ((V.z - 0.5) / G.length / G.length));
+    var C = vector3d(V.x - G.x * ((V.z - 0.5) / G.length / G.length), V.y - G.y * ((V.z - 0.5) / G.length / G.length));
 
     if (G.length < 1e-6) {
         // If the gradient vector is small, there's not much
@@ -283,17 +283,17 @@ exports.renderPolygons = function (graphics, colors, gradientFillProperty, color
                 var midpointAttr = 0.5 * (corner0[gradientFillProperty] + corner1[gradientFillProperty]);
                 drawGradientTriangle(
                     graphics,
-                    vector3d.make(p.point.x, p.point.y, p[gradientFillProperty]),
-                    vector3d.make(corner0.point.x, corner0.point.y, corner0[gradientFillProperty]),
-                    vector3d.make(midpoint.x, midpoint.y, midpointAttr),
+                    vector3d(p.point.x, p.point.y, p[gradientFillProperty]),
+                    vector3d(corner0.point.x, corner0.point.y, corner0[gradientFillProperty]),
+                    vector3d(midpoint.x, midpoint.y, midpointAttr),
                     [colors.GRADIENT_LOW, colors.GRADIENT_HIGH],
                     drawPath0, p.point.x, p.point.y
                 );
                 drawGradientTriangle(
                     graphics,
-                    vector3d.make(p.point.x, p.point.y, p[gradientFillProperty]),
-                    vector3d.make(midpoint.x, midpoint.y, midpointAttr),
-                    vector3d.make(corner1.point.x, corner1.point.y, corner1[gradientFillProperty]),
+                    vector3d(p.point.x, p.point.y, p[gradientFillProperty]),
+                    vector3d(midpoint.x, midpoint.y, midpointAttr),
+                    vector3d(corner1.point.x, corner1.point.y, corner1[gradientFillProperty]),
                     [colors.GRADIENT_LOW, colors.GRADIENT_HIGH],
                     drawPath1, p.point.x, p.point.y
                 );

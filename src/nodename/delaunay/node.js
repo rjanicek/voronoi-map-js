@@ -1,10 +1,10 @@
 'use strict';
 
-exports.make = function () {
+module.exports = function () {
     return {
         parent: null,
         treeSize: 0
     };
 };
 
-exports.pool = [];
+module.exports.pool = [];

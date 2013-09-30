@@ -50,7 +50,7 @@ exports.kruskal = function (lineSegments, type) {
         var node0 = nodes[pointCore.hash(lineSegment.p0)];
         var rootOfSet0;
         if (node0 === null) {
-            node0 = nodePool.length > 0 ? nodePool.pop() : nodeModule.make();
+            node0 = nodePool.length > 0 ? nodePool.pop() : nodeModule();
             // intialize the node:
             rootOfSet0 = node0.parent = node0;
             node0.treeSize = 1;
@@ -63,7 +63,7 @@ exports.kruskal = function (lineSegments, type) {
         var node1 = nodes[pointCore.hash(lineSegment.p1)];
         var rootOfSet1;
         if (node1 === null) {
-            node1 = nodePool.length > 0 ? nodePool.pop() : nodeModule.make();
+            node1 = nodePool.length > 0 ? nodePool.pop() : nodeModule();
             // intialize the node:
             rootOfSet1 = node1.parent = node1;
             node1.treeSize = 1;

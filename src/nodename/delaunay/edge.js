@@ -57,14 +57,14 @@ exports.Edge.prototype = {
 
     delaunayLine: function () {
         // draw a line connecting the input Sites for which the edge is a bisector:
-        return lineSegment.make(this.leftSite.coord, this.rightSite.coord);
+        return lineSegment(this.leftSite.coord, this.rightSite.coord);
     },
 
     voronoiEdge: function () {
         if (!this.visible) {
-            return lineSegment.make(null, null);
+            return lineSegment(null, null);
         }
-        return lineSegment.make(this.clippedEnds[lr.LEFT], this.clippedEnds[lr.RIGHT]);
+        return lineSegment(this.clippedEnds[lr.LEFT], this.clippedEnds[lr.RIGHT]);
     },
 
     // the equation of the edge: ax + by = c

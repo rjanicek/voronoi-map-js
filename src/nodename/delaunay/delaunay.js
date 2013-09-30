@@ -42,7 +42,7 @@ module.exports = {
             if (edge.visible) {
                 var p1 = edge.clippedEnds[lr.LEFT];
                 var p2 = edge.clippedEnds[lr.RIGHT];
-                segments.push(lineSegment.make(p1, p2));
+                segments.push(lineSegment(p1, p2));
             }
         });
         

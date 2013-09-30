@@ -3,9 +3,7 @@
 var _ = require('lodash');
 var cc = require('../as3/conversion-core');
 
-exports.FRACTION_LAVA_FISSURES = 0.2;  // 0 to 1, probability of fissure
-
-exports.make = function () {
+module.exports = function () {
     return {
 
         // The lava array marks the edges that hava lava.
@@ -27,3 +25,5 @@ exports.make = function () {
 
     };
 };
+
+module.exports.FRACTION_LAVA_FISSURES = 0.2;  // 0 to 1, probability of fissure

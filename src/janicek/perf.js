@@ -11,7 +11,7 @@ exports.bumpCounter = function (counter) {
     exports.counters[counter]++;
 };
 
-exports.logCounters = function () {
+exports.traceCounters = function () {
     _.each(exports.counters, function (counter, key) {
         console.log(key, counter);
     });

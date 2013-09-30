@@ -220,7 +220,7 @@ exports.generate = function () {
     canvas.width = _($(html.S_width).val()).parseInt();
     canvas.height = _($(html.S_height).val()).parseInt();
     
-    state.map = mapModule.make({ width: canvas.width + 0.0, height: canvas.height + 0.0 });
+    state.map = mapModule({ width: canvas.width + 0.0, height: canvas.height + 0.0 });
     var seed = getIntegerOrStringSeed($(html.S_seed).val());
     var shapeSeed = getIntegerOrStringSeed($(html.S_shapeSeed).val());
     
@@ -254,8 +254,8 @@ exports.generate = function () {
     }
     
     state.watersheds = watershedsModule();
-    state.noisyEdges = noisyEdgesModule.make();
-    state.lava = lavaModule.make();
+    state.noisyEdges = noisyEdgesModule();
+    state.lava = lavaModule();
     state.roads = roadsModule();
     
     var numberOfLands = $(html.S_numberOfLands).val();
@@ -291,7 +291,7 @@ exports.generate = function () {
 function main() {
     exports.initializeUi();
     state = exports.generate();
-    require('./janicek/log').logCounters();
+    require('./janicek/perf').traceCounters();
 }
 
 main();

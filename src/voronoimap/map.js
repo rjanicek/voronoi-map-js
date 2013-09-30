@@ -11,16 +11,12 @@ var pc = require('../as3/point-core');
 var rectangle = require('../as3/rectangle');
 var voronoiModule = require('../nodename/delaunay/voronoi');
 
-exports.DEFAULT_LAKE_THRESHOLD = 0.3;
-exports.DEFAULT_LLOYD_ITERATIONS = 2;
-exports.DEFAULT_NUMBER_OF_POINTS = 1000;
-
 /**
  * Make a new map.
  * @param   size width and height of map
  * @param   riverChance 0 = no rivers, > 0 = more rivers, default = map area / 4
  */
-exports.make = function (size) {
+var mapModule = function (size) {
     var pub = {};
 
     /**
@@ -68,13 +64,13 @@ exports.make = function (size) {
      * Generate the initial random set of points.
      */
     pub.go0PlacePoints = function (numberOfPoints) {
-        numberOfPoints = core.def(numberOfPoints, exports.DEFAULT_NUMBER_OF_POINTS);
+        numberOfPoints = core.def(numberOfPoints, mapModule.DEFAULT_NUMBER_OF_POINTS);
         pub.reset();
         pub.points = pub.generateRandomPoints(numberOfPoints);
     };
 
     pub.go1ImprovePoints = function (numLloydIterations) {
-        numLloydIterations = core.def(numLloydIterations, exports.DEFAULT_LLOYD_ITERATIONS);
+        numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
         pub.improveRandomPoints(pub.points, numLloydIterations);
     };
 
@@ -101,7 +97,7 @@ exports.make = function (size) {
      * @param   lakeThreshold 0 to 1, fraction of water corners for water polygon, default = 0.3
      */
     pub.go3AssignElevations = function (lakeThreshold) {
-        lakeThreshold = core.def(lakeThreshold, exports.DEFAULT_LAKE_THRESHOLD);
+        lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
 
         // Determine the elevations and water at Voronoi corners.
         pub.assignCornerElevations();
@@ -786,7 +782,7 @@ exports.make = function (size) {
 
     pub.assignBiomes = function () {
         _(pub.centers).each(function (p) {
-            p.biome = exports.getBiome(p);
+            p.biome = mapModule.getBiome(p);
         });
     };
 
@@ -822,6 +818,10 @@ exports.make = function (size) {
     return pub;
 };
 
+mapModule.DEFAULT_LAKE_THRESHOLD = 0.3;
+mapModule.DEFAULT_LLOYD_ITERATIONS = 2;
+mapModule.DEFAULT_NUMBER_OF_POINTS = 1000;
+
 /**
  * Assign a biome type to each polygon. If it has
  * ocean/coast/water, then that's the biome; otherwise it depends
@@ -829,7 +829,7 @@ exports.make = function (size) {
  * roughly based on the Whittaker diagram but adapted to fit the
  * needs of the island map generator.
  */
-exports.getBiome = function (p) {
+mapModule.getBiome = function (p) {
     if (p.ocean) {
         return 'OCEAN';
     } else if (p.water) {
@@ -864,7 +864,7 @@ exports.getBiome = function (p) {
 // ------------------------------------------------------------------------
 // Richard Janicek's Extensions
 
-exports.countLands = function (centers) {
+mapModule.countLands = function (centers) {
     return _(_(centers).filter(function (c) { return !c.water; })).size();
 };
 
@@ -872,11 +872,11 @@ exports.countLands = function (centers) {
  * Rebuilds the map varying the number of points until desired number of land centers are generated or timeout is reached.
  * Not an efficient algorithim, but gets the job done.
  */
-exports.tryMutateMapPointsToGetNumberLands = function (map, numberOfLands, timeoutMilliseconds, initialNumberOfPoints, numLloydIterations, lakeThreshold) {
+mapModule.tryMutateMapPointsToGetNumberLands = function (map, numberOfLands, timeoutMilliseconds, initialNumberOfPoints, numLloydIterations, lakeThreshold) {
     timeoutMilliseconds = core.def(timeoutMilliseconds, 10 * 1000);
-    initialNumberOfPoints = core.def(initialNumberOfPoints, exports.DEFAULT_NUMBER_OF_POINTS);
-    numLloydIterations = core.def(numLloydIterations, exports.DEFAULT_LLOYD_ITERATIONS);
-    lakeThreshold = core.def(lakeThreshold, exports.DEFAULT_LAKE_THRESHOLD);
+    initialNumberOfPoints = core.def(initialNumberOfPoints, mapModule.DEFAULT_NUMBER_OF_POINTS);
+    numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
+    lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
 
     var pointCount = initialNumberOfPoints;
     var startTime = Date.now();
@@ -886,7 +886,7 @@ exports.tryMutateMapPointsToGetNumberLands = function (map, numberOfLands, timeo
         map.go1ImprovePoints(numLloydIterations);
         map.go2BuildGraph();
         map.go3AssignElevations(lakeThreshold);
-        var lands = exports.countLands(map.centers);
+        var lands = mapModule.countLands(map.centers);
         if (lands === numberOfLands) {
             targetLandCountFound = true;
         }
@@ -897,3 +897,5 @@ exports.tryMutateMapPointsToGetNumberLands = function (map, numberOfLands, timeo
     
     return map;
 };
+
+module.exports = mapModule;

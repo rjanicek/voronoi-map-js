@@ -39,10 +39,14 @@ var Vector3D = function (x, y, z, w) {
     this.z = def(z, 0);
 };
 
+var vector3d = function (x, y, z, w) {
+    return new Vector3D(x, y, z, w);
+};
+
 Vector3D.prototype = {
 
     getLength: function () {
-        return Math.abs(module.exports.distance(this, module.exports.make()));
+        return Math.abs(vector3d.distance(this, vector3d()));
     },
     get length() { return this.getLength(); },
 
@@ -52,15 +56,15 @@ Vector3D.prototype = {
     get lengthSquared() { return this.getLengthSquared(); },
 
     add: function (a) {
-        return module.exports.make(this.x + a.x, this.y + a.y, this.z + a.z);
+        return vector3d(this.x + a.x, this.y + a.y, this.z + a.z);
     },
 
     clone: function () {
-        return module.exports.make(this.x, this.y, this.z, this.w);
+        return vector3d(this.x, this.y, this.z, this.w);
     },
 
     crossProduct: function (a) {
-        return module.exports.make(this.y * a.z - this.z * a.y, this.z * a.x - this.x * a.z, this.x * a.y - this.y * a.x, 1);
+        return vector3d(this.y * a.z - this.z * a.y, this.z * a.x - this.x * a.z, this.x * a.y - this.y * a.x, 1);
     },
 
     decrementBy: function (a) {
@@ -121,7 +125,7 @@ Vector3D.prototype = {
     },
 
     subtract: function (a) {
-        return module.exports.make(this.x - a.x, this.y - a.y, this.z - a.z);
+        return vector3d(this.x - a.x, this.y - a.y, this.z - a.z);
     },
 
     toString: function () {
@@ -129,28 +133,32 @@ Vector3D.prototype = {
     }
 };
 
-module.exports = {
-    make: function (x, y, z, w) {
-        return new Vector3D(x, y, z, w);
-    },
-
-    angleBetween: function (a, b) {
-        var a0 = a.clone();
-        a0.normalize();
-        var b0 = b.clone();
-        b0.normalize();
-        return Math.acos(a0.dotProduct(b0));
-    },
-
-    distance: function (pt1, pt2) {
-        var x = pt2.x - pt1.x;
-        var y = pt2.y - pt1.y;
-        var z = pt2.z - pt1.z;
-        
-        return Math.sqrt(x * x + y * y + z * z);
-    },
-
-    get X_AXIS() { return this.make(1, 0, 0); },
-    get Y_AXIS() { return this.make(0, 1, 0); },
-    get Z_AXIS() { return this.make(0, 0, 1); }
+vector3d.angleBetween = function (a, b) {
+    var a0 = a.clone();
+    a0.normalize();
+    var b0 = b.clone();
+    b0.normalize();
+    return Math.acos(a0.dotProduct(b0));
 };
+
+vector3d.distance = function (pt1, pt2) {
+    var x = pt2.x - pt1.x;
+    var y = pt2.y - pt1.y;
+    var z = pt2.z - pt1.z;
+    
+    return Math.sqrt(x * x + y * y + z * z);
+};
+
+Object.defineProperties(vector3d, {
+    'X_AXIS': {get: function () { return vector3d(1, 0, 0); }}
+});
+
+Object.defineProperties(vector3d, {
+    'Y_AXIS': {get: function () { return vector3d(0, 1, 0); }}
+});
+
+Object.defineProperties(vector3d, {
+    'Z_AXIS': {get: function () { return vector3d(0, 0, 1); }}
+});
+
+module.exports = vector3d;

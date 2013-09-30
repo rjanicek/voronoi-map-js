@@ -6,7 +6,7 @@ var core = require('../janicek/core');
 var pc = require('../as3/point-core');
 var prng = require('../janicek/pseudo-random-number-generators');
 
-exports.make = function () {
+module.exports = function () {
     var pub = {};
 
     pub.path0 = []; // Array<Vector<Point>> // edge index -> Vector.<Point>
@@ -37,8 +37,8 @@ exports.make = function () {
                     if (edge.d0.ocean && edge.d1.ocean) { minLength = 100; }
                     if (edge.d0.coast || edge.d1.coast)  { minLength = 1; }
                     if (convert.booleanFromInt(edge.river) || !core.isUndefinedOrNull(lava.lava[edge.index])) { minLength = 1; }
-                    pub.path0[edge.index] = exports.buildNoisyLineSegments(gen(), edge.v0.point, t, edge.midpoint, q, minLength);
-                    pub.path1[edge.index] = exports.buildNoisyLineSegments(gen(), edge.v1.point, s, edge.midpoint, r, minLength);
+                    pub.path0[edge.index] = module.exports.buildNoisyLineSegments(gen(), edge.v0.point, t, edge.midpoint, q, minLength);
+                    pub.path1[edge.index] = module.exports.buildNoisyLineSegments(gen(), edge.v1.point, s, edge.midpoint, r, minLength);
                 }
             });
         });
@@ -49,7 +49,7 @@ exports.make = function () {
 
 // Helper function: build a single noisy line in a quadrilateral A-B-C-D,
 // and store the output points in a Vector.
-exports.buildNoisyLineSegments = function (seed, A, B, C, D, minLength) {
+module.exports.buildNoisyLineSegments = function (seed, A, B, C, D, minLength) {
     var gen = prng.randomGenerator(seed, prng.nextParkMiller);
     var points = []; // Vector<Point>
     

@@ -2,8 +2,6 @@
 
 'use strict';
 
-var startMs = Date.now();
-
 var mapModule = require('./map');
 var islandShape = require('./island-shape');
 var lavaModule = require('./lava');
@@ -11,9 +9,9 @@ var roadsModule = require('./roads');
 var watershedsModule = require('./watersheds');
 var noisyEdgesModule = require('./noisy-edges');
 
-var map = mapModule.make({width: 100.0, height: 100.0});
+var map = mapModule({width: 1000.0, height: 1000.0});
 map.newIsland(islandShape.makeRadial(1), 1);
-var numPoints = 1000;
+var numPoints = 100;
 
 exports.should_place_points = function (test) {
     map.go0PlacePoints(numPoints);
@@ -41,13 +39,13 @@ exports.should_add_features = function (test) {
 };
 
 exports.should_add_edges = function (test) {
-    var lava = lavaModule.make();
+    var lava = lavaModule();
     var roads = roadsModule();
     roads.createRoads(map, [0, 0.05, 0.37, 0.64]);
     // lava.createLava(map, map.mapRandom.nextDouble);
     var watersheds = watershedsModule();
     watersheds.createWatersheds(map);
-    var noisyEdges = noisyEdgesModule.make();
+    var noisyEdges = noisyEdgesModule();
     noisyEdges.buildNoisyEdges(map, lava, map.mapRandom.seed);
     test.ok(roads);
     test.ok(watersheds);
@@ -56,9 +54,3 @@ exports.should_add_edges = function (test) {
     test.done();
 };
 
-exports.should_be_fast = function (test) {
-    var time = (Date.now() - startMs);
-    console.log(' (' + time + 'ms)');
-    test.ok(time < 1000, 'isn\'t fast enough');
-    test.done();
-};

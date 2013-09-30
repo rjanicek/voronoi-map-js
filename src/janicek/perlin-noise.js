@@ -14,7 +14,6 @@ JavaScript port and simplified by Richard Janicek http://janicek.co
 
 'use strict';
 
-var def = require('./core').def;
 var array2d = require('./array2d');
 
 var p = [
@@ -78,9 +77,9 @@ var p = [
  * @returns [[int]] A bitmap of Perlin Noise.
  */
 exports.makePerlinNoise = function (width, height, _x, _y, _z, seed, octaves, falloff) {
-    seed = def(seed, 666);
-    octaves = def(octaves, 4);
-    falloff = def(falloff, 0.5);
+    seed = seed || 666;
+    octaves = octaves || 4;
+    falloff = falloff || 0.5;
 
     var baseFactor = 1 / 64;
     

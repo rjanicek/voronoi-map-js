@@ -40,9 +40,9 @@
 
 var core = require('../janicek/core');
 var def = core.def;
-var matrix = require('./matrix');
 
-module.exports = function (inA, inB, inC, inD, inTx, inTy) {
+
+var matrix = function (inA, inB, inC, inD, inTx, inTy) {
     
     var pub = {
 
@@ -240,3 +240,5 @@ module.exports = function (inA, inB, inC, inD, inTx, inTy) {
 
     return pub;
 };
+
+module.exports = matrix;
