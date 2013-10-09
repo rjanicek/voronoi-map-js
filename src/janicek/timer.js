@@ -10,10 +10,11 @@ module.exports = function () {
             start = last = Date.now();
         },
 
-        log: function (label) {
+        mark: function () {
             var now = Date.now();
-            console.log(label, now - last, now - start);
+            var times = { mark: now - last, total: now - start };
             last = now;
+            return times;
         }
     };
 };

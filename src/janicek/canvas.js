@@ -1,5 +1,6 @@
 'use strict';
 
+var array2d = require('./array2d');
 var core = require('./core');
 var htmlColor = require('./html-color');
 var math = require('./math');
@@ -172,4 +173,48 @@ exports.makeAverageThresholdImageData = function (imageData, threshold, lessthan
         };
     });
     return imageData;
+};
+
+/**
+ * Convert image to monochrome bitmap boolean array.
+ * Converts HTML5 image data to a 2D Array of Bool by comparing the average of each color channel to a
+ * threshold value to determine which color channels are converted to 0 and 1.
+ * @param {ImageData} imageData Image data
+ * @param {int} threshold Value between 0 and 255.
+ */
+exports.makeAverageThresholdBitmap = function (imageData, threshold) {
+    threshold = math.clamp(threshold, 0, 255);
+    return exports.makeBitmap(imageData, function (red, green, blue, alpha) {
+        return math.average([red, green, blue]) >= threshold;
+    });
+};
+
+/**
+ * Make a boolean array from html image data.
+ * @param {ImageData} imageData Image data
+ * @returns {[[bool]]} bitmap
+ */
+exports.makeBitmap = function (imageData, f) {
+    var array = array2d([]);
+    var imageDataWidth = core.toInt(imageData.width);
+    exports.renderCanvasPixelArray(imageData, function (index, red, green, blue, alpha) {
+        var indices = array2d.getIndices(index, imageDataWidth, CANVAS_ELEMENTS_PER_PIXEL);
+        array.set(indices.x, indices.y, f(red, green, blue, alpha));
+        return null;
+    });
+    return array.value;
+};
+
+/**
+ * Inverts an array of bool.
+ * @param   bitmap Array of bool to invert.
+ * @param {[[bool]]} bitmap
+ * @returns {[[bool]]} Inverted array of bool.
+ */
+exports.invertBitmap = function (bitmap) {
+    var bm = array2d(bitmap);
+    bm.foreachXY(function (x, y, value) {
+        bm.set(x, y, !value);
+    });
+    return bm.value;
 };

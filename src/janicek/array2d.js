@@ -34,20 +34,6 @@ module.exports = function (array) {
         },
 
         /**
-         * Compute two dimensional indices of a flat index based on array width and block size.
-         * @param {int} index
-         * @param {int} width
-         * @param {int} blockSize
-         */
-        getIndices: function (index, width, blockSize) {
-            blockSize = core.def(blockSize, 1);
-            return {
-                x : (index / blockSize) % width,
-                y : core.toInt((index / blockSize) / width)
-            };
-        },
-
-        /**
          * Iterate rows.
          * @param  {function} returnRow
          */
@@ -118,5 +104,19 @@ module.exports = function (array) {
 
             return {x: width, y: height};
         }
+    };
+};
+
+/**
+ * Compute two dimensional indices of a flat index based on array width and block size.
+ * @param {int} index
+ * @param {int} width
+ * @param {int} blockSize
+ */
+module.exports.getIndices = function (index, width, blockSize) {
+    blockSize = blockSize || 1;
+    return {
+        x : (index / blockSize) % width,
+        y : core.toInt((index / blockSize) / width)
     };
 };

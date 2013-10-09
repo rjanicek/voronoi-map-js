@@ -152,10 +152,10 @@ exports.initializeUi = function () {
     $([html.S_invertImage, html.S_imageThreshold].toString()).change(function (e) { updateThumb(); });
     
     if ($(html.S_width).val().length === 0) {
-        $(html.S_width).val(String(window.innerWidth));
+        $(html.S_width).val($(window).width());
     }
     if ($(html.S_height).val().length === 0) {
-        $(html.S_height).val(String(window.innerHeight));
+        $(html.S_height).val($(window).height());
     }
     
     $(html.S_view).change(function (e) {
@@ -229,10 +229,9 @@ exports.generate = function () {
     switch (islandShape) {
     case 'bitmap' :
         var imageData = canvasCore.getImageData(image);
-        console.log($(html.S_imageThreshold).val());
-        var bitmap = canvasCore.makeAverageThresholdBitmap(imageData, $(html.S_imageThreshold).val());
+        var bitmap = canvasCore.makeAverageThresholdBitmap(imageData, _.parseInt($(html.S_imageThreshold).val()));
         if ($(html.S_invertImage).is(':checked')) {
-            bitmap = bitmap.invertBitmap();
+            bitmap = canvasCore.invertBitmap(bitmap);
         }
         state.map.newIsland(islandShapeModule.makeBitmap(bitmap), seed);
         break;
@@ -276,11 +275,13 @@ exports.generate = function () {
     state.watersheds.createWatersheds(state.map);
     state.noisyEdges.buildNoisyEdges(state.map, state.lava, seed, $(html.S_edgeNoise).val());
 
-    timer.log('generate');
+    $('#generateMs').text(timer.mark().mark);
     
     render(state);
-
-    timer.log('render');
+    
+    var renderTime = timer.mark();
+    $('#renderMs').text(renderTime.mark);
+    $('#totalMs').text(renderTime.total);
 
     return state;
 };

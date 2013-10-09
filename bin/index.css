@@ -1,0 +1,39 @@
+body { margin:0; padding:0; }
+
+canvas { position: absolute; }
+
+fieldset {
+    position:absolute;
+    top:10px;
+    left:10px;
+    padding-top:10px;
+    font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333;
+    background:#C38EC7;
+    -moz-border-radius:5px;  
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+label {
+    clear: both;
+    display: block;
+    width: 125px;
+    float: left;
+}
+
+input[type=text], input[type=file], input[type=range] { width: 110px; }
+
+input[type=file] { color: #C38EC7; }
+
+input[type=range] { border-bottom-left-radius: 5px; }
+
+#seed,#shapeSeed { width: 50px; }
+
+img { width: 110px; }
+
+.section { margin-top: 10px; }
+
+.hide { display: none; }
+
+.timer { display: inline-block; text-align: right; width: 40px; }
+.total { border-top: solid 1px black; }

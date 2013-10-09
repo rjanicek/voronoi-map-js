@@ -20,20 +20,18 @@ exports.should_set_value_at_index = function (test) {
 
 exports.should_compute_2d_indices_from_array_dimensions = function (test) {
 
-    var array = array2d();
-
-    test.deepEqual(array.getIndices(0, 10, 1), {x: 0, y: 0});
-    test.deepEqual(array.getIndices(9, 10, 1), {x: 9, y: 0});
-    test.deepEqual(array.getIndices(99, 10, 1), {x: 9, y: 9});
-    test.deepEqual(array.getIndices(90, 10, 1), {x: 0, y: 9});
+    test.deepEqual(array2d.getIndices(0, 10, 1), {x: 0, y: 0});
+    test.deepEqual(array2d.getIndices(9, 10, 1), {x: 9, y: 0});
+    test.deepEqual(array2d.getIndices(99, 10, 1), {x: 9, y: 9});
+    test.deepEqual(array2d.getIndices(90, 10, 1), {x: 0, y: 9});
     
-    test.deepEqual(array.getIndices(0, 10, 2), {x: 0, y: 0});
-    test.deepEqual(array.getIndices(9 * 2, 10, 2), {x: 9, y: 0});
-    test.deepEqual(array.getIndices(99 * 2, 10, 2), {x: 9, y: 9});
-    test.deepEqual(array.getIndices(90 * 2, 10, 2), {x: 0, y: 9});
+    test.deepEqual(array2d.getIndices(0, 10, 2), {x: 0, y: 0});
+    test.deepEqual(array2d.getIndices(9 * 2, 10, 2), {x: 9, y: 0});
+    test.deepEqual(array2d.getIndices(99 * 2, 10, 2), {x: 9, y: 9});
+    test.deepEqual(array2d.getIndices(90 * 2, 10, 2), {x: 0, y: 9});
     
-    test.deepEqual(array.getIndices(0, 46, 4), {x: 0, y: 0});
-    test.deepEqual(array.getIndices(5, 6, 1), {x: 5, y: 0});
+    test.deepEqual(array2d.getIndices(0, 46, 4), {x: 0, y: 0});
+    test.deepEqual(array2d.getIndices(5, 6, 1), {x: 5, y: 0});
 
     test.done();
 };

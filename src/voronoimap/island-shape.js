@@ -102,8 +102,8 @@ exports.makeBitmap = function (bitmap) {
     bitmap = array2d(bitmap);
     var dimensions = bitmap.dimensions();
     return function (q) {
-        var x = ((q.x + 1) / 2) * dimensions.x;
-        var y = ((q.y + 1) / 2) * dimensions.y;
+        var x = core.toInt(((q.x + 1) / 2) * dimensions.x);
+        var y = core.toInt(((q.y + 1) / 2) * dimensions.y);
         return bitmap.get(x, y);
     };
 };
