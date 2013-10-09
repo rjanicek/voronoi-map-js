@@ -3,58 +3,11 @@
 <head>
 	<title>voronoi-map.js</title>
 	<meta charset="utf-8">
-	
-	<style>
-	
-	fieldset {
-		position:absolute;
-		top:10px;
-		left:10px;
-		padding-top:10px;
-		font-size: 11px; font-family: Monaco, "Lucida Console", monospace; line-height: 14px; color: #333333;
-		background:#C38EC7;
-		-moz-border-radius:5px;  
-		border-radius: 5px;  
-		-webkit-border-radius: 5px;
-	}
-	
-	label {
-		clear: both;
-		display: block;
-		width: 125px;
-		float: left;
-	}
-	
-	input[type=text], input[type=file], input[type=range] {
-		width: 110px;
-	}
-	
-	input[type=file] {
-		color: #C38EC7;
-	}
-	
-	input[type=range] {
-		border-bottom-left-radius: 5px;
-	}
-	
-	#seed,#shapeSeed {
-		width: 50px;
-	}
-	
-	img {
-		width: 110px;
-	}
-	
-	.section {
-		margin-top: 10px;
-	}
-
-	.hide { display: none; }
-	
-	</style>
+	<link rel="stylesheet" type="text/css" href="index.css">
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
-<body style="margin:0px;padding:0px;">
+<body>
+	<canvas id="map"></canvas>	
 	<fieldset id="fieldset">
 		<div id="fields">
 			<div style="font-size:15px;">voronoi-map-js</div>
@@ -80,8 +33,8 @@
 			<div style="display:none;"><label for="imageThreshold" title="0 to 255">threshold</label><input id="imageThreshold" type="range" min="0" max="255" value="127" /></div>
 			<div style="display:none;"><label for="islandFactor" title="1.0 means no small islands; 2.0 leads to a lot">island factor</label><input id="islandFactor" type="text" value="1.07" /></div>
 			<div><label for="oceanRatio" title="0 = least ocean, 1 = most ocean">ocean ratio</label><input id="oceanRatio" type="text" value="0.5" /></div>
-			<div><label for="width">width</label><input id="width" type="text" /></div>
-			<div><label for="height">height</label><input id="height" type="text" /></div>
+			<div><label for="width">width</label><input id="width" type="text" value="" /></div>
+			<div><label for="height">height</label><input id="height" type="text" value="" /></div>
 			<div><label for="numberOfPoints">number of points</label><input id="numberOfPoints" type="text" value="1000" /></div>
 			<div><label for="numberOfLands">number of lands</label><input id="numberOfLands" type="text" value="" /></div>
 			<div><label for="lakeThreshold" title="0 to 1, fraction of water corners for water polygon">lake threshold</label><input id="lakeThreshold" type="text" value="0.3" /></div>
@@ -107,6 +60,10 @@
 			<div><label for="viewWatersheds">watersheds?</label><input id="viewWatersheds" type="checkbox" /></div>
 			<div><label for="viewEdges">edges?</label><input id="viewEdges" type="checkbox" /></div>
 			<div><label for="addNoise">add noise?</label><input id="addNoise" type="checkbox" checked /></div>
+			<br/>
+			<div><label>generate</label><div class="timer"><span id="generateMs">0</span></div> ms</div>
+			<div><label>render</label><div class="timer"><span id="renderMs">0</span></div> ms</div>
+			<div><label>&nbsp;</label><div class="timer"><span id="totalMs" class="total">0</span></div> ms</div>
 		</div>
 		<a id="toggle" style="float:right;">hide</a>
 	</fieldset>
