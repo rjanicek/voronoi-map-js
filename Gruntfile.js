@@ -8,12 +8,20 @@ module.exports = function (grunt) {
             build: {
                 src: ['src/index.js'],
                 dest: 'bin/voronoi-map.js'
+            },
+            buildDemo: {
+                src: ['src/demo.js'],
+                dest: 'bin/demo/voronoi-map-demo.js'
             }
         },
         uglify: {
             build: {
                 src: ['bin/voronoi-map.js'],
-                dest: 'bin/voronoi-map.js'
+                dest: 'bin/voronoi-map.min.js'
+            },
+            buildDemo: {
+                src: ['bin/demo/voronoi-map-demo.js'],
+                dest: 'bin/demo/voronoi-map-demo.js'
             }
         },
         nodeunit: {

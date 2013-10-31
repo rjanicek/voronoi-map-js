@@ -1,6 +1,16 @@
 {
-  "name": "voronoi-map-js",
+  "name": "voronoi-map",
   "version": "0.0.0",
+  "description": "JavaScript port of Amit Patel's mapgen2 https://github.com/amitp/mapgen2 Map generator for games. Generates island maps with a focus on mountains, rivers, coastlines.",
+  "keywords": ["game", "map", "generator", "engine", "voronoi", "delaunay", "geometry", "browser"],
+  "author": "Richard Janicek <r@janicek.co> (http://www.janicek.co)",
+  "license": "MIT",
+  "homepage": "http://rjanicek.github.io/voronoi-map-js/",
+  "repository" : { "type" : "git", "url" : "https://github.com/rjanicek/voronoi-map-js" },
+  "main": "src/index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
   "devDependencies": {
     "grunt-browserify": "",
     "grunt-contrib-uglify": "",

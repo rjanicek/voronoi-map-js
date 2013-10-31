@@ -1,4 +1,11626 @@
-!function a(b,c,d){function e(g,h){if(!c[g]){if(!b[g]){var i="function"==typeof require&&require;if(!h&&i)return i(g,!0);if(f)return f(g,!0);throw new Error("Cannot find module '"+g+"'")}var j=c[g]={exports:{}};b[g][0].call(j.exports,function(a){var c=b[g][1][a];return e(c?c:a)},j,j.exports,a,b,c,d)}return c[g].exports}for(var f="function"==typeof require&&require,g=0;g<d.length;g++)e(d[g]);return e}({1:[function(a,b,c){var d=self;(function(){function a(a,b,c){for(var d=(c||0)-1,e=a?a.length:0;++d<e;)if(a[d]===b)return d;return-1}function e(b,c){var d=typeof c;if(b=b.cache,"boolean"==d||null==c)return b[c]?0:-1;"number"!=d&&"string"!=d&&(d="object");var e="number"==d?c:v+c;return b=(b=b[d])&&b[e],"object"==d?b&&a(b,c)>-1?0:-1:b?0:-1}function f(a){var b=this.cache,c=typeof a;if("boolean"==c||null==a)b[a]=!0;else{"number"!=c&&"string"!=c&&(c="object");var d="number"==c?a:v+a,e=b[c]||(b[c]={});"object"==c?(e[d]||(e[d]=[])).push(a):e[d]=!0}}function g(a){return a.charCodeAt(0)}function h(a,b){var c=a.criteria,d=b.criteria;if(c!==d){if(c>d||"undefined"==typeof c)return 1;if(d>c||"undefined"==typeof d)return-1}return a.index-b.index}function i(a){var b=-1,c=a.length,d=a[0],e=a[0|c/2],g=a[c-1];if(d&&"object"==typeof d&&e&&"object"==typeof e&&g&&"object"==typeof g)return!1;var h=l();h["false"]=h["null"]=h["true"]=h.undefined=!1;var i=l();for(i.array=a,i.cache=h,i.push=f;++b<c;)i.push(a[b]);return i}function j(a){return"\\"+Z[a]}function k(){return s.pop()||[]}function l(){return t.pop()||{array:null,cache:null,criteria:null,"false":!1,index:0,"null":!1,number:null,object:null,push:null,string:null,"true":!1,undefined:!1,value:null}}function m(){}function n(a){a.length=0,s.length<x&&s.push(a)}function o(a){var b=a.cache;b&&o(b),a.array=a.cache=a.criteria=a.object=a.number=a.string=a.value=null,t.length<x&&t.push(a)}function p(a,b,c){b||(b=0),"undefined"==typeof c&&(c=a?a.length:0);for(var d=-1,e=c-b||0,f=Array(0>e?0:e);++d<e;)f[d]=a[b+d];return f}function q(b){function c(a){return a&&"object"==typeof a&&!Xd(a)&&yd.call(a,"__wrapped__")?a:new d(a)}function d(a,b){this.__chain__=!!b,this.__wrapped__=a}function f(a,b,c,d,e){if(c){var g=c(a);if("undefined"!=typeof g)return g}var h=Ab(a);if(!h)return a;var i=Ed.call(a);if(!V[i])return a;var j=Ud[i];switch(i){case O:case P:return new j(+a);case R:case U:return new j(a);case T:return g=j(a.source,D.exec(a)),g.lastIndex=a.lastIndex,g}var l=Xd(a);if(b){var m=!d;d||(d=k()),e||(e=k());for(var o=d.length;o--;)if(d[o]==a)return e[o];g=l?j(a.length):{}}else g=l?p(a):ce({},a);return l&&(yd.call(a,"index")&&(g.index=a.index),yd.call(a,"input")&&(g.input=a.input)),b?(d.push(a),e.push(g),(l?Tb:fe)(a,function(a,h){g[h]=f(a,b,c,d,e)}),m&&(n(d),n(e)),g):g}function s(a,b,c){if("function"!=typeof a)return Tc;if("undefined"==typeof b)return a;var d=a.__bindData__||Vd.funcNames&&!a.name;if("undefined"==typeof d){var e=I&&wd.call(a);Vd.funcNames||!e||E.test(e)||(d=!0),(Vd.funcNames||!d)&&(d=!Vd.funcDecomp||I.test(e),Wd(a,d))}if(d!==!0&&d&&1&d[1])return a;switch(c){case 1:return function(c){return a.call(b,c)};case 2:return function(c,d){return a.call(b,c,d)};case 3:return function(c,d,e){return a.call(b,c,d,e)};case 4:return function(c,d,e,f){return a.call(b,c,d,e,f)}}return Dc(a,b)}function t(a,b,c,d){for(var e=(d||0)-1,f=a?a.length:0,g=[];++e<f;){var h=a[e];if(h&&"object"==typeof h&&"number"==typeof h.length&&(Xd(h)||jb(h))){b||(h=t(h,b,c));var i=-1,j=h.length,k=g.length;for(g.length+=j;++i<j;)g[k++]=h[i]}else c||g.push(h)}return g}function x(a,b,c,d,e,f){if(c){var g=c(a,b);if("undefined"!=typeof g)return!!g}if(a===b)return 0!==a||1/a==1/b;var h=typeof a,i=typeof b;if(!(a!==a||a&&Y[h]||b&&Y[i]))return!1;if(null==a||null==b)return a===b;var j=Ed.call(a),l=Ed.call(b);if(j==M&&(j=S),l==M&&(l=S),j!=l)return!1;switch(j){case O:case P:return+a==+b;case R:return a!=+a?b!=+b:0==a?1/a==1/b:a==+b;case T:case U:return a==nd(b)}var m=j==N;if(!m){if(yd.call(a,"__wrapped__ ")||yd.call(b,"__wrapped__"))return x(a.__wrapped__||a,b.__wrapped__||b,c,d,e,f);if(j!=S)return!1;var o=a.constructor,p=b.constructor;if(o!=p&&!(zb(o)&&o instanceof o&&zb(p)&&p instanceof p))return!1}var q=!e;e||(e=k()),f||(f=k());for(var r=e.length;r--;)if(e[r]==a)return f[r]==b;var s=0;if(g=!0,e.push(a),f.push(b),m){if(r=a.length,s=b.length,g=s==a.length,!g&&!d)return g;for(;s--;){var t=r,u=b[s];if(d)for(;t--&&!(g=x(a[t],u,c,d,e,f)););else if(!(g=x(a[s],u,c,d,e,f)))break}return g}return ee(b,function(b,h,i){return yd.call(i,h)?(s++,g=yd.call(a,h)&&x(a[h],b,c,d,e,f)):void 0}),g&&!d&&ee(a,function(a,b,c){return yd.call(c,b)?g=--s>-1:void 0}),q&&(n(e),n(f)),g}function Z(a,b,c,d,e){(Xd(b)?Tb:fe)(b,function(b,f){var g,h,i=b,j=a[f];if(b&&((h=Xd(b))||ge(b))){for(var k=d.length;k--;)if(g=d[k]==b){j=e[k];break}if(!g){var l;c&&(i=c(j,b),(l="undefined"!=typeof i)&&(j=i)),l||(j=h?Xd(j)?j:[]:ge(j)?j:{}),d.push(b),e.push(j),l||Z(j,b,c,d,e)}}else c&&(i=c(j,b),"undefined"==typeof i&&(i=b)),"undefined"!=typeof i&&(j=i);a[f]=j})}function _(b,c,d){var f=-1,g=gb(),h=b?b.length:0,j=[],l=!c&&h>=w&&g===a,m=d||l?k():j;if(l){var p=i(m);p?(g=e,m=p):(l=!1,m=d?m:(n(m),j))}for(;++f<h;){var q=b[f],r=d?d(q,f,b):q;(c?!f||m[m.length-1]!==r:g(m,r)<0)&&((d||l)&&m.push(r),j.push(q))}return l?(n(m.array),o(m)):d&&n(m),j}function ab(a){return function(b,d,e){var f={};d=c.createCallback(d,e,3);var g=-1,h=b?b.length:0;if("number"==typeof h)for(;++g<h;){var i=b[g];a(f,i,d(i,g,b),b)}else fe(b,function(b,c,e){a(f,b,d(b,c,e),e)});return f}}function cb(a,b,c,d,e,f){var g=1&b,h=2&b,i=4&b,j=8&b,k=16&b,l=32&b,m=a;if(!h&&!zb(a))throw new od;k&&!c.length&&(b&=-17,k=c=!1),l&&!d.length&&(b&=-33,l=d=!1);var n=a&&a.__bindData__;if(n)return!g||1&n[1]||(n[4]=e),!g&&1&n[1]&&(b|=8),!i||4&n[1]||(n[5]=f),k&&Ad.apply(n[2]||(n[2]=[]),c),l&&Ad.apply(n[3]||(n[3]=[]),d),n[1]|=b,cb.apply(null,n);if(!g||h||i||l||!(Vd.fastBind||Hd&&k))p=function(){var n=arguments,o=g?e:this;if((i||k||l)&&(n=Rd.call(n),k&&Fd.apply(n,c),l&&Ad.apply(n,d),i&&n.length<f))return b|=16,cb(a,j?b:-4&b,n,null,e,f);if(h&&(a=o[m]),this instanceof p){o=eb(a.prototype);var q=a.apply(o,n);return Ab(q)?q:o}return a.apply(o,n)};else{if(k){var o=[e];Ad.apply(o,c)}var p=k?Hd.apply(a,o):Hd.call(a,e)}return Wd(p,Rd.call(arguments)),p}function eb(a){return Ab(a)?Id(a):{}}function fb(a){return $d[a]}function gb(){var b=(b=c.indexOf)===nc?a:b;return b}function hb(a){var b,c;return a&&Ed.call(a)==S&&(b=a.constructor,!zb(b)||b instanceof b)?(ee(a,function(a,b){c=b}),"undefined"==typeof c||yd.call(a,c)):!1}function ib(a){return _d[a]}function jb(a){return a&&"object"==typeof a&&"number"==typeof a.length&&Ed.call(a)==M||!1}function kb(a,b,c,d){return"boolean"!=typeof b&&null!=b&&(d=c,c=b,b=!1),f(a,b,"function"==typeof c&&s(c,d,1))}function lb(a,b,c){return f(a,!0,"function"==typeof b&&s(b,c,1))}function mb(a,b,d){var e;return b=c.createCallback(b,d,3),fe(a,function(a,c,d){return b(a,c,d)?(e=c,!1):void 0}),e}function nb(a,b,d){var e;return b=c.createCallback(b,d,3),pb(a,function(a,c,d){return b(a,c,d)?(e=c,!1):void 0}),e}function ob(a,b,c){var d=[];ee(a,function(a,b){d.push(b,a)});var e=d.length;for(b=s(b,c,3);e--&&b(d[e--],d[e],a)!==!1;);return a}function pb(a,b,c){var d=Zd(a),e=d.length;for(b=s(b,c,3);e--;){var f=d[e];if(b(a[f],f,a)===!1)break}return a}function qb(a){var b=[];return ee(a,function(a,c){zb(a)&&b.push(c)}),b.sort()}function rb(a,b){return a?yd.call(a,b):!1}function sb(a){for(var b=-1,c=Zd(a),d=c.length,e={};++b<d;){var f=c[b];e[a[f]]=f}return e}function tb(a){return a===!0||a===!1||Ed.call(a)==O}function ub(a){return a?"object"==typeof a&&Ed.call(a)==P:!1}function vb(a){return a?1===a.nodeType:!1}function wb(a){var b=!0;if(!a)return b;var c=Ed.call(a),d=a.length;return c==N||c==U||c==M||c==S&&"number"==typeof d&&zb(a.splice)?!d:(fe(a,function(){return b=!1}),b)}function xb(a,b,c,d){return x(a,b,"function"==typeof c&&s(c,d,2))}function yb(a){return Kd(a)&&!Ld(parseFloat(a))}function zb(a){return"function"==typeof a}function Ab(a){return!(!a||!Y[typeof a])}function Bb(a){return Db(a)&&a!=+a}function Cb(a){return null===a}function Db(a){return"number"==typeof a||Ed.call(a)==R}function Eb(a){return a?"object"==typeof a&&Ed.call(a)==T:!1}function Fb(a){return"string"==typeof a||Ed.call(a)==U}function Gb(a){return"undefined"==typeof a}function Hb(a){var b=arguments,c=2;if(!Ab(a))return a;if("number"!=typeof b[2]&&(c=b.length),c>3&&"function"==typeof b[c-2])var d=s(b[--c-1],b[c--],2);else c>2&&"function"==typeof b[c-1]&&(d=b[--c]);for(var e=Rd.call(arguments,1,c),f=-1,g=k(),h=k();++f<c;)Z(a,e[f],d,g,h);return n(g),n(h),a}function Ib(a,b,d){var e=gb(),f="function"==typeof b,g={};if(f)b=c.createCallback(b,d,3);else var h=t(arguments,!0,!1,1);return ee(a,function(a,c,d){(f?!b(a,c,d):e(h,c)<0)&&(g[c]=a)}),g}function Jb(a){for(var b=-1,c=Zd(a),d=c.length,e=fd(d);++b<d;){var f=c[b];e[b]=[f,a[f]]}return e}function Kb(a,b,d){var e={};if("function"!=typeof b)for(var f=-1,g=t(arguments,!0,!1,1),h=Ab(a)?g.length:0;++f<h;){var i=g[f];i in a&&(e[i]=a[i])}else b=c.createCallback(b,d,3),ee(a,function(a,c,d){b(a,c,d)&&(e[c]=a)});return e}function Lb(a,b,c,d){var e=Xd(a);if(b=s(b,d,4),null==c)if(e)c=[];else{var f=a&&a.constructor,g=f&&f.prototype;c=eb(g)}return(e?Tb:fe)(a,function(a,d,e){return b(c,a,d,e)}),c}function Mb(a){for(var b=-1,c=Zd(a),d=c.length,e=fd(d);++b<d;)e[b]=a[c[b]];return e}function Nb(a){for(var b=arguments,c=-1,d=t(b,!0,!1,1),e=b[2]&&b[2][b[1]]===a?1:d.length,f=fd(e);++c<e;)f[c]=a[d[c]];return f}function Ob(a,b,c){var d=-1,e=gb(),f=a?a.length:0,g=!1;return c=(0>c?Nd(0,f+c):c)||0,Xd(a)?g=e(a,b,c)>-1:"number"==typeof f?g=(Fb(a)?a.indexOf(b,c):e(a,b,c))>-1:fe(a,function(a){return++d>=c?!(g=a===b):void 0}),g}function Pb(a,b,d){var e=!0;b=c.createCallback(b,d,3);var f=-1,g=a?a.length:0;if("number"==typeof g)for(;++f<g&&(e=!!b(a[f],f,a)););else fe(a,function(a,c,d){return e=!!b(a,c,d)});return e}function Qb(a,b,d){var e=[];b=c.createCallback(b,d,3);var f=-1,g=a?a.length:0;if("number"==typeof g)for(;++f<g;){var h=a[f];b(h,f,a)&&e.push(h)}else fe(a,function(a,c,d){b(a,c,d)&&e.push(a)});return e}function Rb(a,b,d){b=c.createCallback(b,d,3);var e=-1,f=a?a.length:0;if("number"!=typeof f){var g;return fe(a,function(a,c,d){return b(a,c,d)?(g=a,!1):void 0}),g}for(;++e<f;){var h=a[e];if(b(h,e,a))return h}}function Sb(a,b,d){var e;return b=c.createCallback(b,d,3),Ub(a,function(a,c,d){return b(a,c,d)?(e=a,!1):void 0}),e}function Tb(a,b,c){var d=-1,e=a?a.length:0;if(b=b&&"undefined"==typeof c?b:s(b,c,3),"number"==typeof e)for(;++d<e&&b(a[d],d,a)!==!1;);else fe(a,b);return a}function Ub(a,b,c){var d=a?a.length:0;if(b=b&&"undefined"==typeof c?b:s(b,c,3),"number"==typeof d)for(;d--&&b(a[d],d,a)!==!1;);else{var e=Zd(a);d=e.length,fe(a,function(a,c,f){return c=e?e[--d]:--d,b(f[c],c,f)})}return a}function Vb(a,b){var c=Rd.call(arguments,2),d=-1,e="function"==typeof b,f=a?a.length:0,g=fd("number"==typeof f?f:0);return Tb(a,function(a){g[++d]=(e?b:a[b]).apply(a,c)}),g}function Wb(a,b,d){var e=-1,f=a?a.length:0;if(b=c.createCallback(b,d,3),"number"==typeof f)for(var g=fd(f);++e<f;)g[e]=b(a[e],e,a);else g=[],fe(a,function(a,c,d){g[++e]=b(a,c,d)});return g}function Xb(a,b,d){var e=-1/0,f=e;if(!b&&Xd(a))for(var h=-1,i=a.length;++h<i;){var j=a[h];j>f&&(f=j)}else b=!b&&Fb(a)?g:c.createCallback(b,d,3),Tb(a,function(a,c,d){var g=b(a,c,d);g>e&&(e=g,f=a)});return f}function Yb(a,b,d){var e=1/0,f=e;if(!b&&Xd(a))for(var h=-1,i=a.length;++h<i;){var j=a[h];f>j&&(f=j)}else b=!b&&Fb(a)?g:c.createCallback(b,d,3),Tb(a,function(a,c,d){var g=b(a,c,d);e>g&&(e=g,f=a)});return f}function Zb(a,b){var c=-1,d=a?a.length:0;if("number"==typeof d)for(var e=fd(d);++c<d;)e[c]=a[c][b];return e||Wb(a,b)}function $b(a,b,c,d){if(!a)return c;var e=arguments.length<3;b=s(b,d,4);var f=-1,g=a.length;if("number"==typeof g)for(e&&(c=a[++f]);++f<g;)c=b(c,a[f],f,a);else fe(a,function(a,d,f){c=e?(e=!1,a):b(c,a,d,f)});return c}function _b(a,b,c,d){var e=arguments.length<3;return b=s(b,d,4),Ub(a,function(a,d,f){c=e?(e=!1,a):b(c,a,d,f)}),c}function ac(a,b,d){return b=c.createCallback(b,d,3),Qb(a,function(a,c,d){return!b(a,c,d)})}function bc(a,b,c){var d=a?a.length:0;if("number"!=typeof d&&(a=Mb(a)),null==b||c)return a?a[Wc(d-1)]:r;var e=cc(a);return e.length=Od(Nd(0,b),e.length),e}function cc(a){var b=-1,c=a?a.length:0,d=fd("number"==typeof c?c:0);return Tb(a,function(a){var c=Wc(++b);d[b]=d[c],d[c]=a}),d}function dc(a){var b=a?a.length:0;return"number"==typeof b?b:Zd(a).length}function ec(a,b,d){var e;b=c.createCallback(b,d,3);var f=-1,g=a?a.length:0;if("number"==typeof g)for(;++f<g&&!(e=b(a[f],f,a)););else fe(a,function(a,c,d){return!(e=b(a,c,d))});return!!e}function fc(a,b,d){var e=-1,f=a?a.length:0,g=fd("number"==typeof f?f:0);for(b=c.createCallback(b,d,3),Tb(a,function(a,c,d){var f=g[++e]=l();f.criteria=b(a,c,d),f.index=e,f.value=a}),f=g.length,g.sort(h);f--;){var i=g[f];g[f]=i.value,o(i)}return g}function gc(a){return a&&"number"==typeof a.length?p(a):Mb(a)}function hc(a){for(var b=-1,c=a?a.length:0,d=[];++b<c;){var e=a[b];e&&d.push(e)}return d}function ic(b){var c=-1,d=gb(),f=b?b.length:0,g=t(arguments,!0,!0,1),h=[],j=f>=w&&d===a;if(j){var k=i(g);k?(d=e,g=k):j=!1}for(;++c<f;){var l=b[c];d(g,l)<0&&h.push(l)}return j&&o(g),h}function jc(a,b,d){var e=-1,f=a?a.length:0;for(b=c.createCallback(b,d,3);++e<f;)if(b(a[e],e,a))return e;return-1}function kc(a,b,d){var e=a?a.length:0;for(b=c.createCallback(b,d,3);e--;)if(b(a[e],e,a))return e;return-1}function lc(a,b,d){var e=0,f=a?a.length:0;if("number"!=typeof b&&null!=b){var g=-1;for(b=c.createCallback(b,d,3);++g<f&&b(a[g],g,a);)e++}else if(e=b,null==e||d)return a?a[0]:r;return p(a,0,Od(Nd(0,e),f))}function mc(a,b,c,d){return"boolean"!=typeof b&&null!=b&&(d=c,c=d&&d[b]===a?null:b,b=!1),null!=c&&(a=Wb(a,c,d)),t(a,b)}function nc(b,c,d){if("number"==typeof d){var e=b?b.length:0;d=0>d?Nd(0,e+d):d||0}else if(d){var f=wc(b,c);return b[f]===c?f:-1}return a(b,c,d)}function oc(a,b,d){var e=0,f=a?a.length:0;if("number"!=typeof b&&null!=b){var g=f;for(b=c.createCallback(b,d,3);g--&&b(a[g],g,a);)e++}else e=null==b||d?1:b||e;return p(a,0,Od(Nd(0,f-e),f))}function pc(b){for(var c=arguments,d=c.length,f=-1,g=k(),h=-1,j=gb(),l=b?b.length:0,m=[],p=k();++f<d;){var q=c[f];g[f]=j===a&&(q?q.length:0)>=w&&i(f?c[f]:p)}a:for(;++h<l;){var r=g[0];if(q=b[h],(r?e(r,q):j(p,q))<0){for(f=d,(r||p).push(q);--f;)if(r=g[f],(r?e(r,q):j(c[f],q))<0)continue a;m.push(q)}}for(;d--;)r=g[d],r&&o(r);return n(g),n(p),m}function qc(a,b,d){var e=0,f=a?a.length:0;if("number"!=typeof b&&null!=b){var g=f;for(b=c.createCallback(b,d,3);g--&&b(a[g],g,a);)e++}else if(e=b,null==e||d)return a?a[f-1]:r;return p(a,Nd(0,f-e))}function rc(a,b,c){var d=a?a.length:0;for("number"==typeof c&&(d=(0>c?Nd(0,d+c):Od(c,d-1))+1);d--;)if(a[d]===b)return d;return-1}function sc(a){for(var b=arguments,c=0,d=b.length,e=a?a.length:0;++c<d;)for(var f=-1,g=b[c];++f<e;)a[f]===g&&(Dd.call(a,f--,1),e--);return a}function tc(a,b,c){a=+a||0,c="number"==typeof c?c:+c||1,null==b&&(b=a,a=0);for(var d=-1,e=Nd(0,td((b-a)/(c||1))),f=fd(e);++d<e;)f[d]=a,a+=c;return f}function uc(a,b,d){var e=-1,f=a?a.length:0,g=[];for(b=c.createCallback(b,d,3);++e<f;){var h=a[e];b(h,e,a)&&(g.push(h),Dd.call(a,e--,1),f--)}return g}function vc(a,b,d){if("number"!=typeof b&&null!=b){var e=0,f=-1,g=a?a.length:0;for(b=c.createCallback(b,d,3);++f<g&&b(a[f],f,a);)e++}else e=null==b||d?1:Nd(0,b);return p(a,e)}function wc(a,b,d,e){var f=0,g=a?a.length:f;for(d=d?c.createCallback(d,e,1):Tc,b=d(b);g>f;){var h=f+g>>>1;d(a[h])<b?f=h+1:g=h}return f}function xc(){return _(t(arguments,!0,!0))}function yc(a,b,d,e){return"boolean"!=typeof b&&null!=b&&(e=d,d=e&&e[b]===a?null:b,b=!1),null!=d&&(d=c.createCallback(d,e,3)),_(a,b,d)}function zc(a){return ic(a,Rd.call(arguments,1))}function Ac(){for(var a=arguments.length>1?arguments:arguments[0],b=-1,c=a?Xb(Zb(a,"length")):0,d=fd(0>c?0:c);++b<c;)d[b]=Zb(a,b);return d}function Bc(a,b){for(var c=-1,d=a?a.length:0,e={};++c<d;){var f=a[c];b?e[f]=b[c]:f&&(e[f[0]]=f[1])}return e}function Cc(a,b){if(!zb(b))throw new od;return function(){return--a<1?b.apply(this,arguments):void 0}}function Dc(a,b){return arguments.length>2?cb(a,17,Rd.call(arguments,2),null,b):cb(a,1,null,null,b)}function Ec(a){for(var b=arguments.length>1?t(arguments,!0,!1,1):qb(a),c=-1,d=b.length;++c<d;){var e=b[c];a[e]=cb(a[e],1,null,null,a)}return a}function Fc(a,b){return arguments.length>2?cb(b,19,Rd.call(arguments,2),null,a):cb(b,3,null,null,a)}function Gc(){for(var a=arguments,b=a.length;b--;)if(!zb(a[b]))throw new od;return function(){for(var b=arguments,c=a.length;c--;)b=[a[c].apply(this,b)];return b[0]}}function Hc(a,b,c){var d=typeof a;if(null==a||"function"==d)return s(a,b,c);if("object"!=d)return function(b){return b[a]};var e=Zd(a),f=e[0],g=a[f];return 1!=e.length||g!==g||Ab(g)?function(b){for(var c=e.length,d=!1;c--&&(d=x(b[e[c]],a[e[c]],null,!0)););return d}:function(a){var b=a[f];return g===b&&(0!==g||1/g==1/b)}}function Ic(a,b){return b="number"==typeof b?b:+b||a.length,cb(a,4,null,null,null,b)}function Jc(a,b,c){var d,e,f,g,h,i,j,k=0,l=!1,m=!0;if(!zb(a))throw new od;if(b=Nd(0,b)||0,c===!0){var n=!0;m=!1}else Ab(c)&&(n=c.leading,l="maxWait"in c&&(Nd(b,c.maxWait)||0),m="trailing"in c?c.trailing:m);var o=function(){var c=b-(zd()-g);if(0>=c){e&&ud(e);var l=j;e=i=j=r,l&&(k=zd(),f=a.apply(h,d))}else i=Cd(o,c)},p=function(){i&&ud(i),e=i=j=r,(m||l!==b)&&(k=zd(),f=a.apply(h,d))};return function(){if(d=arguments,g=zd(),h=this,j=m&&(i||!n),l===!1)var c=n&&!i;else{e||n||(k=g);var q=l-(g-k);0>=q?(e&&(e=ud(e)),k=g,f=a.apply(h,d)):e||(e=Cd(p,q))}return i||b===l||(i=Cd(o,b)),c&&(f=a.apply(h,d)),f}}function Kc(a){if(!zb(a))throw new od;var b=Rd.call(arguments,1);return Cd(function(){a.apply(r,b)},1)}function Lc(a,b){if(!zb(a))throw new od;var c=Rd.call(arguments,2);return Cd(function(){a.apply(r,c)},b)}function Mc(a,b){if(!zb(a))throw new od;var c=function(){var d=c.cache,e=b?b.apply(this,arguments):v+arguments[0];return yd.call(d,e)?d[e]:d[e]=a.apply(this,arguments)};return c.cache={},c}function Nc(a){var b,c;if(!zb(a))throw new od;return function(){return b?c:(b=!0,c=a.apply(this,arguments),a=null,c)}}function Oc(a){return cb(a,16,Rd.call(arguments,1))}function Pc(a){return cb(a,32,null,Rd.call(arguments,1))}function Qc(a,b,c){var d=!0,e=!0;if(!zb(a))throw new od;c===!1?d=!1:Ab(c)&&(d="leading"in c?c.leading:d,e="trailing"in c?c.trailing:e),W.leading=d,W.maxWait=b,W.trailing=e;var f=Jc(a,b,W);return f}function Rc(a,b){if(!zb(b))throw new od;return function(){var c=[a];return Ad.apply(c,arguments),b.apply(this,c)}}function Sc(a){return null==a?"":nd(a).replace(be,fb)}function Tc(a){return a}function Uc(a,b){var e=a,f=!b||zb(e);b||(e=d,b=a,a=c),Tb(qb(b),function(c){var d=a[c]=b[c];f&&(e.prototype[c]=function(){var b=this.__wrapped__,c=[b];Ad.apply(c,arguments);var f=d.apply(a,c);return b&&"object"==typeof b&&b===f?this:(f=new e(f),f.__chain__=this.__chain__,f)})})}function Vc(){return b._=rd,this}function Wc(a,b,c){var d=null==a,e=null==b;null==c&&("boolean"==typeof a&&e?(c=a,a=1):e||"boolean"!=typeof b||(c=b,e=!0)),d&&e&&(b=1),a=+a||0,e?(b=a,a=0):b=+b||0;var f=Qd();return c||a%1||b%1?Od(a+f*(b-a+parseFloat("1e-"+((f+"").length-1))),b):a+vd(f*(b-a+1))}function Xc(a,b){if(a){var c=a[b];return zb(c)?a[b]():c}}function Yc(a,b,d){var e=c.templateSettings;a||(a=""),d=de({},d,e);var f,g=de({},d.imports,e.imports),h=Zd(g),i=Mb(g),k=0,l=d.interpolate||H,m="__p += '",n=md((d.escape||H).source+"|"+l.source+"|"+(l===F?C:H).source+"|"+(d.evaluate||H).source+"|$","g");a.replace(n,function(b,c,d,e,g,h){return d||(d=e),m+=a.slice(k,h).replace(J,j),c&&(m+="' +\n__e("+c+") +\n'"),g&&(f=!0,m+="';\n"+g+";\n__p += '"),d&&(m+="' +\n((__t = ("+d+")) == null ? '' : __t) +\n'"),k=h+b.length,b}),m+="';\n";var o=d.variable,p=o;p||(o="obj",m="with ("+o+") {\n"+m+"\n}\n"),m=(f?m.replace(z,""):m).replace(A,"$1").replace(B,"$1;"),m="function("+o+") {\n"+(p?"":o+" || ("+o+" = {});\n")+"var __t, __p = '', __e = _.escape"+(f?", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n":";\n")+m+"return __p\n}";var q="\n/*\n//# sourceURL="+(d.sourceURL||"/lodash/template/source["+L++ +"]")+"\n*/";try{var s=id(h,"return "+m+q).apply(r,i)}catch(t){throw t.source=m,t}return b?s(b):(s.source=m,s)}function Zc(a,b,c){a=(a=+a)>-1?a:0;var d=-1,e=fd(a);for(b=s(b,c,1);++d<a;)e[d]=b(d);return e}function $c(a){return null==a?"":nd(a).replace(ae,ib)}function _c(a){var b=++u;return nd(null==a?"":a)+b}function ad(a){return a=new d(a),a.__chain__=!0,a}function bd(a,b){return b(a),a}function cd(){return this.__chain__=!0,this}function dd(){return nd(this.__wrapped__)}function ed(){return this.__wrapped__}b=b?db.defaults($.Object(),b,db.pick($,K)):$;var fd=b.Array,gd=b.Boolean,hd=b.Date,id=b.Function,jd=b.Math,kd=b.Number,ld=b.Object,md=b.RegExp,nd=b.String,od=b.TypeError,pd=[],qd=ld.prototype,rd=b._,sd=md("^"+nd(qd.valueOf).replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/valueOf|for [^\]]+/g,".+?")+"$"),td=jd.ceil,ud=b.clearTimeout,vd=jd.floor,wd=id.prototype.toString,xd=sd.test(xd=ld.getPrototypeOf)&&xd,yd=qd.hasOwnProperty,zd=sd.test(zd=hd.now)&&zd||function(){return+new hd},Ad=pd.push,Bd=b.setImmediate,Cd=b.setTimeout,Dd=pd.splice,Ed=qd.toString,Fd=pd.unshift,Gd=function(){try{var a={},b=sd.test(b=ld.defineProperty)&&b,c=b(a,a,a)&&b}catch(d){}return c}(),Hd=sd.test(Hd=Ed.bind)&&Hd,Id=sd.test(Id=ld.create)&&Id,Jd=sd.test(Jd=fd.isArray)&&Jd,Kd=b.isFinite,Ld=b.isNaN,Md=sd.test(Md=ld.keys)&&Md,Nd=jd.max,Od=jd.min,Pd=b.parseInt,Qd=jd.random,Rd=pd.slice,Sd=sd.test(b.attachEvent),Td=Hd&&!/\n|true/.test(Hd+Sd),Ud={};Ud[N]=fd,Ud[O]=gd,Ud[P]=hd,Ud[Q]=id,Ud[S]=ld,Ud[R]=kd,Ud[T]=md,Ud[U]=nd,d.prototype=c.prototype;var Vd=c.support={};Vd.fastBind=Hd&&!Td,Vd.funcDecomp=!sd.test(b.WinRTError)&&I.test(q),Vd.funcNames="string"==typeof id.name,c.templateSettings={escape:/<%-([\s\S]+?)%>/g,evaluate:/<%([\s\S]+?)%>/g,interpolate:F,variable:"",imports:{_:c}},Id||(eb=function(a){if(Ab(a)){m.prototype=a;var b=new m;m.prototype=null}return b||{}});var Wd=Gd?function(a,b){X.value=b,Gd(a,"__bindData__",X)}:m,Xd=Jd||function(a){return a&&"object"==typeof a&&"number"==typeof a.length&&Ed.call(a)==N||!1},Yd=function(a){var b,c=a,d=[];if(!c)return d;if(!Y[typeof a])return d;for(b in c)yd.call(c,b)&&d.push(b);return d},Zd=Md?function(a){return Ab(a)?Md(a):[]}:Yd,$d={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"},_d=sb($d),ae=md("("+Zd(_d).join("|")+")","g"),be=md("["+Zd($d).join("")+"]","g"),ce=function(a,b,c){var d,e=a,f=e;if(!e)return f;var g=arguments,h=0,i="number"==typeof c?2:g.length;if(i>3&&"function"==typeof g[i-2])var j=s(g[--i-1],g[i--],2);else i>2&&"function"==typeof g[i-1]&&(j=g[--i]);for(;++h<i;)if(e=g[h],e&&Y[typeof e])for(var k=-1,l=Y[typeof e]&&Zd(e),m=l?l.length:0;++k<m;)d=l[k],f[d]=j?j(f[d],e[d]):e[d];return f},de=function(a,b,c){var d,e=a,f=e;if(!e)return f;for(var g=arguments,h=0,i="number"==typeof c?2:g.length;++h<i;)if(e=g[h],e&&Y[typeof e])for(var j=-1,k=Y[typeof e]&&Zd(e),l=k?k.length:0;++j<l;)d=k[j],"undefined"==typeof f[d]&&(f[d]=e[d]);return f},ee=function(a,b,c){var d,e=a,f=e;if(!e)return f;if(!Y[typeof e])return f;b=b&&"undefined"==typeof c?b:s(b,c,3);for(d in e)if(b(e[d],d,a)===!1)return f;return f},fe=function(a,b,c){var d,e=a,f=e;if(!e)return f;if(!Y[typeof e])return f;b=b&&"undefined"==typeof c?b:s(b,c,3);for(var g=-1,h=Y[typeof e]&&Zd(e),i=h?h.length:0;++g<i;)if(d=h[g],b(e[d],d,a)===!1)return f;return f},ge=function(a){if(!a||Ed.call(a)!=S)return!1;var b=a.valueOf,c="function"==typeof b&&(c=xd(b))&&xd(c);return c?a==c||xd(a)==c:hb(a)},he=ab(function(a,b,c){yd.call(a,c)?a[c]++:a[c]=1}),ie=ab(function(a,b,c){(yd.call(a,c)?a[c]:a[c]=[]).push(b)}),je=ab(function(a,b,c){a[c]=b}),ke=Qb;Td&&bb&&"function"==typeof Bd&&(Kc=function(a){if(!zb(a))throw new od;return Bd.apply(b,arguments)});var le=8==Pd(y+"08")?Pd:function(a,b){return Pd(Fb(a)?a.replace(G,""):a,b||0)};return c.after=Cc,c.assign=ce,c.at=Nb,c.bind=Dc,c.bindAll=Ec,c.bindKey=Fc,c.chain=ad,c.compact=hc,c.compose=Gc,c.countBy=he,c.createCallback=Hc,c.curry=Ic,c.debounce=Jc,c.defaults=de,c.defer=Kc,c.delay=Lc,c.difference=ic,c.filter=Qb,c.flatten=mc,c.forEach=Tb,c.forEachRight=Ub,c.forIn=ee,c.forInRight=ob,c.forOwn=fe,c.forOwnRight=pb,c.functions=qb,c.groupBy=ie,c.indexBy=je,c.initial=oc,c.intersection=pc,c.invert=sb,c.invoke=Vb,c.keys=Zd,c.map=Wb,c.max=Xb,c.memoize=Mc,c.merge=Hb,c.min=Yb,c.omit=Ib,c.once=Nc,c.pairs=Jb,c.partial=Oc,c.partialRight=Pc,c.pick=Kb,c.pluck=Zb,c.pull=sc,c.range=tc,c.reject=ac,c.remove=uc,c.rest=vc,c.shuffle=cc,c.sortBy=fc,c.tap=bd,c.throttle=Qc,c.times=Zc,c.toArray=gc,c.transform=Lb,c.union=xc,c.uniq=yc,c.values=Mb,c.where=ke,c.without=zc,c.wrap=Rc,c.zip=Ac,c.zipObject=Bc,c.collect=Wb,c.drop=vc,c.each=Tb,c.eachRight=Ub,c.extend=ce,c.methods=qb,c.object=Bc,c.select=Qb,c.tail=vc,c.unique=yc,c.unzip=Ac,Uc(c),c.clone=kb,c.cloneDeep=lb,c.contains=Ob,c.escape=Sc,c.every=Pb,c.find=Rb,c.findIndex=jc,c.findKey=mb,c.findLast=Sb,c.findLastIndex=kc,c.findLastKey=nb,c.has=rb,c.identity=Tc,c.indexOf=nc,c.isArguments=jb,c.isArray=Xd,c.isBoolean=tb,c.isDate=ub,c.isElement=vb,c.isEmpty=wb,c.isEqual=xb,c.isFinite=yb,c.isFunction=zb,c.isNaN=Bb,c.isNull=Cb,c.isNumber=Db,c.isObject=Ab,c.isPlainObject=ge,c.isRegExp=Eb,c.isString=Fb,c.isUndefined=Gb,c.lastIndexOf=rc,c.mixin=Uc,c.noConflict=Vc,c.parseInt=le,c.random=Wc,c.reduce=$b,c.reduceRight=_b,c.result=Xc,c.runInContext=q,c.size=dc,c.some=ec,c.sortedIndex=wc,c.template=Yc,c.unescape=$c,c.uniqueId=_c,c.all=Pb,c.any=ec,c.detect=Rb,c.findWhere=Rb,c.foldl=$b,c.foldr=_b,c.include=Ob,c.inject=$b,fe(c,function(a,b){c.prototype[b]||(c.prototype[b]=function(){var b=[this.__wrapped__],e=this.__chain__;Ad.apply(b,arguments);var f=a.apply(c,b);return e?new d(f,e):f})}),c.first=lc,c.last=qc,c.sample=bc,c.take=lc,c.head=lc,fe(c,function(a,b){var e="sample"!==b;c.prototype[b]||(c.prototype[b]=function(b,c){var f=this.__chain__,g=a(this.__wrapped__,b,c);return f||null!=b&&(!c||e&&"function"==typeof b)?new d(g,f):g})}),c.VERSION="2.2.1",c.prototype.chain=cd,c.prototype.toString=dd,c.prototype.value=ed,c.prototype.valueOf=ed,Tb(["join","pop","shift"],function(a){var b=pd[a];c.prototype[a]=function(){var a=this.__chain__,c=b.apply(this.__wrapped__,arguments);return a?new d(c,a):c}}),Tb(["push","reverse","sort","unshift"],function(a){var b=pd[a];c.prototype[a]=function(){return b.apply(this.__wrapped__,arguments),this}}),Tb(["concat","slice","splice"],function(a){var b=pd[a];c.prototype[a]=function(){return new d(b.apply(this.__wrapped__,arguments),this.__chain__)}}),c}var r,s=[],t=[],u=0,v=+new Date+"",w=75,x=40,y=" 	\f ﻿\n\r\u2028\u2029 ᠎             　",z=/\b__p \+= '';/g,A=/\b(__p \+=) '' \+/g,B=/(__e\(.*?\)|\b__t\)) \+\n'';/g,C=/\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,D=/\w*$/,E=/^function[ \n\r\t]+\w/,F=/<%=([\s\S]+?)%>/g,G=RegExp("^["+y+"]*0+(?=.$)"),H=/($^)/,I=/\bthis\b/,J=/['\n\r\t\u2028\u2029\\]/g,K=["Array","Boolean","Date","Function","Math","Number","Object","RegExp","String","_","attachEvent","clearTimeout","isFinite","isNaN","parseInt","setImmediate","setTimeout"],L=0,M="[object Arguments]",N="[object Array]",O="[object Boolean]",P="[object Date]",Q="[object Function]",R="[object Number]",S="[object Object]",T="[object RegExp]",U="[object String]",V={};V[Q]=!1,V[M]=V[N]=V[O]=V[P]=V[R]=V[S]=V[T]=V[U]=!0;var W={leading:!1,maxWait:0,trailing:!1},X={configurable:!1,enumerable:!1,value:null,writable:!1},Y={"boolean":!1,"function":!0,object:!0,number:!1,string:!1,undefined:!1},Z={"\\":"\\","'":"'","\n":"n","\r":"r","	":"t","\u2028":"u2028","\u2029":"u2029"},$=Y[typeof window]&&window||this,_=Y[typeof c]&&c&&!c.nodeType&&c,ab=Y[typeof b]&&b&&!b.nodeType&&b,bb=ab&&ab.exports===_&&_,cb=Y[typeof d]&&d;!cb||cb.global!==cb&&cb.window!==cb||($=cb);var db=q();"function"==typeof define&&"object"==typeof define.amd&&define.amd?($._=db,define(function(){return db})):_&&ab?bb?(ab.exports=db)._=db:_._=db:$._=db}).call(this)},{}],2:[function(a,b,c){"use strict";c.intFromBoolean=function(a){return a?1:0},c.booleanFromInt=function(a){return null===a?!1:a>0}},{}],3:[function(a,b){"use strict";var c=a("../janicek/core"),d=c.def,e=function(a,b,f,g,h,i){var j={a:d(a,1),b:d(b,0),c:d(f,0),d:d(g,1),tx:d(h,0),ty:d(i,0),clone:function(){return e(j.a,j.b,j.c,j.d,j.tx,j.ty)},createGradientBox:function(a,b,d,e,f){if(j.a=a/1638.4,j.d=b/1638.4,c.isUndefinedOrNull(d)||0===d)j.b=j.c=0;else{var g=Math.cos(d),h=Math.sin(d);j.b=h*j.d,j.c=-h*j.a,j.a*=g,j.d*=g}j.tx=c.isUndefinedOrNull(e)?a/2:e+a/2,j.ty=c.isUndefinedOrNull(f)?b/2:f+b/2},setRotation:function(a,b){var d=c.isUndefinedOrNull(b)?1:b;j.a=Math.cos(a)*d,j.c=Math.sin(a)*d,j.b=-j.c,j.d=j.a},invert:function(){var a=j.a*j.d-j.b*j.c;if(0===a)j.a=j.b=j.c=j.d=0,j.tx=-j.tx,j.ty=-j.ty;else{a=1/a;var b=j.d*a;j.d=j.a*a,j.a=b,j.b*=-a,j.c*=-a;var c=-j.a*j.tx-j.c*j.ty;j.ty=-j.b*j.tx-j.d*j.ty,j.tx=c}return this},transformPoint:function(a){return{x:a.x*j.a+a.y*j.c+j.tx,y:a.x*j.b+a.y*j.d+j.ty}},translate:function(a,b){j.tx+=a,j.ty+=b},rotate:function(a){var b=Math.cos(a),c=Math.sin(a),d=j.a*b-j.b*c;j.b=j.a*c+j.b*b,j.a=d;var e=j.c*b-j.d*c;j.d=j.c*c+j.d*b,j.c=e;var f=j.tx*b-j.ty*c;j.ty=j.tx*c+j.ty*b,j.tx=f},scale:function(a,b){j.a*=a,j.b*=b,j.c*=a,j.d*=b,j.tx*=a,j.ty*=b},concat:function(a){var b=j.a*a.a+j.b*a.c;j.b=j.a*a.b+j.b*a.d,j.a=b;var c=j.c*a.a+j.d*a.c;j.d=j.c*a.b+j.d*a.d,j.c=c;var d=j.tx*a.a+j.ty*a.c+a.tx;j.ty=j.tx*a.b+j.ty*a.d+a.ty,j.tx=d},mult:function(a){var b=e();return b.a=j.a*a.a+j.b*a.c,b.b=j.a*a.b+j.b*a.d,b.c=j.c*a.a+j.d*a.c,b.d=j.c*a.b+j.d*a.d,b.tx=j.tx*a.a+j.ty*a.c+a.tx,b.ty=j.tx*a.b+j.ty*a.d+a.ty,b},identity:function(){j.a=1,j.b=0,j.c=0,j.d=1,j.tx=0,j.ty=0},toMozString:function(){var a="matrix(";return a+=j.a+", ",a+=j.b+", ",a+=j.c+", ",a+=j.d+", ",a+=j.tx+"px, ",a+=j.ty+"px)"},toString:function(){var a="matrix(";return a+=j.a+", ",a+=j.b+", ",a+=j.c+", ",a+=j.d+", ",a+=j.tx+", ",a+=j.ty+")"}};return j};b.exports=e},{"../janicek/core":10}],4:[function(a,b){"use strict";b.exports={distanceFromOrigin:function(a){return Math.sqrt(a.x*a.x+a.y*a.y)},distance:function(a,b){return Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2))},interpolate:function(a,b,c){return{x:(a.x-b.x)*c+b.x,y:(a.y-b.y)*c+b.y}},normalize:function(a,b){if(0===a.x&&0===a.y)a.x=b;else{var c=b/Math.sqrt(a.x*a.x+a.y*a.y);a.x*=c,a.y*=c}},add:function(a,b){return{x:b.x+a.x,y:b.y+a.y}},subtract:function(a,b){return{x:a.x-b.x,y:a.y-b.y}},hash:function(a){return a.x+","+a.y}}},{}],5:[function(a,b){"use strict";b.exports=function(a,b,c,d){return{x:a||0,y:b||0,width:c||0,height:d||0}},b.exports.core=function(a){return{left:function(){return a.x},right:function(){return a.x+a.width},top:function(){return a.y},bottom:function(){return a.y+a.height}}}},{}],6:[function(a,b){"use strict";var c=a("../janicek/core").def,d=function(a,b,d,e){this.w=c(e,0),this.x=c(a,0),this.y=c(b,0),this.z=c(d,0)},e=function(a,b,c,e){return new d(a,b,c,e)};d.prototype={getLength:function(){return Math.abs(e.distance(this,e()))},get length(){return this.getLength()},getLengthSquared:function(){return this.length*this.length},get lengthSquared(){return this.getLengthSquared()},add:function(a){return e(this.x+a.x,this.y+a.y,this.z+a.z)},clone:function(){return e(this.x,this.y,this.z,this.w)},crossProduct:function(a){return e(this.y*a.z-this.z*a.y,this.z*a.x-this.x*a.z,this.x*a.y-this.y*a.x,1)},decrementBy:function(a){this.x-=a.x,this.y-=a.y,this.z-=a.z},dotProduct:function(a){return this.x*a.x+this.y*a.y+this.z*a.z},equals:function(a,b){return b=c(b,!1),this.x===a.x&&this.y===a.y&&this.z===a.z&&(!b||this.w===a.w)},incrementBy:function(a){this.x+=a.x,this.y+=a.y,this.z+=a.z},nearEquals:function(a,b,d){return d=c(d,!1),Math.abs(this.x-a.x)<b&&Math.abs(this.y-a.y)<b&&Math.abs(this.z-a.z)<b&&(!d||Math.abs(this.w-a.w)<b)},negate:function(){this.x*=-1,this.y*=-1,this.z*=-1},normalize:function(){var a=this.length;return 0!==a&&(this.x/=a,this.y/=a,this.z/=a),a},project:function(){this.x/=this.w,this.y/=this.w,this.z/=this.w},scaleBy:function(a){this.x*=a,this.y*=a,this.z*=a},subtract:function(a){return e(this.x-a.x,this.y-a.y,this.z-a.z)
-},toString:function(){return"Vector3D("+this.x+", "+this.y+", "+this.z+")"}},e.angleBetween=function(a,b){var c=a.clone();c.normalize();var d=b.clone();return d.normalize(),Math.acos(c.dotProduct(d))},e.distance=function(a,b){var c=b.x-a.x,d=b.y-a.y,e=b.z-a.z;return Math.sqrt(c*c+d*d+e*e)},Object.defineProperties(e,{X_AXIS:{get:function(){return e(1,0,0)}}}),Object.defineProperties(e,{Y_AXIS:{get:function(){return e(0,1,0)}}}),Object.defineProperties(e,{Z_AXIS:{get:function(){return e(0,0,1)}}}),b.exports=e},{"../janicek/core":10}],7:[function(a,b,c){"use strict";function d(){var a=$(y.S_imageThreshold).val(),b=v.displayColors.OCEAN,c=v.displayColors.GRASSLAND;if($(y.S_invertImage).is(":checked")){var d=b;b=c,c=d}var e=l.makeAverageThresholdImageData(l.getImageData(i),a,b,c),f=l.makeImageDataUrlFromImageData(e);$(y.S_imageThumb).attr("src",f)}function e(a){var b=c.getContext();switch(m.graphicsReset(b,a.map.SIZE.width,a.map.SIZE.height,v.displayColors),$(y.S_view).val()){case"debug polygons":m.renderDebugPolygons(b,a.map,v.displayColors);break;case"smooth":m.renderPolygons(b,v.displayColors,null,m.colorWithSlope,a.map,a.noisyEdges),m.renderEdges(b,v.displayColors,a.map,a.noisyEdges,a.lava,$(y.S_viewRivers).is(":checked"))}$(y.S_viewEdges).is(":checked")&&m.renderAllEdges(b,n.rgba(208,208,208,.25),a.map,a.noisyEdges),$(y.S_viewRoads).is(":checked")&&m.renderRoads(b,a.map,a.roads,v.displayColors),$(y.S_viewBridges).is(":checked")&&m.renderBridges(b,a.map,a.roads,v.displayColors),$(y.S_viewWatersheds).is(":checked")&&m.renderWatersheds(b,a.map,a.watersheds),$(y.S_addNoise).is(":checked")&&l.addNoiseToCanvas(b,666,10,!0)}function f(){var a=document.getElementById(y.ID_map);return null===a&&(a=document.createElement("canvas"),a.id=y.ID_map,document.body.appendChild(a)),a}function g(a){return k(a).isNumber()?k(a).parseInt():Math.abs(s.stringToSeed(a))}function h(){c.initializeUi(),j=c.generate(),a("./janicek/perf").traceCounters()}var i,j,k=a("lodash"),l=a("./janicek/canvas"),m=a("./voronoimap/canvas-render"),n=a("./janicek/html-color"),o=a("./voronoimap/island-shape"),p=a("./voronoimap/lava"),q=a("./voronoimap/map"),r=a("./voronoimap/noisy-edges"),s=a("./janicek/pseudo-random-number-generators"),t=a("./voronoimap/roads"),u=a("./janicek/string"),v=a("./voronoimap/style"),w=a("./voronoimap/watersheds"),x=a("./janicek/timer")(),y={ID_map:"map",S_addNoise:"#addNoise",S_edgeNoise:"#edgeNoise",S_fields:"#fields",S_fieldset:"#fieldset",S_generate:"#generate",S_height:"#height",S_imageFile:"#imageFile",S_imageThreshold:"#imageThreshold",S_imageThumb:"#imageThumb",S_invertImage:"#invertImage",S_islandFactor:"#islandFactor",S_islandShape:"#islandShape",S_lakeThreshold:"#lakeThreshold",S_lloydIterations:"#lloydIterations",S_map:"#map",S_numberOfLands:"#numberOfLands",S_numberOfPoints:"#numberOfPoints",S_oceanRatio:"#oceanRatio",S_random:"#random",S_riverChance:"#riverChance",S_roadElevationThresholds:"#roadElevationThresholds",S_seed:"#seed",S_shapeRandom:"#shapeRandom",S_shapeSeed:"#shapeSeed",S_toggle:"#toggle",S_view:"#view",S_viewBridges:"#viewBridges",S_viewEdges:"#viewEdges",S_viewRivers:"#viewRivers",S_viewRoads:"#viewRoads",S_viewWatersheds:"#viewWatersheds",S_width:"#width"};c.initializeUi=function(){i=new Image,i.onload=function(){$(y.S_imageThumb).attr("src",i.src),d()},i.src="world-map.jpg",$(y.S_random).click(function(){$(y.S_seed).val(String(s.makeRandomSeed()))}),$(y.S_shapeRandom).click(function(){$(y.S_shapeSeed).val(String(s.makeRandomSeed()))}),$(y.S_islandShape).change(function(){switch($([y.S_islandFactor,y.S_oceanRatio,y.S_shapeSeed,y.S_imageFile,y.S_imageThumb,y.S_invertImage,y.S_imageThreshold].toString()).parent().hide(),$(y.S_islandShape).val()){case"bitmap":$([y.S_imageFile,y.S_imageThumb,y.S_invertImage,y.S_imageThreshold].toString()).parent().show();break;case"noise":$(y.S_shapeSeed).parent().show();break;case"perlin":$([y.S_oceanRatio,y.S_shapeSeed].toString()).parent().show();break;case"radial":$([y.S_islandFactor,y.S_shapeSeed].toString()).parent().show()}}),$(y.S_imageFile).change(function(){console.log("file changed");var a=$(y.S_imageFile).get()[0],b=a.files;if(1===b.length){var c=b[0];u(c.type).startsWith("image")&&l.loadFileIntoImage(c,i)}}),$([y.S_invertImage,y.S_imageThreshold].toString()).change(function(){d()}),0===$(y.S_width).val().length&&$(y.S_width).val($(window).width()),0===$(y.S_height).val().length&&$(y.S_height).val($(window).height()),$(y.S_view).change(function(){switch($(y.S_view).val()){case"debug polygons":$(y.S_addNoise).removeAttr("checked");break;case"smooth":$(y.S_addNoise).attr("checked","true")}}),$([y.S_view,y.S_viewRivers,y.S_viewRoads,y.S_viewBridges,y.S_viewWatersheds,y.S_viewEdges,y.S_addNoise].toString()).change(function(){e(j)}),$(y.S_viewRoads).change(function(){$(y.S_roadElevationThresholds).parent().toggle()}),$(y.S_generate).click(function(){j=c.generate()}),$(y.S_toggle).click(function(){var a=$(y.S_fields);a.toggle(500,function(){$(y.S_toggle).text(a.is(":visible")?"hide":"show")})})},c.getContext=function(){var a=document.getElementById(y.ID_map);return a.getContext("2d")},c.generate=function(){x.start();var a={map:null,noisyEdges:null,roads:null,watersheds:null,lava:null},b=f();b.width=k($(y.S_width).val()).parseInt(),b.height=k($(y.S_height).val()).parseInt(),a.map=q({width:b.width+0,height:b.height+0});var c=g($(y.S_seed).val()),d=g($(y.S_shapeSeed).val()),h=$(y.S_islandShape).val();switch(h){case"bitmap":var j=l.getImageData(i),m=l.makeAverageThresholdBitmap(j,k.parseInt($(y.S_imageThreshold).val()));$(y.S_invertImage).is(":checked")&&(m=l.invertBitmap(m)),a.map.newIsland(o.makeBitmap(m),c);break;case"blob":a.map.newIsland(o.makeBlob(),c);break;case"noise":a.map.newIsland(o.makeNoise(d),c);break;case"perlin":a.map.newIsland(o.makePerlin(d,$(y.S_oceanRatio).val()),c);break;case"radial":a.map.newIsland(o.makeRadial(d,$(y.S_islandFactor).val()),c);break;case"square":a.map.newIsland(o.makeSquare(),c)}a.watersheds=w(),a.noisyEdges=r(),a.lava=p(),a.roads=t();var n=$(y.S_numberOfLands).val();k(n).isNumber()?q.tryMutateMapPointsToGetNumberLands(a.map,n,30,2*n):(a.map.go0PlacePoints($(y.S_numberOfPoints).val()),a.map.go1ImprovePoints($(y.S_lloydIterations).val()),a.map.go2BuildGraph(),a.map.go3AssignElevations($(y.S_lakeThreshold).val())),a.map.go4AssignMoisture($(y.S_riverChance).val()),a.map.go5DecorateMap();var s=$(y.S_roadElevationThresholds).val().split(",");a.roads.createRoads(a.map,s),a.watersheds.createWatersheds(a.map),a.noisyEdges.buildNoisyEdges(a.map,a.lava,c,$(y.S_edgeNoise).val()),$("#generateMs").text(x.mark().mark),e(a);var u=x.mark();return $("#renderMs").text(u.mark),$("#totalMs").text(u.total),a},h()},{"./janicek/canvas":9,"./janicek/html-color":12,"./janicek/perf":14,"./janicek/pseudo-random-number-generators":16,"./janicek/string":17,"./janicek/timer":18,"./voronoimap/canvas-render":39,"./voronoimap/island-shape":43,"./voronoimap/lava":44,"./voronoimap/map":45,"./voronoimap/noisy-edges":46,"./voronoimap/roads":47,"./voronoimap/style":48,"./voronoimap/watersheds":49,lodash:1}],8:[function(a,b){"use strict";var c=a("./core"),d=a("lodash");b.exports=function(a){return a=c.def(a,[]),{value:a,get:function(b,c){return d(a[c]).isUndefined()?null:a[c][b]},set:function(b,d,e){return a[d]=c.def(a[d],[]),a[d][b]=e,a},foreachY:function(b){d(a).each(function(a){d(a).isUndefined()||b(a)})},foreachXY:function(b){var c;for(c=0;c<a.length;c++)if(!d(a[c]).isUndefined()){var e;for(e=0;e<a[c].length;e++)if(!d(a[c][e]).isUndefined()){var f=a[c][e];null!==f&&b(e,c,f)}}},any:function(b){var c;for(c=0;c<a.length;c++)if(!d(a[c]).isUndefined()){var e;for(e=0;e<a[c].length;e++)if(!d(a[c][e]).isUndefined()){var f=a[c][e];if(null!==f&&b(f))return{x:e,y:c}}}return null},dimensions:function(){var b=a.length,c=0;return this.foreachY(function(a){c=Math.max(c,a.length)}),{x:c,y:b}}}},b.exports.getIndices=function(a,b,d){return d=d||1,{x:a/d%b,y:c.toInt(a/d/b)}}},{"./core":10,lodash:1}],9:[function(a,b,c){"use strict";var d=a("./array2d"),e=a("./core"),f=a("./html-color"),g=a("./math"),h=a("./pseudo-random-number-generators"),i=4,j=0,k=1,l=2,m=3;c.renderCanvasPixelArray=function(a,b){for(var c,d=a.data,f=0;f<e.toInt(d.length/i);f++){c=f*i;var g=b(c,d[c+j],d[c+k],d[c+l],d[c+m]);null!==g&&(null!==g.red&&(d[c+j]=g.red),null!==g.green&&(d[c+k]=g.green),null!==g.blue&&(d[c+l]=g.blue),null!==g.alpha&&(d[c+m]=g.alpha))}},c.addNoise=function(a,b,d,f,i,j,k,l){f=e.def(f,!1),i=e.def(i,!0),j=e.def(j,!0),k=e.def(k,!0),l=e.def(l,!1);var m=h.randomGenerator(b,h.nextParkMiller);d=g.clamp(d,1,255);var n;return c.renderCanvasPixelArray(a,function(a,b,c,e,g){n=h.toIntRange(m(),-d,d);var o={red:null,green:null,blue:null,alpha:null};return i&&(o.red=b+n),j&&(o.green=c+(f?n:h.toIntRange(m(),-d,d))),k&&(o.blue=e+(f?n:h.toIntRange(m(),-d,d))),l&&(o.alpha=g+h.toIntRange(m(),-d,d)),o}),a},c.addNoiseToCanvas=function(a,b,d,f,g,h,i,j){f=e.def(f,!1),g=e.def(g,!0),h=e.def(h,!0),i=e.def(i,!0),j=e.def(j,!1);var k=a.getImageData(0,0,a.canvas.width,a.canvas.height);k=c.addNoise(k,b,d,f,g,h,i,j),a.putImageData(k,0,0)},c.loadFileIntoImage=function(a,b){var c=new FileReader;c.onload=function(a){b.src=a.target.result},c.readAsDataURL(a)},c.getImageData=function(a){var b=document.createElement("canvas");b.width=a.width,b.height=a.height;var c=b.getContext("2d");c.drawImage(a,0,0);var d=c.getImageData(0,0,b.width,b.height);return d},c.makeImageDataUrlFromImageData=function(a){var b=document.createElement("canvas");return b.width=a.width,b.height=a.height,b.getContext("2d").putImageData(a,0,0),b.toDataURL()},c.makeAverageThresholdImageData=function(a,b,d,h,i){i=e.def(i,1);var j=f.colorFraction(i);return c.renderCanvasPixelArray(a,function(a,c,e,i){var k=g.average([c,e,i])>=b?h:d;return{red:f.getRedComponent(k),green:f.getGreenComponent(k),blue:f.getBlueComponent(k),alpha:j}}),a},c.makeAverageThresholdBitmap=function(a,b){return b=g.clamp(b,0,255),c.makeBitmap(a,function(a,c,d){return g.average([a,c,d])>=b})},c.makeBitmap=function(a,b){var f=d([]),g=e.toInt(a.width);return c.renderCanvasPixelArray(a,function(a,c,e,h,j){var k=d.getIndices(a,g,i);return f.set(k.x,k.y,b(c,e,h,j)),null}),f.value},c.invertBitmap=function(a){var b=d(a);return b.foreachXY(function(a,c,d){b.set(a,c,!d)}),b.value}},{"./array2d":8,"./core":10,"./html-color":12,"./math":13,"./pseudo-random-number-generators":16}],10:[function(a,b){"use strict";var c=a("lodash");b.exports={def:function(a,b){return c.isUndefined(a)?b:a},toInt:function(a){return 0|a},coalesce:function(){return c.find(arguments,function(a){return!c.isNull(a)&&!c.isUndefined(a)})},isUndefinedOrNull:function(a){return c.isUndefined(a)||c.isNull(a)}}},{lodash:1}],11:[function(a,b,c){"use strict";c.djb2=function(a){var b,c=5381;for(b=0;b<a.length;b++)c=(c<<5)+c+a.charCodeAt(b);return c},c.sdbm=function(a){var b,c=0;for(b=0;b<a.length;b++)c=a.charCodeAt(b)+(c<<6)+(c<<16)-c;return c},c.javaHashCode=function(a){var b=0;if(0===a.length)return b;for(var c=0;c<a.length;c++)b=(b<<5)-b+a.charCodeAt(c),b&=b;return b}},{}],12:[function(a,b,c){"use strict";var d=a("./core");c.MAX_COLOR_COMPONENT=255,c.getRedComponent=function(a){return 255&a>>16},c.getGreenComponent=function(a){return 255&a>>8},c.getBlueComponent=function(a){return 255&a},c.interpolateColor=function(a,b,c){var e=d.toInt((1-c)*(a>>16)+c*(b>>16)),f=d.toInt((1-c)*(255&a>>8)+c*(255&b>>8)),g=d.toInt((1-c)*(255&a)+c*(255&b));return e>255&&(e=255),f>255&&(f=255),g>255&&(g=255),e<<16|f<<8|g},c.colorFraction=function(a){return d.toInt(c.MAX_COLOR_COMPONENT*a)},c.intToHexColor=function(a){return"#"+("00000"+a.toString(16).toUpperCase()).substr(-6)},c.rgb=function(a,b,c){return"rgb("+a+","+b+","+c+")"},c.rgba=function(a,b,c,d){return"rgba("+a+","+b+","+c+","+d+")"},c.rgbF=function(a,b,c){return"rgb("+100*a+"%,"+100*b+"%,"+100*c+"%)"},c.rgbaF=function(a,b,c,d){return"rgba("+100*a+"%,"+100*b+"%,"+100*c+"%,"+d+")"},c.hsl=function(a,b,c){return"hsl("+a+","+100*b+"%,"+100*c+"%)"},c.hsla=function(a,b,c,d){return"hsla("+a+","+100*b+"%,"+100*c+"%,"+d+")"}},{"./core":10}],13:[function(a,b,c){"use strict";var d=a("lodash");c.average=function(a){return d.reduce(a,function(a,b){return a+b})/d.size(a)},c.clamp=function(a,b,c){var d=Math.min(b,c),e=Math.max(b,c);return d>a?d:a>e?e:a}},{lodash:1}],14:[function(a,b,c){"use strict";var d=a("lodash");c.counters={},c.bumpCounter=function(a){c.counters[a]||(c.counters[a]=0),c.counters[a]++},c.traceCounters=function(){d.each(c.counters,function(a,b){console.log(b,a)})}},{lodash:1}],15:[function(a,b,c){"use strict";var d=a("./array2d"),e=[151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,102,143,54,65,25,63,161,1,216,80,73,209,76,132,187,208,89,18,169,200,196,135,130,116,188,159,86,164,100,109,198,173,186,3,64,52,217,226,250,124,123,5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,223,183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,218,246,97,228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,145,235,249,14,239,107,49,192,214,31,181,199,106,157,184,84,204,176,115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180,151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,102,143,54,65,25,63,161,1,216,80,73,209,76,132,187,208,89,18,169,200,196,135,130,116,188,159,86,164,100,109,198,173,186,3,64,52,217,226,250,124,123,5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,223,183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,218,246,97,228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,145,235,249,14,239,107,49,192,214,31,181,199,106,157,184,84,204,176,115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180];c.makePerlinNoise=function(a,b,c,f,g,h,i,j){h=h||666,i=i||4,j=j||.5;var k,l,m,n=1/64,o=h=16807*h%2147483647,p=h=16807*h%2147483647,q=h=16807*h%2147483647,r=[],s=[],t=0;for(m=0;i>m;m++)k=Math.pow(2,m),l=Math.pow(j,m),t+=l,r.push(k),s.push(l);t=1/t;var u=d([]),v=c*n+o;f=f*n+p,g=g*n+q;var w;for(w=0;b>w;w++){c=v;var x;for(x=0;a>x;x++){var y=0;for(m=0;i>m;m++){var z=r[m],A=s[m],B=c*z,C=f*z,D=g*z,E=B-B%1,F=C-C%1,G=D-D%1,H=255&E,I=255&F,J=255&G;B-=E,C-=F,D-=G;var K=B*B*B*(B*(6*B-15)+10),L=C*C*C*(C*(6*C-15)+10),M=D*D*D*(D*(6*D-15)+10),N=e[H]+I,O=e[N]+J,P=e[N+1]+J,Q=e[H+1]+I,R=e[Q]+J,S=e[Q+1]+J,T=B-1,U=C-1,V=D-1,W=15&e[S+1],X=(0===(1&W)?8>W?T:U:8>W?-T:-U)+(0===(2&W)?4>W?U:12===W?T:V:4>W?-U:14===W?-T:-V);W=15&e[P+1];var Y=(0===(1&W)?8>W?B:U:8>W?-B:-U)+(0===(2&W)?4>W?U:12===W?B:V:4>W?-U:14===W?-B:-V);W=15&e[R+1];var Z=(0===(1&W)?8>W?T:C:8>W?-T:-C)+(0===(2&W)?4>W?C:12===W?T:V:4>W?-C:14===W?-T:-V);W=15&e[O+1];var $=(0===(1&W)?8>W?B:C:8>W?-B:-C)+(0===(2&W)?4>W?C:12===W?B:V:4>W?-C:14===W?-B:-V);W=15&e[S];var _=(0===(1&W)?8>W?T:U:8>W?-T:-U)+(0===(2&W)?4>W?U:12===W?T:D:4>W?-U:14===W?-T:-D);W=15&e[P];var ab=(0===(1&W)?8>W?B:U:8>W?-B:-U)+(0===(2&W)?4>W?U:12===W?B:D:4>W?-U:14===W?-B:-D);W=15&e[R];var bb=(0===(1&W)?8>W?T:C:8>W?-T:-C)+(0===(2&W)?4>W?C:12===W?T:D:4>W?-C:14===W?-T:-D);W=15&e[O];var cb=(0===(1&W)?8>W?B:C:8>W?-B:-C)+(0===(2&W)?4>W?C:12===W?B:D:4>W?-C:14===W?-B:-D);Y+=K*(X-Y),$+=K*(Z-$),ab+=K*(_-ab),cb+=K*(bb-cb),$+=L*(Y-$),cb+=L*(ab-cb),y+=(cb+M*($-cb))*A}var db=128*(y*t+1);u.set(x,w,4278190080|db<<16|db<<8|db),c+=n}f+=n}return u.value}},{"./array2d":8}],16:[function(a,b,c){"use strict";var d=a("./hash"),e=2147483647,f=16807;c.makeRandomSeed=function(){return Math.floor(Math.random()*e)},c.nextParkMiller=function(a){return a*f%e},c.nextParkMiller31=function(a){var b=16807*(65535&a),c=16807*(a>>>16);return b+=(32767&c)<<16,b+=c>>>15,b>2147483647&&(b-=2147483647),b},c.nextLCG=function(a){return(1103515245*a+12345)%e},c.toFloat=function(a){return a/e},c.toBool=function(a){return c.toFloat(a)>.5},c.toFloatRange=function(a,b,d){return b+(d-b)*c.toFloat(a)},c.toIntRange=function(a,b,d){return Math.round(b-.4999+(d+.4999-(b-.4999))*c.toFloat(a))},c.stringToSeed=function(a){return d.djb2(a)%e},c.randomGenerator=function(a,b){return function(){return a=b(a)}}},{"./hash":11}],17:[function(a,b){"use strict";b.exports=function(a){return{startsWith:function(b){return 0===a.indexOf(b)}}}},{}],18:[function(a,b){"use strict";b.exports=function(){var a,b;return{start:function(){a=b=Date.now()},mark:function(){var c=Date.now(),d={mark:c-b,total:c-a};return b=c,d}}}},{}],19:[function(a,b){"use strict";b.exports={TOP:1,BOTTOM:2,LEFT:4,RIGHT:8,check:function(b,c){c=a("../../as3/rectangle").core(c);var d=0;return b.x===c.left()&&(d|=this.LEFT),b.x===c.right()&&(d|=this.RIGHT),b.y===c.top()&&(d|=this.TOP),b.y===c.bottom()&&(d|=this.BOTTOM),d}}},{"../../as3/rectangle":5}],20:[function(a,b){"use strict";b.exports={vertex:"vertex",site:"site"}},{}],21:[function(a,b){"use strict";var c=a("lodash");b.exports={delaunayLinesForEdges:function(a){var b=[];return c(a).each(function(a){b.push(a.delaunayLine())}),b},selectEdgesForSitePoint:function(a,b){return c(b).filter(function(b){return null!==b.leftSite&&b.leftSite.coord===a||null!==b.rightSite&&b.rightSite.coord===a})},selectNonIntersectingEdges:function(a,b){if(null===a)return b;var d={x:0,y:0};return c(b).filter(function(b){var c=b.makeDelaunayLineBmp(),e=!a.hitTest(d,1,c,d,1);return c.dispose(),e})},visibleLineSegments:function(b){var d=a("./lr"),e=a("../geom/line-segment"),f=[];return c(b).each(function(a){if(a.visible){var b=a.clippedEnds[d.LEFT],c=a.clippedEnds[d.RIGHT];f.push(e(b,c))}}),f}}},{"../geom/line-segment":35,"./lr":28,lodash:1}],22:[function(a,b){"use strict";var c=a("./halfedge"),d=a("./edge");b.exports=function(a,b,e){function f(a){var b;return 0>a||a>=j?null:(b=k[a],null!==b&&b.edge===d.DELETED?(k[a]=null,null):b)}var g={},h=0,i=0,j=0,k=[],l=null;g.getLeftEnd=function(){return l},Object.defineProperties(g,{leftEnd:{get:function(){return g.getLeftEnd()}}});var m=null;return g.getRightEnd=function(){return m},Object.defineProperties(g,{rightEnd:{get:function(){return g.getRightEnd()}}}),g.dispose=function(){for(var a,b=l;b!==m;)a=b,b=b.edgeListRightNeighbor,a.dispose();l=null,m.dispose(),m=null;var c;for(c=0;j>c;c++)k[c]=null;k=null},g.insert=function(a,b){b.edgeListLeftNeighbor=a,b.edgeListRightNeighbor=a.edgeListRightNeighbor,a.edgeListRightNeighbor.edgeListLeftNeighbor=b,a.edgeListRightNeighbor=b},g.remove=function(a){a.edgeListLeftNeighbor.edgeListRightNeighbor=a.edgeListRightNeighbor,a.edgeListRightNeighbor.edgeListLeftNeighbor=a.edgeListLeftNeighbor,a.edge=d.DELETED,a.edgeListLeftNeighbor=a.edgeListRightNeighbor=null},g.edgeListLeftNeighbor=function(a){var b,c;if(b=(a.x-i)/h*j,0>b&&(b=0),b>=j&&(b=j-1),c=f(b),null===c)for(var d=1;;){if(null!==(c=this.getHash(b-d)))break;if(null!==(c=this.getHash(b+d)))break;d++}if(c===this.getLeftEnd()||c!==this.getRightEnd()&&c.isLeftOf(a)){do c=c.edgeListRightNeighbor;while(c!==this.getRightEnd()&&c.isLeftOf(a));c=c.edgeListLeftNeighbor}else do c=c.edgeListLeftNeighbor;while(c!==this.getLeftEnd()&&!c.isLeftOf(a));return b>0&&j-1>b&&(k[b]=c),c},i=a,h=b,j=2*e,k=[],l=c.createDummy(),m=c.createDummy(),l.edgeListLeftNeighbor=null,l.edgeListRightNeighbor=m,m.edgeListLeftNeighbor=l,m.edgeListRightNeighbor=null,k[0]=l,k[j-1]=m,g}},{"./edge":24,"./halfedge":26}],23:[function(a,b){"use strict";var c=a("./criterion"),d=a("./lr"),e=a("./vertex"),f=function(a,b){if(b!==c.vertex&&b!==c.site)throw"Edges: criterion must be Vertex or Site";this.edges=[],this.edgeOrientations=[],a.length>0&&(this.edges=this._reorderEdges(a,b))};f.prototype={edges:null,edgeOrientations:null,dispose:function(){this.edges=null,this.edgeOrientations=null},_reorderEdges:function(a,b){var f,g,h=a.length,i=[],j=0,k=[];f=0,g=a[f],k.push(g),this.edgeOrientations.push(d.LEFT);var l,m;if(b===c.vertex?(l=g.leftVertex,m=g.rightVertex):(l=g.leftSite,m=g.rightSite),l===e.VERTEX_AT_INFINITY||m===e.VERTEX_AT_INFINITY)return[];for(i[f]=!0,++j;h>j;)for(f=1;h>f;f++)if(!i[f]){g=a[f];var n,o;if(b===c.vertex?(n=g.leftVertex,o=g.rightVertex):(n=g.leftSite,o=g.rightSite),n===e.VERTEX_AT_INFINITY||o===e.VERTEX_AT_INFINITY)return[];n===m?(m=o,this.edgeOrientations.push(d.LEFT),k.push(g),i[f]=!0):o===l?(l=n,this.edgeOrientations.unshift(d.LEFT),k.unshift(g),i[f]=!0):n===l?(l=o,this.edgeOrientations.unshift(d.RIGHT),k.unshift(g),i[f]=!0):o===m&&(m=n,this.edgeOrientations.push(d.RIGHT),k.push(g),i[f]=!0),i[f]&&++j}return k}},b.exports=function(a,b){return new f(a,b)}},{"./criterion":20,"./lr":28,"./vertex":32}],24:[function(a,b,c){"use strict";function d(){var a;return i.length>0?(a=i.pop(),a.init()):a=new c.Edge,a}var e=a("../geom/line-segment"),f=a("./lr"),g=a("../../as3/point-core"),h=a("../../as3/rectangle"),i=[],j=0;c.Edge=function(){this._edgeIndex=j++,this.init()},c.Edge.prototype={_delaunayLineBmp:null,getDelaunayLineBmp:function(){return null===this._delaunayLineBmp&&(this._delaunayLineBmp=this.makeDelaunayLineBmp()),this._delaunayLineBmp},get delaunayLineBmp(){return this.getDelaunayLineBmp()},makeDelaunayLineBmp:function(){throw"unimplemented"},delaunayLine:function(){return e(this.leftSite.coord,this.rightSite.coord)},voronoiEdge:function(){return this.visible?e(this.clippedEnds[f.LEFT],this.clippedEnds[f.RIGHT]):e(null,null)},a:null,b:null,c:null,leftVertex:null,rightVertex:null,vertex:function(a){return a===f.LEFT?this.leftVertex:this.rightVertex},setVertex:function(a,b){a===f.LEFT?this.leftVertex=b:this.rightVertex=b},isPartOfConvexHull:function(){return null===this.leftVertex||null===this.rightVertex},sitesDistance:function(){return g.distance(this.leftSite.coord,this.rightSite.coord)},clippedEnds:null,get visible(){return null!==this.clippedEnds},leftSite:null,rightSite:null,site:function(a){return a===f.LEFT?this.leftSite:this.rightSite},_edgeIndex:0,dispose:function(){null!==this._delaunayLineBmp&&(this._delaunayLineBmp.dispose(),this._delaunayLineBmp=null),this.leftVertex=null,this.rightVertex=null,null!==this.clippedEnds&&(this.clippedEnds[f.LEFT]=null,this.clippedEnds[f.RIGHT]=null,this.clippedEnds=null),this.leftSite=null,this.rightSite=null,i.push(this)},toString:function(){return"Edge "+this._edgeIndex+"; sites "+this.leftSite+", "+this.rightSite+"; endVertices "+(null!==this.leftVertex?String(this.leftVertex.vertexIndex):"null")+", "+(null!==this.rightVertex?String(this.rightVertex.vertexIndex):"null")+"::"},clipVertices:function(a){var b,c,d,e,g,i,j=h.core(a),k=a.x,l=a.y,m=j.right(),n=j.bottom();if(1===this.a&&this.b>=0?(b=this.rightVertex,c=this.leftVertex):(b=this.leftVertex,c=this.rightVertex),1===this.a){if(g=l,null!==b&&b.y>l&&(g=b.y),g>n)return;if(d=this.c-this.b*g,i=n,null!==c&&c.y<n&&(i=c.y),l>i)return;if(e=this.c-this.b*i,d>m&&e>m||k>d&&k>e)return;d>m?(d=m,g=(this.c-d)/this.b):k>d&&(d=k,g=(this.c-d)/this.b),e>m?(e=m,i=(this.c-e)/this.b):k>e&&(e=k,i=(this.c-e)/this.b)}else{if(d=k,null!==b&&b.x>k&&(d=b.x),d>m)return;if(g=this.c-this.a*d,e=m,null!==c&&c.x<m&&(e=c.x),k>e)return;if(i=this.c-this.a*e,g>n&&i>n||l>g&&l>i)return;g>n?(g=n,d=(this.c-g)/this.a):l>g&&(g=l,d=(this.c-g)/this.a),i>n?(i=n,e=(this.c-i)/this.a):l>i&&(i=l,e=(this.c-i)/this.a)}this.clippedEnds={},b===this.leftVertex?(this.clippedEnds[f.LEFT]={x:d,y:g},this.clippedEnds[f.RIGHT]={x:e,y:i}):(this.clippedEnds[f.RIGHT]={x:d,y:g},this.clippedEnds[f.LEFT]={x:e,y:i})},init:function(){this.leftSite=null,this.rightSite=null}},c.DELETED=new c.Edge,c.createBisectingEdge=function(a,b){var c,e,f,g,h,i,j;c=b.x-a.x,e=b.y-a.y,f=c>0?c:-c,g=e>0?e:-e,j=a.x*c+a.y*e+.5*(c*c+e*e),f>g?(h=1,i=e/c,j/=c):(i=1,h=c/e,j/=e);var k=d();return k.leftSite=a,k.rightSite=b,a.addEdge(k),b.addEdge(k),k.leftVertex=null,k.rightVertex=null,k.a=h,k.b=i,k.c=j,k},c.compareSitesDistancesMax=function(a,b){var c=a.sitesDistance(),d=b.sitesDistance();return d>c?1:c>d?-1:0},c.compareSitesDistances=function(a,b){return-c.compareSitesDistancesMax(a,b)}},{"../../as3/point-core":4,"../../as3/rectangle":5,"../geom/line-segment":35,"./lr":28}],25:[function(a,b){"use strict";var c=a("./halfedge"),d=a("../../janicek/core");b.exports=function(a,b,e){function f(){var a;for(l=0,m=0,k=[],a=0;n>a;a++)k[a]=c.createDummy(),k[a].nextInPriorityQueue=null}function g(a){var b=d.toInt((a.ystar-o)/p*n);return 0>b&&(b=0),b>=n&&(b=n-1),b}function h(a){return null===k[a].nextInPriorityQueue}function i(){for(;n-1>m&&h(m);)++m}var j={},k=null,l=0,m=0,n=0,o=0,p=0;return j.dispose=function(){var a;for(a=0;n>a;a++)k[a].dispose(),k[a]=null;k=null},j.insert=function(a){var b,c,d=g(a);for(m>d&&(m=d),b=k[d];null!==(c=b.nextInPriorityQueue)&&(a.ystar>c.ystar||a.ystar===c.ystar&&a.vertex.x>c.vertex.x);)b=c;a.nextInPriorityQueue=b.nextInPriorityQueue,b.nextInPriorityQueue=a,++l},j.remove=function(a){var b,c=g(a);if(null!==a.vertex){for(b=k[c];b.nextInPriorityQueue!==a;)b=b.nextInPriorityQueue;b.nextInPriorityQueue=a.nextInPriorityQueue,l--,a.vertex=null,a.nextInPriorityQueue=null,a.dispose()}},j.empty=function(){return 0===l},j.min=function(){i();var a=k[m].nextInPriorityQueue;return{x:a.vertex.x,y:a.ystar}},j.extractMin=function(){var a;return a=k[m].nextInPriorityQueue,k[m].nextInPriorityQueue=a.nextInPriorityQueue,l--,a.nextInPriorityQueue=null,a},o=a,p=b,n=4*e,f(),j}},{"../../janicek/core":10,"./halfedge":26}],26:[function(a,b,c){"use strict";var d=a("../../janicek/core").def,e=a("./lr"),f=[],g=function(a,b){a=d(a,null),b=d(b,null),this.init(a,b)};g.prototype={edgeListLeftNeighbor:null,edgeListRightNeighbor:null,nextInPriorityQueue:null,edge:null,leftRight:null,vertex:null,ystar:0,toString:function(){return"Halfedge (leftRight: "+this.leftRight+"; vertex: "+this.vertex+")"},dispose:function(){null===this.edgeListLeftNeighbor&&null===this.edgeListRightNeighbor&&null===this.nextInPriorityQueue&&(this.edge=null,this.leftRight=null,this.vertex=null,f.push(this))},reallyDispose:function(){this.edgeListLeftNeighbor=null,this.edgeListRightNeighbor=null,this.nextInPriorityQueue=null,this.edge=null,this.leftRight=null,this.vertex=null,f.push(this)},isLeftOf:function(a){var b,c,d,f,g,h,i,j,k,l,m;return b=this.edge.rightSite,c=a.x>b.x,c&&this.leftRight===e.LEFT?!0:c||this.leftRight!==e.RIGHT?(1===this.edge.a?(h=a.y-b.y,g=a.x-b.x,f=!1,!c&&this.edge.b<0||c&&this.edge.b>=0?(d=h>=this.edge.b*g,f=d):(d=a.x+a.y*this.edge.b>this.edge.c,this.edge.b<0&&(d=!d),d||(f=!0)),f||(i=b.x-this.edge.leftSite.x,d=this.edge.b*(g*g-h*h)<i*h*(1+2*g/i+this.edge.b*this.edge.b),this.edge.b<0&&(d=!d))):(m=this.edge.c-this.edge.a*a.x,j=a.y-m,k=a.x-b.x,l=m-b.y,d=j*j>k*k+l*l),this.leftRight===e.LEFT?d:!d):!1},init:function(a,b){return this.edge=a,this.leftRight=b,this.nextInPriorityQueue=null,this.vertex=null,this}},c.create=function(a,b){return f.length>0?f.pop().init(a,b):new g(a,b)},c.createDummy=function(){return c.create(null,null)}},{"../../janicek/core":10,"./lr":28}],27:[function(a,b,c){"use strict";var d=a("lodash"),e=a("../../janicek/core").def,f=a("../geom/line-segment").core,g=a("./node"),h=a("../../as3/point-core");c.find=function(a){if(a.parent===a)return a;var b=c.find(a.parent);return a.parent=b,b},c.kruskal=function(a,b){b=e(b,"minimum");var i={},j=[],k=[];switch(b){case"maximum":a.sort(f.compareLengths);break;default:a.sort(f.compareLengthsMax)}for(var l=a.length-1;l>=0;){var m=a[l];l--;var n,o=i[h.hash(m.p0)];null===o?(o=k.length>0?k.pop():g(),n=o.parent=o,o.treeSize=1,i[h.hash(m.p0)]=o):n=c.find(o);var p,q=i[h.hash(m.p1)];if(null===q?(q=k.length>0?k.pop():g(),p=q.parent=q,q.treeSize=1,i[h.hash(m.p1)]=q):p=c.find(q),n!==p){j.push(m);var r=n.treeSize,s=p.treeSize;r>=s?(p.parent=n,n.treeSize+=s):(n.parent=p,p.treeSize+=r)}}return d(i).each(function(a){k.push(a)}),j}},{"../../as3/point-core":4,"../../janicek/core":10,"../geom/line-segment":35,"./node":29,lodash:1}],28:[function(a,b){"use strict";b.exports={LEFT:"left",RIGHT:"right",other:function(a){return a===this.LEFT?this.RIGHT:this.LEFT}}},{}],29:[function(a,b){"use strict";b.exports=function(){return{parent:null,treeSize:0}},b.exports.pool=[]},{}],30:[function(a,b){"use strict";var c=a("lodash"),d=a("../geom/circle"),e=a("../../janicek/core").def,f=a("../../as3/rectangle"),g=a("./site");b.exports=function(){var a=[],b=0,h=!1,i={};return i.dispose=function(){null!==a&&(c(a).each(function(a){a.dispose()}),a=null)},i.push=function(b){return h=!1,a.push(b)},Object.defineProperties(i,{length:{get:function(){return a.length}}}),i.next=function(){if(h===!1)throw"SiteList::next():  sites have not been sorted";return b<a.length?a[b++]:null},i.getSitesBounds=function(){h===!1&&(g.sortSites(a),b=0,h=!0);var d,e,i,j;return 0===a.length?f(0,0,0,0):(d=Number.POSITIVE_INFINITY,e=Number.POSITIVE_INFINITY,c(a).each(function(a){a.x<d&&(d=a.x),a.x>e&&(e=a.x)}),i=a[0].y,j=a[a.length-1].y,f(d,i,e-d,j-i))},i.siteColors=function(b){b=e(b,null);var d=[];return c(a).each(function(a){d.push(null!==b?b.getPixel(a.x,a.y):a.color)}),d},i.siteCoords=function(){var b=[];return c(a).each(function(a){b.push(a.coord)}),b},i.circles=function(){var b=[];return c(a).each(function(a){var c=a.nearestEdge(),e=c.isPartOfConvexHull()?0:.5*c.sitesDistance();b.push(d(a.x,a.y,e))}),b},i.regions=function(b){var d=[];return c(a).each(function(a){d.push(a.region(b))}),d},i.nearestSitePoint=function(b,c,d){var e=b.getPixel(c,d);return e>a.length-1?null:a[e].coord},i}},{"../../as3/rectangle":5,"../../janicek/core":10,"../geom/circle":34,"./site":31,lodash:1}],31:[function(a,b,c){"use strict";function d(a,b){return l.distance(a,b)<r}var e=a("lodash"),f=a("./bounds-check"),g=a("./criterion"),h=a("../../janicek/core").def,i=a("./edge"),j=a("./edge-reorderer"),k=a("./lr"),l=a("../../as3/point-core"),m=a("../geom/polygon"),n=a("../../as3/rectangle").core,o=a("./voronoi"),p=a("../geom/winding"),q=[],r=.005,s=function(a,b,c,d){this.init(a,b,c,d)};s.prototype={_coord:null,get coord(){return this._coord},color:0,weight:0,_siteIndex:0,_edges:null,get edges(){return this._edges},_edgeOrientations:null,_region:null,init:function(a,b,c,d){return this._coord=a,this._siteIndex=b,this.weight=c,this.color=d,this._edges=[],this._region=null,this},toString:function(){return"Site "+this._siteIndex+": "+String(this.coord)},dispose:function(){this._coord=null,this._clear(),q.push(this)},_clear:function(){null!==this._edges&&(this._edges=null),null!==this._edgeOrientations&&(this._edgeOrientations=null),null!==this._region&&(this._region=null)},addEdge:function(a){this._edges.push(a)},nearestEdge:function(){return this._edges.sort(i.compareSitesDistances),this._edges[0]},neighborSites:function(){if(null===this._edges||0===this._edges.length)return[];null===this._edgeOrientations&&this._reorderEdges();var a=[];return e.each(this._edges,function(b){a.push(this._neighborSite(b))}),a},_neighborSite:function(a){return this===a.leftSite?a.rightSite:this===a.rightSite?a.leftSite:null},region:function(a){return null===this._edges||0===this._edges.length?[]:(null===this._edgeOrientations&&(this._reorderEdges(),this._region=this._clipToBounds(a),m(this._region).winding()===p.CLOCKWISE&&this._region.reverse()),this._region)},_reorderEdges:function(){var a=j(this._edges,g.vertex);this._edges=a.edges,this._edgeOrientations=a.edgeOrientations,a.dispose()},_clipToBounds:function(a){for(var b=[],c=this._edges.length,d=0,e=null;c>d&&this._edges[d].visible===!1;)++d;if(d===c)return[];e=this._edges[d];var f=this._edgeOrientations[d];b.push(e.clippedEnds[f]),b.push(e.clippedEnds[k.other(f)]);for(var g=d+1;c>g;g++)e=this._edges[g],e.visible!==!1&&this._connect(b,g,a);return this._connect(b,d,a,!0),b
-},_connect:function(a,b,c,e){e=h(e,!1);var g=a[a.length-1],i=this._edges[b],j=this._edgeOrientations[b],l=i.clippedEnds[j];if(!d(g,l)){if(g.x!==l.x&&g.y!==l.y){var m,o,p=f.check(g,c),q=f.check(l,c);0!==(p&f.RIGHT)?(m=n(c).right(),0!==(q&f.BOTTOM)?(o=n(c).bottom(),a.push({x:m,y:o})):0!==(q&f.TOP)?(o=n(c).top(),a.push({x:m,y:o})):0!==(q&f.LEFT)&&(o=g.y-c.y+l.y-c.y<c.height?n(c).top():n(c).bottom(),a.push({x:m,y:o}),a.push({x:n(c).left(),y:o}))):0!==(p&f.LEFT)?(m=n(c).left(),0!==(q&f.BOTTOM)?(o=n(c).bottom(),a.push({x:m,y:o})):0!==(q&f.TOP)?(o=n(c).top(),a.push({x:m,y:o})):0!==(q&f.RIGHT)&&(o=g.y-c.y+l.y-c.y<c.height?n(c).top():n(c).bottom(),a.push({x:m,y:o}),a.push({x:n(c).right(),y:o}))):0!==(p&f.TOP)?(o=n(c).top(),0!==(q&f.RIGHT)?(m=n(c).right(),a.push({x:m,y:o})):0!==(q&f.LEFT)?(m=n(c).left(),a.push({x:m,y:o})):0!==(q&f.BOTTOM)&&(m=g.x-c.x+l.x-c.x<c.width?n(c).left():n(c).right(),a.push({x:m,y:o}),a.push({x:m,y:n(c).bottom()}))):0!==(p&f.BOTTOM)&&(o=n(c).bottom(),0!==(q&f.RIGHT)?(m=n(c).right(),a.push({x:m,y:o})):0!==(q&f.LEFT)?(m=n(c).left(),a.push({x:m,y:o})):0!==(q&f.TOP)&&(m=g.x-c.x+l.x-c.x<c.width?n(c).left():n(c).right(),a.push({x:m,y:o}),a.push({x:m,y:n(c).top()})))}if(e)return;a.push(l)}var r=i.clippedEnds[k.other(j)];d(a[0],r)||a.push(r)},get x(){return this._coord.x},get y(){return this._coord.y},dist:function(a){return l.distance(a.coord,this.coord)}},c.create=function(a,b,c,d){return q.length>0?q.pop().init(a,b,c,d):new s(a,b,c,d)},c.sortSites=function(a){a.sort(o.compareSiteByYThenX),e(a).each(function(b,c){a[c]._siteIndex=c})}},{"../../as3/point-core":4,"../../as3/rectangle":5,"../../janicek/core":10,"../geom/polygon":36,"../geom/winding":37,"./bounds-check":19,"./criterion":20,"./edge":24,"./edge-reorderer":23,"./lr":28,"./voronoi":33,lodash:1}],32:[function(a,b,c){"use strict";function d(a,b){return isNaN(a)||isNaN(b)?c.VERTEX_AT_INFINITY:e.length>0?e.pop().init(a,b):new g(a,b)}var e=[],f=0,g=function(a,b){this.init(a,b)};g.prototype={_coord:null,get coord(){return this._coord},vertexIndex:0,init:function(a,b){return this._coord={x:a,y:b},this},dispose:function(){this._coord=null,e.push(this)},setIndex:function(){this.vertexIndex=f++},toString:function(){return"Vertex ("+this.vertexIndex+")"},get x(){return this._coord.x},get y(){return this._coord.y}},c.VERTEX_AT_INFINITY=new g(0/0,0/0),c.intersect=function(b,c){var e,f,g,h,i,j,k,l,m=a("./voronoi"),n=a("./lr");return e=b.edge,f=c.edge,null===e||null===f?null:e.rightSite===f.rightSite?null:(i=e.a*f.b-e.b*f.a,i>-1e-10&&1e-10>i?null:(j=(e.c*f.b-f.c*e.b)/i,k=(f.c*e.a-e.c*f.a)/i,m.compareSiteByYThenX(e.rightSite,f.rightSite)<0?(h=b,g=e):(h=c,g=f),l=j>=g.rightSite.x,l&&h.leftRight===n.LEFT||!l&&h.leftRight===n.RIGHT?null:d(j,k)))}},{"./lr":28,"./voronoi":33}],33:[function(a,b,c){"use strict";var d=a("lodash"),e=a("./criterion"),f=a("../../janicek/core"),g=a("../../janicek/core").def,h=a("./delaunay"),i=a("./edge-list"),j=a("./edge"),k=a("./edge-reorderer"),l=a("./halfedge"),m=a("./halfedge-priority-queue"),n=a("./kruskal"),o=a("./lr"),p=a("../../as3/point-core"),q=a("../../polygonal/pm-prng"),r=a("./site-list"),s=a("./site"),t=a("./vertex");c.make=function(a,b,u){function v(a){var b={};d(a).each(function(a){if(d(b).has(p.hash(a)))throw"Duplicate points not supported yet!";b[p.hash(a)]=a})}function w(a,b){for(var c=a.length,d=0;c>d;d++)x(a[d],null!==b?b[d]:0,d)}function x(a,b,c){var d=100*A.nextDouble(),e=s.create(a,c,d,b);B.push(e),C[p.hash(a)]=e}function y(){return d(E).filter(function(a){return a.isPartOfConvexHull()})}function z(){function a(a){var b=a.edge;return null===b?I:b.site(a.leftRight)}function b(a){var b=a.edge;return null===b?I:b.site(o.other(a.leftRight))}var e,g,h,k,n,p,q,r,s,u,v,w,x,y,z=B.getSitesBounds(),A=f.toInt(Math.sqrt(B.length+4)),C=m(z.y,z.height,A),D=i(z.x,z.width,A),G=[],H=[],I=B.next();for(e=B.next();;)if(C.empty()===!1&&(q=C.min()),null!==e&&(C.empty()||c.comparePointByYThenX(e,q)<0))s=D.edgeListLeftNeighbor(e.coord),u=s.edgeListRightNeighbor,g=b(s),y=j.createBisectingEdge(g,e),E.push(y),x=l.create(y,o.LEFT),G.push(x),D.insert(s,x),null!==(p=t.intersect(s,x))&&(H.push(p),C.remove(s),s.vertex=p,s.ystar=p.y+e.dist(p),C.insert(s)),s=x,x=l.create(y,o.RIGHT),G.push(x),D.insert(s,x),null!==(p=t.intersect(x,u))&&(H.push(p),x.vertex=p,x.ystar=p.y+e.dist(p),C.insert(x)),e=B.next();else{if(C.empty()!==!1)break;s=C.extractMin(),v=s.edgeListLeftNeighbor,u=s.edgeListRightNeighbor,w=u.edgeListRightNeighbor,g=a(s),h=b(u),n=s.vertex,n.setIndex(),s.edge.setVertex(s.leftRight,n),u.edge.setVertex(u.leftRight,n),D.remove(s),C.remove(u),D.remove(u),r=o.LEFT,g.y>h.y&&(k=g,g=h,h=k,r=o.RIGHT),y=j.createBisectingEdge(g,h),E.push(y),x=l.create(y,r),G.push(x),D.insert(v,x),y.setVertex(o.other(r),n),null!==(p=t.intersect(v,x))&&(H.push(p),C.remove(v),v.vertex=p,v.ystar=p.y+g.dist(p),C.insert(v)),null!==(p=t.intersect(x,w))&&(H.push(p),x.vertex=p,x.ystar=p.y+g.dist(p),C.insert(x))}C.dispose(),D.dispose(),d(G).each(function(a){a.reallyDispose()}),d(E).each(function(a){a.clipVertices(F.plotBounds)}),d(H).each(function(a){a.dispose()})}var A=q(),B=r(),C={},D=[],E=[],F={};return F.plotBounds=u,F.dispose=function(){var a,b;if(null!==B&&(B.dispose(),B=null),null!==D){for(b=D.length,a=0;b>a;a++)D[a].dispose();D=null}if(null!==E){for(b=E.length,a=0;b>a;a++)E[a].dispose();E=null}F.plotBounds=null,C=null},F.edges=function(){return E},F.region=function(a){var b=C[p.hash(a)];return null===b?[]:b.region(F.plotBounds)},F.neighborSitesForSite=function(a){var b=[],c=C[p.hash(a)];if(null===c)return b;var e=c.neighborSites();return d(e).each(function(a){b.push(a.coord)}),b},F.circles=function(){return B.circles()},F.voronoiBoundaryForSite=function(a){return h.visibleLineSegments(h.selectEdgesForSitePoint(a,E))},F.delaunayLinesForSite=function(a){return h.delaunayLinesForEdges(h.selectEdgesForSitePoint(a,E))},F.voronoiDiagram=function(){return h.visibleLineSegments(E)},F.delaunayTriangulation=function(a){return a=g(a,null),h.delaunayLinesForEdges(h.selectNonIntersectingEdges(a,E))},F.hull=function(){return h.delaunayLinesForEdges(y())},F.hullPointsInOrder=function(){var a=a(),b=[];if(0===a.length)return b;var c=k(a,e.site);a=c.edges;var d=c.edgeOrientations;c.dispose();var f,g,h=a.length;for(g=0;h>g;g++){var i=a[g];f=d[g],b.push(i.site(f).coord)}return b},F.spanningTree=function(a,b){a=g(a,"minimum"),b=g(b,null);var c=h.selectNonIntersectingEdges(b,E),d=h.delaunayLinesForEdges(c);return n.kruskal(d,a)},F.regions=function(){return B.regions(F.plotBounds)},F.siteColors=function(a){return a=g(a,null),B.siteColors(a)},F.nearestSitePoint=function(a,b,c){return B.nearestSitePoint(a,b,c)},F.siteCoords=function(){return B.siteCoords()},v(a),A.seed=1,w(a,b),z(),F},c.isInfSite=function(a,b){return a.y<b.y||a.y===b.y&&a.x<b.x},c.comparePointByYThenX=function(a,b){return c.compareByYThenX(a.x,a.y,b.x,b.y)},c.compareSiteByYThenX=function(a,b){return c.compareByYThenX(a.x,a.y,b.x,b.y)},c.compareByYThenX=function(a,b,c,d){return d>b?-1:b>d?1:c>a?-1:a>c?1:0}},{"../../as3/point-core":4,"../../janicek/core":10,"../../polygonal/pm-prng":38,"./criterion":20,"./delaunay":21,"./edge":24,"./edge-list":22,"./edge-reorderer":23,"./halfedge":26,"./halfedge-priority-queue":25,"./kruskal":27,"./lr":28,"./site":31,"./site-list":30,"./vertex":32,lodash:1}],34:[function(a,b){"use strict";b.exports=function(a,b,c){return{center:{x:a,y:b},radius:c,toString:function(){return"Circle (center: "+this.center+"; radius: "+this.radius+")"}}}},{}],35:[function(a,b){"use strict";var c=a("../../as3/point-core");b.exports=function(a,b){return{p0:a,p1:b}},b.exports.core={compareLengthsMax:function(a,b){var d=c.distance(a.p0,a.p1),e=c.distance(b.p0,b.p1);return e>d?1:d>e?-1:0},compareLengths:function(a,b){return-this.compareLengthsMax(a,b)}}},{"../../as3/point-core":4}],36:[function(a,b){"use strict";var c=a("./winding"),d=function(a){this._vertices=a};d.prototype={area:function(){return Math.abs(.5*this.signedDoubleArea())},winding:function(){var a=this.signedDoubleArea();return 0>a?c.CLOCKWISE:a>0?c.COUNTERCLOCKWISE:c.NONE},signedDoubleArea:function(){var a,b,c,d,e=this._vertices.length,f=0;for(a=0;e>a;a++)b=(a+1)%e,c=this._vertices[a],d=this._vertices[b],f+=c.x*d.y-d.x*c.y;return f}},b.exports=function(a){return new d(a)}},{"./winding":37}],37:[function(a,b){"use strict";b.exports={CLOCKWISE:"clockwise",COUNTERCLOCKWISE:"counterclockwise",NONE:"none"}},{}],38:[function(a,b){"use strict";b.exports=function(){return{seed:1,nextDouble:function(){return this.gen()/2147483647},nextIntRange:function(a,b){return a-=.4999,b+=.4999,Math.round(a+(b-a)*this.nextDouble())},nextDoubleRange:function(a,b){return a+(b-a)*this.nextDouble()},gen:function(){return this.seed=16807*this.seed%2147483647,this.seed}}}},{}],39:[function(a,b,c){"use strict";function d(a,b){for(var c=0;c<b.length;c++)a.lineTo(b[c].x,b[c].y)}function e(a,b,c,d,e,f,i,j){var l=k(),n=b.add(c).add(d);n.scaleBy(1/3);var o=c.subtract(b).crossProduct(d.subtract(b));o.normalize();var p=m(-o.x/o.z,-o.y/o.z,0),q=m(n.x-p.x*((n.z-.5)/p.length/p.length),n.y-p.y*((n.z-.5)/p.length/p.length));if(p.length<1e-6){var r=e[0];2===e.length?r=h.interpolateColor(e[0],e[1],n.z):3===e.length&&(r=n.z<.5?h.interpolateColor(e[0],e[1],2*n.z):h.interpolateColor(e[1],e[2],2*n.z-1)),a.fillStyle=h.intToHexColor(r)}else l.createGradientBox(1,1,0,0,0),l.translate(-.5,-.5),l.scale(1/p.length,1/p.length),l.rotate(Math.atan2(p.y,p.x)),l.translate(q.x,q.y),g(e).map(function(){return 1}),g(e).map(function(a,b){return 255*b/(e.length-1)});f(a,i,j),a.fill()}function f(a,b){for(var c=b.length-1;c>=0;)a.lineTo(b[c].x,b[c].y),c--}var g=a("lodash"),h=a("../janicek/html-color"),i=a("../as3/conversion-core"),j=a("../janicek/core"),k=a("../as3/matrix"),l=a("../as3/point-core"),m=a("../as3/vector-3d");c.graphicsReset=function(a,b,c,d){a.lineWidth=1,a.clearRect(0,0,2e3,2e3),a.fillStyle="#bbbbaa",a.fillRect(0,0,2e3,2e3),a.fillStyle=h.intToHexColor(d.OCEAN),a.fillRect(0,0,j.toInt(b),j.toInt(c))};var n=m(-1,-1,0);c.calculateLighting=function(a,b,c){var d=m(a.point.x,a.point.y,a.elevation),e=m(b.point.x,b.point.y,b.elevation),f=m(c.point.x,c.point.y,c.elevation),g=e.subtract(d).crossProduct(f.subtract(d));g.z<0&&g.scaleBy(-1),g.normalize();var h=.5+35*g.dotProduct(n);return 0>h&&(h=0),h>1&&(h=1),h},c.colorWithSlope=function(a,b,d,e,f){var i=e.v0,j=e.v1;if(g.isNull(i)||g.isNull(j))return f.OCEAN;if(b.water)return a;null!==d&&b.water===d.water&&(a=h.interpolateColor(a,f[d.biome],.4));var k=h.interpolateColor(a,3355443,.7),l=h.interpolateColor(a,16777215,.3),m=c.calculateLighting(b,i,j);return.5>m?h.interpolateColor(k,a,2*m):h.interpolateColor(a,l,2*m-1)},c.colorWithSmoothColors=function(a,b,c,d,e){return null!==c&&b.water===c.water&&(a=h.interpolateColor(e[b.biome],e[c.biome],.25)),a},c.renderDebugPolygons=function(a,b,c){var d;0===b.centers.length&&(a.fillStyle="#dddddd",a.fillRect(0,0,j.toInt(b.SIZE.width),j.toInt(b.SIZE.height)),g(b.points).each(function(b){a.beginPath(),a.strokeStyle="#000000",a.fillStyle="#000000",a.arc(b.x,b.y,1.3,Math.PI,2*Math.PI,!1),a.closePath(),a.fill(),a.stroke()})),g(b.centers).each(function(b){d=g.isNull(b.biome)?b.ocean?c.OCEAN:b.water?c.RIVER:16777215:c[b.biome],a.beginPath(),g(b.borders).each(function(c){g.isNull(c.v0)||g.isNull(c.v1)||(a.moveTo(b.point.x,b.point.y),a.lineTo(c.v0.point.x,c.v0.point.y),a.lineTo(c.v1.point.x,c.v1.point.y))}),a.closePath(),a.fillStyle=h.intToHexColor(h.interpolateColor(d,14540253,.2)),a.fill(),g(b.borders).each(function(b){g.isNull(b.v0)||g.isNull(b.v1)||(a.beginPath(),a.moveTo(b.v0.point.x,b.v0.point.y),b.river>0?(a.lineWidth=1,a.strokeStyle=h.intToHexColor(c.RIVER)):(a.lineWidth=.1,a.strokeStyle="#000000"),a.lineTo(b.v1.point.x,b.v1.point.y),a.closePath(),a.stroke())}),a.beginPath(),a.fillStyle=b.water?"#003333":"#000000",a.globalAlpha=.7,a.arc(b.point.x,b.point.y,1.3,Math.PI,2*Math.PI,!1),a.closePath(),a.fill(),a.globalAlpha=1,g(b.corners).each(function(b){a.fillStyle=b.water?"#0000ff":"#009900",a.fillRect(j.toInt(b.point.x-.7),j.toInt(b.point.y-.7),j.toInt(1.5),j.toInt(1.5))})})},c.renderWatersheds=function(a,b,c){var d,e,f;g(b.edges).each(function(d){g.isNull(d.d0)||g.isNull(d.d1)||g.isNull(d.v0)||g.isNull(d.v1)||d.d0.ocean||d.d1.ocean||(e=c.watersheds[d.d0.index],f=c.watersheds[d.d1.index],e!==f&&(a.beginPath(),a.lineWidth=3.5,a.strokeStyle=h.rgba(0,0,0,.1*Math.sqrt(j.coalesce(b.corners[e].watershedSize,1)+j.coalesce(b.corners[f].watershed.watershedSize,1))),a.moveTo(d.v0.point.x,d.v0.point.y),a.lineTo(d.v1.point.x,d.v1.point.y),a.closePath(),a.stroke()))});for(d in b.edges)i.booleanFromInt(d.river)&&(a.beginPath(),a.lineWidth=1,a.strokeStyle="#6699ff",a.moveTo(d.v0.point.x,d.v0.point.y),a.lineTo(d.v1.point.x,d.v1.point.y),a.closePath(),a.stroke())},c.renderPolygons=function(a,b,c,f,g,i){a.fillStyle=h.intToHexColor(b.OCEAN),a.fillRect(0,0,j.toInt(g.SIZE.width),j.toInt(g.SIZE.height));for(var k=function(a,b,c){var e=i.path0[r.index];a.moveTo(b,c),a.lineTo(e[0].x,e[0].y),d(a,e),a.lineTo(b,c)},l=function(a,b,c){var e=i.path1[r.index];a.moveTo(b,c),a.lineTo(e[0].x,e[0].y),d(a,e),a.lineTo(b,c)},n=0;n<g.centers.length;n++)for(var o=g.centers[n],p=0;p<o.neighbors.length;p++){var q=o.neighbors[p],r=g.lookupEdgeFromCenter(o,q),s=j.coalesce(b[o.biome],0);if(null!==f&&(s=f(s,o,q,r,b)),!j.isUndefinedOrNull(i.path0[r.index])&&!j.isUndefinedOrNull(i.path1[r.index]))if(j.isUndefinedOrNull(c))a.fillStyle=h.intToHexColor(s),a.strokeStyle=a.fillStyle,a.beginPath(),k(a,o.point.x,o.point.y),l(a,o.point.x,o.point.y),a.closePath(),a.fill(),a.stroke();else{var t=r.v0,u=r.v1,v=r.midpoint,w=.5*(t[c]+u[c]);e(a,m(o.point.x,o.point.y,o[c]),m(t.point.x,t.point.y,t[c]),m(v.x,v.y,w),[b.GRADIENT_LOW,b.GRADIENT_HIGH],k,o.point.x,o.point.y),e(a,m(o.point.x,o.point.y,o[c]),m(v.x,v.y,w),m(u.point.x,u.point.y,u[c]),[b.GRADIENT_LOW,b.GRADIENT_HIGH],l,o.point.x,o.point.y)}}},c.renderBridges=function(a,b,c,d){g(b.edges).each(function(b){if(b.river>0&&b.river<4&&!b.d0.water&&!b.d1.water&&(b.d0.elevation>.05||b.d1.elevation>.05)){var e={x:-(b.v1.point.y-b.v0.point.y),y:b.v1.point.x-b.v0.point.x};l.normalize(e,.25+(g.isNull(c.road[b.index])?0:.5)+.75*Math.sqrt(b.river)),a.beginPath(),a.lineWidth=1.1,a.strokeStyle=h.intToHexColor(d.BRIDGE),a.lineCap="square",a.moveTo(b.midpoint.x-e.x,b.midpoint.y-e.y),a.lineTo(b.midpoint.x+e.x,b.midpoint.y+e.y),a.closePath(),a.stroke()}})},c.renderRoads=function(a,b,c,d){function e(a,b,c){var d={x:-(a.v1.point.y-a.v0.point.y),y:a.v1.point.x-a.v0.point.x},e=l.subtract(b,a.midpoint);return d.x*e.x+d.y*e.y<0&&(d.x=-d.x,d.y=-d.y),l.normalize(d,c),d}var f,i,k,m,n,o,p,q,r;g(b.centers).each(function(b){if(!j.isUndefinedOrNull(c.roadConnections[b.index]))if(2===c.roadConnections[b.index].length){for(r=b.borders,m=0;m<r.length;m++)if(p=r[m],c.road[p.index]>0)for(n=m+1;n<r.length;n++)q=r[n],c.road[q.index]>0&&(o=.5*Math.min(l.distanceFromOrigin(l.subtract(p.midpoint,b.point)),l.distanceFromOrigin(l.subtract(q.midpoint,b.point))),f=l.add(e(p,b.point,o),p.midpoint),i=l.add(e(q,b.point,o),q.midpoint),k=l.interpolate(f,i,.5),a.beginPath(),a.lineWidth=1.1,a.strokeStyle=h.intToHexColor(d["ROAD"+c.road[p.index]]),a.moveTo(p.midpoint.x,p.midpoint.y),a.quadraticCurveTo(f.x,f.y,k.x,k.y),a.moveTo(k.x,k.y),a.lineWidth=1.1,a.strokeStyle=h.intToHexColor(d["ROAD"+c.road[q.index]]),a.quadraticCurveTo(i.x,i.y,q.midpoint.x,q.midpoint.y),a.stroke(),a.closePath())}else g(b.borders).each(function(g){c.road[g.index]>0&&(o=.25*l.distanceFromOrigin(l.subtract(g.midpoint,b.point)),f=l.add(e(g,b.point,o),g.midpoint),a.beginPath(),a.lineWidth=1.4,a.strokeStyle=h.intToHexColor(d["ROAD"+c.road[g.index]]),a.moveTo(g.midpoint.x,g.midpoint.y),a.quadraticCurveTo(f.x,f.y,b.point.x,b.point.y),a.stroke(),a.closePath())})})},c.renderEdges=function(a,b,c,e,g,k){k=j.def(k,!0);for(var l,m=0;m<c.centers.length;m++)for(var n=c.centers[m],o=0;o<n.neighbors.length;o++){var p=n.neighbors[o];if(l=c.lookupEdgeFromCenter(n,p),!j.isUndefinedOrNull(e.path0[l.index])&&!j.isUndefinedOrNull(e.path1[l.index])){if(n.ocean!==p.ocean)a.lineWidth=2,a.strokeStyle=h.intToHexColor(b.COAST);else if(i.intFromBoolean(n.water)>0!=i.intFromBoolean(p.water)>0&&"ICE"!==n.biome&&"ICE"!==p.biome)a.lineWidth=1,a.strokeStyle=h.intToHexColor(b.LAKESHORE);else{if(n.water||p.water)continue;if(g.lava[l.index])a.lineWidth=1,a.strokeStyle=h.intToHexColor(b.LAVA);else{if(!(l.river>0&&k))continue;a.lineWidth=Math.sqrt(l.river),a.strokeStyle=h.intToHexColor(b.RIVER)}}a.beginPath(),a.moveTo(e.path0[l.index][0].x,e.path0[l.index][0].y),d(a,e.path0[l.index]),f(a,e.path1[l.index]),a.stroke(),a.closePath()}}},c.renderAllEdges=function(a,b,c,e){var g;a.lineWidth=5,a.strokeStyle=b;for(var h=0;h<c.centers.length;h++)for(var i=c.centers[h],k=0;k<i.neighbors.length;k++){var l=i.neighbors[k];g=c.lookupEdgeFromCenter(i,l),j.isUndefinedOrNull(e.path0[g.index])||j.isUndefinedOrNull(e.path1[g.index])||i.water||(a.beginPath(),a.moveTo(e.path0[g.index][0].x,e.path0[g.index][0].y),d(a,e.path0[g.index]),f(a,e.path1[g.index]),a.stroke(),a.closePath())}}},{"../as3/conversion-core":2,"../as3/matrix":3,"../as3/point-core":4,"../as3/vector-3d":6,"../janicek/core":10,"../janicek/html-color":12,lodash:1}],40:[function(a,b){"use strict";b.exports=function(){return{index:null,point:null,water:null,ocean:null,coast:null,border:null,biome:null,elevation:null,moisture:null,neighbors:null,borders:null,corners:null}}},{}],41:[function(a,b){"use strict";b.exports=function(){return{index:null,point:null,ocean:null,water:null,coast:null,border:null,elevation:null,moisture:null,touches:null,protrudes:null,adjacent:null,river:null,downslope:null,watershed:null,watershedSize:null}}},{}],42:[function(a,b){"use strict";b.exports=function(){return{index:0,d0:null,d1:null,v0:null,v1:null,midpoint:null,river:0}}},{}],43:[function(a,b,c){"use strict";var d=a("../janicek/array2d"),e=a("../janicek/core"),f=a("../as3/point-core").distanceFromOrigin,g=a("../janicek/perlin-noise"),h=a("../polygonal/pm-prng"),i=a("../janicek/pseudo-random-number-generators");c.makeRadial=function(a,b){function c(a){var c=Math.atan2(a.y,a.x),d=.5*(Math.max(Math.abs(a.x),Math.abs(a.y))+f(a)),e=.5+.4*Math.sin(i+g*c+Math.cos((g+3)*c)),h=.7-.2*Math.sin(i+g*c-Math.sin((g+2)*c));return(Math.abs(c-j)<k||Math.abs(c-j+2*Math.PI)<k||Math.abs(c-j-2*Math.PI)<k)&&(e=h=.2),e>d||d>e*b&&h>d}b=e.def(b,1.07);var d=h();d.seed=a;var g=d.nextIntRange(1,6),i=d.nextDoubleRange(0,2*Math.PI),j=d.nextDoubleRange(0,2*Math.PI),k=d.nextDoubleRange(.2,.7);return c},c.makePerlin=function(a,b){b=e.def(b,.5);var c=.1,h=.5;b=(h-c)*b+c;var i=d(g.makePerlinNoise(256,256,1,1,1,a,8));return function(a){var c=(255&i.get(e.toInt(128*(a.x+1)),e.toInt(128*(a.y+1))))/255;return c>b+b*f(a)*f(a)}},c.makeSquare=function(){return function(){return!0}},c.makeBlob=function(){return function(a){var b=f({x:a.x-.2,y:a.y/2+.2})<.05,c=f({x:a.x+.2,y:a.y/2+.2})<.05,d=f(a)<.8-.18*Math.sin(5*Math.atan2(a.y,a.x));return d&&!b&&!c}},c.makeBitmap=function(a){a=d(a);var b=a.dimensions();return function(c){var d=e.toInt((c.x+1)/2*b.x),f=e.toInt((c.y+1)/2*b.y);return a.get(d,f)}},c.makeNoise=function(a){return function(){return a=i.nextParkMiller(a),i.toBool(a)}}},{"../as3/point-core":4,"../janicek/array2d":8,"../janicek/core":10,"../janicek/perlin-noise":15,"../janicek/pseudo-random-number-generators":16,"../polygonal/pm-prng":38}],44:[function(a,b,c){"use strict";var d=a("lodash"),e=a("../as3/conversion-core");b.exports=function(){return{lava:[],createLava:function(a,b){d(a.edges).each(function(a){!e.booleanFromInt(a.river)&&!a.d0.water&&!a.d1.water&&a.d0.elevation>.8&&a.d1.elevation>.8&&a.d0.moisture<.3&&a.d1.moisture<.3&&b()<c.FRACTION_LAVA_FISSURES&&(this.lava[a.index]=!0)})}}},b.exports.FRACTION_LAVA_FISSURES=.2},{"../as3/conversion-core":2,lodash:1}],45:[function(a,b){"use strict";var c=a("lodash"),d=a("./graph/center"),e=a("../as3/conversion-core"),f=a("./graph/corner"),g=a("../janicek/core"),h=a("./graph/edge"),i=a("../polygonal/pm-prng"),j=a("../as3/point-core"),k=a("../as3/rectangle"),l=a("../nodename/delaunay/voronoi"),m=function(a){var b={};return b.SIZE=a,b.islandShape=null,b.mapRandom=i(),b.points=[],b.centers=[],b.corners=[],b.edges=[],b.newIsland=function(a,c){b.islandShape=a,b.mapRandom.seed=c},b.go0PlacePoints=function(a){a=g.def(a,m.DEFAULT_NUMBER_OF_POINTS),b.reset(),b.points=b.generateRandomPoints(a)},b.go1ImprovePoints=function(a){a=g.def(a,m.DEFAULT_LLOYD_ITERATIONS),b.improveRandomPoints(b.points,a)},b.go2BuildGraph=function(){var a=l.make(b.points,null,k(0,0,b.SIZE.width,b.SIZE.height));b.buildGraph(b.points,a),b.improveCorners(),a.dispose(),a=null,b.points=null},b.go3AssignElevations=function(a){a=g.def(a,m.DEFAULT_LAKE_THRESHOLD),b.assignCornerElevations(),b.assignOceanCoastAndLand(a),b.redistributeElevations(b.landCorners(b.corners)),c(b.corners).each(function(a){(a.ocean||a.coast)&&(a.elevation=0)}),b.assignPolygonElevations()},b.go4AssignMoisture=function(a){a=g.def(a,null),b.calculateDownslopes(),b.calculateWatersheds(),b.createRivers(a),b.assignCornerMoisture(),b.redistributeMoisture(b.landCorners(b.corners)),b.assignPolygonMoisture()},b.go5DecorateMap=function(){b.assignBiomes()},b.reset=function(){null!==b.points&&b.points.splice(0,b.points.length),null!==b.edges&&(c(b.edges).each(function(a){a.d0=a.d1=null,a.v0=a.v1=null}),b.edges.splice(0,b.edges.length)),null!==b.centers&&(c(b.centers).each(function(a){a.neighbors.splice(0,a.neighbors.length),a.corners.splice(0,a.corners.length),a.borders.splice(0,a.borders.length)}),b.centers.splice(0,b.centers.length)),null!==b.corners&&(c(b.corners).each(function(a){a.adjacent.splice(0,a.adjacent.length),a.touches.splice(0,a.touches.length),a.protrudes.splice(0,a.protrudes.length),a.downslope=null,a.watershed=null}),b.corners.splice(0,b.corners.length)),null===b.points&&(b.points=[]),null===b.edges&&(b.edges=[]),null===b.centers&&(b.centers=[]),null===b.corners&&(b.corners=[])},b.generateRandomPoints=function(a){var c,d,e=[];for(d=0;a>d;d++)c={x:b.mapRandom.nextDoubleRange(10,b.SIZE.width-10),y:b.mapRandom.nextDoubleRange(10,b.SIZE.height-10)},e.push(c);return e},b.improveRandomPoints=function(a,c){var d,e,f;for(d=0;c>d;d++){e=l.make(a,null,k(0,0,b.SIZE.width,b.SIZE.height));for(var g=0;g<a.length;g++){var h=a[g];f=e.region(h),h.x=0,h.y=0;for(var i=0;i<f.length;i++){var j=f[i];h.x+=j.x,h.y+=j.y}h.x/=f.length,h.y/=f.length,f.splice(0,f.length)}e.dispose()}},b.improveCorners=function(){var a,d,e=[];for(c(b.corners).each(function(b){b.border?e[b.index]=b.point:(a={x:0,y:0},c(b.touches).each(function(b){a.x+=b.point.x,a.y+=b.point.y}),a.x/=b.touches.length,a.y/=b.touches.length,e[b.index]=a)}),d=0;d<b.corners.length;d++)b.corners[d].point=e[d];c(b.edges).each(function(a){null!==a.v0&&null!==a.v1&&(a.midpoint=j.interpolate(a.v0.point,a.v1.point,.5))})},b.landCorners=function(a){var b=[];return c(a).each(function(a){a.ocean||a.coast||b.push(a)}),b},b.buildGraph=function(a,e){function i(a){var c;if(null===a)return null;var d;for(d=g.toInt(a.x)-1;d<g.toInt(a.x)+2;d++)if(!g.isUndefinedOrNull(n[d]))for(var e=0;e<n[d].length;e++){c=n[d][e];var h=a.x-c.point.x,i=a.y-c.point.y;if(1e-6>h*h+i*i)return c}return d=g.toInt(a.x),g.isUndefinedOrNull(n[d])&&(n[d]=[]),c=f(),c.index=b.corners.length,b.corners.push(c),c.point=a,c.border=0===a.x||a.x===b.SIZE.width||0===a.y||a.y===b.SIZE.height,c.touches=[],c.protrudes=[],c.adjacent=[],n[d].push(c),c}var k,l=e.edges(),m={};c(a).each(function(a){k=d(),k.index=b.centers.length,k.point=a,k.neighbors=[],k.borders=[],k.corners=[],b.centers.push(k),m[j.hash(a)]=k}),c(b.centers).each(function(a){e.region(a.point)});var n=[];c(l).each(function(a){function c(a,b){null!==b&&a.indexOf(b)<0&&a.push(b)}function d(a,b){null!==b&&a.indexOf(b)<0&&a.push(b)}var e=a.delaunayLine(),f=a.voronoiEdge(),g=h();g.index=b.edges.length,g.river=0,b.edges.push(g),g.midpoint=null!==f.p0&&null!==f.p1?j.interpolate(f.p0,f.p1,.5):null,g.v0=i(f.p0),g.v1=i(f.p1),g.d0=m[j.hash(e.p0)],g.d1=m[j.hash(e.p1)],null!==g.d0&&g.d0.borders.push(g),null!==g.d1&&g.d1.borders.push(g),null!==g.v0&&g.v0.protrudes.push(g),null!==g.v1&&g.v1.protrudes.push(g),null!==g.d0&&null!==g.d1&&(d(g.d0.neighbors,g.d1),d(g.d1.neighbors,g.d0)),null!==g.v0&&null!==g.v1&&(c(g.v0.adjacent,g.v1),c(g.v1.adjacent,g.v0)),null!==g.d0&&(c(g.d0.corners,g.v0),c(g.d0.corners,g.v1)),null!==g.d1&&(c(g.d1.corners,g.v0),c(g.d1.corners,g.v1)),null!==g.v0&&(d(g.v0.touches,g.d0),d(g.v0.touches,g.d1)),null!==g.v1&&(d(g.v1.touches,g.d0),d(g.v1.touches,g.d1))})},b.assignCornerElevations=function(){var a=[];for(c(b.corners).each(function(a){a.water=!b.inside(a.point)}),c(b.corners).each(function(b){b.border?(b.elevation=0,a.push(b)):b.elevation=Number.POSITIVE_INFINITY});a.length>0;)for(var d=a.shift(),e=0;e<d.adjacent.length;e++){var f=d.adjacent[e],g=.01+d.elevation;d.water||f.water||(g+=1),g<f.elevation&&(f.elevation=g,a.push(f))}},b.redistributeElevations=function(a){var b,c,d,e=1.1;for(a.sort(function(a,b){return a.elevation>b.elevation?1:a.elevation<b.elevation?-1:a.index>b.index?1:a.index<b.index?-1:0}),b=0;b<a.length;b++)c=b/(a.length-1),d=Math.sqrt(e)-Math.sqrt(e*(1-c)),d>1&&(d=1),a[b].elevation=d},b.redistributeMoisture=function(a){var b;for(a.sort(function(a,b){return a.moisture>b.moisture?1:a.moisture<b.moisture?-1:a.index>b.index?1:a.index<b.index?-1:0}),b=0;b<a.length;b++)a[b].moisture=b/(a.length-1)},b.assignOceanCoastAndLand=function(a){var d,f,g=[];for(c(b.centers).each(function(b){f=0,c(b.corners).each(function(a){a.border&&(b.border=!0,b.ocean=!0,a.water=!0,g.push(b)),a.water&&(f+=1)}),b.water=b.ocean||f>=b.corners.length*a});g.length>0;){d=g.shift();for(var h=0;h<d.neighbors.length;h++){var i=d.neighbors[h];i.water&&!i.ocean&&(i.ocean=!0,g.push(i))}}c(b.centers).each(function(a){var b=0,d=0;c(a.neighbors).each(function(a){b+=e.intFromBoolean(a.ocean),d+=e.intFromBoolean(!a.water)}),a.coast=b>0&&d>0}),c(b.corners).each(function(a){var b=0,d=0;c(a.touches).each(function(a){b+=e.intFromBoolean(a.ocean),d+=e.intFromBoolean(!a.water)}),a.ocean=b===a.touches.length,a.coast=b>0&&d>0,a.water=a.border||d!==a.touches.length&&!a.coast})},b.assignPolygonElevations=function(){var a;c(b.centers).each(function(b){a=0,c(b.corners).each(function(b){a+=b.elevation}),b.elevation=a/b.corners.length})},b.calculateDownslopes=function(){var a;c(b.corners).each(function(b){a=b,c(b.adjacent).each(function(b){b.elevation<=a.elevation&&(a=b)}),b.downslope=a})},b.calculateWatersheds=function(){var a,d,e;c(b.corners).each(function(a){a.watershed=a,a.ocean||a.coast||(a.watershed=a.downslope)});var f,g;for(d=0;100>d;d++){for(e=!1,f=0;f<b.corners.length;f++)g=b.corners[f],g.ocean||g.coast||g.watershed.coast||(a=g.downslope.watershed,a.ocean||(g.watershed=a),e=!0);if(!e)break}for(f=0;f<b.corners.length;f++)g=b.corners[f],a=g.watershed,a.watershedSize=1+(a.watershedSize||0)},b.createRivers=function(a){a=g.coalesce(a,g.toInt((b.SIZE.width+b.SIZE.height)/4));var c,d,e;for(c=0;a>c;c++)if(d=b.corners[b.mapRandom.nextIntRange(0,b.corners.length-1)],!(d.ocean||d.elevation<.3||d.elevation>.9))for(;!d.coast&&d!==d.downslope;)e=b.lookupEdgeFromCorner(d,d.downslope),e.river=e.river+1,d.river=(d.river||0)+1,d.downslope.river=(d.downslope.river||0)+1,d=d.downslope},b.assignCornerMoisture=function(){var a,d,e=[];for(c(b.corners).each(function(a){(a.water||a.river>0)&&!a.ocean?(a.moisture=a.river>0?Math.min(3,.2*a.river):1,e.push(a)):a.moisture=0});e.length>0;){a=e.shift();for(var f=0;f<a.adjacent.length;f++){var g=a.adjacent[f];d=.9*a.moisture,d>g.moisture&&(g.moisture=d,e.push(g))}}c(b.corners).each(function(a){(a.ocean||a.coast)&&(a.moisture=1)})},b.assignPolygonMoisture=function(){var a;c(b.centers).each(function(b){a=0,c(b.corners).each(function(b){b.moisture>1&&(b.moisture=1),a+=b.moisture}),b.moisture=a/b.corners.length})},b.assignBiomes=function(){c(b.centers).each(function(a){a.biome=m.getBiome(a)})},b.lookupEdgeFromCenter=function(a,b){for(var c=0;c<a.borders.length;c++){var d=a.borders[c];if(d.d0===b||d.d1===b)return d}return null},b.lookupEdgeFromCorner=function(a,b){for(var c=0;c<a.protrudes.length;c++){var d=a.protrudes[c];if(d.v0===b||d.v1===b)return d}return null},b.inside=function(a){return b.islandShape({x:2*(a.x/b.SIZE.width-.5),y:2*(a.y/b.SIZE.height-.5)})},b.reset(),b};m.DEFAULT_LAKE_THRESHOLD=.3,m.DEFAULT_LLOYD_ITERATIONS=2,m.DEFAULT_NUMBER_OF_POINTS=1e3,m.getBiome=function(a){return a.ocean?"OCEAN":a.water?a.elevation<.1?"MARSH":a.elevation>.8?"ICE":"LAKE":a.coast?"BEACH":a.elevation>.8?a.moisture>.5?"SNOW":a.moisture>.33?"TUNDRA":a.moisture>.16?"BARE":"SCORCHED":a.elevation>.6?a.moisture>.66?"TAIGA":a.moisture>.33?"SHRUBLAND":"TEMPERATE_DESERT":a.elevation>.3?a.moisture>.83?"TEMPERATE_RAIN_FOREST":a.moisture>.5?"TEMPERATE_DECIDUOUS_FOREST":a.moisture>.16?"GRASSLAND":"TEMPERATE_DESERT":a.moisture>.66?"TROPICAL_RAIN_FOREST":a.moisture>.33?"TROPICAL_SEASONAL_FOREST":a.moisture>.16?"GRASSLAND":"SUBTROPICAL_DESERT"},m.countLands=function(a){return c(c(a).filter(function(a){return!a.water})).size()},m.tryMutateMapPointsToGetNumberLands=function(a,b,c,d,e,f){c=g.def(c,1e4),d=g.def(d,m.DEFAULT_NUMBER_OF_POINTS),e=g.def(e,m.DEFAULT_LLOYD_ITERATIONS),f=g.def(f,m.DEFAULT_LAKE_THRESHOLD);var h=d,i=Date.now(),j=!1;do{a.go0PlacePoints(h),a.go1ImprovePoints(e),a.go2BuildGraph(),a.go3AssignElevations(f);var k=m.countLands(a.centers);k===b?j=!0:h+=b>k?1:-1}while(!j&&Date.now()-i<c);return a},b.exports=m},{"../as3/conversion-core":2,"../as3/point-core":4,"../as3/rectangle":5,"../janicek/core":10,"../nodename/delaunay/voronoi":33,"../polygonal/pm-prng":38,"./graph/center":40,"./graph/corner":41,"./graph/edge":42,lodash:1}],46:[function(a,b){"use strict";var c=a("lodash"),d=a("../as3/conversion-core"),e=a("../janicek/core"),f=a("../as3/point-core"),g=a("../janicek/pseudo-random-number-generators");b.exports=function(){var a={};return a.path0=[],a.path1=[],a.buildNoisyEdges=function(h,i,j,k){k=e.def(k,.5);var l=g.randomGenerator(j,g.nextParkMiller);c(h.centers).each(function(g){c(g.borders).each(function(c){if(!e.isUndefinedOrNull(c.d0)&&!e.isUndefinedOrNull(c.d1)&&!e.isUndefinedOrNull(c.v0)&&!e.isUndefinedOrNull(c.v1)&&e.isUndefinedOrNull(a.path0[c.index])){var g=k,h=f.interpolate(c.v0.point,c.d0.point,g),j=f.interpolate(c.v0.point,c.d1.point,g),m=f.interpolate(c.v1.point,c.d0.point,g),n=f.interpolate(c.v1.point,c.d1.point,g),o=10;c.d0.biome!==c.d1.biome&&(o=3),c.d0.ocean&&c.d1.ocean&&(o=100),(c.d0.coast||c.d1.coast)&&(o=1),(d.booleanFromInt(c.river)||!e.isUndefinedOrNull(i.lava[c.index]))&&(o=1),a.path0[c.index]=b.exports.buildNoisyLineSegments(l(),c.v0.point,h,c.midpoint,j,o),a.path1[c.index]=b.exports.buildNoisyLineSegments(l(),c.v1.point,n,c.midpoint,m,o)}})})},a},b.exports.buildNoisyLineSegments=function(a,b,c,d,e,h){function i(a,b,c,d){if(!(f.distanceFromOrigin(f.subtract(a,c))<h||f.distanceFromOrigin(f.subtract(b,d))<h)){var e=g.toFloatRange(j(),.2,.8),l=g.toFloatRange(j(),.2,.8),m=f.interpolate(a,d,e),n=f.interpolate(b,c,e),o=f.interpolate(a,b,l),p=f.interpolate(d,c,l),q=f.interpolate(m,n,l),r=1-g.toFloatRange(j(),-.4,.4),s=1-g.toFloatRange(j(),-.4,.4);i(a,f.interpolate(o,b,r),q,f.interpolate(m,d,s)),k.push(q),i(q,f.interpolate(n,c,r),c,f.interpolate(p,d,s))}}var j=g.randomGenerator(a,g.nextParkMiller),k=[];return k.push(b),i(b,c,d,e),k.push(d),k}},{"../as3/conversion-core":2,"../as3/point-core":4,"../janicek/core":10,"../janicek/pseudo-random-number-generators":16,lodash:1}],47:[function(a,b){"use strict";var c=a("lodash"),d=a("../janicek/core");b.exports=function(){var a={};return a.road=[],a.roadConnections=[],a.createRoads=function(b,e){var f,g,h=[],i=[],j=[];for(c(b.centers).each(function(a){(a.coast||a.ocean)&&(j[a.index]=1,h.push(a))});h.length>0;){f=h.shift();for(var k=0;k<f.neighbors.length;k++){var l=f.neighbors[k];for(g=d.coalesce(j[f.index],0);l.elevation>e[g]&&!l.water;)g+=1;g<d.coalesce(j[l.index],999)&&(j[l.index]=g,h.push(l))}}c(b.centers).each(function(a){c(a.corners).each(function(b){i[b.index]=d.toInt(Math.min(d.coalesce(i[b.index],999),d.coalesce(j[a.index],999)))
-})}),c(b.centers).each(function(b){c(b.borders).each(function(e){c.isNull(e.v0)||c.isNull(e.v1)||i[e.v0.index]===i[e.v1.index]||(a.road[e.index]=d.toInt(Math.min(i[e.v0.index],i[e.v1.index])),d.isUndefinedOrNull(a.roadConnections[b.index])&&(a.roadConnections[b.index]=[]),a.roadConnections[b.index].push(e))})})},a}},{"../janicek/core":10,lodash:1}],48:[function(a,b,c){"use strict";c.displayColors={OCEAN:4473978,COAST:3355482,LAKESHORE:2250120,LAKE:3368601,RIVER:2250120,MARSH:3106406,ICE:10092543,BEACH:10522743,ROAD1:4465169,ROAD2:5583650,ROAD3:6702131,BRIDGE:6842464,LAVA:13382451,SNOW:16777215,TUNDRA:12303274,BARE:8947848,SCORCHED:5592405,TAIGA:10070647,SHRUBLAND:8952183,TEMPERATE_DESERT:13226651,TEMPERATE_RAIN_FOREST:4491349,TEMPERATE_DECIDUOUS_FOREST:6788185,GRASSLAND:8956501,SUBTROPICAL_DESERT:13810059,TROPICAL_RAIN_FOREST:3372885,TROPICAL_SEASONAL_FOREST:5609796},c.elevationGradientColors={OCEAN:34816,GRADIENT_LOW:34816,GRADIENT_HIGH:16776960}},{}],49:[function(a,b){"use strict";var c=a("lodash");b.exports=function(){var a={};return a.lowestCorner=[],a.watersheds=[],a.createWatersheds=function(b){var d;c(b.centers).each(function(b){d=null,c(b.corners).each(function(a){(null===d||a.elevation<d.elevation)&&(d=a)}),a.lowestCorner[b.index]=null===d?-1:d.index,a.watersheds[b.index]=null===d?-1:null===d.watershed?-1:d.watershed.index})},a}},{lodash:1}]},{},[7]);
+;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var global=self;/**
+ * @license
+ * Lo-Dash 2.2.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modern -o ./dist/lodash.js`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+;(function() {
+
+  /** Used as a safe reference for `undefined` in pre ES5 environments */
+  var undefined;
+
+  /** Used to pool arrays and objects used internally */
+  var arrayPool = [],
+      objectPool = [];
+
+  /** Used to generate unique IDs */
+  var idCounter = 0;
+
+  /** Used to prefix keys to avoid issues with `__proto__` and properties on `Object.prototype` */
+  var keyPrefix = +new Date + '';
+
+  /** Used as the size when optimizations are enabled for large arrays */
+  var largeArraySize = 75;
+
+  /** Used as the max size of the `arrayPool` and `objectPool` */
+  var maxPoolSize = 40;
+
+  /** Used to detect and test whitespace */
+  var whitespace = (
+    // whitespace
+    ' \t\x0B\f\xA0\ufeff' +
+
+    // line terminators
+    '\n\r\u2028\u2029' +
+
+    // unicode category "Zs" space separators
+    '\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000'
+  );
+
+  /** Used to match empty string literals in compiled template source */
+  var reEmptyStringLeading = /\b__p \+= '';/g,
+      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
+      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
+
+  /**
+   * Used to match ES6 template delimiters
+   * http://people.mozilla.org/~jorendorff/es6-draft.html#sec-7.8.6
+   */
+  var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
+
+  /** Used to match regexp flags from their coerced string values */
+  var reFlags = /\w*$/;
+
+  /** Used to detected named functions */
+  var reFuncName = /^function[ \n\r\t]+\w/;
+
+  /** Used to match "interpolate" template delimiters */
+  var reInterpolate = /<%=([\s\S]+?)%>/g;
+
+  /** Used to match leading whitespace and zeros to be removed */
+  var reLeadingSpacesAndZeros = RegExp('^[' + whitespace + ']*0+(?=.$)');
+
+  /** Used to ensure capturing order of template delimiters */
+  var reNoMatch = /($^)/;
+
+  /** Used to detect functions containing a `this` reference */
+  var reThis = /\bthis\b/;
+
+  /** Used to match unescaped characters in compiled string literals */
+  var reUnescapedString = /['\n\r\t\u2028\u2029\\]/g;
+
+  /** Used to assign default `context` object properties */
+  var contextProps = [
+    'Array', 'Boolean', 'Date', 'Function', 'Math', 'Number', 'Object',
+    'RegExp', 'String', '_', 'attachEvent', 'clearTimeout', 'isFinite', 'isNaN',
+    'parseInt', 'setImmediate', 'setTimeout'
+  ];
+
+  /** Used to make template sourceURLs easier to identify */
+  var templateCounter = 0;
+
+  /** `Object#toString` result shortcuts */
+  var argsClass = '[object Arguments]',
+      arrayClass = '[object Array]',
+      boolClass = '[object Boolean]',
+      dateClass = '[object Date]',
+      funcClass = '[object Function]',
+      numberClass = '[object Number]',
+      objectClass = '[object Object]',
+      regexpClass = '[object RegExp]',
+      stringClass = '[object String]';
+
+  /** Used to identify object classifications that `_.clone` supports */
+  var cloneableClasses = {};
+  cloneableClasses[funcClass] = false;
+  cloneableClasses[argsClass] = cloneableClasses[arrayClass] =
+  cloneableClasses[boolClass] = cloneableClasses[dateClass] =
+  cloneableClasses[numberClass] = cloneableClasses[objectClass] =
+  cloneableClasses[regexpClass] = cloneableClasses[stringClass] = true;
+
+  /** Used as an internal `_.debounce` options object */
+  var debounceOptions = {
+    'leading': false,
+    'maxWait': 0,
+    'trailing': false
+  };
+
+  /** Used as the property descriptor for `__bindData__` */
+  var descriptor = {
+    'configurable': false,
+    'enumerable': false,
+    'value': null,
+    'writable': false
+  };
+
+  /** Used to determine if values are of the language type Object */
+  var objectTypes = {
+    'boolean': false,
+    'function': true,
+    'object': true,
+    'number': false,
+    'string': false,
+    'undefined': false
+  };
+
+  /** Used to escape characters for inclusion in compiled string literals */
+  var stringEscapes = {
+    '\\': '\\',
+    "'": "'",
+    '\n': 'n',
+    '\r': 'r',
+    '\t': 't',
+    '\u2028': 'u2028',
+    '\u2029': 'u2029'
+  };
+
+  /** Used as a reference to the global object */
+  var root = (objectTypes[typeof window] && window) || this;
+
+  /** Detect free variable `exports` */
+  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
+
+  /** Detect free variable `module` */
+  var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
+
+  /** Detect the popular CommonJS extension `module.exports` */
+  var moduleExports = freeModule && freeModule.exports === freeExports && freeExports;
+
+  /** Detect free variable `global` from Node.js or Browserified code and use it as `root` */
+  var freeGlobal = objectTypes[typeof global] && global;
+  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
+    root = freeGlobal;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * The base implementation of `_.indexOf` without support for binary searches
+   * or `fromIndex` constraints.
+   *
+   * @private
+   * @param {Array} array The array to search.
+   * @param {*} value The value to search for.
+   * @param {number} [fromIndex=0] The index to search from.
+   * @returns {number} Returns the index of the matched value or `-1`.
+   */
+  function baseIndexOf(array, value, fromIndex) {
+    var index = (fromIndex || 0) - 1,
+        length = array ? array.length : 0;
+
+    while (++index < length) {
+      if (array[index] === value) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * An implementation of `_.contains` for cache objects that mimics the return
+   * signature of `_.indexOf` by returning `0` if the value is found, else `-1`.
+   *
+   * @private
+   * @param {Object} cache The cache object to inspect.
+   * @param {*} value The value to search for.
+   * @returns {number} Returns `0` if `value` is found, else `-1`.
+   */
+  function cacheIndexOf(cache, value) {
+    var type = typeof value;
+    cache = cache.cache;
+
+    if (type == 'boolean' || value == null) {
+      return cache[value] ? 0 : -1;
+    }
+    if (type != 'number' && type != 'string') {
+      type = 'object';
+    }
+    var key = type == 'number' ? value : keyPrefix + value;
+    cache = (cache = cache[type]) && cache[key];
+
+    return type == 'object'
+      ? (cache && baseIndexOf(cache, value) > -1 ? 0 : -1)
+      : (cache ? 0 : -1);
+  }
+
+  /**
+   * Adds a given value to the corresponding cache object.
+   *
+   * @private
+   * @param {*} value The value to add to the cache.
+   */
+  function cachePush(value) {
+    var cache = this.cache,
+        type = typeof value;
+
+    if (type == 'boolean' || value == null) {
+      cache[value] = true;
+    } else {
+      if (type != 'number' && type != 'string') {
+        type = 'object';
+      }
+      var key = type == 'number' ? value : keyPrefix + value,
+          typeCache = cache[type] || (cache[type] = {});
+
+      if (type == 'object') {
+        (typeCache[key] || (typeCache[key] = [])).push(value);
+      } else {
+        typeCache[key] = true;
+      }
+    }
+  }
+
+  /**
+   * Used by `_.max` and `_.min` as the default callback when a given
+   * collection is a string value.
+   *
+   * @private
+   * @param {string} value The character to inspect.
+   * @returns {number} Returns the code unit of given character.
+   */
+  function charAtCallback(value) {
+    return value.charCodeAt(0);
+  }
+
+  /**
+   * Used by `sortBy` to compare transformed `collection` elements, stable sorting
+   * them in ascending order.
+   *
+   * @private
+   * @param {Object} a The object to compare to `b`.
+   * @param {Object} b The object to compare to `a`.
+   * @returns {number} Returns the sort order indicator of `1` or `-1`.
+   */
+  function compareAscending(a, b) {
+    var ac = a.criteria,
+        bc = b.criteria;
+
+    // ensure a stable sort in V8 and other engines
+    // http://code.google.com/p/v8/issues/detail?id=90
+    if (ac !== bc) {
+      if (ac > bc || typeof ac == 'undefined') {
+        return 1;
+      }
+      if (ac < bc || typeof bc == 'undefined') {
+        return -1;
+      }
+    }
+    // The JS engine embedded in Adobe applications like InDesign has a buggy
+    // `Array#sort` implementation that causes it, under certain circumstances,
+    // to return the same value for `a` and `b`.
+    // See https://github.com/jashkenas/underscore/pull/1247
+    return a.index - b.index;
+  }
+
+  /**
+   * Creates a cache object to optimize linear searches of large arrays.
+   *
+   * @private
+   * @param {Array} [array=[]] The array to search.
+   * @returns {null|Object} Returns the cache object or `null` if caching should not be used.
+   */
+  function createCache(array) {
+    var index = -1,
+        length = array.length,
+        first = array[0],
+        mid = array[(length / 2) | 0],
+        last = array[length - 1];
+
+    if (first && typeof first == 'object' &&
+        mid && typeof mid == 'object' && last && typeof last == 'object') {
+      return false;
+    }
+    var cache = getObject();
+    cache['false'] = cache['null'] = cache['true'] = cache['undefined'] = false;
+
+    var result = getObject();
+    result.array = array;
+    result.cache = cache;
+    result.push = cachePush;
+
+    while (++index < length) {
+      result.push(array[index]);
+    }
+    return result;
+  }
+
+  /**
+   * Used by `template` to escape characters for inclusion in compiled
+   * string literals.
+   *
+   * @private
+   * @param {string} match The matched character to escape.
+   * @returns {string} Returns the escaped character.
+   */
+  function escapeStringChar(match) {
+    return '\\' + stringEscapes[match];
+  }
+
+  /**
+   * Gets an array from the array pool or creates a new one if the pool is empty.
+   *
+   * @private
+   * @returns {Array} The array from the pool.
+   */
+  function getArray() {
+    return arrayPool.pop() || [];
+  }
+
+  /**
+   * Gets an object from the object pool or creates a new one if the pool is empty.
+   *
+   * @private
+   * @returns {Object} The object from the pool.
+   */
+  function getObject() {
+    return objectPool.pop() || {
+      'array': null,
+      'cache': null,
+      'criteria': null,
+      'false': false,
+      'index': 0,
+      'null': false,
+      'number': null,
+      'object': null,
+      'push': null,
+      'string': null,
+      'true': false,
+      'undefined': false,
+      'value': null
+    };
+  }
+
+  /**
+   * A no-operation function.
+   *
+   * @private
+   */
+  function noop() {
+    // no operation performed
+  }
+
+  /**
+   * Releases the given array back to the array pool.
+   *
+   * @private
+   * @param {Array} [array] The array to release.
+   */
+  function releaseArray(array) {
+    array.length = 0;
+    if (arrayPool.length < maxPoolSize) {
+      arrayPool.push(array);
+    }
+  }
+
+  /**
+   * Releases the given object back to the object pool.
+   *
+   * @private
+   * @param {Object} [object] The object to release.
+   */
+  function releaseObject(object) {
+    var cache = object.cache;
+    if (cache) {
+      releaseObject(cache);
+    }
+    object.array = object.cache = object.criteria = object.object = object.number = object.string = object.value = null;
+    if (objectPool.length < maxPoolSize) {
+      objectPool.push(object);
+    }
+  }
+
+  /**
+   * Slices the `collection` from the `start` index up to, but not including,
+   * the `end` index.
+   *
+   * Note: This function is used instead of `Array#slice` to support node lists
+   * in IE < 9 and to ensure dense arrays are returned.
+   *
+   * @private
+   * @param {Array|Object|string} collection The collection to slice.
+   * @param {number} start The start index.
+   * @param {number} end The end index.
+   * @returns {Array} Returns the new array.
+   */
+  function slice(array, start, end) {
+    start || (start = 0);
+    if (typeof end == 'undefined') {
+      end = array ? array.length : 0;
+    }
+    var index = -1,
+        length = end - start || 0,
+        result = Array(length < 0 ? 0 : length);
+
+    while (++index < length) {
+      result[index] = array[start + index];
+    }
+    return result;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Create a new `lodash` function using the given context object.
+   *
+   * @static
+   * @memberOf _
+   * @category Utilities
+   * @param {Object} [context=root] The context object.
+   * @returns {Function} Returns the `lodash` function.
+   */
+  function runInContext(context) {
+    // Avoid issues with some ES3 environments that attempt to use values, named
+    // after built-in constructors like `Object`, for the creation of literals.
+    // ES5 clears this up by stating that literals must use built-in constructors.
+    // See http://es5.github.io/#x11.1.5.
+    context = context ? _.defaults(root.Object(), context, _.pick(root, contextProps)) : root;
+
+    /** Native constructor references */
+    var Array = context.Array,
+        Boolean = context.Boolean,
+        Date = context.Date,
+        Function = context.Function,
+        Math = context.Math,
+        Number = context.Number,
+        Object = context.Object,
+        RegExp = context.RegExp,
+        String = context.String,
+        TypeError = context.TypeError;
+
+    /**
+     * Used for `Array` method references.
+     *
+     * Normally `Array.prototype` would suffice, however, using an array literal
+     * avoids issues in Narwhal.
+     */
+    var arrayRef = [];
+
+    /** Used for native method references */
+    var objectProto = Object.prototype;
+
+    /** Used to restore the original `_` reference in `noConflict` */
+    var oldDash = context._;
+
+    /** Used to detect if a method is native */
+    var reNative = RegExp('^' +
+      String(objectProto.valueOf)
+        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        .replace(/valueOf|for [^\]]+/g, '.+?') + '$'
+    );
+
+    /** Native method shortcuts */
+    var ceil = Math.ceil,
+        clearTimeout = context.clearTimeout,
+        floor = Math.floor,
+        fnToString = Function.prototype.toString,
+        getPrototypeOf = reNative.test(getPrototypeOf = Object.getPrototypeOf) && getPrototypeOf,
+        hasOwnProperty = objectProto.hasOwnProperty,
+        now = reNative.test(now = Date.now) && now || function() { return +new Date; },
+        push = arrayRef.push,
+        setImmediate = context.setImmediate,
+        setTimeout = context.setTimeout,
+        splice = arrayRef.splice,
+        toString = objectProto.toString,
+        unshift = arrayRef.unshift;
+
+    var defineProperty = (function() {
+      try {
+        var o = {},
+            func = reNative.test(func = Object.defineProperty) && func,
+            result = func(o, o, o) && func;
+      } catch(e) { }
+      return result;
+    }());
+
+    /* Native method shortcuts for methods with the same name as other `lodash` methods */
+    var nativeBind = reNative.test(nativeBind = toString.bind) && nativeBind,
+        nativeCreate = reNative.test(nativeCreate = Object.create) && nativeCreate,
+        nativeIsArray = reNative.test(nativeIsArray = Array.isArray) && nativeIsArray,
+        nativeIsFinite = context.isFinite,
+        nativeIsNaN = context.isNaN,
+        nativeKeys = reNative.test(nativeKeys = Object.keys) && nativeKeys,
+        nativeMax = Math.max,
+        nativeMin = Math.min,
+        nativeParseInt = context.parseInt,
+        nativeRandom = Math.random,
+        nativeSlice = arrayRef.slice;
+
+    /** Detect various environments */
+    var isIeOpera = reNative.test(context.attachEvent),
+        isV8 = nativeBind && !/\n|true/.test(nativeBind + isIeOpera);
+
+    /** Used to lookup a built-in constructor by [[Class]] */
+    var ctorByClass = {};
+    ctorByClass[arrayClass] = Array;
+    ctorByClass[boolClass] = Boolean;
+    ctorByClass[dateClass] = Date;
+    ctorByClass[funcClass] = Function;
+    ctorByClass[objectClass] = Object;
+    ctorByClass[numberClass] = Number;
+    ctorByClass[regexpClass] = RegExp;
+    ctorByClass[stringClass] = String;
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a `lodash` object which wraps the given value to enable intuitive
+     * method chaining.
+     *
+     * In addition to Lo-Dash methods, wrappers also have the following `Array` methods:
+     * `concat`, `join`, `pop`, `push`, `reverse`, `shift`, `slice`, `sort`, `splice`,
+     * and `unshift`
+     *
+     * Chaining is supported in custom builds as long as the `value` method is
+     * implicitly or explicitly included in the build.
+     *
+     * The chainable wrapper functions are:
+     * `after`, `assign`, `bind`, `bindAll`, `bindKey`, `chain`, `compact`,
+     * `compose`, `concat`, `countBy`, `createCallback`, `curry`, `debounce`,
+     * `defaults`, `defer`, `delay`, `difference`, `filter`, `flatten`, `forEach`,
+     * `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`, `functions`,
+     * `groupBy`, `indexBy`, `initial`, `intersection`, `invert`, `invoke`, `keys`,
+     * `map`, `max`, `memoize`, `merge`, `min`, `object`, `omit`, `once`, `pairs`,
+     * `partial`, `partialRight`, `pick`, `pluck`, `pull`, `push`, `range`, `reject`,
+     * `remove`, `rest`, `reverse`, `shuffle`, `slice`, `sort`, `sortBy`, `splice`,
+     * `tap`, `throttle`, `times`, `toArray`, `transform`, `union`, `uniq`, `unshift`,
+     * `unzip`, `values`, `where`, `without`, `wrap`, and `zip`
+     *
+     * The non-chainable wrapper functions are:
+     * `clone`, `cloneDeep`, `contains`, `escape`, `every`, `find`, `findIndex`,
+     * `findKey`, `findLast`, `findLastIndex`, `findLastKey`, `has`, `identity`,
+     * `indexOf`, `isArguments`, `isArray`, `isBoolean`, `isDate`, `isElement`,
+     * `isEmpty`, `isEqual`, `isFinite`, `isFunction`, `isNaN`, `isNull`, `isNumber`,
+     * `isObject`, `isPlainObject`, `isRegExp`, `isString`, `isUndefined`, `join`,
+     * `lastIndexOf`, `mixin`, `noConflict`, `parseInt`, `pop`, `random`, `reduce`,
+     * `reduceRight`, `result`, `shift`, `size`, `some`, `sortedIndex`, `runInContext`,
+     * `template`, `unescape`, `uniqueId`, and `value`
+     *
+     * The wrapper functions `first` and `last` return wrapped values when `n` is
+     * provided, otherwise they return unwrapped values.
+     *
+     * Explicit chaining can be enabled by using the `_.chain` method.
+     *
+     * @name _
+     * @constructor
+     * @category Chaining
+     * @param {*} value The value to wrap in a `lodash` instance.
+     * @returns {Object} Returns a `lodash` instance.
+     * @example
+     *
+     * var wrapped = _([1, 2, 3]);
+     *
+     * // returns an unwrapped value
+     * wrapped.reduce(function(sum, num) {
+     *   return sum + num;
+     * });
+     * // => 6
+     *
+     * // returns a wrapped value
+     * var squares = wrapped.map(function(num) {
+     *   return num * num;
+     * });
+     *
+     * _.isArray(squares);
+     * // => false
+     *
+     * _.isArray(squares.value());
+     * // => true
+     */
+    function lodash(value) {
+      // don't wrap if already wrapped, even if wrapped by a different `lodash` constructor
+      return (value && typeof value == 'object' && !isArray(value) && hasOwnProperty.call(value, '__wrapped__'))
+       ? value
+       : new lodashWrapper(value);
+    }
+
+    /**
+     * A fast path for creating `lodash` wrapper objects.
+     *
+     * @private
+     * @param {*} value The value to wrap in a `lodash` instance.
+     * @param {boolean} chainAll A flag to enable chaining for all methods
+     * @returns {Object} Returns a `lodash` instance.
+     */
+    function lodashWrapper(value, chainAll) {
+      this.__chain__ = !!chainAll;
+      this.__wrapped__ = value;
+    }
+    // ensure `new lodashWrapper` is an instance of `lodash`
+    lodashWrapper.prototype = lodash.prototype;
+
+    /**
+     * An object used to flag environments features.
+     *
+     * @static
+     * @memberOf _
+     * @type Object
+     */
+    var support = lodash.support = {};
+
+    /**
+     * Detect if `Function#bind` exists and is inferred to be fast (all but V8).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.fastBind = nativeBind && !isV8;
+
+    /**
+     * Detect if functions can be decompiled by `Function#toString`
+     * (all but PS3 and older Opera mobile browsers & avoided in Windows 8 apps).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.funcDecomp = !reNative.test(context.WinRTError) && reThis.test(runInContext);
+
+    /**
+     * Detect if `Function#name` is supported (all but IE).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.funcNames = typeof Function.name == 'string';
+
+    /**
+     * By default, the template delimiters used by Lo-Dash are similar to those in
+     * embedded Ruby (ERB). Change the following template settings to use alternative
+     * delimiters.
+     *
+     * @static
+     * @memberOf _
+     * @type Object
+     */
+    lodash.templateSettings = {
+
+      /**
+       * Used to detect `data` property values to be HTML-escaped.
+       *
+       * @memberOf _.templateSettings
+       * @type RegExp
+       */
+      'escape': /<%-([\s\S]+?)%>/g,
+
+      /**
+       * Used to detect code to be evaluated.
+       *
+       * @memberOf _.templateSettings
+       * @type RegExp
+       */
+      'evaluate': /<%([\s\S]+?)%>/g,
+
+      /**
+       * Used to detect `data` property values to inject.
+       *
+       * @memberOf _.templateSettings
+       * @type RegExp
+       */
+      'interpolate': reInterpolate,
+
+      /**
+       * Used to reference the data object in the template text.
+       *
+       * @memberOf _.templateSettings
+       * @type string
+       */
+      'variable': '',
+
+      /**
+       * Used to import variables into the compiled template.
+       *
+       * @memberOf _.templateSettings
+       * @type Object
+       */
+      'imports': {
+
+        /**
+         * A reference to the `lodash` function.
+         *
+         * @memberOf _.templateSettings.imports
+         * @type Function
+         */
+        '_': lodash
+      }
+    };
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * The base implementation of `_.clone` without argument juggling or support
+     * for `thisArg` binding.
+     *
+     * @private
+     * @param {*} value The value to clone.
+     * @param {boolean} [deep=false] Specify a deep clone.
+     * @param {Function} [callback] The function to customize cloning values.
+     * @param {Array} [stackA=[]] Tracks traversed source objects.
+     * @param {Array} [stackB=[]] Associates clones with source counterparts.
+     * @returns {*} Returns the cloned value.
+     */
+    function baseClone(value, deep, callback, stackA, stackB) {
+      if (callback) {
+        var result = callback(value);
+        if (typeof result != 'undefined') {
+          return result;
+        }
+      }
+      // inspect [[Class]]
+      var isObj = isObject(value);
+      if (isObj) {
+        var className = toString.call(value);
+        if (!cloneableClasses[className]) {
+          return value;
+        }
+        var ctor = ctorByClass[className];
+        switch (className) {
+          case boolClass:
+          case dateClass:
+            return new ctor(+value);
+
+          case numberClass:
+          case stringClass:
+            return new ctor(value);
+
+          case regexpClass:
+            result = ctor(value.source, reFlags.exec(value));
+            result.lastIndex = value.lastIndex;
+            return result;
+        }
+      } else {
+        return value;
+      }
+      var isArr = isArray(value);
+      if (deep) {
+        // check for circular references and return corresponding clone
+        var initedStack = !stackA;
+        stackA || (stackA = getArray());
+        stackB || (stackB = getArray());
+
+        var length = stackA.length;
+        while (length--) {
+          if (stackA[length] == value) {
+            return stackB[length];
+          }
+        }
+        result = isArr ? ctor(value.length) : {};
+      }
+      else {
+        result = isArr ? slice(value) : assign({}, value);
+      }
+      // add array properties assigned by `RegExp#exec`
+      if (isArr) {
+        if (hasOwnProperty.call(value, 'index')) {
+          result.index = value.index;
+        }
+        if (hasOwnProperty.call(value, 'input')) {
+          result.input = value.input;
+        }
+      }
+      // exit for shallow clone
+      if (!deep) {
+        return result;
+      }
+      // add the source value to the stack of traversed objects
+      // and associate it with its clone
+      stackA.push(value);
+      stackB.push(result);
+
+      // recursively populate clone (susceptible to call stack limits)
+      (isArr ? forEach : forOwn)(value, function(objValue, key) {
+        result[key] = baseClone(objValue, deep, callback, stackA, stackB);
+      });
+
+      if (initedStack) {
+        releaseArray(stackA);
+        releaseArray(stackB);
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.createCallback` without support for creating
+     * "_.pluck" or "_.where" style callbacks.
+     *
+     * @private
+     * @param {*} [func=identity] The value to convert to a callback.
+     * @param {*} [thisArg] The `this` binding of the created callback.
+     * @param {number} [argCount] The number of arguments the callback accepts.
+     * @returns {Function} Returns a callback function.
+     */
+    function baseCreateCallback(func, thisArg, argCount) {
+      if (typeof func != 'function') {
+        return identity;
+      }
+      // exit early if there is no `thisArg`
+      if (typeof thisArg == 'undefined') {
+        return func;
+      }
+      var bindData = func.__bindData__ || (support.funcNames && !func.name);
+      if (typeof bindData == 'undefined') {
+        var source = reThis && fnToString.call(func);
+        if (!support.funcNames && source && !reFuncName.test(source)) {
+          bindData = true;
+        }
+        if (support.funcNames || !bindData) {
+          // checks if `func` references the `this` keyword and stores the result
+          bindData = !support.funcDecomp || reThis.test(source);
+          setBindData(func, bindData);
+        }
+      }
+      // exit early if there are no `this` references or `func` is bound
+      if (bindData !== true && (bindData && bindData[1] & 1)) {
+        return func;
+      }
+      switch (argCount) {
+        case 1: return function(value) {
+          return func.call(thisArg, value);
+        };
+        case 2: return function(a, b) {
+          return func.call(thisArg, a, b);
+        };
+        case 3: return function(value, index, collection) {
+          return func.call(thisArg, value, index, collection);
+        };
+        case 4: return function(accumulator, value, index, collection) {
+          return func.call(thisArg, accumulator, value, index, collection);
+        };
+      }
+      return bind(func, thisArg);
+    }
+
+    /**
+     * The base implementation of `_.flatten` without support for callback
+     * shorthands or `thisArg` binding.
+     *
+     * @private
+     * @param {Array} array The array to flatten.
+     * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
+     * @param {boolean} [isArgArrays=false] A flag to restrict flattening to arrays and `arguments` objects.
+     * @param {number} [fromIndex=0] The index to start from.
+     * @returns {Array} Returns a new flattened array.
+     */
+    function baseFlatten(array, isShallow, isArgArrays, fromIndex) {
+      var index = (fromIndex || 0) - 1,
+          length = array ? array.length : 0,
+          result = [];
+
+      while (++index < length) {
+        var value = array[index];
+
+        if (value && typeof value == 'object' && typeof value.length == 'number'
+            && (isArray(value) || isArguments(value))) {
+          // recursively flatten arrays (susceptible to call stack limits)
+          if (!isShallow) {
+            value = baseFlatten(value, isShallow, isArgArrays);
+          }
+          var valIndex = -1,
+              valLength = value.length,
+              resIndex = result.length;
+
+          result.length += valLength;
+          while (++valIndex < valLength) {
+            result[resIndex++] = value[valIndex];
+          }
+        } else if (!isArgArrays) {
+          result.push(value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.isEqual`, without support for `thisArg` binding,
+     * that allows partial "_.where" style comparisons.
+     *
+     * @private
+     * @param {*} a The value to compare.
+     * @param {*} b The other value to compare.
+     * @param {Function} [callback] The function to customize comparing values.
+     * @param {Function} [isWhere=false] A flag to indicate performing partial comparisons.
+     * @param {Array} [stackA=[]] Tracks traversed `a` objects.
+     * @param {Array} [stackB=[]] Tracks traversed `b` objects.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     */
+    function baseIsEqual(a, b, callback, isWhere, stackA, stackB) {
+      // used to indicate that when comparing objects, `a` has at least the properties of `b`
+      if (callback) {
+        var result = callback(a, b);
+        if (typeof result != 'undefined') {
+          return !!result;
+        }
+      }
+      // exit early for identical values
+      if (a === b) {
+        // treat `+0` vs. `-0` as not equal
+        return a !== 0 || (1 / a == 1 / b);
+      }
+      var type = typeof a,
+          otherType = typeof b;
+
+      // exit early for unlike primitive values
+      if (a === a &&
+          !(a && objectTypes[type]) &&
+          !(b && objectTypes[otherType])) {
+        return false;
+      }
+      // exit early for `null` and `undefined` avoiding ES3's Function#call behavior
+      // http://es5.github.io/#x15.3.4.4
+      if (a == null || b == null) {
+        return a === b;
+      }
+      // compare [[Class]] names
+      var className = toString.call(a),
+          otherClass = toString.call(b);
+
+      if (className == argsClass) {
+        className = objectClass;
+      }
+      if (otherClass == argsClass) {
+        otherClass = objectClass;
+      }
+      if (className != otherClass) {
+        return false;
+      }
+      switch (className) {
+        case boolClass:
+        case dateClass:
+          // coerce dates and booleans to numbers, dates to milliseconds and booleans
+          // to `1` or `0` treating invalid dates coerced to `NaN` as not equal
+          return +a == +b;
+
+        case numberClass:
+          // treat `NaN` vs. `NaN` as equal
+          return (a != +a)
+            ? b != +b
+            // but treat `+0` vs. `-0` as not equal
+            : (a == 0 ? (1 / a == 1 / b) : a == +b);
+
+        case regexpClass:
+        case stringClass:
+          // coerce regexes to strings (http://es5.github.io/#x15.10.6.4)
+          // treat string primitives and their corresponding object instances as equal
+          return a == String(b);
+      }
+      var isArr = className == arrayClass;
+      if (!isArr) {
+        // unwrap any `lodash` wrapped values
+        if (hasOwnProperty.call(a, '__wrapped__ ') || hasOwnProperty.call(b, '__wrapped__')) {
+          return baseIsEqual(a.__wrapped__ || a, b.__wrapped__ || b, callback, isWhere, stackA, stackB);
+        }
+        // exit for functions and DOM nodes
+        if (className != objectClass) {
+          return false;
+        }
+        // in older versions of Opera, `arguments` objects have `Array` constructors
+        var ctorA = a.constructor,
+            ctorB = b.constructor;
+
+        // non `Object` object instances with different constructors are not equal
+        if (ctorA != ctorB && !(
+              isFunction(ctorA) && ctorA instanceof ctorA &&
+              isFunction(ctorB) && ctorB instanceof ctorB
+            )) {
+          return false;
+        }
+      }
+      // assume cyclic structures are equal
+      // the algorithm for detecting cyclic structures is adapted from ES 5.1
+      // section 15.12.3, abstract operation `JO` (http://es5.github.io/#x15.12.3)
+      var initedStack = !stackA;
+      stackA || (stackA = getArray());
+      stackB || (stackB = getArray());
+
+      var length = stackA.length;
+      while (length--) {
+        if (stackA[length] == a) {
+          return stackB[length] == b;
+        }
+      }
+      var size = 0;
+      result = true;
+
+      // add `a` and `b` to the stack of traversed objects
+      stackA.push(a);
+      stackB.push(b);
+
+      // recursively compare objects and arrays (susceptible to call stack limits)
+      if (isArr) {
+        length = a.length;
+        size = b.length;
+
+        // compare lengths to determine if a deep comparison is necessary
+        result = size == a.length;
+        if (!result && !isWhere) {
+          return result;
+        }
+        // deep compare the contents, ignoring non-numeric properties
+        while (size--) {
+          var index = length,
+              value = b[size];
+
+          if (isWhere) {
+            while (index--) {
+              if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
+                break;
+              }
+            }
+          } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
+            break;
+          }
+        }
+        return result;
+      }
+      // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
+      // which, in this case, is more costly
+      forIn(b, function(value, key, b) {
+        if (hasOwnProperty.call(b, key)) {
+          // count the number of properties.
+          size++;
+          // deep compare each property value.
+          return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
+        }
+      });
+
+      if (result && !isWhere) {
+        // ensure both objects have the same number of properties
+        forIn(a, function(value, key, a) {
+          if (hasOwnProperty.call(a, key)) {
+            // `size` will be `-1` if `a` has more properties than `b`
+            return (result = --size > -1);
+          }
+        });
+      }
+      if (initedStack) {
+        releaseArray(stackA);
+        releaseArray(stackB);
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.merge` without argument juggling or support
+     * for `thisArg` binding.
+     *
+     * @private
+     * @param {Object} object The destination object.
+     * @param {Object} source The source object.
+     * @param {Function} [callback] The function to customize merging properties.
+     * @param {Array} [stackA=[]] Tracks traversed source objects.
+     * @param {Array} [stackB=[]] Associates values with source counterparts.
+     */
+    function baseMerge(object, source, callback, stackA, stackB) {
+      (isArray(source) ? forEach : forOwn)(source, function(source, key) {
+        var found,
+            isArr,
+            result = source,
+            value = object[key];
+
+        if (source && ((isArr = isArray(source)) || isPlainObject(source))) {
+          // avoid merging previously merged cyclic sources
+          var stackLength = stackA.length;
+          while (stackLength--) {
+            if ((found = stackA[stackLength] == source)) {
+              value = stackB[stackLength];
+              break;
+            }
+          }
+          if (!found) {
+            var isShallow;
+            if (callback) {
+              result = callback(value, source);
+              if ((isShallow = typeof result != 'undefined')) {
+                value = result;
+              }
+            }
+            if (!isShallow) {
+              value = isArr
+                ? (isArray(value) ? value : [])
+                : (isPlainObject(value) ? value : {});
+            }
+            // add `source` and associated `value` to the stack of traversed objects
+            stackA.push(source);
+            stackB.push(value);
+
+            // recursively merge objects and arrays (susceptible to call stack limits)
+            if (!isShallow) {
+              baseMerge(value, source, callback, stackA, stackB);
+            }
+          }
+        }
+        else {
+          if (callback) {
+            result = callback(value, source);
+            if (typeof result == 'undefined') {
+              result = source;
+            }
+          }
+          if (typeof result != 'undefined') {
+            value = result;
+          }
+        }
+        object[key] = value;
+      });
+    }
+
+    /**
+     * The base implementation of `_.uniq` without support for callback shorthands
+     * or `thisArg` binding.
+     *
+     * @private
+     * @param {Array} array The array to process.
+     * @param {boolean} [isSorted=false] A flag to indicate that `array` is sorted.
+     * @param {Function} [callback] The function called per iteration.
+     * @returns {Array} Returns a duplicate-value-free array.
+     */
+    function baseUniq(array, isSorted, callback) {
+      var index = -1,
+          indexOf = getIndexOf(),
+          length = array ? array.length : 0,
+          result = [];
+
+      var isLarge = !isSorted && length >= largeArraySize && indexOf === baseIndexOf,
+          seen = (callback || isLarge) ? getArray() : result;
+
+      if (isLarge) {
+        var cache = createCache(seen);
+        if (cache) {
+          indexOf = cacheIndexOf;
+          seen = cache;
+        } else {
+          isLarge = false;
+          seen = callback ? seen : (releaseArray(seen), result);
+        }
+      }
+      while (++index < length) {
+        var value = array[index],
+            computed = callback ? callback(value, index, array) : value;
+
+        if (isSorted
+              ? !index || seen[seen.length - 1] !== computed
+              : indexOf(seen, computed) < 0
+            ) {
+          if (callback || isLarge) {
+            seen.push(computed);
+          }
+          result.push(value);
+        }
+      }
+      if (isLarge) {
+        releaseArray(seen.array);
+        releaseObject(seen);
+      } else if (callback) {
+        releaseArray(seen);
+      }
+      return result;
+    }
+
+    /**
+     * Creates a function that aggregates a collection, creating an object composed
+     * of keys generated from the results of running each element of the collection
+     * through a callback. The given `setter` function sets the keys and values
+     * of the composed object.
+     *
+     * @private
+     * @param {Function} setter The setter function.
+     * @returns {Function} Returns the new aggregator function.
+     */
+    function createAggregator(setter) {
+      return function(collection, callback, thisArg) {
+        var result = {};
+        callback = lodash.createCallback(callback, thisArg, 3);
+
+        var index = -1,
+            length = collection ? collection.length : 0;
+
+        if (typeof length == 'number') {
+          while (++index < length) {
+            var value = collection[index];
+            setter(result, value, callback(value, index, collection), collection);
+          }
+        } else {
+          forOwn(collection, function(value, key, collection) {
+            setter(result, value, callback(value, key, collection), collection);
+          });
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Creates a function that, when called, either curries or invokes `func`
+     * with an optional `this` binding and partially applied arguments.
+     *
+     * @private
+     * @param {Function|string} func The function or method name to reference.
+     * @param {number} bitmask The bitmask of method flags to compose.
+     *  The bitmask may be composed of the following flags:
+     *  1 - `_.bind`
+     *  2 - `_.bindKey`
+     *  4 - `_.curry`
+     *  8 - `_.curry` (bound)
+     *  16 - `_.partial`
+     *  32 - `_.partialRight`
+     * @param {Array} [partialArgs] An array of arguments to prepend to those
+     *  provided to the new function.
+     * @param {Array} [partialRightArgs] An array of arguments to append to those
+     *  provided to the new function.
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @param {number} [arity] The arity of `func`.
+     * @returns {Function} Returns the new bound function.
+     */
+    function createBound(func, bitmask, partialArgs, partialRightArgs, thisArg, arity) {
+      var isBind = bitmask & 1,
+          isBindKey = bitmask & 2,
+          isCurry = bitmask & 4,
+          isCurryBound = bitmask & 8,
+          isPartial = bitmask & 16,
+          isPartialRight = bitmask & 32,
+          key = func;
+
+      if (!isBindKey && !isFunction(func)) {
+        throw new TypeError;
+      }
+      if (isPartial && !partialArgs.length) {
+        bitmask &= ~16;
+        isPartial = partialArgs = false;
+      }
+      if (isPartialRight && !partialRightArgs.length) {
+        bitmask &= ~32;
+        isPartialRight = partialRightArgs = false;
+      }
+      var bindData = func && func.__bindData__;
+      if (bindData) {
+        if (isBind && !(bindData[1] & 1)) {
+          bindData[4] = thisArg;
+        }
+        if (!isBind && bindData[1] & 1) {
+          bitmask |= 8;
+        }
+        if (isCurry && !(bindData[1] & 4)) {
+          bindData[5] = arity;
+        }
+        if (isPartial) {
+          push.apply(bindData[2] || (bindData[2] = []), partialArgs);
+        }
+        if (isPartialRight) {
+          push.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
+        }
+        bindData[1] |= bitmask;
+        return createBound.apply(null, bindData);
+      }
+      // use `Function#bind` if it exists and is fast
+      // (in V8 `Function#bind` is slower except when partially applied)
+      if (isBind && !(isBindKey || isCurry || isPartialRight) &&
+          (support.fastBind || (nativeBind && isPartial))) {
+        if (isPartial) {
+          var args = [thisArg];
+          push.apply(args, partialArgs);
+        }
+        var bound = isPartial
+          ? nativeBind.apply(func, args)
+          : nativeBind.call(func, thisArg);
+      }
+      else {
+        bound = function() {
+          // `Function#bind` spec
+          // http://es5.github.io/#x15.3.4.5
+          var args = arguments,
+              thisBinding = isBind ? thisArg : this;
+
+          if (isCurry || isPartial || isPartialRight) {
+            args = nativeSlice.call(args);
+            if (isPartial) {
+              unshift.apply(args, partialArgs);
+            }
+            if (isPartialRight) {
+              push.apply(args, partialRightArgs);
+            }
+            if (isCurry && args.length < arity) {
+              bitmask |= 16 & ~32;
+              return createBound(func, (isCurryBound ? bitmask : bitmask & ~3), args, null, thisArg, arity);
+            }
+          }
+          if (isBindKey) {
+            func = thisBinding[key];
+          }
+          if (this instanceof bound) {
+            // ensure `new bound` is an instance of `func`
+            thisBinding = createObject(func.prototype);
+
+            // mimic the constructor's `return` behavior
+            // http://es5.github.io/#x13.2.2
+            var result = func.apply(thisBinding, args);
+            return isObject(result) ? result : thisBinding;
+          }
+          return func.apply(thisBinding, args);
+        };
+      }
+      setBindData(bound, nativeSlice.call(arguments));
+      return bound;
+    }
+
+    /**
+     * Creates a new object with the specified `prototype`.
+     *
+     * @private
+     * @param {Object} prototype The prototype object.
+     * @returns {Object} Returns the new object.
+     */
+    function createObject(prototype) {
+      return isObject(prototype) ? nativeCreate(prototype) : {};
+    }
+    // fallback for browsers without `Object.create`
+    if (!nativeCreate) {
+      createObject = function(prototype) {
+        if (isObject(prototype)) {
+          noop.prototype = prototype;
+          var result = new noop;
+          noop.prototype = null;
+        }
+        return result || {};
+      };
+    }
+
+    /**
+     * Used by `escape` to convert characters to HTML entities.
+     *
+     * @private
+     * @param {string} match The matched character to escape.
+     * @returns {string} Returns the escaped character.
+     */
+    function escapeHtmlChar(match) {
+      return htmlEscapes[match];
+    }
+
+    /**
+     * Gets the appropriate "indexOf" function. If the `_.indexOf` method is
+     * customized, this method returns the custom method, otherwise it returns
+     * the `baseIndexOf` function.
+     *
+     * @private
+     * @returns {Function} Returns the "indexOf" function.
+     */
+    function getIndexOf() {
+      var result = (result = lodash.indexOf) === indexOf ? baseIndexOf : result;
+      return result;
+    }
+
+    /**
+     * Sets `this` binding data on a given function.
+     *
+     * @private
+     * @param {Function} func The function to set data on.
+     * @param {*} value The value to set.
+     */
+    var setBindData = !defineProperty ? noop : function(func, value) {
+      descriptor.value = value;
+      defineProperty(func, '__bindData__', descriptor);
+    };
+
+    /**
+     * A fallback implementation of `isPlainObject` which checks if a given value
+     * is an object created by the `Object` constructor, assuming objects created
+     * by the `Object` constructor have no inherited enumerable properties and that
+     * there are no `Object.prototype` extensions.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+     */
+    function shimIsPlainObject(value) {
+      var ctor,
+          result;
+
+      // avoid non Object objects, `arguments` objects, and DOM elements
+      if (!(value && toString.call(value) == objectClass) ||
+          (ctor = value.constructor, isFunction(ctor) && !(ctor instanceof ctor))) {
+        return false;
+      }
+      // In most environments an object's own properties are iterated before
+      // its inherited properties. If the last iterated property is an object's
+      // own property then there are no inherited enumerable properties.
+      forIn(value, function(value, key) {
+        result = key;
+      });
+      return typeof result == 'undefined' || hasOwnProperty.call(value, result);
+    }
+
+    /**
+     * Used by `unescape` to convert HTML entities to characters.
+     *
+     * @private
+     * @param {string} match The matched character to unescape.
+     * @returns {string} Returns the unescaped character.
+     */
+    function unescapeHtmlChar(match) {
+      return htmlUnescapes[match];
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Checks if `value` is an `arguments` object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is an `arguments` object, else `false`.
+     * @example
+     *
+     * (function() { return _.isArguments(arguments); })(1, 2, 3);
+     * // => true
+     *
+     * _.isArguments([1, 2, 3]);
+     * // => false
+     */
+    function isArguments(value) {
+      return value && typeof value == 'object' && typeof value.length == 'number' &&
+        toString.call(value) == argsClass || false;
+    }
+
+    /**
+     * Checks if `value` is an array.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is an array, else `false`.
+     * @example
+     *
+     * (function() { return _.isArray(arguments); })();
+     * // => false
+     *
+     * _.isArray([1, 2, 3]);
+     * // => true
+     */
+    var isArray = nativeIsArray || function(value) {
+      return value && typeof value == 'object' && typeof value.length == 'number' &&
+        toString.call(value) == arrayClass || false;
+    };
+
+    /**
+     * A fallback implementation of `Object.keys` which produces an array of the
+     * given object's own enumerable property names.
+     *
+     * @private
+     * @type Function
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property names.
+     */
+    var shimKeys = function(object) {
+      var index, iterable = object, result = [];
+      if (!iterable) return result;
+      if (!(objectTypes[typeof object])) return result;
+        for (index in iterable) {
+          if (hasOwnProperty.call(iterable, index)) {
+            result.push(index);
+          }
+        }
+      return result
+    };
+
+    /**
+     * Creates an array composed of the own enumerable property names of an object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property names.
+     * @example
+     *
+     * _.keys({ 'one': 1, 'two': 2, 'three': 3 });
+     * // => ['one', 'two', 'three'] (property order is not guaranteed across environments)
+     */
+    var keys = !nativeKeys ? shimKeys : function(object) {
+      if (!isObject(object)) {
+        return [];
+      }
+      return nativeKeys(object);
+    };
+
+    /**
+     * Used to convert characters to HTML entities:
+     *
+     * Though the `>` character is escaped for symmetry, characters like `>` and `/`
+     * don't require escaping in HTML and have no special meaning unless they're part
+     * of a tag or an unquoted attribute value.
+     * http://mathiasbynens.be/notes/ambiguous-ampersands (under "semi-related fun fact")
+     */
+    var htmlEscapes = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    };
+
+    /** Used to convert HTML entities to characters */
+    var htmlUnescapes = invert(htmlEscapes);
+
+    /** Used to match HTML entities and HTML characters */
+    var reEscapedHtml = RegExp('(' + keys(htmlUnescapes).join('|') + ')', 'g'),
+        reUnescapedHtml = RegExp('[' + keys(htmlEscapes).join('') + ']', 'g');
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Assigns own enumerable properties of source object(s) to the destination
+     * object. Subsequent sources will overwrite property assignments of previous
+     * sources. If a callback is provided it will be executed to produce the
+     * assigned values. The callback is bound to `thisArg` and invoked with two
+     * arguments; (objectValue, sourceValue).
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @alias extend
+     * @category Objects
+     * @param {Object} object The destination object.
+     * @param {...Object} [source] The source objects.
+     * @param {Function} [callback] The function to customize assigning values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the destination object.
+     * @example
+     *
+     * _.assign({ 'name': 'moe' }, { 'age': 40 });
+     * // => { 'name': 'moe', 'age': 40 }
+     *
+     * var defaults = _.partialRight(_.assign, function(a, b) {
+     *   return typeof a == 'undefined' ? b : a;
+     * });
+     *
+     * var food = { 'name': 'apple' };
+     * defaults(food, { 'name': 'banana', 'type': 'fruit' });
+     * // => { 'name': 'apple', 'type': 'fruit' }
+     */
+    var assign = function(object, source, guard) {
+      var index, iterable = object, result = iterable;
+      if (!iterable) return result;
+      var args = arguments,
+          argsIndex = 0,
+          argsLength = typeof guard == 'number' ? 2 : args.length;
+      if (argsLength > 3 && typeof args[argsLength - 2] == 'function') {
+        var callback = baseCreateCallback(args[--argsLength - 1], args[argsLength--], 2);
+      } else if (argsLength > 2 && typeof args[argsLength - 1] == 'function') {
+        callback = args[--argsLength];
+      }
+      while (++argsIndex < argsLength) {
+        iterable = args[argsIndex];
+        if (iterable && objectTypes[typeof iterable]) {
+        var ownIndex = -1,
+            ownProps = objectTypes[typeof iterable] && keys(iterable),
+            length = ownProps ? ownProps.length : 0;
+
+        while (++ownIndex < length) {
+          index = ownProps[ownIndex];
+          result[index] = callback ? callback(result[index], iterable[index]) : iterable[index];
+        }
+        }
+      }
+      return result
+    };
+
+    /**
+     * Creates a clone of `value`. If `deep` is `true` nested objects will also
+     * be cloned, otherwise they will be assigned by reference. If a callback
+     * is provided it will be executed to produce the cloned values. If the
+     * callback returns `undefined` cloning will be handled by the method instead.
+     * The callback is bound to `thisArg` and invoked with one argument; (value).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to clone.
+     * @param {boolean} [deep=false] Specify a deep clone.
+     * @param {Function} [callback] The function to customize cloning values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the cloned value.
+     * @example
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * var shallow = _.clone(stooges);
+     * shallow[0] === stooges[0];
+     * // => true
+     *
+     * var deep = _.clone(stooges, true);
+     * deep[0] === stooges[0];
+     * // => false
+     *
+     * _.mixin({
+     *   'clone': _.partialRight(_.clone, function(value) {
+     *     return _.isElement(value) ? value.cloneNode(false) : undefined;
+     *   })
+     * });
+     *
+     * var clone = _.clone(document.body);
+     * clone.childNodes.length;
+     * // => 0
+     */
+    function clone(value, deep, callback, thisArg) {
+      // allows working with "Collections" methods without using their `index`
+      // and `collection` arguments for `deep` and `callback`
+      if (typeof deep != 'boolean' && deep != null) {
+        thisArg = callback;
+        callback = deep;
+        deep = false;
+      }
+      return baseClone(value, deep, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
+    }
+
+    /**
+     * Creates a deep clone of `value`. If a callback is provided it will be
+     * executed to produce the cloned values. If the callback returns `undefined`
+     * cloning will be handled by the method instead. The callback is bound to
+     * `thisArg` and invoked with one argument; (value).
+     *
+     * Note: This method is loosely based on the structured clone algorithm. Functions
+     * and DOM nodes are **not** cloned. The enumerable properties of `arguments` objects and
+     * objects created by constructors other than `Object` are cloned to plain `Object` objects.
+     * See http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to deep clone.
+     * @param {Function} [callback] The function to customize cloning values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the deep cloned value.
+     * @example
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * var deep = _.cloneDeep(stooges);
+     * deep[0] === stooges[0];
+     * // => false
+     *
+     * var view = {
+     *   'label': 'docs',
+     *   'node': element
+     * };
+     *
+     * var clone = _.cloneDeep(view, function(value) {
+     *   return _.isElement(value) ? value.cloneNode(true) : undefined;
+     * });
+     *
+     * clone.node == view.node;
+     * // => false
+     */
+    function cloneDeep(value, callback, thisArg) {
+      return baseClone(value, true, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
+    }
+
+    /**
+     * Assigns own enumerable properties of source object(s) to the destination
+     * object for all destination properties that resolve to `undefined`. Once a
+     * property is set, additional defaults of the same property will be ignored.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {Object} object The destination object.
+     * @param {...Object} [source] The source objects.
+     * @param- {Object} [guard] Allows working with `_.reduce` without using its
+     *  `key` and `object` arguments as sources.
+     * @returns {Object} Returns the destination object.
+     * @example
+     *
+     * var food = { 'name': 'apple' };
+     * _.defaults(food, { 'name': 'banana', 'type': 'fruit' });
+     * // => { 'name': 'apple', 'type': 'fruit' }
+     */
+    var defaults = function(object, source, guard) {
+      var index, iterable = object, result = iterable;
+      if (!iterable) return result;
+      var args = arguments,
+          argsIndex = 0,
+          argsLength = typeof guard == 'number' ? 2 : args.length;
+      while (++argsIndex < argsLength) {
+        iterable = args[argsIndex];
+        if (iterable && objectTypes[typeof iterable]) {
+        var ownIndex = -1,
+            ownProps = objectTypes[typeof iterable] && keys(iterable),
+            length = ownProps ? ownProps.length : 0;
+
+        while (++ownIndex < length) {
+          index = ownProps[ownIndex];
+          if (typeof result[index] == 'undefined') result[index] = iterable[index];
+        }
+        }
+      }
+      return result
+    };
+
+    /**
+     * This method is like `_.findIndex` except that it returns the key of the
+     * first element that passes the callback check, instead of the element itself.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to search.
+     * @param {Function|Object|string} [callback=identity] The function called per
+     *  iteration. If a property name or object is provided it will be used to
+     *  create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {string|undefined} Returns the key of the found element, else `undefined`.
+     * @example
+     *
+     * _.findKey({ 'a': 1, 'b': 2, 'c': 3, 'd': 4 }, function(num) {
+     *   return num % 2 == 0;
+     * });
+     * // => 'b' (property order is not guaranteed across environments)
+     */
+    function findKey(object, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      forOwn(object, function(value, key, object) {
+        if (callback(value, key, object)) {
+          result = key;
+          return false;
+        }
+      });
+      return result;
+    }
+
+    /**
+     * This method is like `_.findKey` except that it iterates over elements
+     * of a `collection` in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to search.
+     * @param {Function|Object|string} [callback=identity] The function called per
+     *  iteration. If a property name or object is provided it will be used to
+     *  create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {string|undefined} Returns the key of the found element, else `undefined`.
+     * @example
+     *
+     * _.findLastKey({ 'a': 1, 'b': 2, 'c': 3, 'd': 4 }, function(num) {
+     *   return num % 2 == 1;
+     * });
+     * // => returns `c`, assuming `_.findKey` returns `a`
+     */
+    function findLastKey(object, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      forOwnRight(object, function(value, key, object) {
+        if (callback(value, key, object)) {
+          result = key;
+          return false;
+        }
+      });
+      return result;
+    }
+
+    /**
+     * Iterates over own and inherited enumerable properties of an object,
+     * executing the callback for each property. The callback is bound to `thisArg`
+     * and invoked with three arguments; (value, key, object). Callbacks may exit
+     * iteration early by explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * function Dog(name) {
+     *   this.name = name;
+     * }
+     *
+     * Dog.prototype.bark = function() {
+     *   console.log('Woof, woof!');
+     * };
+     *
+     * _.forIn(new Dog('Dagny'), function(value, key) {
+     *   console.log(key);
+     * });
+     * // => logs 'bark' and 'name' (property order is not guaranteed across environments)
+     */
+    var forIn = function(collection, callback, thisArg) {
+      var index, iterable = collection, result = iterable;
+      if (!iterable) return result;
+      if (!objectTypes[typeof iterable]) return result;
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+        for (index in iterable) {
+          if (callback(iterable[index], index, collection) === false) return result;
+        }
+      return result
+    };
+
+    /**
+     * This method is like `_.forIn` except that it iterates over elements
+     * of a `collection` in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * function Dog(name) {
+     *   this.name = name;
+     * }
+     *
+     * Dog.prototype.bark = function() {
+     *   console.log('Woof, woof!');
+     * };
+     *
+     * _.forInRight(new Dog('Dagny'), function(value, key) {
+     *   console.log(key);
+     * });
+     * // => logs 'name' and 'bark' assuming `_.forIn ` logs 'bark' and 'name'
+     */
+    function forInRight(object, callback, thisArg) {
+      var pairs = [];
+
+      forIn(object, function(value, key) {
+        pairs.push(key, value);
+      });
+
+      var length = pairs.length;
+      callback = baseCreateCallback(callback, thisArg, 3);
+      while (length--) {
+        if (callback(pairs[length--], pairs[length], object) === false) {
+          break;
+        }
+      }
+      return object;
+    }
+
+    /**
+     * Iterates over own enumerable properties of an object, executing the callback
+     * for each property. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, key, object). Callbacks may exit iteration early by
+     * explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * _.forOwn({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
+     *   console.log(key);
+     * });
+     * // => logs '0', '1', and 'length' (property order is not guaranteed across environments)
+     */
+    var forOwn = function(collection, callback, thisArg) {
+      var index, iterable = collection, result = iterable;
+      if (!iterable) return result;
+      if (!objectTypes[typeof iterable]) return result;
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+        var ownIndex = -1,
+            ownProps = objectTypes[typeof iterable] && keys(iterable),
+            length = ownProps ? ownProps.length : 0;
+
+        while (++ownIndex < length) {
+          index = ownProps[ownIndex];
+          if (callback(iterable[index], index, collection) === false) return result;
+        }
+      return result
+    };
+
+    /**
+     * This method is like `_.forOwn` except that it iterates over elements
+     * of a `collection` in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * _.forOwnRight({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
+     *   console.log(key);
+     * });
+     * // => logs 'length', '1', and '0' assuming `_.forOwn` logs '0', '1', and 'length'
+     */
+    function forOwnRight(object, callback, thisArg) {
+      var props = keys(object),
+          length = props.length;
+
+      callback = baseCreateCallback(callback, thisArg, 3);
+      while (length--) {
+        var key = props[length];
+        if (callback(object[key], key, object) === false) {
+          break;
+        }
+      }
+      return object;
+    }
+
+    /**
+     * Creates a sorted array of property names of all enumerable properties,
+     * own and inherited, of `object` that have function values.
+     *
+     * @static
+     * @memberOf _
+     * @alias methods
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property names that have function values.
+     * @example
+     *
+     * _.functions(_);
+     * // => ['all', 'any', 'bind', 'bindAll', 'clone', 'compact', 'compose', ...]
+     */
+    function functions(object) {
+      var result = [];
+      forIn(object, function(value, key) {
+        if (isFunction(value)) {
+          result.push(key);
+        }
+      });
+      return result.sort();
+    }
+
+    /**
+     * Checks if the specified object `property` exists and is a direct property,
+     * instead of an inherited property.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to check.
+     * @param {string} property The property to check for.
+     * @returns {boolean} Returns `true` if key is a direct property, else `false`.
+     * @example
+     *
+     * _.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
+     * // => true
+     */
+    function has(object, property) {
+      return object ? hasOwnProperty.call(object, property) : false;
+    }
+
+    /**
+     * Creates an object composed of the inverted keys and values of the given object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to invert.
+     * @returns {Object} Returns the created inverted object.
+     * @example
+     *
+     *  _.invert({ 'first': 'moe', 'second': 'larry' });
+     * // => { 'moe': 'first', 'larry': 'second' }
+     */
+    function invert(object) {
+      var index = -1,
+          props = keys(object),
+          length = props.length,
+          result = {};
+
+      while (++index < length) {
+        var key = props[index];
+        result[object[key]] = key;
+      }
+      return result;
+    }
+
+    /**
+     * Checks if `value` is a boolean value.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a boolean value, else `false`.
+     * @example
+     *
+     * _.isBoolean(null);
+     * // => false
+     */
+    function isBoolean(value) {
+      return value === true || value === false || toString.call(value) == boolClass;
+    }
+
+    /**
+     * Checks if `value` is a date.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a date, else `false`.
+     * @example
+     *
+     * _.isDate(new Date);
+     * // => true
+     */
+    function isDate(value) {
+      return value ? (typeof value == 'object' && toString.call(value) == dateClass) : false;
+    }
+
+    /**
+     * Checks if `value` is a DOM element.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a DOM element, else `false`.
+     * @example
+     *
+     * _.isElement(document.body);
+     * // => true
+     */
+    function isElement(value) {
+      return value ? value.nodeType === 1 : false;
+    }
+
+    /**
+     * Checks if `value` is empty. Arrays, strings, or `arguments` objects with a
+     * length of `0` and objects with no own enumerable properties are considered
+     * "empty".
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Array|Object|string} value The value to inspect.
+     * @returns {boolean} Returns `true` if the `value` is empty, else `false`.
+     * @example
+     *
+     * _.isEmpty([1, 2, 3]);
+     * // => false
+     *
+     * _.isEmpty({});
+     * // => true
+     *
+     * _.isEmpty('');
+     * // => true
+     */
+    function isEmpty(value) {
+      var result = true;
+      if (!value) {
+        return result;
+      }
+      var className = toString.call(value),
+          length = value.length;
+
+      if ((className == arrayClass || className == stringClass || className == argsClass ) ||
+          (className == objectClass && typeof length == 'number' && isFunction(value.splice))) {
+        return !length;
+      }
+      forOwn(value, function() {
+        return (result = false);
+      });
+      return result;
+    }
+
+    /**
+     * Performs a deep comparison between two values to determine if they are
+     * equivalent to each other. If a callback is provided it will be executed
+     * to compare values. If the callback returns `undefined` comparisons will
+     * be handled by the method instead. The callback is bound to `thisArg` and
+     * invoked with two arguments; (a, b).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} a The value to compare.
+     * @param {*} b The other value to compare.
+     * @param {Function} [callback] The function to customize comparing values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     * @example
+     *
+     * var moe = { 'name': 'moe', 'age': 40 };
+     * var copy = { 'name': 'moe', 'age': 40 };
+     *
+     * moe == copy;
+     * // => false
+     *
+     * _.isEqual(moe, copy);
+     * // => true
+     *
+     * var words = ['hello', 'goodbye'];
+     * var otherWords = ['hi', 'goodbye'];
+     *
+     * _.isEqual(words, otherWords, function(a, b) {
+     *   var reGreet = /^(?:hello|hi)$/i,
+     *       aGreet = _.isString(a) && reGreet.test(a),
+     *       bGreet = _.isString(b) && reGreet.test(b);
+     *
+     *   return (aGreet || bGreet) ? (aGreet == bGreet) : undefined;
+     * });
+     * // => true
+     */
+    function isEqual(a, b, callback, thisArg) {
+      return baseIsEqual(a, b, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 2));
+    }
+
+    /**
+     * Checks if `value` is, or can be coerced to, a finite number.
+     *
+     * Note: This is not the same as native `isFinite` which will return true for
+     * booleans and empty strings. See http://es5.github.io/#x15.1.2.5.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is finite, else `false`.
+     * @example
+     *
+     * _.isFinite(-101);
+     * // => true
+     *
+     * _.isFinite('10');
+     * // => true
+     *
+     * _.isFinite(true);
+     * // => false
+     *
+     * _.isFinite('');
+     * // => false
+     *
+     * _.isFinite(Infinity);
+     * // => false
+     */
+    function isFinite(value) {
+      return nativeIsFinite(value) && !nativeIsNaN(parseFloat(value));
+    }
+
+    /**
+     * Checks if `value` is a function.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a function, else `false`.
+     * @example
+     *
+     * _.isFunction(_);
+     * // => true
+     */
+    function isFunction(value) {
+      return typeof value == 'function';
+    }
+
+    /**
+     * Checks if `value` is the language type of Object.
+     * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is an object, else `false`.
+     * @example
+     *
+     * _.isObject({});
+     * // => true
+     *
+     * _.isObject([1, 2, 3]);
+     * // => true
+     *
+     * _.isObject(1);
+     * // => false
+     */
+    function isObject(value) {
+      // check if the value is the ECMAScript language type of Object
+      // http://es5.github.io/#x8
+      // and avoid a V8 bug
+      // http://code.google.com/p/v8/issues/detail?id=2291
+      return !!(value && objectTypes[typeof value]);
+    }
+
+    /**
+     * Checks if `value` is `NaN`.
+     *
+     * Note: This is not the same as native `isNaN` which will return `true` for
+     * `undefined` and other non-numeric values. See http://es5.github.io/#x15.1.2.4.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is `NaN`, else `false`.
+     * @example
+     *
+     * _.isNaN(NaN);
+     * // => true
+     *
+     * _.isNaN(new Number(NaN));
+     * // => true
+     *
+     * isNaN(undefined);
+     * // => true
+     *
+     * _.isNaN(undefined);
+     * // => false
+     */
+    function isNaN(value) {
+      // `NaN` as a primitive is the only value that is not equal to itself
+      // (perform the [[Class]] check first to avoid errors with some host objects in IE)
+      return isNumber(value) && value != +value;
+    }
+
+    /**
+     * Checks if `value` is `null`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is `null`, else `false`.
+     * @example
+     *
+     * _.isNull(null);
+     * // => true
+     *
+     * _.isNull(undefined);
+     * // => false
+     */
+    function isNull(value) {
+      return value === null;
+    }
+
+    /**
+     * Checks if `value` is a number.
+     *
+     * Note: `NaN` is considered a number. See http://es5.github.io/#x8.5.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a number, else `false`.
+     * @example
+     *
+     * _.isNumber(8.4 * 5);
+     * // => true
+     */
+    function isNumber(value) {
+      return typeof value == 'number' || toString.call(value) == numberClass;
+    }
+
+    /**
+     * Checks if `value` is an object created by the `Object` constructor.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+     * @example
+     *
+     * function Stooge(name, age) {
+     *   this.name = name;
+     *   this.age = age;
+     * }
+     *
+     * _.isPlainObject(new Stooge('moe', 40));
+     * // => false
+     *
+     * _.isPlainObject([1, 2, 3]);
+     * // => false
+     *
+     * _.isPlainObject({ 'name': 'moe', 'age': 40 });
+     * // => true
+     */
+    var isPlainObject = function(value) {
+      if (!(value && toString.call(value) == objectClass)) {
+        return false;
+      }
+      var valueOf = value.valueOf,
+          objProto = typeof valueOf == 'function' && (objProto = getPrototypeOf(valueOf)) && getPrototypeOf(objProto);
+
+      return objProto
+        ? (value == objProto || getPrototypeOf(value) == objProto)
+        : shimIsPlainObject(value);
+    };
+
+    /**
+     * Checks if `value` is a regular expression.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a regular expression, else `false`.
+     * @example
+     *
+     * _.isRegExp(/moe/);
+     * // => true
+     */
+    function isRegExp(value) {
+      return value ? (typeof value == 'object' && toString.call(value) == regexpClass) : false;
+    }
+
+    /**
+     * Checks if `value` is a string.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a string, else `false`.
+     * @example
+     *
+     * _.isString('moe');
+     * // => true
+     */
+    function isString(value) {
+      return typeof value == 'string' || toString.call(value) == stringClass;
+    }
+
+    /**
+     * Checks if `value` is `undefined`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is `undefined`, else `false`.
+     * @example
+     *
+     * _.isUndefined(void 0);
+     * // => true
+     */
+    function isUndefined(value) {
+      return typeof value == 'undefined';
+    }
+
+    /**
+     * Recursively merges own enumerable properties of the source object(s), that
+     * don't resolve to `undefined` into the destination object. Subsequent sources
+     * will overwrite property assignments of previous sources. If a callback is
+     * provided it will be executed to produce the merged values of the destination
+     * and source properties. If the callback returns `undefined` merging will
+     * be handled by the method instead. The callback is bound to `thisArg` and
+     * invoked with two arguments; (objectValue, sourceValue).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The destination object.
+     * @param {...Object} [source] The source objects.
+     * @param {Function} [callback] The function to customize merging properties.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the destination object.
+     * @example
+     *
+     * var names = {
+     *   'stooges': [
+     *     { 'name': 'moe' },
+     *     { 'name': 'larry' }
+     *   ]
+     * };
+     *
+     * var ages = {
+     *   'stooges': [
+     *     { 'age': 40 },
+     *     { 'age': 50 }
+     *   ]
+     * };
+     *
+     * _.merge(names, ages);
+     * // => { 'stooges': [{ 'name': 'moe', 'age': 40 }, { 'name': 'larry', 'age': 50 }] }
+     *
+     * var food = {
+     *   'fruits': ['apple'],
+     *   'vegetables': ['beet']
+     * };
+     *
+     * var otherFood = {
+     *   'fruits': ['banana'],
+     *   'vegetables': ['carrot']
+     * };
+     *
+     * _.merge(food, otherFood, function(a, b) {
+     *   return _.isArray(a) ? a.concat(b) : undefined;
+     * });
+     * // => { 'fruits': ['apple', 'banana'], 'vegetables': ['beet', 'carrot] }
+     */
+    function merge(object) {
+      var args = arguments,
+          length = 2;
+
+      if (!isObject(object)) {
+        return object;
+      }
+      // allows working with `_.reduce` and `_.reduceRight` without using
+      // their `index` and `collection` arguments
+      if (typeof args[2] != 'number') {
+        length = args.length;
+      }
+      if (length > 3 && typeof args[length - 2] == 'function') {
+        var callback = baseCreateCallback(args[--length - 1], args[length--], 2);
+      } else if (length > 2 && typeof args[length - 1] == 'function') {
+        callback = args[--length];
+      }
+      var sources = nativeSlice.call(arguments, 1, length),
+          index = -1,
+          stackA = getArray(),
+          stackB = getArray();
+
+      while (++index < length) {
+        baseMerge(object, sources[index], callback, stackA, stackB);
+      }
+      releaseArray(stackA);
+      releaseArray(stackB);
+      return object;
+    }
+
+    /**
+     * Creates a shallow clone of `object` excluding the specified properties.
+     * Property names may be specified as individual arguments or as arrays of
+     * property names. If a callback is provided it will be executed for each
+     * property of `object` omitting the properties the callback returns truey
+     * for. The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, key, object).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The source object.
+     * @param {Function|...string|string[]} [callback] The properties to omit or the
+     *  function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns an object without the omitted properties.
+     * @example
+     *
+     * _.omit({ 'name': 'moe', 'age': 40 }, 'age');
+     * // => { 'name': 'moe' }
+     *
+     * _.omit({ 'name': 'moe', 'age': 40 }, function(value) {
+     *   return typeof value == 'number';
+     * });
+     * // => { 'name': 'moe' }
+     */
+    function omit(object, callback, thisArg) {
+      var indexOf = getIndexOf(),
+          isFunc = typeof callback == 'function',
+          result = {};
+
+      if (isFunc) {
+        callback = lodash.createCallback(callback, thisArg, 3);
+      } else {
+        var props = baseFlatten(arguments, true, false, 1);
+      }
+      forIn(object, function(value, key, object) {
+        if (isFunc
+              ? !callback(value, key, object)
+              : indexOf(props, key) < 0
+            ) {
+          result[key] = value;
+        }
+      });
+      return result;
+    }
+
+    /**
+     * Creates a two dimensional array of an object's key-value pairs,
+     * i.e. `[[key1, value1], [key2, value2]]`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns new array of key-value pairs.
+     * @example
+     *
+     * _.pairs({ 'moe': 30, 'larry': 40 });
+     * // => [['moe', 30], ['larry', 40]] (property order is not guaranteed across environments)
+     */
+    function pairs(object) {
+      var index = -1,
+          props = keys(object),
+          length = props.length,
+          result = Array(length);
+
+      while (++index < length) {
+        var key = props[index];
+        result[index] = [key, object[key]];
+      }
+      return result;
+    }
+
+    /**
+     * Creates a shallow clone of `object` composed of the specified properties.
+     * Property names may be specified as individual arguments or as arrays of
+     * property names. If a callback is provided it will be executed for each
+     * property of `object` picking the properties the callback returns truey
+     * for. The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, key, object).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The source object.
+     * @param {Function|...string|string[]} [callback] The function called per
+     *  iteration or property names to pick, specified as individual property
+     *  names or arrays of property names.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns an object composed of the picked properties.
+     * @example
+     *
+     * _.pick({ 'name': 'moe', '_userid': 'moe1' }, 'name');
+     * // => { 'name': 'moe' }
+     *
+     * _.pick({ 'name': 'moe', '_userid': 'moe1' }, function(value, key) {
+     *   return key.charAt(0) != '_';
+     * });
+     * // => { 'name': 'moe' }
+     */
+    function pick(object, callback, thisArg) {
+      var result = {};
+      if (typeof callback != 'function') {
+        var index = -1,
+            props = baseFlatten(arguments, true, false, 1),
+            length = isObject(object) ? props.length : 0;
+
+        while (++index < length) {
+          var key = props[index];
+          if (key in object) {
+            result[key] = object[key];
+          }
+        }
+      } else {
+        callback = lodash.createCallback(callback, thisArg, 3);
+        forIn(object, function(value, key, object) {
+          if (callback(value, key, object)) {
+            result[key] = value;
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * An alternative to `_.reduce` this method transforms `object` to a new
+     * `accumulator` object which is the result of running each of its elements
+     * through a callback, with each callback execution potentially mutating
+     * the `accumulator` object. The callback is bound to `thisArg` and invoked
+     * with four arguments; (accumulator, value, key, object). Callbacks may exit
+     * iteration early by explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [accumulator] The custom accumulator value.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the accumulated value.
+     * @example
+     *
+     * var squares = _.transform([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], function(result, num) {
+     *   num *= num;
+     *   if (num % 2) {
+     *     return result.push(num) < 3;
+     *   }
+     * });
+     * // => [1, 9, 25]
+     *
+     * var mapped = _.transform({ 'a': 1, 'b': 2, 'c': 3 }, function(result, num, key) {
+     *   result[key] = num * 3;
+     * });
+     * // => { 'a': 3, 'b': 6, 'c': 9 }
+     */
+    function transform(object, callback, accumulator, thisArg) {
+      var isArr = isArray(object);
+      callback = baseCreateCallback(callback, thisArg, 4);
+
+      if (accumulator == null) {
+        if (isArr) {
+          accumulator = [];
+        } else {
+          var ctor = object && object.constructor,
+              proto = ctor && ctor.prototype;
+
+          accumulator = createObject(proto);
+        }
+      }
+      (isArr ? forEach : forOwn)(object, function(value, index, object) {
+        return callback(accumulator, value, index, object);
+      });
+      return accumulator;
+    }
+
+    /**
+     * Creates an array composed of the own enumerable property values of `object`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property values.
+     * @example
+     *
+     * _.values({ 'one': 1, 'two': 2, 'three': 3 });
+     * // => [1, 2, 3] (property order is not guaranteed across environments)
+     */
+    function values(object) {
+      var index = -1,
+          props = keys(object),
+          length = props.length,
+          result = Array(length);
+
+      while (++index < length) {
+        result[index] = object[props[index]];
+      }
+      return result;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates an array of elements from the specified indexes, or keys, of the
+     * `collection`. Indexes may be specified as individual arguments or as arrays
+     * of indexes.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {...(number|number[]|string|string[])} [index] The indexes of `collection`
+     *   to retrieve, specified as individual indexes or arrays of indexes.
+     * @returns {Array} Returns a new array of elements corresponding to the
+     *  provided indexes.
+     * @example
+     *
+     * _.at(['a', 'b', 'c', 'd', 'e'], [0, 2, 4]);
+     * // => ['a', 'c', 'e']
+     *
+     * _.at(['moe', 'larry', 'curly'], 0, 2);
+     * // => ['moe', 'curly']
+     */
+    function at(collection) {
+      var args = arguments,
+          index = -1,
+          props = baseFlatten(args, true, false, 1),
+          length = (args[2] && args[2][args[1]] === collection) ? 1 : props.length,
+          result = Array(length);
+
+      while(++index < length) {
+        result[index] = collection[props[index]];
+      }
+      return result;
+    }
+
+    /**
+     * Checks if a given value is present in a collection using strict equality
+     * for comparisons, i.e. `===`. If `fromIndex` is negative, it is used as the
+     * offset from the end of the collection.
+     *
+     * @static
+     * @memberOf _
+     * @alias include
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {*} target The value to check for.
+     * @param {number} [fromIndex=0] The index to search from.
+     * @returns {boolean} Returns `true` if the `target` element is found, else `false`.
+     * @example
+     *
+     * _.contains([1, 2, 3], 1);
+     * // => true
+     *
+     * _.contains([1, 2, 3], 1, 2);
+     * // => false
+     *
+     * _.contains({ 'name': 'moe', 'age': 40 }, 'moe');
+     * // => true
+     *
+     * _.contains('curly', 'ur');
+     * // => true
+     */
+    function contains(collection, target, fromIndex) {
+      var index = -1,
+          indexOf = getIndexOf(),
+          length = collection ? collection.length : 0,
+          result = false;
+
+      fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex) || 0;
+      if (isArray(collection)) {
+        result = indexOf(collection, target, fromIndex) > -1;
+      } else if (typeof length == 'number') {
+        result = (isString(collection) ? collection.indexOf(target, fromIndex) : indexOf(collection, target, fromIndex)) > -1;
+      } else {
+        forOwn(collection, function(value) {
+          if (++index >= fromIndex) {
+            return !(result = value === target);
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of `collection` through the callback. The corresponding value
+     * of each key is the number of times the key was returned by the callback.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * _.countBy([4.3, 6.1, 6.4], function(num) { return Math.floor(num); });
+     * // => { '4': 1, '6': 2 }
+     *
+     * _.countBy([4.3, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
+     * // => { '4': 1, '6': 2 }
+     *
+     * _.countBy(['one', 'two', 'three'], 'length');
+     * // => { '3': 2, '5': 1 }
+     */
+    var countBy = createAggregator(function(result, value, key) {
+      (hasOwnProperty.call(result, key) ? result[key]++ : result[key] = 1);
+    });
+
+    /**
+     * Checks if the given callback returns truey value for **all** elements of
+     * a collection. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias all
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {boolean} Returns `true` if all elements passed the callback check,
+     *  else `false`.
+     * @example
+     *
+     * _.every([true, 1, null, 'yes'], Boolean);
+     * // => false
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.every(stooges, 'age');
+     * // => true
+     *
+     * // using "_.where" callback shorthand
+     * _.every(stooges, { 'age': 50 });
+     * // => false
+     */
+    function every(collection, callback, thisArg) {
+      var result = true;
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          if (!(result = !!callback(collection[index], index, collection))) {
+            break;
+          }
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          return (result = !!callback(value, index, collection));
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Iterates over elements of a collection, returning an array of all elements
+     * the callback returns truey for. The callback is bound to `thisArg` and
+     * invoked with three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias select
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of elements that passed the callback check.
+     * @example
+     *
+     * var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
+     * // => [2, 4, 6]
+     *
+     * var food = [
+     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
+     *   { 'name': 'carrot', 'organic': true,  'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.filter(food, 'organic');
+     * // => [{ 'name': 'carrot', 'organic': true, 'type': 'vegetable' }]
+     *
+     * // using "_.where" callback shorthand
+     * _.filter(food, { 'type': 'fruit' });
+     * // => [{ 'name': 'apple', 'organic': false, 'type': 'fruit' }]
+     */
+    function filter(collection, callback, thisArg) {
+      var result = [];
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          var value = collection[index];
+          if (callback(value, index, collection)) {
+            result.push(value);
+          }
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          if (callback(value, index, collection)) {
+            result.push(value);
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Iterates over elements of a collection, returning the first element that
+     * the callback returns truey for. The callback is bound to `thisArg` and
+     * invoked with three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias detect, findWhere
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the found element, else `undefined`.
+     * @example
+     *
+     * _.find([1, 2, 3, 4], function(num) {
+     *   return num % 2 == 0;
+     * });
+     * // => 2
+     *
+     * var food = [
+     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
+     *   { 'name': 'banana', 'organic': true,  'type': 'fruit' },
+     *   { 'name': 'beet',   'organic': false, 'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.where" callback shorthand
+     * _.find(food, { 'type': 'vegetable' });
+     * // => { 'name': 'beet', 'organic': false, 'type': 'vegetable' }
+     *
+     * // using "_.pluck" callback shorthand
+     * _.find(food, 'organic');
+     * // => { 'name': 'banana', 'organic': true, 'type': 'fruit' }
+     */
+    function find(collection, callback, thisArg) {
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          var value = collection[index];
+          if (callback(value, index, collection)) {
+            return value;
+          }
+        }
+      } else {
+        var result;
+        forOwn(collection, function(value, index, collection) {
+          if (callback(value, index, collection)) {
+            result = value;
+            return false;
+          }
+        });
+        return result;
+      }
+    }
+
+    /**
+     * This method is like `_.find` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the found element, else `undefined`.
+     * @example
+     *
+     * _.findLast([1, 2, 3, 4], function(num) {
+     *   return num % 2 == 1;
+     * });
+     * // => 3
+     */
+    function findLast(collection, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      forEachRight(collection, function(value, index, collection) {
+        if (callback(value, index, collection)) {
+          result = value;
+          return false;
+        }
+      });
+      return result;
+    }
+
+    /**
+     * Iterates over elements of a collection, executing the callback for each
+     * element. The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection). Callbacks may exit iteration early by
+     * explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias each
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array|Object|string} Returns `collection`.
+     * @example
+     *
+     * _([1, 2, 3]).forEach(function(num) { console.log(num); }).join(',');
+     * // => logs each number and returns '1,2,3'
+     *
+     * _.forEach({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { console.log(num); });
+     * // => logs each number and returns the object (property order is not guaranteed across environments)
+     */
+    function forEach(collection, callback, thisArg) {
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+      if (typeof length == 'number') {
+        while (++index < length) {
+          if (callback(collection[index], index, collection) === false) {
+            break;
+          }
+        }
+      } else {
+        forOwn(collection, callback);
+      }
+      return collection;
+    }
+
+    /**
+     * This method is like `_.forEach` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @alias eachRight
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array|Object|string} Returns `collection`.
+     * @example
+     *
+     * _([1, 2, 3]).forEachRight(function(num) { console.log(num); }).join(',');
+     * // => logs each number from right to left and returns '3,2,1'
+     */
+    function forEachRight(collection, callback, thisArg) {
+      var length = collection ? collection.length : 0;
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+      if (typeof length == 'number') {
+        while (length--) {
+          if (callback(collection[length], length, collection) === false) {
+            break;
+          }
+        }
+      } else {
+        var props = keys(collection);
+        length = props.length;
+        forOwn(collection, function(value, key, collection) {
+          key = props ? props[--length] : --length;
+          return callback(collection[key], key, collection);
+        });
+      }
+      return collection;
+    }
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of a collection through the callback. The corresponding value
+     * of each key is an array of the elements responsible for generating the key.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * _.groupBy([4.2, 6.1, 6.4], function(num) { return Math.floor(num); });
+     * // => { '4': [4.2], '6': [6.1, 6.4] }
+     *
+     * _.groupBy([4.2, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
+     * // => { '4': [4.2], '6': [6.1, 6.4] }
+     *
+     * // using "_.pluck" callback shorthand
+     * _.groupBy(['one', 'two', 'three'], 'length');
+     * // => { '3': ['one', 'two'], '5': ['three'] }
+     */
+    var groupBy = createAggregator(function(result, value, key) {
+      (hasOwnProperty.call(result, key) ? result[key] : result[key] = []).push(value);
+    });
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of the collection through the given callback. The corresponding
+     * value of each key is the last element responsible for generating the key.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * var keys = [
+     *   { 'dir': 'left', 'code': 97 },
+     *   { 'dir': 'right', 'code': 100 }
+     * ];
+     *
+     * _.indexBy(keys, 'dir');
+     * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+     *
+     * _.indexBy(keys, function(key) { return String.fromCharCode(key.code); });
+     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+     *
+     * _.indexBy(stooges, function(key) { this.fromCharCode(key.code); }, String);
+     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+     */
+    var indexBy = createAggregator(function(result, value, key) {
+      result[key] = value;
+    });
+
+    /**
+     * Invokes the method named by `methodName` on each element in the `collection`
+     * returning an array of the results of each invoked method. Additional arguments
+     * will be provided to each invoked method. If `methodName` is a function it
+     * will be invoked for, and `this` bound to, each element in the `collection`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|string} methodName The name of the method to invoke or
+     *  the function invoked per iteration.
+     * @param {...*} [arg] Arguments to invoke the method with.
+     * @returns {Array} Returns a new array of the results of each invoked method.
+     * @example
+     *
+     * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+     * // => [[1, 5, 7], [1, 2, 3]]
+     *
+     * _.invoke([123, 456], String.prototype.split, '');
+     * // => [['1', '2', '3'], ['4', '5', '6']]
+     */
+    function invoke(collection, methodName) {
+      var args = nativeSlice.call(arguments, 2),
+          index = -1,
+          isFunc = typeof methodName == 'function',
+          length = collection ? collection.length : 0,
+          result = Array(typeof length == 'number' ? length : 0);
+
+      forEach(collection, function(value) {
+        result[++index] = (isFunc ? methodName : value[methodName]).apply(value, args);
+      });
+      return result;
+    }
+
+    /**
+     * Creates an array of values by running each element in the collection
+     * through the callback. The callback is bound to `thisArg` and invoked with
+     * three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias collect
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of the results of each `callback` execution.
+     * @example
+     *
+     * _.map([1, 2, 3], function(num) { return num * 3; });
+     * // => [3, 6, 9]
+     *
+     * _.map({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { return num * 3; });
+     * // => [3, 6, 9] (property order is not guaranteed across environments)
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.map(stooges, 'name');
+     * // => ['moe', 'larry']
+     */
+    function map(collection, callback, thisArg) {
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      callback = lodash.createCallback(callback, thisArg, 3);
+      if (typeof length == 'number') {
+        var result = Array(length);
+        while (++index < length) {
+          result[index] = callback(collection[index], index, collection);
+        }
+      } else {
+        result = [];
+        forOwn(collection, function(value, key, collection) {
+          result[++index] = callback(value, key, collection);
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Retrieves the maximum value of a collection. If the collection is empty or
+     * falsey `-Infinity` is returned. If a callback is provided it will be executed
+     * for each value in the collection to generate the criterion by which the value
+     * is ranked. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the maximum value.
+     * @example
+     *
+     * _.max([4, 2, 8, 6]);
+     * // => 8
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * _.max(stooges, function(stooge) { return stooge.age; });
+     * // => { 'name': 'larry', 'age': 50 };
+     *
+     * // using "_.pluck" callback shorthand
+     * _.max(stooges, 'age');
+     * // => { 'name': 'larry', 'age': 50 };
+     */
+    function max(collection, callback, thisArg) {
+      var computed = -Infinity,
+          result = computed;
+
+      if (!callback && isArray(collection)) {
+        var index = -1,
+            length = collection.length;
+
+        while (++index < length) {
+          var value = collection[index];
+          if (value > result) {
+            result = value;
+          }
+        }
+      } else {
+        callback = (!callback && isString(collection))
+          ? charAtCallback
+          : lodash.createCallback(callback, thisArg, 3);
+
+        forEach(collection, function(value, index, collection) {
+          var current = callback(value, index, collection);
+          if (current > computed) {
+            computed = current;
+            result = value;
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Retrieves the minimum value of a collection. If the collection is empty or
+     * falsey `Infinity` is returned. If a callback is provided it will be executed
+     * for each value in the collection to generate the criterion by which the value
+     * is ranked. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the minimum value.
+     * @example
+     *
+     * _.min([4, 2, 8, 6]);
+     * // => 2
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * _.min(stooges, function(stooge) { return stooge.age; });
+     * // => { 'name': 'moe', 'age': 40 };
+     *
+     * // using "_.pluck" callback shorthand
+     * _.min(stooges, 'age');
+     * // => { 'name': 'moe', 'age': 40 };
+     */
+    function min(collection, callback, thisArg) {
+      var computed = Infinity,
+          result = computed;
+
+      if (!callback && isArray(collection)) {
+        var index = -1,
+            length = collection.length;
+
+        while (++index < length) {
+          var value = collection[index];
+          if (value < result) {
+            result = value;
+          }
+        }
+      } else {
+        callback = (!callback && isString(collection))
+          ? charAtCallback
+          : lodash.createCallback(callback, thisArg, 3);
+
+        forEach(collection, function(value, index, collection) {
+          var current = callback(value, index, collection);
+          if (current < computed) {
+            computed = current;
+            result = value;
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Retrieves the value of a specified property from all elements in the `collection`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {string} property The property to pluck.
+     * @returns {Array} Returns a new array of property values.
+     * @example
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * _.pluck(stooges, 'name');
+     * // => ['moe', 'larry']
+     */
+    function pluck(collection, property) {
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        var result = Array(length);
+        while (++index < length) {
+          result[index] = collection[index][property];
+        }
+      }
+      return result || map(collection, property);
+    }
+
+    /**
+     * Reduces a collection to a value which is the accumulated result of running
+     * each element in the collection through the callback, where each successive
+     * callback execution consumes the return value of the previous execution. If
+     * `accumulator` is not provided the first element of the collection will be
+     * used as the initial `accumulator` value. The callback is bound to `thisArg`
+     * and invoked with four arguments; (accumulator, value, index|key, collection).
+     *
+     * @static
+     * @memberOf _
+     * @alias foldl, inject
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [accumulator] Initial value of the accumulator.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the accumulated value.
+     * @example
+     *
+     * var sum = _.reduce([1, 2, 3], function(sum, num) {
+     *   return sum + num;
+     * });
+     * // => 6
+     *
+     * var mapped = _.reduce({ 'a': 1, 'b': 2, 'c': 3 }, function(result, num, key) {
+     *   result[key] = num * 3;
+     *   return result;
+     * }, {});
+     * // => { 'a': 3, 'b': 6, 'c': 9 }
+     */
+    function reduce(collection, callback, accumulator, thisArg) {
+      if (!collection) return accumulator;
+      var noaccum = arguments.length < 3;
+      callback = baseCreateCallback(callback, thisArg, 4);
+
+      var index = -1,
+          length = collection.length;
+
+      if (typeof length == 'number') {
+        if (noaccum) {
+          accumulator = collection[++index];
+        }
+        while (++index < length) {
+          accumulator = callback(accumulator, collection[index], index, collection);
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          accumulator = noaccum
+            ? (noaccum = false, value)
+            : callback(accumulator, value, index, collection)
+        });
+      }
+      return accumulator;
+    }
+
+    /**
+     * This method is like `_.reduce` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @alias foldr
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [accumulator] Initial value of the accumulator.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the accumulated value.
+     * @example
+     *
+     * var list = [[0, 1], [2, 3], [4, 5]];
+     * var flat = _.reduceRight(list, function(a, b) { return a.concat(b); }, []);
+     * // => [4, 5, 2, 3, 0, 1]
+     */
+    function reduceRight(collection, callback, accumulator, thisArg) {
+      var noaccum = arguments.length < 3;
+      callback = baseCreateCallback(callback, thisArg, 4);
+      forEachRight(collection, function(value, index, collection) {
+        accumulator = noaccum
+          ? (noaccum = false, value)
+          : callback(accumulator, value, index, collection);
+      });
+      return accumulator;
+    }
+
+    /**
+     * The opposite of `_.filter` this method returns the elements of a
+     * collection that the callback does **not** return truey for.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of elements that failed the callback check.
+     * @example
+     *
+     * var odds = _.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
+     * // => [1, 3, 5]
+     *
+     * var food = [
+     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
+     *   { 'name': 'carrot', 'organic': true,  'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.reject(food, 'organic');
+     * // => [{ 'name': 'apple', 'organic': false, 'type': 'fruit' }]
+     *
+     * // using "_.where" callback shorthand
+     * _.reject(food, { 'type': 'fruit' });
+     * // => [{ 'name': 'carrot', 'organic': true, 'type': 'vegetable' }]
+     */
+    function reject(collection, callback, thisArg) {
+      callback = lodash.createCallback(callback, thisArg, 3);
+      return filter(collection, function(value, index, collection) {
+        return !callback(value, index, collection);
+      });
+    }
+
+    /**
+     * Retrieves a random element or `n` random elements from a collection.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to sample.
+     * @param {number} [n] The number of elements to sample.
+     * @param- {Object} [guard] Allows working with functions, like `_.map`,
+     *  without using their `key` and `object` arguments as sources.
+     * @returns {Array} Returns the random sample(s) of `collection`.
+     * @example
+     *
+     * _.sample([1, 2, 3, 4]);
+     * // => 2
+     *
+     * _.sample([1, 2, 3, 4], 2);
+     * // => [3, 1]
+     */
+    function sample(collection, n, guard) {
+      var length = collection ? collection.length : 0;
+      if (typeof length != 'number') {
+        collection = values(collection);
+      }
+      if (n == null || guard) {
+        return collection ? collection[random(length - 1)] : undefined;
+      }
+      var result = shuffle(collection);
+      result.length = nativeMin(nativeMax(0, n), result.length);
+      return result;
+    }
+
+    /**
+     * Creates an array of shuffled values, using a version of the Fisher-Yates
+     * shuffle. See http://en.wikipedia.org/wiki/Fisher-Yates_shuffle.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to shuffle.
+     * @returns {Array} Returns a new shuffled collection.
+     * @example
+     *
+     * _.shuffle([1, 2, 3, 4, 5, 6]);
+     * // => [4, 1, 6, 3, 5, 2]
+     */
+    function shuffle(collection) {
+      var index = -1,
+          length = collection ? collection.length : 0,
+          result = Array(typeof length == 'number' ? length : 0);
+
+      forEach(collection, function(value) {
+        var rand = random(++index);
+        result[index] = result[rand];
+        result[rand] = value;
+      });
+      return result;
+    }
+
+    /**
+     * Gets the size of the `collection` by returning `collection.length` for arrays
+     * and array-like objects or the number of own enumerable properties for objects.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to inspect.
+     * @returns {number} Returns `collection.length` or number of own enumerable properties.
+     * @example
+     *
+     * _.size([1, 2]);
+     * // => 2
+     *
+     * _.size({ 'one': 1, 'two': 2, 'three': 3 });
+     * // => 3
+     *
+     * _.size('curly');
+     * // => 5
+     */
+    function size(collection) {
+      var length = collection ? collection.length : 0;
+      return typeof length == 'number' ? length : keys(collection).length;
+    }
+
+    /**
+     * Checks if the callback returns a truey value for **any** element of a
+     * collection. The function returns as soon as it finds a passing value and
+     * does not iterate over the entire collection. The callback is bound to
+     * `thisArg` and invoked with three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias any
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {boolean} Returns `true` if any element passed the callback check,
+     *  else `false`.
+     * @example
+     *
+     * _.some([null, 0, 'yes', false], Boolean);
+     * // => true
+     *
+     * var food = [
+     *   { 'name': 'apple',  'organic': false, 'type': 'fruit' },
+     *   { 'name': 'carrot', 'organic': true,  'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.some(food, 'organic');
+     * // => true
+     *
+     * // using "_.where" callback shorthand
+     * _.some(food, { 'type': 'meat' });
+     * // => false
+     */
+    function some(collection, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          if ((result = callback(collection[index], index, collection))) {
+            break;
+          }
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          return !(result = callback(value, index, collection));
+        });
+      }
+      return !!result;
+    }
+
+    /**
+     * Creates an array of elements, sorted in ascending order by the results of
+     * running each element in a collection through the callback. This method
+     * performs a stable sort, that is, it will preserve the original sort order
+     * of equal elements. The callback is bound to `thisArg` and invoked with
+     * three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of sorted elements.
+     * @example
+     *
+     * _.sortBy([1, 2, 3], function(num) { return Math.sin(num); });
+     * // => [3, 1, 2]
+     *
+     * _.sortBy([1, 2, 3], function(num) { return this.sin(num); }, Math);
+     * // => [3, 1, 2]
+     *
+     * // using "_.pluck" callback shorthand
+     * _.sortBy(['banana', 'strawberry', 'apple'], 'length');
+     * // => ['apple', 'banana', 'strawberry']
+     */
+    function sortBy(collection, callback, thisArg) {
+      var index = -1,
+          length = collection ? collection.length : 0,
+          result = Array(typeof length == 'number' ? length : 0);
+
+      callback = lodash.createCallback(callback, thisArg, 3);
+      forEach(collection, function(value, key, collection) {
+        var object = result[++index] = getObject();
+        object.criteria = callback(value, key, collection);
+        object.index = index;
+        object.value = value;
+      });
+
+      length = result.length;
+      result.sort(compareAscending);
+      while (length--) {
+        var object = result[length];
+        result[length] = object.value;
+        releaseObject(object);
+      }
+      return result;
+    }
+
+    /**
+     * Converts the `collection` to an array.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to convert.
+     * @returns {Array} Returns the new converted array.
+     * @example
+     *
+     * (function() { return _.toArray(arguments).slice(1); })(1, 2, 3, 4);
+     * // => [2, 3, 4]
+     */
+    function toArray(collection) {
+      if (collection && typeof collection.length == 'number') {
+        return slice(collection);
+      }
+      return values(collection);
+    }
+
+    /**
+     * Performs a deep comparison of each element in a `collection` to the given
+     * `properties` object, returning an array of all elements that have equivalent
+     * property values.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Object} properties The object of property values to filter by.
+     * @returns {Array} Returns a new array of elements that have the given properties.
+     * @example
+     *
+     * var stooges = [
+     *   { 'name': 'curly', 'age': 30, 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] },
+     *   { 'name': 'moe', 'age': 40, 'quotes': ['Spread out!', 'You knucklehead!'] }
+     * ];
+     *
+     * _.where(stooges, { 'age': 40 });
+     * // => [{ 'name': 'moe', 'age': 40, 'quotes': ['Spread out!', 'You knucklehead!'] }]
+     *
+     * _.where(stooges, { 'quotes': ['Poifect!'] });
+     * // => [{ 'name': 'curly', 'age': 30, 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] }]
+     */
+    var where = filter;
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates an array with all falsey values removed. The values `false`, `null`,
+     * `0`, `""`, `undefined`, and `NaN` are all falsey.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to compact.
+     * @returns {Array} Returns a new array of filtered values.
+     * @example
+     *
+     * _.compact([0, 1, false, 2, '', 3]);
+     * // => [1, 2, 3]
+     */
+    function compact(array) {
+      var index = -1,
+          length = array ? array.length : 0,
+          result = [];
+
+      while (++index < length) {
+        var value = array[index];
+        if (value) {
+          result.push(value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * Creates an array excluding all values of the provided arrays using strict
+     * equality for comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to process.
+     * @param {...Array} [array] The arrays of values to exclude.
+     * @returns {Array} Returns a new array of filtered values.
+     * @example
+     *
+     * _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
+     * // => [1, 3, 4]
+     */
+    function difference(array) {
+      var index = -1,
+          indexOf = getIndexOf(),
+          length = array ? array.length : 0,
+          seen = baseFlatten(arguments, true, true, 1),
+          result = [];
+
+      var isLarge = length >= largeArraySize && indexOf === baseIndexOf;
+
+      if (isLarge) {
+        var cache = createCache(seen);
+        if (cache) {
+          indexOf = cacheIndexOf;
+          seen = cache;
+        } else {
+          isLarge = false;
+        }
+      }
+      while (++index < length) {
+        var value = array[index];
+        if (indexOf(seen, value) < 0) {
+          result.push(value);
+        }
+      }
+      if (isLarge) {
+        releaseObject(seen);
+      }
+      return result;
+    }
+
+    /**
+     * This method is like `_.find` except that it returns the index of the first
+     * element that passes the callback check, instead of the element itself.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {number} Returns the index of the found element, else `-1`.
+     * @example
+     *
+     * _.findIndex(['apple', 'banana', 'beet'], function(food) {
+     *   return /^b/.test(food);
+     * });
+     * // => 1
+     */
+    function findIndex(array, callback, thisArg) {
+      var index = -1,
+          length = array ? array.length : 0;
+
+      callback = lodash.createCallback(callback, thisArg, 3);
+      while (++index < length) {
+        if (callback(array[index], index, array)) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * This method is like `_.findIndex` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {number} Returns the index of the found element, else `-1`.
+     * @example
+     *
+     * _.findLastIndex(['apple', 'banana', 'beet'], function(food) {
+     *   return /^b/.test(food);
+     * });
+     * // => 2
+     */
+    function findLastIndex(array, callback, thisArg) {
+      var length = array ? array.length : 0;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      while (length--) {
+        if (callback(array[length], length, array)) {
+          return length;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * Gets the first element or first `n` elements of an array. If a callback
+     * is provided elements at the beginning of the array are returned as long
+     * as the callback returns truey. The callback is bound to `thisArg` and
+     * invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias head, take
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback] The function called
+     *  per element or the number of elements to return. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the first element(s) of `array`.
+     * @example
+     *
+     * _.first([1, 2, 3]);
+     * // => 1
+     *
+     * _.first([1, 2, 3], 2);
+     * // => [1, 2]
+     *
+     * _.first([1, 2, 3], function(num) {
+     *   return num < 3;
+     * });
+     * // => [1, 2]
+     *
+     * var food = [
+     *   { 'name': 'banana', 'organic': true },
+     *   { 'name': 'beet',   'organic': false },
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.first(food, 'organic');
+     * // => [{ 'name': 'banana', 'organic': true }]
+     *
+     * var food = [
+     *   { 'name': 'apple',  'type': 'fruit' },
+     *   { 'name': 'banana', 'type': 'fruit' },
+     *   { 'name': 'beet',   'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.where" callback shorthand
+     * _.first(food, { 'type': 'fruit' });
+     * // => [{ 'name': 'apple', 'type': 'fruit' }, { 'name': 'banana', 'type': 'fruit' }]
+     */
+    function first(array, callback, thisArg) {
+      var n = 0,
+          length = array ? array.length : 0;
+
+      if (typeof callback != 'number' && callback != null) {
+        var index = -1;
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (++index < length && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = callback;
+        if (n == null || thisArg) {
+          return array ? array[0] : undefined;
+        }
+      }
+      return slice(array, 0, nativeMin(nativeMax(0, n), length));
+    }
+
+    /**
+     * Flattens a nested array (the nesting can be to any depth). If `isShallow`
+     * is truey, the array will only be flattened a single level. If a callback
+     * is provided each element of the array is passed through the callback before
+     * flattening. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to flatten.
+     * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new flattened array.
+     * @example
+     *
+     * _.flatten([1, [2], [3, [[4]]]]);
+     * // => [1, 2, 3, 4];
+     *
+     * _.flatten([1, [2], [3, [[4]]]], true);
+     * // => [1, 2, 3, [[4]]];
+     *
+     * var stooges = [
+     *   { 'name': 'curly', 'quotes': ['Oh, a wise guy, eh?', 'Poifect!'] },
+     *   { 'name': 'moe', 'quotes': ['Spread out!', 'You knucklehead!'] }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.flatten(stooges, 'quotes');
+     * // => ['Oh, a wise guy, eh?', 'Poifect!', 'Spread out!', 'You knucklehead!']
+     */
+    function flatten(array, isShallow, callback, thisArg) {
+      // juggle arguments
+      if (typeof isShallow != 'boolean' && isShallow != null) {
+        thisArg = callback;
+        callback = !(thisArg && thisArg[isShallow] === array) ? isShallow : null;
+        isShallow = false;
+      }
+      if (callback != null) {
+        array = map(array, callback, thisArg);
+      }
+      return baseFlatten(array, isShallow);
+    }
+
+    /**
+     * Gets the index at which the first occurrence of `value` is found using
+     * strict equality for comparisons, i.e. `===`. If the array is already sorted
+     * providing `true` for `fromIndex` will run a faster binary search.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {*} value The value to search for.
+     * @param {boolean|number} [fromIndex=0] The index to search from or `true`
+     *  to perform a binary search on a sorted array.
+     * @returns {number} Returns the index of the matched value or `-1`.
+     * @example
+     *
+     * _.indexOf([1, 2, 3, 1, 2, 3], 2);
+     * // => 1
+     *
+     * _.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
+     * // => 4
+     *
+     * _.indexOf([1, 1, 2, 2, 3, 3], 2, true);
+     * // => 2
+     */
+    function indexOf(array, value, fromIndex) {
+      if (typeof fromIndex == 'number') {
+        var length = array ? array.length : 0;
+        fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex || 0);
+      } else if (fromIndex) {
+        var index = sortedIndex(array, value);
+        return array[index] === value ? index : -1;
+      }
+      return baseIndexOf(array, value, fromIndex);
+    }
+
+    /**
+     * Gets all but the last element or last `n` elements of an array. If a
+     * callback is provided elements at the end of the array are excluded from
+     * the result as long as the callback returns truey. The callback is bound
+     * to `thisArg` and invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback=1] The function called
+     *  per element or the number of elements to exclude. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a slice of `array`.
+     * @example
+     *
+     * _.initial([1, 2, 3]);
+     * // => [1, 2]
+     *
+     * _.initial([1, 2, 3], 2);
+     * // => [1]
+     *
+     * _.initial([1, 2, 3], function(num) {
+     *   return num > 1;
+     * });
+     * // => [1]
+     *
+     * var food = [
+     *   { 'name': 'beet',   'organic': false },
+     *   { 'name': 'carrot', 'organic': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.initial(food, 'organic');
+     * // => [{ 'name': 'beet',   'organic': false }]
+     *
+     * var food = [
+     *   { 'name': 'banana', 'type': 'fruit' },
+     *   { 'name': 'beet',   'type': 'vegetable' },
+     *   { 'name': 'carrot', 'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.where" callback shorthand
+     * _.initial(food, { 'type': 'vegetable' });
+     * // => [{ 'name': 'banana', 'type': 'fruit' }]
+     */
+    function initial(array, callback, thisArg) {
+      var n = 0,
+          length = array ? array.length : 0;
+
+      if (typeof callback != 'number' && callback != null) {
+        var index = length;
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (index-- && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = (callback == null || thisArg) ? 1 : callback || n;
+      }
+      return slice(array, 0, nativeMin(nativeMax(0, length - n), length));
+    }
+
+    /**
+     * Creates an array of unique values present in all provided arrays using
+     * strict equality for comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {...Array} [array] The arrays to inspect.
+     * @returns {Array} Returns an array of composite values.
+     * @example
+     *
+     * _.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+     * // => [1, 2]
+     */
+    function intersection(array) {
+      var args = arguments,
+          argsLength = args.length,
+          argsIndex = -1,
+          caches = getArray(),
+          index = -1,
+          indexOf = getIndexOf(),
+          length = array ? array.length : 0,
+          result = [],
+          seen = getArray();
+
+      while (++argsIndex < argsLength) {
+        var value = args[argsIndex];
+        caches[argsIndex] = indexOf === baseIndexOf &&
+          (value ? value.length : 0) >= largeArraySize &&
+          createCache(argsIndex ? args[argsIndex] : seen);
+      }
+      outer:
+      while (++index < length) {
+        var cache = caches[0];
+        value = array[index];
+
+        if ((cache ? cacheIndexOf(cache, value) : indexOf(seen, value)) < 0) {
+          argsIndex = argsLength;
+          (cache || seen).push(value);
+          while (--argsIndex) {
+            cache = caches[argsIndex];
+            if ((cache ? cacheIndexOf(cache, value) : indexOf(args[argsIndex], value)) < 0) {
+              continue outer;
+            }
+          }
+          result.push(value);
+        }
+      }
+      while (argsLength--) {
+        cache = caches[argsLength];
+        if (cache) {
+          releaseObject(cache);
+        }
+      }
+      releaseArray(caches);
+      releaseArray(seen);
+      return result;
+    }
+
+    /**
+     * Gets the last element or last `n` elements of an array. If a callback is
+     * provided elements at the end of the array are returned as long as the
+     * callback returns truey. The callback is bound to `thisArg` and invoked
+     * with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback] The function called
+     *  per element or the number of elements to return. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the last element(s) of `array`.
+     * @example
+     *
+     * _.last([1, 2, 3]);
+     * // => 3
+     *
+     * _.last([1, 2, 3], 2);
+     * // => [2, 3]
+     *
+     * _.last([1, 2, 3], function(num) {
+     *   return num > 1;
+     * });
+     * // => [2, 3]
+     *
+     * var food = [
+     *   { 'name': 'beet',   'organic': false },
+     *   { 'name': 'carrot', 'organic': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.last(food, 'organic');
+     * // => [{ 'name': 'carrot', 'organic': true }]
+     *
+     * var food = [
+     *   { 'name': 'banana', 'type': 'fruit' },
+     *   { 'name': 'beet',   'type': 'vegetable' },
+     *   { 'name': 'carrot', 'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.where" callback shorthand
+     * _.last(food, { 'type': 'vegetable' });
+     * // => [{ 'name': 'beet', 'type': 'vegetable' }, { 'name': 'carrot', 'type': 'vegetable' }]
+     */
+    function last(array, callback, thisArg) {
+      var n = 0,
+          length = array ? array.length : 0;
+
+      if (typeof callback != 'number' && callback != null) {
+        var index = length;
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (index-- && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = callback;
+        if (n == null || thisArg) {
+          return array ? array[length - 1] : undefined;
+        }
+      }
+      return slice(array, nativeMax(0, length - n));
+    }
+
+    /**
+     * Gets the index at which the last occurrence of `value` is found using strict
+     * equality for comparisons, i.e. `===`. If `fromIndex` is negative, it is used
+     * as the offset from the end of the collection.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {*} value The value to search for.
+     * @param {number} [fromIndex=array.length-1] The index to search from.
+     * @returns {number} Returns the index of the matched value or `-1`.
+     * @example
+     *
+     * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
+     * // => 4
+     *
+     * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2, 3);
+     * // => 1
+     */
+    function lastIndexOf(array, value, fromIndex) {
+      var index = array ? array.length : 0;
+      if (typeof fromIndex == 'number') {
+        index = (fromIndex < 0 ? nativeMax(0, index + fromIndex) : nativeMin(fromIndex, index - 1)) + 1;
+      }
+      while (index--) {
+        if (array[index] === value) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * Removes all provided values from the given array using strict equality for
+     * comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to modify.
+     * @param {...*} [value] The values to remove.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = [1, 2, 3, 1, 2, 3];
+     * _.pull(array, 2, 3);
+     * console.log(array);
+     * // => [1, 1]
+     */
+    function pull(array) {
+      var args = arguments,
+          argsIndex = 0,
+          argsLength = args.length,
+          length = array ? array.length : 0;
+
+      while (++argsIndex < argsLength) {
+        var index = -1,
+            value = args[argsIndex];
+        while (++index < length) {
+          if (array[index] === value) {
+            splice.call(array, index--, 1);
+            length--;
+          }
+        }
+      }
+      return array;
+    }
+
+    /**
+     * Creates an array of numbers (positive and/or negative) progressing from
+     * `start` up to but not including `end`. If `start` is less than `stop` a
+     * zero-length range is created unless a negative `step` is specified.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {number} [start=0] The start of the range.
+     * @param {number} end The end of the range.
+     * @param {number} [step=1] The value to increment or decrement by.
+     * @returns {Array} Returns a new range array.
+     * @example
+     *
+     * _.range(10);
+     * // => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+     *
+     * _.range(1, 11);
+     * // => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+     *
+     * _.range(0, 30, 5);
+     * // => [0, 5, 10, 15, 20, 25]
+     *
+     * _.range(0, -10, -1);
+     * // => [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+     *
+     * _.range(1, 4, 0);
+     * // => [1, 1, 1]
+     *
+     * _.range(0);
+     * // => []
+     */
+    function range(start, end, step) {
+      start = +start || 0;
+      step = typeof step == 'number' ? step : (+step || 1);
+
+      if (end == null) {
+        end = start;
+        start = 0;
+      }
+      // use `Array(length)` so engines, like Chakra and V8, avoid slower modes
+      // http://youtu.be/XAqIpGU8ZZk#t=17m25s
+      var index = -1,
+          length = nativeMax(0, ceil((end - start) / (step || 1))),
+          result = Array(length);
+
+      while (++index < length) {
+        result[index] = start;
+        start += step;
+      }
+      return result;
+    }
+
+    /**
+     * Removes all elements from an array that the callback returns truey for
+     * and returns an array of removed elements. The callback is bound to `thisArg`
+     * and invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to modify.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of removed elements.
+     * @example
+     *
+     * var array = [1, 2, 3, 4, 5, 6];
+     * var evens = _.remove(array, function(num) { return num % 2 == 0; });
+     *
+     * console.log(array);
+     * // => [1, 3, 5]
+     *
+     * console.log(evens);
+     * // => [2, 4, 6]
+     */
+    function remove(array, callback, thisArg) {
+      var index = -1,
+          length = array ? array.length : 0,
+          result = [];
+
+      callback = lodash.createCallback(callback, thisArg, 3);
+      while (++index < length) {
+        var value = array[index];
+        if (callback(value, index, array)) {
+          result.push(value);
+          splice.call(array, index--, 1);
+          length--;
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The opposite of `_.initial` this method gets all but the first element or
+     * first `n` elements of an array. If a callback function is provided elements
+     * at the beginning of the array are excluded from the result as long as the
+     * callback returns truey. The callback is bound to `thisArg` and invoked
+     * with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias drop, tail
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback=1] The function called
+     *  per element or the number of elements to exclude. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a slice of `array`.
+     * @example
+     *
+     * _.rest([1, 2, 3]);
+     * // => [2, 3]
+     *
+     * _.rest([1, 2, 3], 2);
+     * // => [3]
+     *
+     * _.rest([1, 2, 3], function(num) {
+     *   return num < 3;
+     * });
+     * // => [3]
+     *
+     * var food = [
+     *   { 'name': 'banana', 'organic': true },
+     *   { 'name': 'beet',   'organic': false },
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.rest(food, 'organic');
+     * // => [{ 'name': 'beet', 'organic': false }]
+     *
+     * var food = [
+     *   { 'name': 'apple',  'type': 'fruit' },
+     *   { 'name': 'banana', 'type': 'fruit' },
+     *   { 'name': 'beet',   'type': 'vegetable' }
+     * ];
+     *
+     * // using "_.where" callback shorthand
+     * _.rest(food, { 'type': 'fruit' });
+     * // => [{ 'name': 'beet', 'type': 'vegetable' }]
+     */
+    function rest(array, callback, thisArg) {
+      if (typeof callback != 'number' && callback != null) {
+        var n = 0,
+            index = -1,
+            length = array ? array.length : 0;
+
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (++index < length && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = (callback == null || thisArg) ? 1 : nativeMax(0, callback);
+      }
+      return slice(array, n);
+    }
+
+    /**
+     * Uses a binary search to determine the smallest index at which a value
+     * should be inserted into a given sorted array in order to maintain the sort
+     * order of the array. If a callback is provided it will be executed for
+     * `value` and each element of `array` to compute their sort ranking. The
+     * callback is bound to `thisArg` and invoked with one argument; (value).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to inspect.
+     * @param {*} value The value to evaluate.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     * @example
+     *
+     * _.sortedIndex([20, 30, 50], 40);
+     * // => 2
+     *
+     * // using "_.pluck" callback shorthand
+     * _.sortedIndex([{ 'x': 20 }, { 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
+     * // => 2
+     *
+     * var dict = {
+     *   'wordToNumber': { 'twenty': 20, 'thirty': 30, 'fourty': 40, 'fifty': 50 }
+     * };
+     *
+     * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+     *   return dict.wordToNumber[word];
+     * });
+     * // => 2
+     *
+     * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+     *   return this.wordToNumber[word];
+     * }, dict);
+     * // => 2
+     */
+    function sortedIndex(array, value, callback, thisArg) {
+      var low = 0,
+          high = array ? array.length : low;
+
+      // explicitly reference `identity` for better inlining in Firefox
+      callback = callback ? lodash.createCallback(callback, thisArg, 1) : identity;
+      value = callback(value);
+
+      while (low < high) {
+        var mid = (low + high) >>> 1;
+        (callback(array[mid]) < value)
+          ? low = mid + 1
+          : high = mid;
+      }
+      return low;
+    }
+
+    /**
+     * Creates an array of unique values, in order, of the provided arrays using
+     * strict equality for comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {...Array} [array] The arrays to inspect.
+     * @returns {Array} Returns an array of composite values.
+     * @example
+     *
+     * _.union([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+     * // => [1, 2, 3, 101, 10]
+     */
+    function union(array) {
+      return baseUniq(baseFlatten(arguments, true, true));
+    }
+
+    /**
+     * Creates a duplicate-value-free version of an array using strict equality
+     * for comparisons, i.e. `===`. If the array is sorted, providing
+     * `true` for `isSorted` will use a faster algorithm. If a callback is provided
+     * each element of `array` is passed through the callback before uniqueness
+     * is computed. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias unique
+     * @category Arrays
+     * @param {Array} array The array to process.
+     * @param {boolean} [isSorted=false] A flag to indicate that `array` is sorted.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a duplicate-value-free array.
+     * @example
+     *
+     * _.uniq([1, 2, 1, 3, 1]);
+     * // => [1, 2, 3]
+     *
+     * _.uniq([1, 1, 2, 2, 3], true);
+     * // => [1, 2, 3]
+     *
+     * _.uniq(['A', 'b', 'C', 'a', 'B', 'c'], function(letter) { return letter.toLowerCase(); });
+     * // => ['A', 'b', 'C']
+     *
+     * _.uniq([1, 2.5, 3, 1.5, 2, 3.5], function(num) { return this.floor(num); }, Math);
+     * // => [1, 2.5, 3]
+     *
+     * // using "_.pluck" callback shorthand
+     * _.uniq([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 1 }, { 'x': 2 }]
+     */
+    function uniq(array, isSorted, callback, thisArg) {
+      // juggle arguments
+      if (typeof isSorted != 'boolean' && isSorted != null) {
+        thisArg = callback;
+        callback = !(thisArg && thisArg[isSorted] === array) ? isSorted : null;
+        isSorted = false;
+      }
+      if (callback != null) {
+        callback = lodash.createCallback(callback, thisArg, 3);
+      }
+      return baseUniq(array, isSorted, callback);
+    }
+
+    /**
+     * Creates an array excluding all provided values using strict equality for
+     * comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to filter.
+     * @param {...*} [value] The values to exclude.
+     * @returns {Array} Returns a new array of filtered values.
+     * @example
+     *
+     * _.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
+     * // => [2, 3, 4]
+     */
+    function without(array) {
+      return difference(array, nativeSlice.call(arguments, 1));
+    }
+
+    /**
+     * Creates an array of grouped elements, the first of which contains the first
+     * elements of the given arrays, the second of which contains the second
+     * elements of the given arrays, and so on.
+     *
+     * @static
+     * @memberOf _
+     * @alias unzip
+     * @category Arrays
+     * @param {...Array} [array] Arrays to process.
+     * @returns {Array} Returns a new array of grouped elements.
+     * @example
+     *
+     * _.zip(['moe', 'larry'], [30, 40], [true, false]);
+     * // => [['moe', 30, true], ['larry', 40, false]]
+     */
+    function zip() {
+      var array = arguments.length > 1 ? arguments : arguments[0],
+          index = -1,
+          length = array ? max(pluck(array, 'length')) : 0,
+          result = Array(length < 0 ? 0 : length);
+
+      while (++index < length) {
+        result[index] = pluck(array, index);
+      }
+      return result;
+    }
+
+    /**
+     * Creates an object composed from arrays of `keys` and `values`. Provide
+     * either a single two dimensional array, i.e. `[[key1, value1], [key2, value2]]`
+     * or two arrays, one of `keys` and one of corresponding `values`.
+     *
+     * @static
+     * @memberOf _
+     * @alias object
+     * @category Arrays
+     * @param {Array} keys The array of keys.
+     * @param {Array} [values=[]] The array of values.
+     * @returns {Object} Returns an object composed of the given keys and
+     *  corresponding values.
+     * @example
+     *
+     * _.zipObject(['moe', 'larry'], [30, 40]);
+     * // => { 'moe': 30, 'larry': 40 }
+     */
+    function zipObject(keys, values) {
+      var index = -1,
+          length = keys ? keys.length : 0,
+          result = {};
+
+      while (++index < length) {
+        var key = keys[index];
+        if (values) {
+          result[key] = values[index];
+        } else if (key) {
+          result[key[0]] = key[1];
+        }
+      }
+      return result;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a function that executes `func`, with  the `this` binding and
+     * arguments of the created function, only after being called `n` times.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {number} n The number of times the function must be called before
+     *  `func` is executed.
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new restricted function.
+     * @example
+     *
+     * var saves = ['profile', 'settings'];
+     *
+     * var done = _.after(saves.length, function() {
+     *   console.log('Done saving!');
+     * });
+     *
+     * _.forEach(saves, function(type) {
+     *   asyncSave({ 'type': type, 'complete': done });
+     * });
+     * // => logs 'Done saving!', after all saves have completed
+     */
+    function after(n, func) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      return function() {
+        if (--n < 1) {
+          return func.apply(this, arguments);
+        }
+      };
+    }
+
+    /**
+     * Creates a function that, when called, invokes `func` with the `this`
+     * binding of `thisArg` and prepends any additional `bind` arguments to those
+     * provided to the bound function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to bind.
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new bound function.
+     * @example
+     *
+     * var func = function(greeting) {
+     *   return greeting + ' ' + this.name;
+     * };
+     *
+     * func = _.bind(func, { 'name': 'moe' }, 'hi');
+     * func();
+     * // => 'hi moe'
+     */
+    function bind(func, thisArg) {
+      return arguments.length > 2
+        ? createBound(func, 17, nativeSlice.call(arguments, 2), null, thisArg)
+        : createBound(func, 1, null, null, thisArg);
+    }
+
+    /**
+     * Binds methods of an object to the object itself, overwriting the existing
+     * method. Method names may be specified as individual arguments or as arrays
+     * of method names. If no method names are provided all the function properties
+     * of `object` will be bound.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Object} object The object to bind and assign the bound methods to.
+     * @param {...string} [methodName] The object method names to
+     *  bind, specified as individual method names or arrays of method names.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var view = {
+     *  'label': 'docs',
+     *  'onClick': function() { console.log('clicked ' + this.label); }
+     * };
+     *
+     * _.bindAll(view);
+     * jQuery('#docs').on('click', view.onClick);
+     * // => logs 'clicked docs', when the button is clicked
+     */
+    function bindAll(object) {
+      var funcs = arguments.length > 1 ? baseFlatten(arguments, true, false, 1) : functions(object),
+          index = -1,
+          length = funcs.length;
+
+      while (++index < length) {
+        var key = funcs[index];
+        object[key] = createBound(object[key], 1, null, null, object);
+      }
+      return object;
+    }
+
+    /**
+     * Creates a function that, when called, invokes the method at `object[key]`
+     * and prepends any additional `bindKey` arguments to those provided to the bound
+     * function. This method differs from `_.bind` by allowing bound functions to
+     * reference methods that will be redefined or don't yet exist.
+     * See http://michaux.ca/articles/lazy-function-definition-pattern.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Object} object The object the method belongs to.
+     * @param {string} key The key of the method.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new bound function.
+     * @example
+     *
+     * var object = {
+     *   'name': 'moe',
+     *   'greet': function(greeting) {
+     *     return greeting + ' ' + this.name;
+     *   }
+     * };
+     *
+     * var func = _.bindKey(object, 'greet', 'hi');
+     * func();
+     * // => 'hi moe'
+     *
+     * object.greet = function(greeting) {
+     *   return greeting + ', ' + this.name + '!';
+     * };
+     *
+     * func();
+     * // => 'hi, moe!'
+     */
+    function bindKey(object, key) {
+      return arguments.length > 2
+        ? createBound(key, 19, nativeSlice.call(arguments, 2), null, object)
+        : createBound(key, 3, null, null, object);
+    }
+
+    /**
+     * Creates a function that is the composition of the provided functions,
+     * where each function consumes the return value of the function that follows.
+     * For example, composing the functions `f()`, `g()`, and `h()` produces `f(g(h()))`.
+     * Each function is executed with the `this` binding of the composed function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {...Function} [func] Functions to compose.
+     * @returns {Function} Returns the new composed function.
+     * @example
+     *
+     * var realNameMap = {
+     *   'curly': 'jerome'
+     * };
+     *
+     * var format = function(name) {
+     *   name = realNameMap[name.toLowerCase()] || name;
+     *   return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+     * };
+     *
+     * var greet = function(formatted) {
+     *   return 'Hiya ' + formatted + '!';
+     * };
+     *
+     * var welcome = _.compose(greet, format);
+     * welcome('curly');
+     * // => 'Hiya Jerome!'
+     */
+    function compose() {
+      var funcs = arguments,
+          length = funcs.length;
+
+      while (length--) {
+        if (!isFunction(funcs[length])) {
+          throw new TypeError;
+        }
+      }
+      return function() {
+        var args = arguments,
+            length = funcs.length;
+
+        while (length--) {
+          args = [funcs[length].apply(this, args)];
+        }
+        return args[0];
+      };
+    }
+
+    /**
+     * Produces a callback bound to an optional `thisArg`. If `func` is a property
+     * name the created callback will return the property value for a given element.
+     * If `func` is an object the created callback will return `true` for elements
+     * that contain the equivalent object properties, otherwise it will return `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {*} [func=identity] The value to convert to a callback.
+     * @param {*} [thisArg] The `this` binding of the created callback.
+     * @param {number} [argCount] The number of arguments the callback accepts.
+     * @returns {Function} Returns a callback function.
+     * @example
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * // wrap to create custom callback shorthands
+     * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
+     *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
+     *   return !match ? func(callback, thisArg) : function(object) {
+     *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
+     *   };
+     * });
+     *
+     * _.filter(stooges, 'age__gt45');
+     * // => [{ 'name': 'larry', 'age': 50 }]
+     */
+    function createCallback(func, thisArg, argCount) {
+      var type = typeof func;
+      if (func == null || type == 'function') {
+        return baseCreateCallback(func, thisArg, argCount);
+      }
+      // handle "_.pluck" style callback shorthands
+      if (type != 'object') {
+        return function(object) {
+          return object[func];
+        };
+      }
+      var props = keys(func),
+          key = props[0],
+          a = func[key];
+
+      // handle "_.where" style callback shorthands
+      if (props.length == 1 && a === a && !isObject(a)) {
+        // fast path the common case of providing an object with a single
+        // property containing a primitive value
+        return function(object) {
+          var b = object[key];
+          return a === b && (a !== 0 || (1 / a == 1 / b));
+        };
+      }
+      return function(object) {
+        var length = props.length,
+            result = false;
+
+        while (length--) {
+          if (!(result = baseIsEqual(object[props[length]], func[props[length]], null, true))) {
+            break;
+          }
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Creates a function which accepts one or more arguments of `func` that when
+     * invoked either executes `func` returning its result, if all `func` arguments
+     * have been provided, or returns a function that accepts one or more of the
+     * remaining `func` arguments, and so on. The arity of `func` can be specified
+     * if `func.length` is not sufficient.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to curry.
+     * @param {number} [arity=func.length] The arity of `func`.
+     * @returns {Function} Returns the new curried function.
+     * @example
+     *
+     * var curried = _.curry(function(a, b, c) {
+     *   console.log(a + b + c);
+     * });
+     *
+     * curried(1)(2)(3);
+     * // => 6
+     *
+     * curried(1, 2)(3);
+     * // => 6
+     *
+     * curried(1, 2, 3);
+     * // => 6
+     */
+    function curry(func, arity) {
+      arity = typeof arity == 'number' ? arity : (+arity || func.length);
+      return createBound(func, 4, null, null, null, arity);
+    }
+
+    /**
+     * Creates a function that will delay the execution of `func` until after
+     * `wait` milliseconds have elapsed since the last time it was invoked.
+     * Provide an options object to indicate that `func` should be invoked on
+     * the leading and/or trailing edge of the `wait` timeout. Subsequent calls
+     * to the debounced function will return the result of the last `func` call.
+     *
+     * Note: If `leading` and `trailing` options are `true` `func` will be called
+     * on the trailing edge of the timeout only if the the debounced function is
+     * invoked more than once during the `wait` timeout.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to debounce.
+     * @param {number} wait The number of milliseconds to delay.
+     * @param {Object} [options] The options object.
+     * @param {boolean} [options.leading=false] Specify execution on the leading edge of the timeout.
+     * @param {number} [options.maxWait] The maximum time `func` is allowed to be delayed before it's called.
+     * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
+     * @returns {Function} Returns the new debounced function.
+     * @example
+     *
+     * // avoid costly calculations while the window size is in flux
+     * var lazyLayout = _.debounce(calculateLayout, 150);
+     * jQuery(window).on('resize', lazyLayout);
+     *
+     * // execute `sendMail` when the click event is fired, debouncing subsequent calls
+     * jQuery('#postbox').on('click', _.debounce(sendMail, 300, {
+     *   'leading': true,
+     *   'trailing': false
+     * });
+     *
+     * // ensure `batchLog` is executed once after 1 second of debounced calls
+     * var source = new EventSource('/stream');
+     * source.addEventListener('message', _.debounce(batchLog, 250, {
+     *   'maxWait': 1000
+     * }, false);
+     */
+    function debounce(func, wait, options) {
+      var args,
+          maxTimeoutId,
+          result,
+          stamp,
+          thisArg,
+          timeoutId,
+          trailingCall,
+          lastCalled = 0,
+          maxWait = false,
+          trailing = true;
+
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      wait = nativeMax(0, wait) || 0;
+      if (options === true) {
+        var leading = true;
+        trailing = false;
+      } else if (isObject(options)) {
+        leading = options.leading;
+        maxWait = 'maxWait' in options && (nativeMax(wait, options.maxWait) || 0);
+        trailing = 'trailing' in options ? options.trailing : trailing;
+      }
+      var delayed = function() {
+        var remaining = wait - (now() - stamp);
+        if (remaining <= 0) {
+          if (maxTimeoutId) {
+            clearTimeout(maxTimeoutId);
+          }
+          var isCalled = trailingCall;
+          maxTimeoutId = timeoutId = trailingCall = undefined;
+          if (isCalled) {
+            lastCalled = now();
+            result = func.apply(thisArg, args);
+          }
+        } else {
+          timeoutId = setTimeout(delayed, remaining);
+        }
+      };
+
+      var maxDelayed = function() {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        maxTimeoutId = timeoutId = trailingCall = undefined;
+        if (trailing || (maxWait !== wait)) {
+          lastCalled = now();
+          result = func.apply(thisArg, args);
+        }
+      };
+
+      return function() {
+        args = arguments;
+        stamp = now();
+        thisArg = this;
+        trailingCall = trailing && (timeoutId || !leading);
+
+        if (maxWait === false) {
+          var leadingCall = leading && !timeoutId;
+        } else {
+          if (!maxTimeoutId && !leading) {
+            lastCalled = stamp;
+          }
+          var remaining = maxWait - (stamp - lastCalled);
+          if (remaining <= 0) {
+            if (maxTimeoutId) {
+              maxTimeoutId = clearTimeout(maxTimeoutId);
+            }
+            lastCalled = stamp;
+            result = func.apply(thisArg, args);
+          }
+          else if (!maxTimeoutId) {
+            maxTimeoutId = setTimeout(maxDelayed, remaining);
+          }
+        }
+        if (!timeoutId && wait !== maxWait) {
+          timeoutId = setTimeout(delayed, wait);
+        }
+        if (leadingCall) {
+          result = func.apply(thisArg, args);
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Defers executing the `func` function until the current call stack has cleared.
+     * Additional arguments will be provided to `func` when it is invoked.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to defer.
+     * @param {...*} [arg] Arguments to invoke the function with.
+     * @returns {number} Returns the timer id.
+     * @example
+     *
+     * _.defer(function() { console.log('deferred'); });
+     * // returns from the function before 'deferred' is logged
+     */
+    function defer(func) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      var args = nativeSlice.call(arguments, 1);
+      return setTimeout(function() { func.apply(undefined, args); }, 1);
+    }
+    // use `setImmediate` if available in Node.js
+    if (isV8 && moduleExports && typeof setImmediate == 'function') {
+      defer = function(func) {
+        if (!isFunction(func)) {
+          throw new TypeError;
+        }
+        return setImmediate.apply(context, arguments);
+      };
+    }
+
+    /**
+     * Executes the `func` function after `wait` milliseconds. Additional arguments
+     * will be provided to `func` when it is invoked.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to delay.
+     * @param {number} wait The number of milliseconds to delay execution.
+     * @param {...*} [arg] Arguments to invoke the function with.
+     * @returns {number} Returns the timer id.
+     * @example
+     *
+     * var log = _.bind(console.log, console);
+     * _.delay(log, 1000, 'logged later');
+     * // => 'logged later' (Appears after one second.)
+     */
+    function delay(func, wait) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      var args = nativeSlice.call(arguments, 2);
+      return setTimeout(function() { func.apply(undefined, args); }, wait);
+    }
+
+    /**
+     * Creates a function that memoizes the result of `func`. If `resolver` is
+     * provided it will be used to determine the cache key for storing the result
+     * based on the arguments provided to the memoized function. By default, the
+     * first argument provided to the memoized function is used as the cache key.
+     * The `func` is executed with the `this` binding of the memoized function.
+     * The result cache is exposed as the `cache` property on the memoized function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to have its output memoized.
+     * @param {Function} [resolver] A function used to resolve the cache key.
+     * @returns {Function} Returns the new memoizing function.
+     * @example
+     *
+     * var fibonacci = _.memoize(function(n) {
+     *   return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+     * });
+     *
+     * var data = {
+     *   'moe': { 'name': 'moe', 'age': 40 },
+     *   'curly': { 'name': 'curly', 'age': 60 }
+     * };
+     *
+     * // modifying the result cache
+     * var stooge = _.memoize(function(name) { return data[name]; }, _.identity);
+     * stooge('curly');
+     * // => { 'name': 'curly', 'age': 60 }
+     *
+     * stooge.cache.curly.name = 'jerome';
+     * stooge('curly');
+     * // => { 'name': 'jerome', 'age': 60 }
+     */
+    function memoize(func, resolver) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      var memoized = function() {
+        var cache = memoized.cache,
+            key = resolver ? resolver.apply(this, arguments) : keyPrefix + arguments[0];
+
+        return hasOwnProperty.call(cache, key)
+          ? cache[key]
+          : (cache[key] = func.apply(this, arguments));
+      }
+      memoized.cache = {};
+      return memoized;
+    }
+
+    /**
+     * Creates a function that is restricted to execute `func` once. Repeat calls to
+     * the function will return the value of the first call. The `func` is executed
+     * with the `this` binding of the created function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new restricted function.
+     * @example
+     *
+     * var initialize = _.once(createApplication);
+     * initialize();
+     * initialize();
+     * // `initialize` executes `createApplication` once
+     */
+    function once(func) {
+      var ran,
+          result;
+
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      return function() {
+        if (ran) {
+          return result;
+        }
+        ran = true;
+        result = func.apply(this, arguments);
+
+        // clear the `func` variable so the function may be garbage collected
+        func = null;
+        return result;
+      };
+    }
+
+    /**
+     * Creates a function that, when called, invokes `func` with any additional
+     * `partial` arguments prepended to those provided to the new function. This
+     * method is similar to `_.bind` except it does **not** alter the `this` binding.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to partially apply arguments to.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new partially applied function.
+     * @example
+     *
+     * var greet = function(greeting, name) { return greeting + ' ' + name; };
+     * var hi = _.partial(greet, 'hi');
+     * hi('moe');
+     * // => 'hi moe'
+     */
+    function partial(func) {
+      return createBound(func, 16, nativeSlice.call(arguments, 1));
+    }
+
+    /**
+     * This method is like `_.partial` except that `partial` arguments are
+     * appended to those provided to the new function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to partially apply arguments to.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new partially applied function.
+     * @example
+     *
+     * var defaultsDeep = _.partialRight(_.merge, _.defaults);
+     *
+     * var options = {
+     *   'variable': 'data',
+     *   'imports': { 'jq': $ }
+     * };
+     *
+     * defaultsDeep(options, _.templateSettings);
+     *
+     * options.variable
+     * // => 'data'
+     *
+     * options.imports
+     * // => { '_': _, 'jq': $ }
+     */
+    function partialRight(func) {
+      return createBound(func, 32, null, nativeSlice.call(arguments, 1));
+    }
+
+    /**
+     * Creates a function that, when executed, will only call the `func` function
+     * at most once per every `wait` milliseconds. Provide an options object to
+     * indicate that `func` should be invoked on the leading and/or trailing edge
+     * of the `wait` timeout. Subsequent calls to the throttled function will
+     * return the result of the last `func` call.
+     *
+     * Note: If `leading` and `trailing` options are `true` `func` will be called
+     * on the trailing edge of the timeout only if the the throttled function is
+     * invoked more than once during the `wait` timeout.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to throttle.
+     * @param {number} wait The number of milliseconds to throttle executions to.
+     * @param {Object} [options] The options object.
+     * @param {boolean} [options.leading=true] Specify execution on the leading edge of the timeout.
+     * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
+     * @returns {Function} Returns the new throttled function.
+     * @example
+     *
+     * // avoid excessively updating the position while scrolling
+     * var throttled = _.throttle(updatePosition, 100);
+     * jQuery(window).on('scroll', throttled);
+     *
+     * // execute `renewToken` when the click event is fired, but not more than once every 5 minutes
+     * jQuery('.interactive').on('click', _.throttle(renewToken, 300000, {
+     *   'trailing': false
+     * }));
+     */
+    function throttle(func, wait, options) {
+      var leading = true,
+          trailing = true;
+
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      if (options === false) {
+        leading = false;
+      } else if (isObject(options)) {
+        leading = 'leading' in options ? options.leading : leading;
+        trailing = 'trailing' in options ? options.trailing : trailing;
+      }
+      debounceOptions.leading = leading;
+      debounceOptions.maxWait = wait;
+      debounceOptions.trailing = trailing;
+
+      var result = debounce(func, wait, debounceOptions);
+      return result;
+    }
+
+    /**
+     * Creates a function that provides `value` to the wrapper function as its
+     * first argument. Additional arguments provided to the function are appended
+     * to those provided to the wrapper function. The wrapper is executed with
+     * the `this` binding of the created function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {*} value The value to wrap.
+     * @param {Function} wrapper The wrapper function.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var hello = function(name) { return 'hello ' + name; };
+     * hello = _.wrap(hello, function(func) {
+     *   return 'before, ' + func('moe') + ', after';
+     * });
+     * hello();
+     * // => 'before, hello moe, after'
+     */
+    function wrap(value, wrapper) {
+      if (!isFunction(wrapper)) {
+        throw new TypeError;
+      }
+      return function() {
+        var args = [value];
+        push.apply(args, arguments);
+        return wrapper.apply(this, args);
+      };
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Converts the characters `&`, `<`, `>`, `"`, and `'` in `string` to their
+     * corresponding HTML entities.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} string The string to escape.
+     * @returns {string} Returns the escaped string.
+     * @example
+     *
+     * _.escape('Moe, Larry & Curly');
+     * // => 'Moe, Larry &amp; Curly'
+     */
+    function escape(string) {
+      return string == null ? '' : String(string).replace(reUnescapedHtml, escapeHtmlChar);
+    }
+
+    /**
+     * This method returns the first argument provided to it.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {*} value Any value.
+     * @returns {*} Returns `value`.
+     * @example
+     *
+     * var moe = { 'name': 'moe' };
+     * moe === _.identity(moe);
+     * // => true
+     */
+    function identity(value) {
+      return value;
+    }
+
+    /**
+     * Adds function properties of a source object to the `lodash` function and
+     * chainable wrapper.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {Object} object The object of function properties to add to `lodash`.
+     * @param {Object} object The object of function properties to add to `lodash`.
+     * @example
+     *
+     * _.mixin({
+     *   'capitalize': function(string) {
+     *     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+     *   }
+     * });
+     *
+     * _.capitalize('moe');
+     * // => 'Moe'
+     *
+     * _('moe').capitalize();
+     * // => 'Moe'
+     */
+    function mixin(object, source) {
+      var ctor = object,
+          isFunc = !source || isFunction(ctor);
+
+      if (!source) {
+        ctor = lodashWrapper;
+        source = object;
+        object = lodash;
+      }
+      forEach(functions(source), function(methodName) {
+        var func = object[methodName] = source[methodName];
+        if (isFunc) {
+          ctor.prototype[methodName] = function() {
+            var value = this.__wrapped__,
+                args = [value];
+
+            push.apply(args, arguments);
+            var result = func.apply(object, args);
+            if (value && typeof value == 'object' && value === result) {
+              return this;
+            }
+            result = new ctor(result);
+            result.__chain__ = this.__chain__;
+            return result;
+          };
+        }
+      });
+    }
+
+    /**
+     * Reverts the '_' variable to its previous value and returns a reference to
+     * the `lodash` function.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @returns {Function} Returns the `lodash` function.
+     * @example
+     *
+     * var lodash = _.noConflict();
+     */
+    function noConflict() {
+      context._ = oldDash;
+      return this;
+    }
+
+    /**
+     * Converts the given value into an integer of the specified radix.
+     * If `radix` is `undefined` or `0` a `radix` of `10` is used unless the
+     * `value` is a hexadecimal, in which case a `radix` of `16` is used.
+     *
+     * Note: This method avoids differences in native ES3 and ES5 `parseInt`
+     * implementations. See http://es5.github.io/#E.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} value The value to parse.
+     * @param {number} [radix] The radix used to interpret the value to parse.
+     * @returns {number} Returns the new integer value.
+     * @example
+     *
+     * _.parseInt('08');
+     * // => 8
+     */
+    var parseInt = nativeParseInt(whitespace + '08') == 8 ? nativeParseInt : function(value, radix) {
+      // Firefox and Opera still follow the ES3 specified implementation of `parseInt`
+      return nativeParseInt(isString(value) ? value.replace(reLeadingSpacesAndZeros, '') : value, radix || 0);
+    };
+
+    /**
+     * Produces a random number between `min` and `max` (inclusive). If only one
+     * argument is provided a number between `0` and the given number will be
+     * returned. If `floating` is truey or either `min` or `max` are floats a
+     * floating-point number will be returned instead of an integer.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {number} [min=0] The minimum possible value.
+     * @param {number} [max=1] The maximum possible value.
+     * @param {boolean} [floating=false] Specify returning a floating-point number.
+     * @returns {number} Returns a random number.
+     * @example
+     *
+     * _.random(0, 5);
+     * // => an integer between 0 and 5
+     *
+     * _.random(5);
+     * // => also an integer between 0 and 5
+     *
+     * _.random(5, true);
+     * // => a floating-point number between 0 and 5
+     *
+     * _.random(1.2, 5.2);
+     * // => a floating-point number between 1.2 and 5.2
+     */
+    function random(min, max, floating) {
+      var noMin = min == null,
+          noMax = max == null;
+
+      if (floating == null) {
+        if (typeof min == 'boolean' && noMax) {
+          floating = min;
+          min = 1;
+        }
+        else if (!noMax && typeof max == 'boolean') {
+          floating = max;
+          noMax = true;
+        }
+      }
+      if (noMin && noMax) {
+        max = 1;
+      }
+      min = +min || 0;
+      if (noMax) {
+        max = min;
+        min = 0;
+      } else {
+        max = +max || 0;
+      }
+      var rand = nativeRandom();
+      return (floating || min % 1 || max % 1)
+        ? nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1)))), max)
+        : min + floor(rand * (max - min + 1));
+    }
+
+    /**
+     * Resolves the value of `property` on `object`. If `property` is a function
+     * it will be invoked with the `this` binding of `object` and its result returned,
+     * else the property value is returned. If `object` is falsey then `undefined`
+     * is returned.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {Object} object The object to inspect.
+     * @param {string} property The property to get the value of.
+     * @returns {*} Returns the resolved value.
+     * @example
+     *
+     * var object = {
+     *   'cheese': 'crumpets',
+     *   'stuff': function() {
+     *     return 'nonsense';
+     *   }
+     * };
+     *
+     * _.result(object, 'cheese');
+     * // => 'crumpets'
+     *
+     * _.result(object, 'stuff');
+     * // => 'nonsense'
+     */
+    function result(object, property) {
+      if (object) {
+        var value = object[property];
+        return isFunction(value) ? object[property]() : value;
+      }
+    }
+
+    /**
+     * A micro-templating method that handles arbitrary delimiters, preserves
+     * whitespace, and correctly escapes quotes within interpolated code.
+     *
+     * Note: In the development build, `_.template` utilizes sourceURLs for easier
+     * debugging. See http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
+     *
+     * For more information on precompiling templates see:
+     * http://lodash.com/#custom-builds
+     *
+     * For more information on Chrome extension sandboxes see:
+     * http://developer.chrome.com/stable/extensions/sandboxingEval.html
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} text The template text.
+     * @param {Object} data The data object used to populate the text.
+     * @param {Object} [options] The options object.
+     * @param {RegExp} [options.escape] The "escape" delimiter.
+     * @param {RegExp} [options.evaluate] The "evaluate" delimiter.
+     * @param {Object} [options.imports] An object to import into the template as local variables.
+     * @param {RegExp} [options.interpolate] The "interpolate" delimiter.
+     * @param {string} [sourceURL] The sourceURL of the template's compiled source.
+     * @param {string} [variable] The data object variable name.
+     * @returns {Function|string} Returns a compiled function when no `data` object
+     *  is given, else it returns the interpolated text.
+     * @example
+     *
+     * // using the "interpolate" delimiter to create a compiled template
+     * var compiled = _.template('hello <%= name %>');
+     * compiled({ 'name': 'moe' });
+     * // => 'hello moe'
+     *
+     * // using the "escape" delimiter to escape HTML in data property values
+     * _.template('<b><%- value %></b>', { 'value': '<script>' });
+     * // => '<b>&lt;script&gt;</b>'
+     *
+     * // using the "evaluate" delimiter to generate HTML
+     * var list = '<% _.forEach(people, function(name) { %><li><%- name %></li><% }); %>';
+     * _.template(list, { 'people': ['moe', 'larry'] });
+     * // => '<li>moe</li><li>larry</li>'
+     *
+     * // using the ES6 delimiter as an alternative to the default "interpolate" delimiter
+     * _.template('hello ${ name }', { 'name': 'curly' });
+     * // => 'hello curly'
+     *
+     * // using the internal `print` function in "evaluate" delimiters
+     * _.template('<% print("hello " + name); %>!', { 'name': 'larry' });
+     * // => 'hello larry!'
+     *
+     * // using a custom template delimiters
+     * _.templateSettings = {
+     *   'interpolate': /{{([\s\S]+?)}}/g
+     * };
+     *
+     * _.template('hello {{ name }}!', { 'name': 'mustache' });
+     * // => 'hello mustache!'
+     *
+     * // using the `imports` option to import jQuery
+     * var list = '<% $.each(people, function(name) { %><li><%- name %></li><% }); %>';
+     * _.template(list, { 'people': ['moe', 'larry'] }, { 'imports': { '$': jQuery } });
+     * // => '<li>moe</li><li>larry</li>'
+     *
+     * // using the `sourceURL` option to specify a custom sourceURL for the template
+     * var compiled = _.template('hello <%= name %>', null, { 'sourceURL': '/basic/greeting.jst' });
+     * compiled(data);
+     * // => find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector
+     *
+     * // using the `variable` option to ensure a with-statement isn't used in the compiled template
+     * var compiled = _.template('hi <%= data.name %>!', null, { 'variable': 'data' });
+     * compiled.source;
+     * // => function(data) {
+     *   var __t, __p = '', __e = _.escape;
+     *   __p += 'hi ' + ((__t = ( data.name )) == null ? '' : __t) + '!';
+     *   return __p;
+     * }
+     *
+     * // using the `source` property to inline compiled templates for meaningful
+     * // line numbers in error messages and a stack trace
+     * fs.writeFileSync(path.join(cwd, 'jst.js'), '\
+     *   var JST = {\
+     *     "main": ' + _.template(mainText).source + '\
+     *   };\
+     * ');
+     */
+    function template(text, data, options) {
+      // based on John Resig's `tmpl` implementation
+      // http://ejohn.org/blog/javascript-micro-templating/
+      // and Laura Doktorova's doT.js
+      // https://github.com/olado/doT
+      var settings = lodash.templateSettings;
+      text || (text = '');
+
+      // avoid missing dependencies when `iteratorTemplate` is not defined
+      options = defaults({}, options, settings);
+
+      var imports = defaults({}, options.imports, settings.imports),
+          importsKeys = keys(imports),
+          importsValues = values(imports);
+
+      var isEvaluating,
+          index = 0,
+          interpolate = options.interpolate || reNoMatch,
+          source = "__p += '";
+
+      // compile the regexp to match each delimiter
+      var reDelimiters = RegExp(
+        (options.escape || reNoMatch).source + '|' +
+        interpolate.source + '|' +
+        (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
+        (options.evaluate || reNoMatch).source + '|$'
+      , 'g');
+
+      text.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+        interpolateValue || (interpolateValue = esTemplateValue);
+
+        // escape characters that cannot be included in string literals
+        source += text.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+
+        // replace delimiters with snippets
+        if (escapeValue) {
+          source += "' +\n__e(" + escapeValue + ") +\n'";
+        }
+        if (evaluateValue) {
+          isEvaluating = true;
+          source += "';\n" + evaluateValue + ";\n__p += '";
+        }
+        if (interpolateValue) {
+          source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+        }
+        index = offset + match.length;
+
+        // the JS engine embedded in Adobe products requires returning the `match`
+        // string in order to produce the correct `offset` value
+        return match;
+      });
+
+      source += "';\n";
+
+      // if `variable` is not specified, wrap a with-statement around the generated
+      // code to add the data object to the top of the scope chain
+      var variable = options.variable,
+          hasVariable = variable;
+
+      if (!hasVariable) {
+        variable = 'obj';
+        source = 'with (' + variable + ') {\n' + source + '\n}\n';
+      }
+      // cleanup code by stripping empty strings
+      source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
+        .replace(reEmptyStringMiddle, '$1')
+        .replace(reEmptyStringTrailing, '$1;');
+
+      // frame code as the function body
+      source = 'function(' + variable + ') {\n' +
+        (hasVariable ? '' : variable + ' || (' + variable + ' = {});\n') +
+        "var __t, __p = '', __e = _.escape" +
+        (isEvaluating
+          ? ', __j = Array.prototype.join;\n' +
+            "function print() { __p += __j.call(arguments, '') }\n"
+          : ';\n'
+        ) +
+        source +
+        'return __p\n}';
+
+      // Use a sourceURL for easier debugging.
+      // http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
+      var sourceURL = '\n/*\n//# sourceURL=' + (options.sourceURL || '/lodash/template/source[' + (templateCounter++) + ']') + '\n*/';
+
+      try {
+        var result = Function(importsKeys, 'return ' + source + sourceURL).apply(undefined, importsValues);
+      } catch(e) {
+        e.source = source;
+        throw e;
+      }
+      if (data) {
+        return result(data);
+      }
+      // provide the compiled function's source by its `toString` method, in
+      // supported environments, or the `source` property as a convenience for
+      // inlining compiled templates during the build process
+      result.source = source;
+      return result;
+    }
+
+    /**
+     * Executes the callback `n` times, returning an array of the results
+     * of each callback execution. The callback is bound to `thisArg` and invoked
+     * with one argument; (index).
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {number} n The number of times to execute the callback.
+     * @param {Function} callback The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns an array of the results of each `callback` execution.
+     * @example
+     *
+     * var diceRolls = _.times(3, _.partial(_.random, 1, 6));
+     * // => [3, 6, 4]
+     *
+     * _.times(3, function(n) { mage.castSpell(n); });
+     * // => calls `mage.castSpell(n)` three times, passing `n` of `0`, `1`, and `2` respectively
+     *
+     * _.times(3, function(n) { this.cast(n); }, mage);
+     * // => also calls `mage.castSpell(n)` three times
+     */
+    function times(n, callback, thisArg) {
+      n = (n = +n) > -1 ? n : 0;
+      var index = -1,
+          result = Array(n);
+
+      callback = baseCreateCallback(callback, thisArg, 1);
+      while (++index < n) {
+        result[index] = callback(index);
+      }
+      return result;
+    }
+
+    /**
+     * The inverse of `_.escape` this method converts the HTML entities
+     * `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` in `string` to their
+     * corresponding characters.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} string The string to unescape.
+     * @returns {string} Returns the unescaped string.
+     * @example
+     *
+     * _.unescape('Moe, Larry &amp; Curly');
+     * // => 'Moe, Larry & Curly'
+     */
+    function unescape(string) {
+      return string == null ? '' : String(string).replace(reEscapedHtml, unescapeHtmlChar);
+    }
+
+    /**
+     * Generates a unique ID. If `prefix` is provided the ID will be appended to it.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} [prefix] The value to prefix the ID with.
+     * @returns {string} Returns the unique ID.
+     * @example
+     *
+     * _.uniqueId('contact_');
+     * // => 'contact_104'
+     *
+     * _.uniqueId();
+     * // => '105'
+     */
+    function uniqueId(prefix) {
+      var id = ++idCounter;
+      return String(prefix == null ? '' : prefix) + id;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a `lodash` object that wraps the given value with explicit
+     * method chaining enabled.
+     *
+     * @static
+     * @memberOf _
+     * @category Chaining
+     * @param {*} value The value to wrap.
+     * @returns {Object} Returns the wrapper object.
+     * @example
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 },
+     *   { 'name': 'curly', 'age': 60 }
+     * ];
+     *
+     * var youngest = _.chain(stooges)
+     *     .sortBy('age')
+     *     .map(function(stooge) { return stooge.name + ' is ' + stooge.age; })
+     *     .first()
+     *     .value();
+     * // => 'moe is 40'
+     */
+    function chain(value) {
+      value = new lodashWrapper(value);
+      value.__chain__ = true;
+      return value;
+    }
+
+    /**
+     * Invokes `interceptor` with the `value` as the first argument and then
+     * returns `value`. The purpose of this method is to "tap into" a method
+     * chain in order to perform operations on intermediate results within
+     * the chain.
+     *
+     * @static
+     * @memberOf _
+     * @category Chaining
+     * @param {*} value The value to provide to `interceptor`.
+     * @param {Function} interceptor The function to invoke.
+     * @returns {*} Returns `value`.
+     * @example
+     *
+     * _([1, 2, 3, 4])
+     *  .filter(function(num) { return num % 2 == 0; })
+     *  .tap(function(array) { console.log(array); })
+     *  .map(function(num) { return num * num; })
+     *  .value();
+     * // => // [2, 4] (logged)
+     * // => [4, 16]
+     */
+    function tap(value, interceptor) {
+      interceptor(value);
+      return value;
+    }
+
+    /**
+     * Enables explicit method chaining on the wrapper object.
+     *
+     * @name chain
+     * @memberOf _
+     * @category Chaining
+     * @returns {*} Returns the wrapper object.
+     * @example
+     *
+     * var stooges = [
+     *   { 'name': 'moe', 'age': 40 },
+     *   { 'name': 'larry', 'age': 50 }
+     * ];
+     *
+     * // without explicit chaining
+     * _(stooges).first();
+     * // => { 'name': 'moe', 'age': 40 }
+     *
+     * // with explicit chaining
+     * _(stooges).chain()
+     *   .first()
+     *   .pick('age')
+     *   .value()
+     * // => { 'age': 40 }
+     */
+    function wrapperChain() {
+      this.__chain__ = true;
+      return this;
+    }
+
+    /**
+     * Produces the `toString` result of the wrapped value.
+     *
+     * @name toString
+     * @memberOf _
+     * @category Chaining
+     * @returns {string} Returns the string result.
+     * @example
+     *
+     * _([1, 2, 3]).toString();
+     * // => '1,2,3'
+     */
+    function wrapperToString() {
+      return String(this.__wrapped__);
+    }
+
+    /**
+     * Extracts the wrapped value.
+     *
+     * @name valueOf
+     * @memberOf _
+     * @alias value
+     * @category Chaining
+     * @returns {*} Returns the wrapped value.
+     * @example
+     *
+     * _([1, 2, 3]).valueOf();
+     * // => [1, 2, 3]
+     */
+    function wrapperValueOf() {
+      return this.__wrapped__;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    // add functions that return wrapped values when chaining
+    lodash.after = after;
+    lodash.assign = assign;
+    lodash.at = at;
+    lodash.bind = bind;
+    lodash.bindAll = bindAll;
+    lodash.bindKey = bindKey;
+    lodash.chain = chain;
+    lodash.compact = compact;
+    lodash.compose = compose;
+    lodash.countBy = countBy;
+    lodash.createCallback = createCallback;
+    lodash.curry = curry;
+    lodash.debounce = debounce;
+    lodash.defaults = defaults;
+    lodash.defer = defer;
+    lodash.delay = delay;
+    lodash.difference = difference;
+    lodash.filter = filter;
+    lodash.flatten = flatten;
+    lodash.forEach = forEach;
+    lodash.forEachRight = forEachRight;
+    lodash.forIn = forIn;
+    lodash.forInRight = forInRight;
+    lodash.forOwn = forOwn;
+    lodash.forOwnRight = forOwnRight;
+    lodash.functions = functions;
+    lodash.groupBy = groupBy;
+    lodash.indexBy = indexBy;
+    lodash.initial = initial;
+    lodash.intersection = intersection;
+    lodash.invert = invert;
+    lodash.invoke = invoke;
+    lodash.keys = keys;
+    lodash.map = map;
+    lodash.max = max;
+    lodash.memoize = memoize;
+    lodash.merge = merge;
+    lodash.min = min;
+    lodash.omit = omit;
+    lodash.once = once;
+    lodash.pairs = pairs;
+    lodash.partial = partial;
+    lodash.partialRight = partialRight;
+    lodash.pick = pick;
+    lodash.pluck = pluck;
+    lodash.pull = pull;
+    lodash.range = range;
+    lodash.reject = reject;
+    lodash.remove = remove;
+    lodash.rest = rest;
+    lodash.shuffle = shuffle;
+    lodash.sortBy = sortBy;
+    lodash.tap = tap;
+    lodash.throttle = throttle;
+    lodash.times = times;
+    lodash.toArray = toArray;
+    lodash.transform = transform;
+    lodash.union = union;
+    lodash.uniq = uniq;
+    lodash.values = values;
+    lodash.where = where;
+    lodash.without = without;
+    lodash.wrap = wrap;
+    lodash.zip = zip;
+    lodash.zipObject = zipObject;
+
+    // add aliases
+    lodash.collect = map;
+    lodash.drop = rest;
+    lodash.each = forEach;
+    lodash.eachRight = forEachRight;
+    lodash.extend = assign;
+    lodash.methods = functions;
+    lodash.object = zipObject;
+    lodash.select = filter;
+    lodash.tail = rest;
+    lodash.unique = uniq;
+    lodash.unzip = zip;
+
+    // add functions to `lodash.prototype`
+    mixin(lodash);
+
+    /*--------------------------------------------------------------------------*/
+
+    // add functions that return unwrapped values when chaining
+    lodash.clone = clone;
+    lodash.cloneDeep = cloneDeep;
+    lodash.contains = contains;
+    lodash.escape = escape;
+    lodash.every = every;
+    lodash.find = find;
+    lodash.findIndex = findIndex;
+    lodash.findKey = findKey;
+    lodash.findLast = findLast;
+    lodash.findLastIndex = findLastIndex;
+    lodash.findLastKey = findLastKey;
+    lodash.has = has;
+    lodash.identity = identity;
+    lodash.indexOf = indexOf;
+    lodash.isArguments = isArguments;
+    lodash.isArray = isArray;
+    lodash.isBoolean = isBoolean;
+    lodash.isDate = isDate;
+    lodash.isElement = isElement;
+    lodash.isEmpty = isEmpty;
+    lodash.isEqual = isEqual;
+    lodash.isFinite = isFinite;
+    lodash.isFunction = isFunction;
+    lodash.isNaN = isNaN;
+    lodash.isNull = isNull;
+    lodash.isNumber = isNumber;
+    lodash.isObject = isObject;
+    lodash.isPlainObject = isPlainObject;
+    lodash.isRegExp = isRegExp;
+    lodash.isString = isString;
+    lodash.isUndefined = isUndefined;
+    lodash.lastIndexOf = lastIndexOf;
+    lodash.mixin = mixin;
+    lodash.noConflict = noConflict;
+    lodash.parseInt = parseInt;
+    lodash.random = random;
+    lodash.reduce = reduce;
+    lodash.reduceRight = reduceRight;
+    lodash.result = result;
+    lodash.runInContext = runInContext;
+    lodash.size = size;
+    lodash.some = some;
+    lodash.sortedIndex = sortedIndex;
+    lodash.template = template;
+    lodash.unescape = unescape;
+    lodash.uniqueId = uniqueId;
+
+    // add aliases
+    lodash.all = every;
+    lodash.any = some;
+    lodash.detect = find;
+    lodash.findWhere = find;
+    lodash.foldl = reduce;
+    lodash.foldr = reduceRight;
+    lodash.include = contains;
+    lodash.inject = reduce;
+
+    forOwn(lodash, function(func, methodName) {
+      if (!lodash.prototype[methodName]) {
+        lodash.prototype[methodName] = function() {
+          var args = [this.__wrapped__],
+              chainAll = this.__chain__;
+
+          push.apply(args, arguments);
+          var result = func.apply(lodash, args);
+          return chainAll
+            ? new lodashWrapper(result, chainAll)
+            : result;
+        };
+      }
+    });
+
+    /*--------------------------------------------------------------------------*/
+
+    // add functions capable of returning wrapped and unwrapped values when chaining
+    lodash.first = first;
+    lodash.last = last;
+    lodash.sample = sample;
+
+    // add aliases
+    lodash.take = first;
+    lodash.head = first;
+
+    forOwn(lodash, function(func, methodName) {
+      var callbackable = methodName !== 'sample';
+      if (!lodash.prototype[methodName]) {
+        lodash.prototype[methodName]= function(n, guard) {
+          var chainAll = this.__chain__,
+              result = func(this.__wrapped__, n, guard);
+
+          return !chainAll && (n == null || (guard && !(callbackable && typeof n == 'function')))
+            ? result
+            : new lodashWrapper(result, chainAll);
+        };
+      }
+    });
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * The semantic version number.
+     *
+     * @static
+     * @memberOf _
+     * @type string
+     */
+    lodash.VERSION = '2.2.1';
+
+    // add "Chaining" functions to the wrapper
+    lodash.prototype.chain = wrapperChain;
+    lodash.prototype.toString = wrapperToString;
+    lodash.prototype.value = wrapperValueOf;
+    lodash.prototype.valueOf = wrapperValueOf;
+
+    // add `Array` functions that return unwrapped values
+    forEach(['join', 'pop', 'shift'], function(methodName) {
+      var func = arrayRef[methodName];
+      lodash.prototype[methodName] = function() {
+        var chainAll = this.__chain__,
+            result = func.apply(this.__wrapped__, arguments);
+
+        return chainAll
+          ? new lodashWrapper(result, chainAll)
+          : result;
+      };
+    });
+
+    // add `Array` functions that return the wrapped value
+    forEach(['push', 'reverse', 'sort', 'unshift'], function(methodName) {
+      var func = arrayRef[methodName];
+      lodash.prototype[methodName] = function() {
+        func.apply(this.__wrapped__, arguments);
+        return this;
+      };
+    });
+
+    // add `Array` functions that return new wrapped values
+    forEach(['concat', 'slice', 'splice'], function(methodName) {
+      var func = arrayRef[methodName];
+      lodash.prototype[methodName] = function() {
+        return new lodashWrapper(func.apply(this.__wrapped__, arguments), this.__chain__);
+      };
+    });
+
+    return lodash;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  // expose Lo-Dash
+  var _ = runInContext();
+
+  // some AMD build optimizers, like r.js, check for condition patterns like the following:
+  if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+    // Expose Lo-Dash to the global object even when an AMD loader is present in
+    // case Lo-Dash was injected by a third-party script and not intended to be
+    // loaded as a module. The global assignment can be reverted in the Lo-Dash
+    // module by its `noConflict()` method.
+    root._ = _;
+
+    // define as an anonymous module so, through path mapping, it can be
+    // referenced as the "underscore" module
+    define(function() {
+      return _;
+    });
+  }
+  // check for `exports` after `define` in case a build optimizer adds an `exports` object
+  else if (freeExports && freeModule) {
+    // in Node.js or RingoJS
+    if (moduleExports) {
+      (freeModule.exports = _)._ = _;
+    }
+    // in Narwhal or Rhino -require
+    else {
+      freeExports._ = _;
+    }
+  }
+  else {
+    // in a browser or Rhino
+    root._ = _;
+  }
+}.call(this));
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+exports.intFromBoolean = function (b) {
+    return b ? 1 : 0;
+};
+
+exports.booleanFromInt = function (i) {
+    return (i === null) ? false : i > 0;
+};
+},{}],3:[function(require,module,exports){
+/**
+ * Copyright (c) 2010, Jeash contributors.
+ * 
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ *   - Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *   - Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/*
+
+   Contrary to any adobe documentation , points transform with:
+
+
+   [ X'  Y'  ]   =  [ X  Y  1 ] [  a   b ]
+   [  c   d ]
+   [  tx  ty]
+
+
+ */
+
+'use strict';
+
+var core = require('../janicek/core');
+var def = core.def;
+
+
+var matrix = function (inA, inB, inC, inD, inTx, inTy) {
+    
+    var pub = {
+
+        a: def(inA, 1.0),
+        b: def(inB, 0.0),
+        c: def(inC, 0.0),
+        d: def(inD, 1.0),
+        tx: def(inTx, 0.0),
+        ty: def(inTy, 0.0),
+
+        clone: function () { return matrix(pub.a, pub.b, pub.c, pub.d, pub.tx, pub.ty); },
+
+        createGradientBox: function (inWidth, inHeight, rotation, inTx, inTy) {
+            pub.a = inWidth / 1638.4;
+            pub.d = inHeight / 1638.4;
+
+            // rotation is clockwise
+            if (!core.isUndefinedOrNull(rotation) && rotation !== 0.0) {
+                var cos = Math.cos(rotation);
+                var sin = Math.sin(rotation);
+                pub.b = sin * pub.d;
+                pub.c = -sin * pub.a;
+                pub.a *= cos;
+                pub.d *= cos;
+            } else {
+                pub.b = pub.c = 0;
+            }
+
+            pub.tx = !core.isUndefinedOrNull(inTx) ? inTx + inWidth / 2 : inWidth / 2;
+            pub.ty = !core.isUndefinedOrNull(inTy) ? inTy + inHeight / 2 : inHeight / 2;
+        },
+
+        setRotation: function (inTheta, inScale) {
+            var scale = core.isUndefinedOrNull(inScale) ? 1.0 : inScale;
+            pub.a = Math.cos(inTheta) * scale;
+            pub.c = Math.sin(inTheta) * scale;
+            pub.b = -pub.c;
+            pub.d = pub.a;
+        },
+
+        invert: function () {
+            var norm = pub.a * pub.d - pub.b * pub.c;
+            if (norm === 0) {
+                pub.a = pub.b = pub.c = pub.d = 0;
+                pub.tx = -pub.tx;
+                pub.ty = -pub.ty;
+            } else {
+                norm = 1.0 / norm;
+                var a1 = pub.d * norm;
+                pub.d = pub.a * norm;
+                pub.a = a1;
+                pub.b *= -norm;
+                pub.c *= -norm;
+
+                var tx1 = - pub.a * pub.tx - pub.c * pub.ty;
+                pub.ty = - pub.b * pub.tx - pub.d * pub.ty;
+                pub.tx = tx1;
+            }
+            return this;
+        },
+
+        transformPoint: function (inPos) {
+            return {x: inPos.x * pub.a + inPos.y * pub.c + pub.tx, y: inPos.x * pub.b + inPos.y * pub.d + pub.ty };
+        },
+
+        translate: function (inDX, inDY) {
+            pub.tx += inDX;
+            pub.ty += inDY;
+        },
+
+        /*
+           Rotate object "after" other transforms
+
+           [  a  b   0 ][  ma mb  0 ]
+           [  c  d   0 ][  mc md  0 ]
+           [  tx ty  1 ][  mtx mty 1 ]
+
+           ma = md = cos
+           mb = -sin
+           mc = sin
+           mtx = my = 0
+
+         */
+
+        rotate: function (inTheta) {
+            var cos = Math.cos(inTheta);
+            var sin = Math.sin(inTheta);
+
+            var a1 = pub.a * cos - pub.b * sin;
+            pub.b = pub.a * sin + pub.b * cos;
+            pub.a = a1;
+
+            var c1 = pub.c * cos - pub.d * sin;
+            pub.d = pub.c * sin + pub.d * cos;
+            pub.c = c1;
+
+            var tx1 = pub.tx * cos - pub.ty * sin;
+            pub.ty = pub.tx * sin + pub.ty * cos;
+            pub.tx = tx1;
+        },
+
+        /*
+
+           Scale object "after" other transforms
+
+           [  a  b   0 ][  sx  0   0 ]
+           [  c  d   0 ][  0   sy  0 ]
+           [  tx ty  1 ][  0   0   1 ]
+         */
+        scale: function (inSX, inSY) {
+            pub.a *= inSX;
+            pub.b *= inSY;
+
+            pub.c *= inSX;
+            pub.d *= inSY;
+
+            pub.tx *= inSX;
+            pub.ty *= inSY;
+        },
+
+        /*
+
+           A "translate" . concat "rotate" rotates the translation component.
+           ie,
+
+           [X'] = [X][trans][rotate]
+
+
+           Multiply "after" other transforms ...
+
+
+           [  a  b   0 ][  ma mb  0 ]
+           [  c  d   0 ][  mc md  0 ]
+           [  tx ty  1 ][  mtx mty 1 ]
+
+
+         */
+        concat: function (m) {
+            var a1 = pub.a * m.a + pub.b * m.c;
+            pub.b = pub.a * m.b + pub.b * m.d;
+            pub.a = a1;
+
+            var c1 = pub.c * m.a + pub.d * m.c;
+            pub.d = pub.c * m.b + pub.d * m.d;
+            pub.c = c1;
+
+            var tx1 = pub.tx * m.a + pub.ty * m.c + m.tx;
+            pub.ty = pub.tx * m.b + pub.ty * m.d + m.ty;
+            pub.tx = tx1;
+        },
+
+        mult: function (m) {
+            var result = matrix();
+            result.a = pub.a * m.a + pub.b * m.c;
+            result.b = pub.a * m.b + pub.b * m.d;
+            result.c = pub.c * m.a + pub.d * m.c;
+            result.d = pub.c * m.b + pub.d * m.d;
+
+            result.tx = pub.tx * m.a + pub.ty * m.c + m.tx;
+            result.ty = pub.tx * m.b + pub.ty * m.d + m.ty;
+            return result;
+        },
+
+        identity: function () {
+            pub.a = 1;
+            pub.b = 0;
+            pub.c = 0;
+            pub.d = 1;
+            pub.tx = 0;
+            pub.ty = 0;
+        },
+
+        toMozString: function () {
+            var m = 'matrix(';
+            m += pub.a + ', ';
+            m += pub.b + ', ';
+            m += pub.c + ', ';
+            m += pub.d + ', ';
+            m += pub.tx + 'px, ';
+            m += pub.ty + 'px)';
+            return m;
+        },
+
+        toString: function () {
+            var m = 'matrix(';
+            m += pub.a + ', ';
+            m += pub.b + ', ';
+            m += pub.c + ', ';
+            m += pub.d + ', ';
+            m += pub.tx + ', ';
+            m += pub.ty + ')';
+            return m;
+        }
+    };
+
+    return pub;
+};
+
+module.exports = matrix;
+},{"../janicek/core":9}],4:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+
+    /**
+     * The length of the line segment from (0,0) to this point.
+     */
+    distanceFromOrigin: function (p) {
+        return Math.sqrt(p.x * p.x + p.y * p.y);
+    },
+
+    distance: function (a, b) {
+        return Math.sqrt(Math.pow((a.x - b.x), 2) + Math.pow((a.y - b.y), 2));
+    },
+
+    /**
+     * Determines a point between two specified points. The parameter f determines where the new interpolated point is 
+     * located relative to the two end points specified by parameters pt1 and pt2. The closer the value of the parameter f 
+     * is to 1.0, the closer the interpolated point is to the first point (parameter pt1). The closer the value of the
+     * parameter f is to 0, the closer the interpolated point is to the second point (parameter pt2).
+     * @param   pt1 The first point.
+     * @param   pt2 The second point.
+     * @param   f The level of interpolation between the two points. Indicates where the new point will be, along the line between pt1 and pt2. If f=1, pt1 is returned; if f=0, pt2 is returned.
+     * @return The new, interpolated point.
+     */
+    interpolate: function (pt1, pt2, f) {
+        return { x: (pt1.x - pt2.x) * f + pt2.x, y: (pt1.y - pt2.y) * f + pt2.y };
+    },
+
+    /**
+     * Scales the line segment between (0,0) and the current point to a set length.
+     * @param   thickness The scaling value. For example, if the current point is (0,5), and you normalize it to 1, the point returned is at (0,1).
+     */
+    normalize: function (p, thickness) {
+        if (p.x === 0 && p.y === 0) {
+            p.x = thickness;
+        }
+        else {
+            var norm = thickness / Math.sqrt(p.x * p.x + p.y * p.y);
+            p.x *= norm;
+            p.y *= norm;
+        }
+    },
+
+    /**
+     * Adds the coordinates of 2 points to create a new point.
+     */
+    add: function (p1, p2) {
+        return { x: p2.x + p1.x, y: p2.y + p1.y };
+    },
+
+    /**
+     * subtract first point and second point
+     * @param   p0
+     * @param   p1
+     * @return
+     */
+    subtract: function (p0, p1) {
+        return { x: p0.x - p1.x, y: p0.y - p1.y };
+    },
+
+    hash: function (p) {
+        return p.x + ',' + p.y;
+    }
+
+};
+},{}],5:[function(require,module,exports){
+'use strict';
+
+module.exports = function (x, y, width, height) {
+    return {
+        x: x || 0,
+        y: y || 0,
+        width: width || 0,
+        height: height || 0
+    };
+};
+
+module.exports.core = function (rectangle) {
+    return {
+        left: function () { return rectangle.x; },
+        right: function () { return rectangle.x + rectangle.width; },
+        top: function () { return rectangle.y; },
+        bottom: function () { return rectangle.y + rectangle.height; }
+    };
+};
+},{}],6:[function(require,module,exports){
+/**
+ * Copyright (c) 2010, Jeash contributors.
+ * 
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ *   - Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *   - Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+
+// @r587
+
+/* jshint es3:false */
+
+'use strict';
+
+var def = require('../janicek/core').def;
+
+var Vector3D = function (x, y, z, w) {
+    this.w = def(w, 0);
+    this.x = def(x, 0);
+    this.y = def(y, 0);
+    this.z = def(z, 0);
+};
+
+var vector3d = function (x, y, z, w) {
+    return new Vector3D(x, y, z, w);
+};
+
+Vector3D.prototype = {
+
+    getLength: function () {
+        return Math.abs(vector3d.distance(this, vector3d()));
+    },
+    get length() { return this.getLength(); },
+
+    getLengthSquared: function () {
+        return this.length * this.length;
+    },
+    get lengthSquared() { return this.getLengthSquared(); },
+
+    add: function (a) {
+        return vector3d(this.x + a.x, this.y + a.y, this.z + a.z);
+    },
+
+    clone: function () {
+        return vector3d(this.x, this.y, this.z, this.w);
+    },
+
+    crossProduct: function (a) {
+        return vector3d(this.y * a.z - this.z * a.y, this.z * a.x - this.x * a.z, this.x * a.y - this.y * a.x, 1);
+    },
+
+    decrementBy: function (a) {
+        this.x -= a.x;
+        this.y -= a.y;
+        this.z -= a.z;
+    },
+
+    dotProduct: function (a) {
+        return this.x * a.x + this.y * a.y + this.z * a.z;
+    },
+
+    equals: function (toCompare, allFour) {
+        allFour = def(allFour, false);
+        return this.x === toCompare.x && this.y === toCompare.y && this.z === toCompare.z && (!allFour || this.w === toCompare.w);
+    },
+
+    incrementBy: function (a) {
+        this.x += a.x;
+        this.y += a.y;
+        this.z += a.z;
+    },
+
+    nearEquals: function (toCompare, tolerance, allFour) {
+        allFour = def(allFour, false);
+        return Math.abs(this.x - toCompare.x) < tolerance &&
+            Math.abs(this.y - toCompare.y) < tolerance &&
+            Math.abs(this.z - toCompare.z) < tolerance &&
+            (!allFour || Math.abs(this.w - toCompare.w) < tolerance);
+    },
+
+    negate: function () {
+        this.x *= -1;
+        this.y *= -1;
+        this.z *= -1;
+    },
+
+    normalize: function () {
+        var l = this.length;
+        if (l !== 0) {
+            this.x /= l;
+            this.y /= l;
+            this.z /= l;
+        }
+        return l;
+    },
+
+    project: function () {
+        this.x /= this.w;
+        this.y /= this.w;
+        this.z /= this.w;
+    },
+
+    scaleBy: function (s) {
+        this.x *= s;
+        this.y *= s;
+        this.z *= s;
+    },
+
+    subtract: function (a) {
+        return vector3d(this.x - a.x, this.y - a.y, this.z - a.z);
+    },
+
+    toString: function () {
+        return 'Vector3D(' + this.x + ', ' + this.y + ', ' + this.z + ')';
+    }
+};
+
+vector3d.angleBetween = function (a, b) {
+    var a0 = a.clone();
+    a0.normalize();
+    var b0 = b.clone();
+    b0.normalize();
+    return Math.acos(a0.dotProduct(b0));
+};
+
+vector3d.distance = function (pt1, pt2) {
+    var x = pt2.x - pt1.x;
+    var y = pt2.y - pt1.y;
+    var z = pt2.z - pt1.z;
+    
+    return Math.sqrt(x * x + y * y + z * z);
+};
+
+Object.defineProperties(vector3d, {
+    'X_AXIS': {get: function () { return vector3d(1, 0, 0); }}
+});
+
+Object.defineProperties(vector3d, {
+    'Y_AXIS': {get: function () { return vector3d(0, 1, 0); }}
+});
+
+Object.defineProperties(vector3d, {
+    'Z_AXIS': {get: function () { return vector3d(0, 0, 1); }}
+});
+
+module.exports = vector3d;
+},{"../janicek/core":9}],7:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    canvasRender: require('./voronoimap/canvas-render'),
+    islandShape: require('./voronoimap/island-shape'),
+    lava: require('./voronoimap/lava'),
+    map: require('./voronoimap/map'),
+    noisyEdges: require('./voronoimap/noisy-edges'),
+    roads: require('./voronoimap/roads'),
+    style: require('./voronoimap/style'),
+    watersheds: require('./voronoimap/watersheds')
+};
+},{"./voronoimap/canvas-render":34,"./voronoimap/island-shape":38,"./voronoimap/lava":39,"./voronoimap/map":40,"./voronoimap/noisy-edges":41,"./voronoimap/roads":42,"./voronoimap/style":43,"./voronoimap/watersheds":44}],8:[function(require,module,exports){
+/* jshint bitwise:false */
+
+'use strict';
+
+var core = require('./core');
+var _ = require('lodash');
+
+/**
+ * Two dimensional array functions.
+ */
+module.exports = function (array) {
+    array = core.def(array, []);
+    return {
+
+        value: array,
+
+         /**
+         * Get value at index.
+         */
+        get: function (x, y) {
+            if (_(array[y]).isUndefined()) {
+                return null;
+            }
+            return array[y][x];
+        },
+
+        /**
+         * Set value at index.
+         */
+        set: function (x, y, value) {
+            array[y] = core.def(array[y], []);
+            array[y][x] = value;
+            return array;
+        },
+
+        /**
+         * Iterate rows.
+         * @param  {function} returnRow
+         */
+        foreachY: function (returnRow) {
+            _(array).each(function (y) {
+                if (!_(y).isUndefined()) {
+                    returnRow(y);
+                }
+            });
+        },
+
+        /**
+         * Iterate cells.
+         * @param  {function} returnXYAndValue
+         */
+        foreachXY: function (returnXYAndValue) {
+            var yIndex;
+            for (yIndex = 0; yIndex < array.length; yIndex++) {
+                if (!_(array[yIndex]).isUndefined()) {
+                    var xIndex;
+                    for (xIndex = 0; xIndex < array[yIndex].length; xIndex++) {
+                        if (!_(array[yIndex][xIndex]).isUndefined()) {
+                            var value = array[yIndex][xIndex];
+                            if (value !== null) {
+                                returnXYAndValue(xIndex, yIndex, value);
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        /**
+         * Find index of anything in array.
+         * @param  {function} testValue Function should return true for match, else false.
+         */
+        any: function (testValue) {
+            var yIndex;
+            for (yIndex = 0; yIndex < array.length; yIndex++) {
+                if (!_(array[yIndex]).isUndefined()) {
+                    var xIndex;
+                    for (xIndex = 0; xIndex < array[yIndex].length; xIndex++) {
+                        if (!_(array[yIndex][xIndex]).isUndefined()) {
+                            var value = array[yIndex][xIndex];
+                            if (value !== null) {
+                                if (testValue(value)) {
+                                    return {x: xIndex, y: yIndex };
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        },
+
+        /**
+         * Get dimensions of array.
+         * @return {object} x is width, y is height
+         */
+        dimensions: function () {
+            var height = array.length;
+            var width = 0;
+            
+            this.foreachY(function (y) {
+                width = Math.max(width, y.length);
+            });
+
+            return {x: width, y: height};
+        }
+    };
+};
+
+/**
+ * Compute two dimensional indices of a flat index based on array width and block size.
+ * @param {int} index
+ * @param {int} width
+ * @param {int} blockSize
+ */
+module.exports.getIndices = function (index, width, blockSize) {
+    blockSize = blockSize || 1;
+    return {
+        x : (index / blockSize) % width,
+        y : core.toInt((index / blockSize) / width)
+    };
+};
+},{"./core":9,"lodash":1}],9:[function(require,module,exports){
+/* jshint bitwise:false */
+
+'use strict';
+
+var _ = require('lodash');
+
+module.exports = {
+    /**
+     * Return value or default if undefined.
+     * Usefull for assigning argument default values.
+     */
+    def: function (value, defaultValue) {
+        return _.isUndefined(value) ? defaultValue : value;
+    },
+
+    toInt: function (something) {
+        return something | 0;
+    },
+
+    /**
+     * Return first argument that is not undefined and not null.
+     */
+    coalesce: function () {
+        return _.find(arguments, function (arg) {
+            return !_.isNull(arg) && !_.isUndefined(arg);
+        });
+    },
+
+    isUndefinedOrNull: function (thing) {
+        return _.isUndefined(thing) || _.isNull(thing);
+    }
+};
+},{"lodash":1}],10:[function(require,module,exports){
+/**
+ * janicek-core-js
+ * ------------------
+ * My personal collection of JavaScript core libraries.
+ * Copyright (c) 2013 Richard Janicek, http://www.janicek.co
+ * 
+ * The MIT License (MIT) http://www.opensource.org/licenses/mit-license.php
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/* jshint bitwise:false */
+
+'use strict';
+
+/**
+ * Compute string hash using djb2 algorithm.
+ * 
+ * Has a good balance of being extremely fast, while providing a reasonable distribution of hash values.
+ * @see http://www.cse.yorku.ca/~oz/hash.html
+ */
+exports.djb2 = function (string) {
+    var hash = 5381;
+    var i;
+    for (i = 0; i < string.length; i++) {
+        hash = ((hash << 5) + hash) + string.charCodeAt(i);
+    }
+    return hash;
+};
+
+/**
+ * Compute string hash using sdbm algorithm.
+ * 
+ * This algorithm was created for sdbm (a public-domain reimplementation of ndbm) database library.
+ * It was found to do well in scrambling bits, causing better distribution of the keys and fewer splits.
+ * It also happens to be a good general hashing function with good distribution.
+ * @see http://www.cse.yorku.ca/~oz/hash.html
+ */
+exports.sdbm = function (string) {
+    var hash = 0;
+    var i;
+    for (i = 0; i < string.length; i++) {
+        hash = string.charCodeAt(i) + (hash << 6) + (hash << 16) - hash;
+    }
+    return hash;
+};
+
+/**
+ * Java's String.hashCode() method implemented in Haxe.
+ * @see http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/String.html#hashCode%28%29
+ */
+exports.javaHashCode = function (string) {
+    var hash = 0;
+    if (string.length === 0) { return hash; }
+    for (var i = 0; i < string.length; i++) {
+        hash = ((hash << 5) - hash) + string.charCodeAt(i);
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+};
+},{}],11:[function(require,module,exports){
+/* jshint bitwise:false */
+
+'use strict';
+
+var core = require('./core');
+
+exports.MAX_COLOR_COMPONENT = 0xff;
+
+/**
+ * Get red component of Int color.
+ */
+exports.getRedComponent = function (c) {
+    return (c >> 16) & 0xff;
+};
+
+/**
+ * Get green component of Int color.
+ */
+exports.getGreenComponent = function (c) {
+    return (c >> 8) & 0xff;
+};
+
+/**
+ * Get blue component of Int color.
+ */
+exports.getBlueComponent = function (c) {
+    return c & 0xff;
+};
+
+/**
+ * Interpolate color between color0 and color1 using fraction f. When f==0, result is color0. When f==1, result is color1.
+ * @author Amit Patel
+ */
+exports.interpolateColor = function (color0, color1, f) {
+    var r = core.toInt((1 - f) * (color0 >> 16) + f * (color1 >> 16));
+    var g = core.toInt((1 - f) * ((color0 >> 8) & 0xff) + f * ((color1 >> 8) & 0xff));
+    var b = core.toInt((1 - f) * (color0 & 0xff) + f * (color1 & 0xff));
+    if (r > 255) { r = 255; }
+    if (g > 255) { g = 255; }
+    if (b > 255) { b = 255; }
+    return (r << 16) | (g << 8) | b;
+};
+
+/**
+ * Convert a fraction (0.0 - 1.0) to a color value (0 - 0xff).
+ */
+exports.colorFraction = function (fraction) {
+    return core.toInt(exports.MAX_COLOR_COMPONENT * fraction);
+};
+
+/**
+ * Make HTML hex color string from Int value. Example: 0 -> #000000
+ * @param   color Int color value.
+ * @return  HTML color string.
+ */
+exports.intToHexColor = function (color) {
+    return '#' + ('00000' + color.toString(16).toUpperCase()).substr(-6);
+};
+
+/**
+ * Make HTML rgb(r,g,b,a) color string.
+ * @param   red Red channel (0 - 0xff).
+ * @param   green Green channel (0 - 0xff).
+ * @param   blue Blue channel (0 - 0xff).
+ */
+exports.rgb = function (red, green, blue) {
+    return 'rgb(' + red + ',' + green + ',' + blue + ')';
+};
+
+/**
+ * Make HTML rgba(r,g,b,a) color string.
+ * @param   red Red channel (0 - 0xff).
+ * @param   green Green channel (0 - 0xff).
+ * @param   blue Blue channel (0 - 0xff).
+ * @param   alpha Alpha channel (0.0 - 1.0).
+ */
+exports.rgba = function (red, green, blue, alpha) {
+    return 'rgba(' + red + ',' + green + ',' + blue + ',' + alpha + ')';
+};
+
+/**
+ * Make HTML rgb(r,g,b) color string using fractions.
+ * @param   red Red channel (0.0 - 1.0).
+ * @param   green Green channel (0.0 - 1.0).
+ * @param   blue Blue channel (0.0 - 1.0).
+ */
+exports.rgbF = function (red, green, blue) {
+    return 'rgb(' + red * 100 + '%,' + green * 100 + '%,' + blue * 100 + '%)';
+};
+
+/**
+ * Make HTML rgba(r,g,b,a) color string using fractions.
+ * @param   red Red channel (0.0 - 1.0).
+ * @param   green Green channel (0.0 - 1.0).
+ * @param   blue Blue channel (0.0 - 1.0).
+ * @param   alpha Alpha channel (0.0 - 1.0).
+ */
+exports.rgbaF = function (red, green, blue, alpha) {
+    return 'rgba(' + red * 100 + '%,' + green * 100 + '%,' + blue * 100 + '%,' + alpha + ')';
+};
+
+/**
+ * Make HTML hsl(h,s,l) color string.
+ * @param   hue A degree on the color wheel (from 0 to 360) - 0 (or 360) is red, 120 is green, 240 is blue. 
+ * @param   saturation A percentage value; 0.0 means a shade of gray and 1.0 is the full color.
+ * @param   lightness Lightness is also a percentage; 0.0 is black, 1.0 is white.
+ * @return  HTML color string.
+ */
+exports.hsl = function (hue, saturation, lightness) {
+    return 'hsl(' + hue + ',' + saturation * 100 + '%,' + lightness * 100 + '%)';
+};
+
+/**
+ * Make HTML hsla(h,s,l,a) color string.
+ * @param   hue A degree on the color wheel (from 0 to 360) - 0 (or 360) is red, 120 is green, 240 is blue. 
+ * @param   saturation A percentage value; 0.0 means a shade of gray and 1.0 is the full color.
+ * @param   lightness Lightness is also a percentage; 0.0 is black, 1.0 is white.
+ * @param   alpha Number between 0.0 (fully transparent) and 1.0 (fully opaque).
+ * @return  HTML color string.
+ */
+exports.hsla = function (hue, saturation, lightness, alpha) {
+    return 'hsla(' + hue + ',' + saturation * 100 + '%,' + lightness * 100 + '%,' + alpha + ')';
+};
+},{"./core":9}],12:[function(require,module,exports){
+/* jshint bitwise:false */
+
+/**
+Title:          Perlin noise
+Version:        1.3
+Author:         Ron Valstar
+Author URI:     http://www.sjeiti.com/
+Original code port from http://mrl.nyu.edu/~perlin/noise/
+and some help from http://freespace.virgin.net/hugo.elias/models/m_perlin.htm
+AS3 optimizations by Mario Klingemann http://www.quasimondo.com
+Haxe port and optimization by Nicolas Cannasse http://haxe.org
+JavaScript port and simplified by Richard Janicek http://janicek.co
+*/
+
+'use strict';
+
+var array2d = require('./array2d');
+
+var p = [
+    151, 160, 137, 91, 90, 15, 131, 13, 201, 95,
+    96, 53, 194, 233, 7, 225, 140, 36, 103, 30, 69,
+    142, 8, 99, 37, 240, 21, 10, 23, 190, 6, 148,
+    247, 120, 234, 75, 0, 26, 197, 62, 94, 252,
+    219, 203, 117, 35, 11, 32, 57, 177, 33, 88,
+    237, 149, 56, 87, 174, 20, 125, 136, 171,
+    168, 68, 175, 74, 165, 71, 134, 139, 48, 27,
+    166, 77, 146, 158, 231, 83, 111, 229, 122,
+    60, 211, 133, 230, 220, 105, 92, 41, 55, 46,
+    245, 40, 244, 102, 143, 54, 65, 25, 63, 161,
+    1, 216, 80, 73, 209, 76, 132, 187, 208, 89,
+    18, 169, 200, 196, 135, 130, 116, 188, 159,
+    86, 164, 100, 109, 198, 173, 186, 3, 64, 52,
+    217, 226, 250, 124, 123, 5, 202, 38, 147, 118,
+    126, 255, 82, 85, 212, 207, 206, 59, 227, 47,
+    16, 58, 17, 182, 189, 28, 42, 223, 183, 170,
+    213, 119, 248, 152, 2, 44, 154, 163, 70, 221,
+    153, 101, 155, 167, 43, 172, 9, 129, 22, 39,
+    253, 19, 98, 108, 110, 79, 113, 224, 232,
+    178, 185, 112, 104, 218, 246, 97, 228, 251,
+    34, 242, 193, 238, 210, 144, 12, 191, 179,
+    162, 241, 81, 51, 145, 235, 249, 14, 239,
+    107, 49, 192, 214, 31, 181, 199, 106, 157,
+    184, 84, 204, 176, 115, 121, 50, 45, 127, 4,
+    150, 254, 138, 236, 205, 93, 222, 114, 67, 29,
+    24, 72, 243, 141, 128, 195, 78, 66, 215, 61,
+    156, 180, 151, 160, 137, 91, 90, 15, 131, 13,
+    201, 95, 96, 53, 194, 233, 7, 225, 140, 36,
+    103, 30, 69, 142, 8, 99, 37, 240, 21, 10, 23,
+    190, 6, 148, 247, 120, 234, 75, 0, 26, 197,
+    62, 94, 252, 219, 203, 117, 35, 11, 32, 57,
+    177, 33, 88, 237, 149, 56, 87, 174, 20, 125,
+    136, 171, 168, 68, 175, 74, 165, 71, 134, 139,
+    48, 27, 166, 77, 146, 158, 231, 83, 111, 229,
+    122, 60, 211, 133, 230, 220, 105, 92, 41, 55,
+    46, 245, 40, 244, 102, 143, 54, 65, 25, 63,
+    161, 1, 216, 80, 73, 209, 76, 132, 187, 208,
+    89, 18, 169, 200, 196, 135, 130, 116, 188,
+    159, 86, 164, 100, 109, 198, 173, 186, 3, 64,
+    52, 217, 226, 250, 124, 123, 5, 202, 38, 147,
+    118, 126, 255, 82, 85, 212, 207, 206, 59,
+    227, 47, 16, 58, 17, 182, 189, 28, 42, 223,
+    183, 170, 213, 119, 248, 152, 2, 44, 154,
+    163, 70, 221, 153, 101, 155, 167, 43, 172, 9,
+    129, 22, 39, 253, 19, 98, 108, 110, 79, 113,
+    224, 232, 178, 185, 112, 104, 218, 246, 97,
+    228, 251, 34, 242, 193, 238, 210, 144, 12,
+    191, 179, 162, 241, 81, 51, 145, 235, 249,
+    14, 239, 107, 49, 192, 214, 31, 181, 199,
+    106, 157, 184, 84, 204, 176, 115, 121, 50,
+    45, 127, 4, 150, 254, 138, 236, 205, 93,
+    222, 114, 67, 29, 24, 72, 243, 141, 128,
+    195, 78, 66, 215, 61, 156, 180
+];
+
+/*
+ * Makes some Perlin Noise.
+ * @returns [[int]] A bitmap of Perlin Noise.
+ */
+exports.makePerlinNoise = function (width, height, _x, _y, _z, seed, octaves, falloff) {
+    seed = seed || 666;
+    octaves = octaves || 4;
+    falloff = falloff || 0.5;
+
+    var baseFactor = 1 / 64;
+    
+    var iXoffset = seed = (seed * 16807.0) % 2147483647;
+    var iYoffset = seed = (seed * 16807.0) % 2147483647;
+    var iZoffset = seed = (seed * 16807.0) % 2147483647;
+  
+    var aOctFreq = []; // frequency per octave
+    var aOctPers = []; // persistence per octave
+    var fPersMax = 0.0; // 1 / max persistence
+
+    var fFreq, fPers;
+
+    var i;
+    for (i = 0; i < octaves; i++) {
+        fFreq = Math.pow(2, i);
+        fPers = Math.pow(falloff, i);
+        fPersMax += fPers;
+        aOctFreq.push(fFreq);
+        aOctPers.push(fPers);
+    }
+
+    fPersMax = 1 / fPersMax;
+
+    var bitmap = array2d([]); // Array<Array<Int>>
+    
+    var baseX = _x * baseFactor + iXoffset;
+    _y = _y * baseFactor + iYoffset;
+    _z = _z * baseFactor + iZoffset;
+
+    var py;
+    for (py = 0; py < height; py++) {
+        _x = baseX;
+        
+        var px;
+        for (px = 0; px < width; px++) {
+            var s = 0.0;
+
+            for (i = 0; i < octaves; i++) {
+                var fFreq2 = aOctFreq[i];
+                var fPers2 = aOctPers[i];
+
+                var x = _x * fFreq2;
+                var y = _y * fFreq2;
+                var z = _z * fFreq2;
+
+                var xf = x - (x % 1);
+                var yf = y - (y % 1);
+                var zf = z - (z % 1);
+
+                var X = xf & 255;
+                var Y = yf & 255;
+                var Z = zf & 255;
+
+                x -= xf;
+                y -= yf;
+                z -= zf;
+
+                var u = x * x * x * (x * (x * 6 - 15) + 10);
+                var v = y * y * y * (y * (y * 6 - 15) + 10);
+                var w = z * z * z * (z * (z * 6 - 15) + 10);
+
+                var A  = (p[X]) + Y;
+                var AA = (p[A]) + Z;
+                var AB = (p[A + 1]) + Z;
+                var B  = (p[X + 1]) + Y;
+                var BA = (p[B]) + Z;
+                var BB = (p[B + 1]) + Z;
+
+                var x1 = x - 1;
+                var y1 = y - 1;
+                var z1 = z - 1;
+
+                var hash = (p[BB + 1]) & 15;
+                var g1 = ((hash&1) === 0 ? (hash < 8 ? x1 : y1) : (hash < 8 ? -x1 : -y1)) + ((hash&2) === 0 ? hash < 4 ? y1 : (hash === 12 ? x1 : z1) : hash < 4 ? -y1 : (hash === 14 ? -x1 : -z1));
+
+                hash = (p[AB + 1]) & 15;
+                var g2 = ((hash&1) === 0 ? (hash < 8 ? x  : y1) : (hash < 8 ? -x  : -y1)) + ((hash&2) === 0 ? hash < 4 ? y1 : (hash === 12 ? x  : z1) : hash < 4 ? -y1 : (hash === 14 ? -x : -z1));
+
+                hash = (p[BA + 1]) & 15;
+                var g3 = ((hash&1) === 0 ? (hash < 8 ? x1 : y) : (hash < 8 ? -x1 : -y)) + ((hash&2) === 0 ? hash < 4 ? y  : (hash === 12 ? x1 : z1) : hash < 4 ? -y  : (hash === 14 ? -x1 : -z1));
+
+                hash = (p[AA + 1]) & 15;
+                var g4 = ((hash&1) === 0 ? (hash < 8 ? x  : y) : (hash < 8 ? -x  : -y)) + ((hash&2) === 0 ? hash < 4 ? y  : (hash === 12 ? x  : z1) : hash < 4 ? -y  : (hash === 14 ? -x  : -z1));
+
+                hash = (p[BB]) & 15;
+                var g5 = ((hash&1) === 0 ? (hash < 8 ? x1 : y1) : (hash < 8 ? -x1 : -y1)) + ((hash&2) === 0 ? hash < 4 ? y1 : (hash === 12 ? x1 : z) : hash < 4 ? -y1 : (hash === 14 ? -x1 : -z));
+
+                hash = (p[AB]) & 15;
+                var g6 = ((hash&1) === 0 ? (hash < 8 ? x  : y1) : (hash < 8 ? -x  : -y1)) + ((hash&2) === 0 ? hash < 4 ? y1 : (hash === 12 ? x  : z) : hash < 4 ? -y1 : (hash === 14 ? -x  : -z));
+
+                hash = (p[BA]) & 15;
+                var g7 = ((hash&1) === 0 ? (hash < 8 ? x1 : y) : (hash < 8 ? -x1 : -y)) + ((hash&2) === 0 ? hash < 4 ? y  : (hash === 12 ? x1 : z) : hash < 4 ? -y  : (hash === 14 ? -x1 : -z));
+
+                hash = (p[AA]) & 15;
+                var g8 = ((hash&1) === 0 ? (hash < 8 ? x  : y) : (hash < 8 ? -x  : -y)) + ((hash&2) === 0 ? hash < 4 ? y  : (hash === 12 ? x  : z) : hash < 4 ? -y  : (hash === 14 ? -x  : -z));
+
+                g2 += u * (g1 - g2);
+                g4 += u * (g3 - g4);
+                g6 += u * (g5 - g6);
+                g8 += u * (g7 - g8);
+
+                g4 += v * (g2 - g4);
+                g8 += v * (g6 - g8);
+
+                s += (g8 + w * (g4 - g8)) * fPers2;
+            }
+
+            var color = (s * fPersMax + 1) * 128;
+
+            bitmap.set(px, py, 0xff000000 | color << 16 | color << 8 | color);
+
+            _x += baseFactor;
+        }
+
+        _y += baseFactor;
+    }
+    return bitmap.value;
+};
+},{"./array2d":8}],13:[function(require,module,exports){
+/* jshint bitwise:false */
+
+'use strict';
+
+var hash = require('./hash');
+
+/**
+ * (a Mersenne prime M31) modulus constant = 2^31 - 1 = 0x7ffffffe
+ */
+var MPM = 2147483647.0;
+
+/**
+ * (a primitive root modulo M31)
+ */
+var MINSTD = 16807.0;
+
+/**
+ * Make a non deterministic random seed using standard libraries.
+ * @return Non deterministic random seed.
+ */
+exports.makeRandomSeed = function () {
+    return Math.floor(Math.random() * MPM);
+};
+
+/**
+ * Park-Miller-Carta algorithm.
+ * @see <a href="http://lab.polygonal.de/?p=162">http://lab.polygonal.de/?p=162</a>
+ * @see <a href="http://code.google.com/p/polygonal/source/browse/trunk/src/lib/de/polygonal/core/math/random/ParkMiller.hx?r=547">http://code.google.com/p/polygonal/source/browse/trunk/src/lib/de/polygonal/core/math/random/ParkMiller.hx?r=547</a> 
+ * @see <a href="http://en.wikipedia.org/wiki/Lehmer_random_number_generator">http://en.wikipedia.org/wiki/Lehmer_random_number_generator</a>
+ * @return Returns the next pseudo-random int value.
+ */
+exports.nextParkMiller = function (seed) {
+    return (seed * MINSTD) % MPM;
+};
+
+/**
+ * <p>A Park-Miller-Carta PRNG (pseudo random number generator).</p>
+ * <p>Integer implementation, using only 32 bit integer maths and no divisions.</p>
+ * @see <a href="https://github.com/polygonal/core/blob/dev/src/de/polygonal/core/math/random/ParkMiller31.hx">POLYGONAL - A HAXE LIBRARY FOR GAME DEVELOPERS</a>
+ * @see <a href="http://www.firstpr.com.au/dsp/rand31/rand31-park-miller-carta.cc.txt" target="_blank">http://www.firstpr.com.au/dsp/rand31/rand31-park-miller-carta.cc.txt</a>
+ * @see <a href="http://en.wikipedia.org/wiki/Park%E2%80%93Miller_random_number_generator" target="_blank">Park-Miller random number generator</a>.
+ * @see <a href="http://lab.polygonal.de/?p=162" target="_blank">A good Pseudo-Random Number Generator (PRNG)</a>.
+ */
+exports.nextParkMiller31 = function (seed) {
+    var lo = 16807 * (seed & 0xffff);
+    var hi = 16807 * (seed >>> 16);
+    lo += (hi & 0x7fff) << 16;
+    lo += hi >>> 15;
+    if (lo > 0x7fffffff) { lo -= 0x7fffffff; }
+    return lo;
+};
+
+/**
+ * Linear congruential generator using GLIBC constants.
+ * 
+ * @see <a href="http://en.wikipedia.org/wiki/Linear_congruential_generator">http://en.wikipedia.org/wiki/Linear_congruential_generator</a>
+ * @see <a href="https://github.com/aduros/flambe/blob/master/src/flambe/util/Random.hx">https://github.com/aduros/flambe/blob/master/src/flambe/util/Random.hx</a>
+ * @return Returns an integer in [0, INT_MAX)
+ */
+exports.nextLCG = function (seed) {
+    // These constants borrowed from glibc
+    // Force float multiplication here to avoid overflow in Flash (and keep parity with JS)
+    return (1103515245.0 * seed + 12345) % MPM;
+};
+
+/**
+ * Returns the pseudo-random double value x in the range 0 <= x < 1.
+ */
+exports.toFloat = function (seed) {
+    return seed / MPM;
+};
+
+/**
+ * Returns a pseudo-random boolean value (coin flip).
+ */
+exports.toBool = function (seed) {
+    return exports.toFloat(seed) > 0.5;
+};
+
+/**
+ * Returns a pseudo-random double value x in the range min <= x <= max.
+ */
+exports.toFloatRange = function (seed, min, max) {
+    return min + (max - min) * exports.toFloat(seed);
+};
+
+/**
+ * Returns a pseudo-random integral value x in the range min <= x <= max.
+ */
+exports.toIntRange = function (seed, min, max) {
+    return Math.round((min - 0.4999) + ((max + 0.4999) - (min - 0.4999)) * exports.toFloat(seed));
+};
+
+/**
+ * Converts a string to a seed.
+ * Lets you use words as seeds.
+ */
+exports.stringToSeed = function (s) {
+    return hash.djb2(s) % MPM;
+};
+
+/**
+ * Closure for tracking random number state.
+ * @param   seed
+ * @param   algorithm
+ */
+exports.randomGenerator = function (seed, nextRandomNumberAlgorithm) {
+    return function () {
+        seed = nextRandomNumberAlgorithm(seed);
+        return seed;
+    };
+};
+},{"./hash":10}],14:[function(require,module,exports){
+/* jshint bitwise: false */
+
+'use strict';
+
+module.exports = {
+    TOP: 1,
+    BOTTOM: 2,
+    LEFT: 4,
+    RIGHT: 8,
+
+    /**
+     * 
+     * @param point
+     * @param bounds
+     * @return an int with the appropriate bits set if the Point lies on the corresponding bounds lines
+     * 
+     */
+    check: function (point, bounds) {
+        bounds = require('../../as3/rectangle').core(bounds);
+        var value = 0;
+        if (point.x === bounds.left()) {
+            value |= this.LEFT;
+        }
+        if (point.x === bounds.right()) {
+            value |= this.RIGHT;
+        }
+        if (point.y === bounds.top()) {
+            value |= this.TOP;
+        }
+        if (point.y === bounds.bottom()) {
+            value |= this.BOTTOM;
+        }
+        return value;
+    }
+};
+},{"../../as3/rectangle":5}],15:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    vertex: 'vertex',
+    site: 'site'
+};
+},{}],16:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+
+module.exports = {
+
+    delaunayLinesForEdges: function (edges) {
+        var segments = [];
+        _(edges).each(function (edge) {
+            segments.push(edge.delaunayLine());
+        });
+        return segments;
+    },
+
+    selectEdgesForSitePoint: function (coord, edgesToTest) {
+        return _(edgesToTest).filter(function (edge) {
+            return ((edge.leftSite !== null && edge.leftSite.coord === coord) ||
+                (edge.rightSite !== null && edge.rightSite.coord === coord));
+        });
+    },
+
+    selectNonIntersectingEdges: function (keepOutMask, edgesToTest) {
+        if (keepOutMask === null) {
+            return edgesToTest;
+        }
+        
+        var zeroPoint = {x: 0.0, y: 0.0};
+        return _(edgesToTest).filter(function (edge) {
+            var delaunayLineBmp = edge.makeDelaunayLineBmp();
+            var notIntersecting = !(keepOutMask.hitTest(zeroPoint, 1, delaunayLineBmp, zeroPoint, 1));
+            delaunayLineBmp.dispose();
+            return notIntersecting;
+        });
+    },
+
+    visibleLineSegments: function (edges) {
+        var lr = require('./lr');
+        var lineSegment = require('../geom/line-segment');
+        var segments = [];
+        
+        _(edges).each(function (edge) {
+            if (edge.visible) {
+                var p1 = edge.clippedEnds[lr.LEFT];
+                var p2 = edge.clippedEnds[lr.RIGHT];
+                segments.push(lineSegment(p1, p2));
+            }
+        });
+        
+        return segments;
+    }
+
+};
+},{"../geom/line-segment":30,"./lr":23,"lodash":1}],17:[function(require,module,exports){
+/* jshint bitwise:false */
+
+'use strict';
+
+var halfedgeModule = require('./halfedge');
+var edgeModule = require('./edge');
+
+module.exports = function (xmin, deltax, sqrtNsites) {
+    var pub = {};
+
+    var _deltax = 0.0;
+    var _xmin  = 0.0;
+    
+    var _hashsize = 0;
+    var _hash = []; // Vector<Halfedge>;
+
+    var _leftEnd = null; //Halfedge;
+    pub.getLeftEnd = function () {
+        return _leftEnd;
+    };
+    Object.defineProperties(pub, {
+        'leftEnd': {get: function () { return pub.getLeftEnd(); }}
+    });
+
+    var _rightEnd = null; //Halfedge;
+    pub.getRightEnd = function () {
+        return _rightEnd;
+    };
+    Object.defineProperties(pub, {
+        'rightEnd': {get: function () { return pub.getRightEnd(); }}
+    });
+
+    pub.dispose = function () {
+        var halfEdge = _leftEnd;
+        var prevHe;
+        while (halfEdge !== _rightEnd) {
+            prevHe = halfEdge;
+            halfEdge = halfEdge.edgeListRightNeighbor;
+            prevHe.dispose();
+        }
+        _leftEnd = null;
+        _rightEnd.dispose();
+        _rightEnd = null;
+
+        var i;
+        for (i = 0; i < _hashsize; i++) {
+            _hash[i] = null;
+        }
+        _hash = null;
+    };
+
+    /**
+     * Insert newHalfedge to the right of lb 
+     * @param lb
+     * @param newHalfedge
+     * 
+     */
+    pub.insert = function (lb, newHalfedge) {
+        newHalfedge.edgeListLeftNeighbor = lb;
+        newHalfedge.edgeListRightNeighbor = lb.edgeListRightNeighbor;
+        lb.edgeListRightNeighbor.edgeListLeftNeighbor = newHalfedge;
+        lb.edgeListRightNeighbor = newHalfedge;
+    };
+
+    /**
+     * This function only removes the Halfedge from the left-right list.
+     * We cannot dispose it yet because we are still using it. 
+     * @param halfEdge
+     * 
+     */
+    pub.remove = function (halfEdge) {
+        halfEdge.edgeListLeftNeighbor.edgeListRightNeighbor = halfEdge.edgeListRightNeighbor;
+        halfEdge.edgeListRightNeighbor.edgeListLeftNeighbor = halfEdge.edgeListLeftNeighbor;
+        halfEdge.edge = edgeModule.DELETED;
+        halfEdge.edgeListLeftNeighbor = halfEdge.edgeListRightNeighbor = null;
+    };
+
+
+    /* Get entry from hash table, pruning any deleted nodes */
+    function getHash(b) {
+        var halfEdge;
+    
+        if (b < 0 || b >= _hashsize) {
+            return null;
+        }
+        halfEdge = _hash[b];
+        if (halfEdge !== null && halfEdge.edge === edgeModule.DELETED) {
+            /* Hash table points to deleted halfedge.  Patch as necessary. */
+            _hash[b] = null;
+            // still can't dispose halfEdge yet!
+            return null;
+        } else {
+            return halfEdge;
+        }
+    }
+
+    /**
+     * Find the rightmost Halfedge that is still left of p 
+     * @param p
+     * @return 
+     * 
+     */
+    pub.edgeListLeftNeighbor = function (p) {
+        var bucket;
+        var halfEdge;
+    
+        /* Use hash table to get close to desired halfedge */
+        bucket = ((p.x - _xmin) / _deltax) * _hashsize;
+        if (bucket < 0) {
+            bucket = 0;
+        }
+        if (bucket >= _hashsize) {
+            bucket = _hashsize - 1;
+        }
+        halfEdge = getHash(bucket);
+        if (halfEdge === null) {
+            var i = 1;
+            while (true) {
+                if ((halfEdge = this.getHash(bucket - i)) !== null) {
+                    break;
+                }
+                if ((halfEdge = this.getHash(bucket + i)) !== null) {
+                    break;
+                }
+                
+                i++;
+            }
+        }
+        /* Now search linear list of halfedges for the correct one */
+        if (halfEdge === this.getLeftEnd()  || (halfEdge !== this.getRightEnd() && halfEdge.isLeftOf(p))) {
+            do {
+                halfEdge = halfEdge.edgeListRightNeighbor;
+            } while (halfEdge !== this.getRightEnd() && halfEdge.isLeftOf(p));
+            halfEdge = halfEdge.edgeListLeftNeighbor;
+        } else {
+            do {
+                halfEdge = halfEdge.edgeListLeftNeighbor;
+            } while (halfEdge !== this.getLeftEnd() && !halfEdge.isLeftOf(p));
+        }
+    
+        /* Update hash table and reference counts */
+        if (bucket > 0 && bucket < _hashsize - 1) {
+            _hash[bucket] = halfEdge;
+        }
+        return halfEdge;
+    };
+
+    _xmin = xmin;
+    _deltax = deltax;
+    _hashsize = 2 * sqrtNsites;
+
+    //var i:Int;
+    _hash = [];
+    
+    // two dummy Halfedges:
+    _leftEnd = halfedgeModule.createDummy();
+    _rightEnd = halfedgeModule.createDummy();
+    _leftEnd.edgeListLeftNeighbor = null;
+    _leftEnd.edgeListRightNeighbor = _rightEnd;
+    _rightEnd.edgeListLeftNeighbor = _leftEnd;
+    _rightEnd.edgeListRightNeighbor = null;
+    _hash[0] = _leftEnd;
+    _hash[_hashsize - 1] = _rightEnd;
+
+    return pub;
+};
+},{"./edge":19,"./halfedge":21}],18:[function(require,module,exports){
+'use strict';
+
+var criterionModule = require('./criterion');
+var lr = require('./lr');
+var vertex = require('./vertex');
+
+var EdgeReorderer = function (origEdges, criterion) {
+    if (criterion !== criterionModule.vertex && criterion !== criterionModule.site) {
+        throw 'Edges: criterion must be Vertex or Site';
+    }
+    this.edges = [];
+    this.edgeOrientations = [];
+    if (origEdges.length > 0) {
+        this.edges = this._reorderEdges(origEdges, criterion);
+    }
+};
+
+EdgeReorderer.prototype = {
+
+    edges: null, // Vector<Edge>
+    edgeOrientations: null, // Vector<LR>
+
+    dispose: function () {
+        this.edges = null;
+        this.edgeOrientations = null;
+    },
+
+    _reorderEdges: function (origEdges, criterion) {
+        var i;
+        var n = origEdges.length;
+        var edge;
+        // we're going to reorder the edges in order of traversal
+        var done = []; // Vector<Boolean>
+        var nDone = 0;
+        
+        var newEdges = []; // Vector<Edge>
+        
+        i = 0;
+        edge = origEdges[i];
+        newEdges.push(edge);
+        this.edgeOrientations.push(lr.LEFT);
+        var firstPoint;
+        var lastPoint;
+        if (criterion === criterionModule.vertex) {
+            firstPoint = edge.leftVertex;
+            lastPoint = edge.rightVertex;
+        } else {
+            firstPoint = edge.leftSite;
+            lastPoint = edge.rightSite;
+        }
+        
+        if (firstPoint === vertex.VERTEX_AT_INFINITY || lastPoint === vertex.VERTEX_AT_INFINITY) {
+            return []; // Vector<Edge>;
+        }
+        
+        done[i] = true;
+        ++nDone;
+        
+        while (nDone < n) {
+            for (i = 1; i < n; i++) {
+                if (done[i]) {
+                    continue;
+                }
+                edge = origEdges[i];
+                var leftPoint;
+                var rightPoint;
+                if (criterion === criterionModule.vertex) {
+                    leftPoint = edge.leftVertex;
+                    rightPoint = edge.rightVertex;
+                } else {
+                    leftPoint = edge.leftSite;
+                    rightPoint = edge.rightSite;
+                }
+                
+                if (leftPoint === vertex.VERTEX_AT_INFINITY || rightPoint === vertex.VERTEX_AT_INFINITY) {
+                    return []; //Vector<Edge>()
+                }
+                if (leftPoint === lastPoint) {
+                    lastPoint = rightPoint;
+                    this.edgeOrientations.push(lr.LEFT);
+                    newEdges.push(edge);
+                    done[i] = true;
+                }
+                else if (rightPoint === firstPoint) {
+                    firstPoint = leftPoint;
+                    this.edgeOrientations.unshift(lr.LEFT);
+                    newEdges.unshift(edge);
+                    done[i] = true;
+                }
+                else if (leftPoint === firstPoint) {
+                    firstPoint = rightPoint;
+                    this.edgeOrientations.unshift(lr.RIGHT);
+                    newEdges.unshift(edge);
+                    done[i] = true;
+                }
+                else if (rightPoint === lastPoint) {
+                    lastPoint = leftPoint;
+                    this.edgeOrientations.push(lr.RIGHT);
+                    newEdges.push(edge);
+                    done[i] = true;
+                }
+                if (done[i]) {
+                    ++nDone;
+                }
+            }
+        }
+        
+        return newEdges;
+    }
+
+};
+
+module.exports = function (origEdges, criterion) {
+    return new EdgeReorderer(origEdges, criterion);
+};
+},{"./criterion":15,"./lr":23,"./vertex":27}],19:[function(require,module,exports){
+/* jshint es3:false */
+
+'use strict';
+
+var lineSegment = require('../geom/line-segment');
+var lr = require('./lr');
+var pointCore = require('../../as3/point-core');
+var rectangle = require('../../as3/rectangle');
+
+var _pool = [];
+var _nedges = 0;
+
+exports.Edge = function () {
+    this._edgeIndex = _nedges++;
+    this.init();
+};
+
+exports.Edge.prototype = {
+    _delaunayLineBmp: null,
+    getDelaunayLineBmp: function () {
+        if (this._delaunayLineBmp === null) {
+            this._delaunayLineBmp = this.makeDelaunayLineBmp();
+        }
+        return this._delaunayLineBmp;
+    },
+    get delaunayLineBmp() { return this.getDelaunayLineBmp(); },
+
+    // making this available to Voronoi; running out of memory in AIR so I cannot cache the bmp
+    makeDelaunayLineBmp: function () {
+        throw 'unimplemented';
+        
+        var p0 = this.leftSite.coord;
+        var p1 = this.rightSite.coord;
+        
+        var w = Math.ceil(Math.max(p0.x, p1.x));
+        if (w < 1) {
+            w = 1;
+        }
+        var h = Math.ceil(Math.max(p0.y, p1.y));
+        if (h < 1) {
+            h = 1;
+        }
+        //var bmp:BitmapData = new BitmapData(w, h, true, 0);
+        var bmp = new BitmapData();
+
+        //GRAPHICS.clear();
+        // clear() resets line style back to undefined!
+        //GRAPHICS.lineStyle(0, 0, 1.0, false, LineScaleMode.NONE, CapsStyle.NONE);
+        //GRAPHICS.moveTo(p0.x, p0.y);
+        //GRAPHICS.lineTo(p1.x, p1.y);
+        
+        bmp.drawLine(p0, p1);
+        
+        //bmp.draw(LINESPRITE);
+        return bmp;
+    },
+
+    delaunayLine: function () {
+        // draw a line connecting the input Sites for which the edge is a bisector:
+        return lineSegment(this.leftSite.coord, this.rightSite.coord);
+    },
+
+    voronoiEdge: function () {
+        if (!this.visible) {
+            return lineSegment(null, null);
+        }
+        return lineSegment(this.clippedEnds[lr.LEFT], this.clippedEnds[lr.RIGHT]);
+    },
+
+    // the equation of the edge: ax + by = c
+    a: null,
+    b: null,
+    c: null,
+
+    // the two Voronoi vertices that the edge connects
+    //      (if one of them is null, the edge extends to infinity)
+    leftVertex: null,
+    rightVertex: null,
+
+    vertex: function (leftRight) {
+        return (leftRight === lr.LEFT) ? this.leftVertex : this.rightVertex;
+    },
+
+    setVertex: function (leftRight, v) {
+        if (leftRight === lr.LEFT) {
+            this.leftVertex = v;
+        } else {
+            this.rightVertex = v;
+        }
+    },
+
+    isPartOfConvexHull: function () {
+        return (this.leftVertex === null || this.rightVertex === null);
+    },
+
+    sitesDistance: function () {
+        return pointCore.distance(this.leftSite.coord, this.rightSite.coord);
+    },
+
+    // Once clipVertices() is called, this Dictionary will hold two Points
+    // representing the clipped coordinates of the left and right ends...
+    //private var _clippedVertices:Dictionary;
+    clippedEnds: null, // Dictionary<Point>
+
+    // unless the entire Edge is outside the bounds.
+    // In that case visible will be false:
+    get visible() { return this.clippedEnds !== null; },
+
+    // the two input Sites for which this Edge is a bisector:
+    //private var _sites:Dictionary<Site>;
+    // the two input Sites for which this Edge is a bisector:               
+    leftSite: null,
+    rightSite: null,
+
+    site: function (leftRight) {
+        return (leftRight === lr.LEFT) ? this.leftSite : this.rightSite;
+    },
+
+    _edgeIndex: 0,
+
+    dispose: function () {
+        if (this._delaunayLineBmp !== null) {
+            this._delaunayLineBmp.dispose();
+            this._delaunayLineBmp = null;
+        }
+        this.leftVertex = null;
+        this.rightVertex = null;
+        if (this.clippedEnds !== null) {
+            this.clippedEnds[lr.LEFT] = null;
+            this.clippedEnds[lr.RIGHT] = null;
+            this.clippedEnds = null;
+        }
+
+        this.leftSite = null;
+        this.rightSite = null;
+        
+        _pool.push(this);
+    },
+
+    toString: function () {
+        return 'Edge ' + this._edgeIndex + '; sites ' + this.leftSite + ', ' + this.rightSite +
+            '; endVertices ' + (this.leftVertex !== null ? String(this.leftVertex.vertexIndex) : 'null') + ', ' +
+            (this.rightVertex !== null ? String(this.rightVertex.vertexIndex) : 'null') + '::';
+    },
+
+    /**
+     * Set _clippedVertices to contain the two ends of the portion of the Voronoi edge that is visible
+     * within the bounds.  If no part of the Edge falls within the bounds, leave _clippedVertices null. 
+     * @param bounds
+     * 
+     */
+    clipVertices: function (bounds) {
+        var boundsCore = rectangle.core(bounds);
+        var xmin = bounds.x;
+        var ymin = bounds.y;
+        var xmax = boundsCore.right();
+        var ymax = boundsCore.bottom();
+        
+        var vertex0, vertex1;
+        var x0, x1, y0, y1;
+        
+        if (this.a === 1.0 && this.b >= 0.0) {
+            vertex0 = this.rightVertex;
+            vertex1 = this.leftVertex;
+        } else {
+            vertex0 = this.leftVertex;
+            vertex1 = this.rightVertex;
+        }
+    
+        if (this.a === 1.0) {
+            y0 = ymin;
+            if (vertex0 !== null && vertex0.y > ymin) {
+                y0 = vertex0.y;
+            }
+            if (y0 > ymax) {
+                return;
+            }
+            x0 = this.c - this.b * y0;
+            
+            y1 = ymax;
+            if (vertex1 !== null && vertex1.y < ymax) {
+                y1 = vertex1.y;
+            }
+            if (y1 < ymin) {
+                return;
+            }
+            x1 = this.c - this.b * y1;
+            
+            if ((x0 > xmax && x1 > xmax) || (x0 < xmin && x1 < xmin)) {
+                return;
+            }
+            
+            if (x0 > xmax) {
+                x0 = xmax;
+                y0 = (this.c - x0) / this.b;
+            }
+            else if (x0 < xmin) {
+                x0 = xmin;
+                y0 = (this.c - x0) / this.b;
+            }
+            
+            if (x1 > xmax) {
+                x1 = xmax;
+                y1 = (this.c - x1) / this.b;
+            }
+            else if (x1 < xmin) {
+                x1 = xmin;
+                y1 = (this.c - x1) / this.b;
+            }
+        } else {
+            x0 = xmin;
+            if (vertex0 !== null && vertex0.x > xmin) {
+                x0 = vertex0.x;
+            }
+            if (x0 > xmax) {
+                return;
+            }
+            y0 = this.c - this.a * x0;
+            
+            x1 = xmax;
+            if (vertex1 !== null && vertex1.x < xmax) {
+                x1 = vertex1.x;
+            }
+            if (x1 < xmin) {
+                return;
+            }
+            y1 = this.c - this.a * x1;
+            
+            if ((y0 > ymax && y1 > ymax) || (y0 < ymin && y1 < ymin)) {
+                return;
+            }
+            
+            if (y0 > ymax) {
+                y0 = ymax;
+                x0 = (this.c - y0) / this.a;
+            }
+            else if (y0 < ymin) {
+                y0 = ymin;
+                x0 = (this.c - y0) / this.a;
+            }
+            
+            if (y1 > ymax) {
+                y1 = ymax;
+                x1 = (this.c - y1) / this.a;
+            }
+            else if (y1 < ymin) {
+                y1 = ymin;
+                x1 = (this.c - y1) / this.a;
+            }
+        }
+
+        this.clippedEnds = {};
+        if (vertex0 === this.leftVertex) {
+            this.clippedEnds[lr.LEFT] = {x: x0, y: y0};
+            this.clippedEnds[lr.RIGHT] = {x: x1, y: y1};
+        } else {
+            this.clippedEnds[lr.RIGHT] = {x: x0, y: y0};
+            this.clippedEnds[lr.LEFT] = {x: x1, y: y1};
+        }
+    },
+
+    init: function () {
+        this.leftSite = null;
+        this.rightSite = null;
+    }
+
+};
+
+function create() {
+    var edge;
+    if (_pool.length > 0) {
+        edge = _pool.pop();
+        edge.init();
+    } else {
+        edge = new exports.Edge();
+    }
+    return edge;
+}
+
+exports.DELETED = new exports.Edge();
+
+/**
+ * This is the only way to create a new Edge 
+ * @param site0
+ * @param site1
+ * @return 
+ * 
+ */
+exports.createBisectingEdge = function (site0, site1) {
+    var dx, dy, absdx, absdy;
+    var a, b, c;
+
+    dx = site1.x - site0.x;
+    dy = site1.y - site0.y;
+    absdx = dx > 0 ? dx : -dx;
+    absdy = dy > 0 ? dy : -dy;
+    c = site0.x * dx + site0.y * dy + (dx * dx + dy * dy) * 0.5;
+    if (absdx > absdy) {
+        a = 1.0;
+        b = dy / dx;
+        c /= dx;
+    } else {
+        b = 1.0;
+        a = dx / dy;
+        c /= dy;
+    }
+    
+    var edge = create();
+
+    edge.leftSite = site0;
+    edge.rightSite = site1;
+    site0.addEdge(edge);
+    site1.addEdge(edge);
+    
+    edge.leftVertex = null;
+    edge.rightVertex = null;
+    
+    edge.a = a;
+    edge.b = b;
+    edge.c = c;
+    //trace("createBisectingEdge: a ", edge.a, "b", edge.b, "c", edge.c);
+    
+    return edge;
+};
+
+exports.compareSitesDistancesMax = function (edge0, edge1) {
+    var length0 = edge0.sitesDistance();
+    var length1 = edge1.sitesDistance();
+    if (length0 < length1) {
+        return 1;
+    }
+    if (length0 > length1) {
+        return -1;
+    }
+    return 0;
+};
+
+exports.compareSitesDistances = function (edge0, edge1) {
+    return - exports.compareSitesDistancesMax(edge0, edge1);
+};
+},{"../../as3/point-core":4,"../../as3/rectangle":5,"../geom/line-segment":30,"./lr":23}],20:[function(require,module,exports){
+/* jshint bitwise:false */
+
+'use strict';
+
+var halfedgeModule = require('./halfedge');
+var core = require('../../janicek/core');
+
+module.exports = function (ymin, deltay, sqrtNsites) {
+    var pub = {};
+
+    var _hash = null; //Vector<Halfedge>
+    var _count = 0;
+    var _minBucket = 0;
+    var _hashsize = 0;
+    
+    var _ymin = 0.0;
+    var _deltay = 0.0;
+
+    function initialize() {
+        var i;
+
+        _count = 0;
+        _minBucket = 0;
+        _hash = [];
+        // dummy Halfedge at the top of each hash
+        for (i = 0; i < _hashsize; i++) {
+            _hash[i] = halfedgeModule.createDummy();
+            _hash[i].nextInPriorityQueue = null;
+        }
+    }
+
+    function bucket(halfEdge) {
+        var theBucket = core.toInt((halfEdge.ystar - _ymin) / _deltay * _hashsize);
+        if (theBucket < 0) {
+            theBucket = 0;
+        }
+        if (theBucket >= _hashsize) {
+            theBucket = _hashsize - 1;
+        }
+        return theBucket;
+    }
+
+    pub.dispose = function () {
+        // get rid of dummies
+        var i;
+        for (i = 0; i < _hashsize; i++) {
+            _hash[i].dispose();
+            _hash[i] = null;
+        }
+        _hash = null;
+    };
+
+    pub.insert = function (halfEdge) {
+        var previous, next;
+        var insertionBucket = bucket(halfEdge);
+
+        if (insertionBucket < _minBucket) {
+            _minBucket = insertionBucket;
+        }
+        previous = _hash[insertionBucket];
+        while ((next = previous.nextInPriorityQueue) !== null &&
+            (halfEdge.ystar  > next.ystar || (halfEdge.ystar === next.ystar && halfEdge.vertex.x > next.vertex.x))) {
+            previous = next;
+        }
+        halfEdge.nextInPriorityQueue = previous.nextInPriorityQueue;
+        previous.nextInPriorityQueue = halfEdge;
+        ++_count;
+    };
+
+    pub.remove = function (halfEdge) {
+        var previous;
+        var removalBucket = bucket(halfEdge);
+        
+        if (halfEdge.vertex !== null) {
+            previous = _hash[removalBucket];
+            while (previous.nextInPriorityQueue !== halfEdge) {
+                previous = previous.nextInPriorityQueue;
+            }
+            previous.nextInPriorityQueue = halfEdge.nextInPriorityQueue;
+            _count--;
+            halfEdge.vertex = null;
+            halfEdge.nextInPriorityQueue = null;
+            halfEdge.dispose();
+        }
+    };
+
+    function isEmpty(bucket) {
+        return (_hash[bucket].nextInPriorityQueue === null);
+    }
+
+     /**
+     * move _minBucket until it contains an actual Halfedge (not just the dummy at the top); 
+     * 
+     */
+    function adjustMinBucket() {
+        while (_minBucket < _hashsize - 1 && isEmpty(_minBucket)) {
+            ++_minBucket;
+        }
+    }
+
+    pub.empty = function () {
+        return _count === 0;
+    };
+
+    /**
+     * @return coordinates of the Halfedge's vertex in V*, the transformed Voronoi diagram
+     * 
+     */
+    pub.min = function () {
+        adjustMinBucket();
+        var answer = _hash[_minBucket].nextInPriorityQueue;
+        return {x: answer.vertex.x, y: answer.ystar};
+    };
+
+    /**
+     * remove and return the min Halfedge
+     * @return 
+     * 
+     */
+    pub.extractMin = function () {
+        var answer;
+    
+        // get the first real Halfedge in _minBucket
+        answer = _hash[_minBucket].nextInPriorityQueue;
+        
+        _hash[_minBucket].nextInPriorityQueue = answer.nextInPriorityQueue;
+        _count--;
+        answer.nextInPriorityQueue = null;
+        
+        return answer;
+    };
+
+
+    _ymin = ymin;
+    _deltay = deltay;
+    _hashsize = 4 * sqrtNsites;
+    initialize();
+
+    return pub;
+};
+},{"../../janicek/core":9,"./halfedge":21}],21:[function(require,module,exports){
+'use strict';
+
+var def = require('../../janicek/core').def;
+var lrModule = require('./lr');
+
+var _pool = []; // Vector<Halfedge>
+
+var Halfedge = function (edge, lr) {
+    edge = def(edge, null);
+    lr = def(lr, null);
+    this.init(edge, lr);
+};
+
+Halfedge.prototype = {
+    edgeListLeftNeighbor: null,
+    edgeListRightNeighbor: null,
+    nextInPriorityQueue: null,
+    
+    edge: null,
+    leftRight: null,
+    vertex: null,
+
+    // the vertex's y-coordinate in the transformed Voronoi space V*
+    ystar: 0.0,
+
+    toString: function () {
+        return 'Halfedge (leftRight: ' + this.leftRight + '; vertex: ' + this.vertex + ')';
+    },
+
+    dispose: function () {
+        if (this.edgeListLeftNeighbor !== null || this.edgeListRightNeighbor !== null) {
+            // still in EdgeList
+            return;
+        }
+        if (this.nextInPriorityQueue !== null) {
+            // still in PriorityQueue
+            return;
+        }
+        this.edge = null;
+        this.leftRight = null;
+        this.vertex = null;
+        _pool.push(this);
+    },
+
+    reallyDispose: function () {
+        this.edgeListLeftNeighbor = null;
+        this.edgeListRightNeighbor = null;
+        this.nextInPriorityQueue = null;
+        this.edge = null;
+        this.leftRight = null;
+        this.vertex = null;
+        _pool.push(this);
+    },
+
+    isLeftOf: function (p) {
+        var topSite;
+        var rightOfSite, above, fast;
+        var dxp, dyp, dxs, t1, t2, t3, yl;
+        
+        topSite = this.edge.rightSite;
+        rightOfSite = p.x > topSite.x;
+        if (rightOfSite && this.leftRight === lrModule.LEFT) {
+            return true;
+        }
+        if (!rightOfSite && this.leftRight === lrModule.RIGHT) {
+            return false;
+        }
+        
+        if (this.edge.a === 1.0) {
+            dyp = p.y - topSite.y;
+            dxp = p.x - topSite.x;
+            fast = false;
+            if ((!rightOfSite && this.edge.b < 0.0) || (rightOfSite && this.edge.b >= 0.0)) {
+                above = dyp >= (this.edge.b * dxp);
+                fast = above;
+            } else {
+                above = p.x + p.y * this.edge.b > this.edge.c;
+                if (this.edge.b < 0.0) {
+                    above = !above;
+                }
+                if (!above) {
+                    fast = true;
+                }
+            }
+            if (!fast) {
+                dxs = topSite.x - this.edge.leftSite.x;
+                above = this.edge.b * (dxp * dxp - dyp * dyp) < (dxs * dyp * (1.0 + 2.0 * dxp / dxs + this.edge.b * this.edge.b));
+                if (this.edge.b < 0.0) {
+                    above = !above;
+                }
+            }
+        }
+        else  { /* this.edge.b == 1.0 */
+            yl = this.edge.c - this.edge.a * p.x;
+            t1 = p.y - yl;
+            t2 = p.x - topSite.x;
+            t3 = yl - topSite.y;
+            above = (t1 * t1) > (t2 * t2 + t3 * t3);
+        }
+        return this.leftRight === lrModule.LEFT ? above : !above;
+    },
+
+    init: function (edge, lr) {
+        this.edge = edge;
+        this.leftRight = lr;
+        this.nextInPriorityQueue = null;
+        this.vertex = null;
+        return this;
+    }
+
+};
+
+exports.create = function (edge, lr) {
+    if (_pool.length > 0) {
+        return _pool.pop().init(edge, lr);
+    }
+    else {
+        return new Halfedge(edge, lr);
+    }
+};
+
+exports.createDummy = function () {
+    return exports.create(null, null);
+};
+},{"../../janicek/core":9,"./lr":23}],22:[function(require,module,exports){
+/* jshint camelcase:false */
+
+'use strict';
+
+var _ = require('lodash');
+var def = require('../../janicek/core').def;
+var lineSegmentCore = require('../geom/line-segment').core;
+var nodeModule = require('./node');
+var pointCore = require('../../as3/point-core');
+
+exports.find = function (node) {
+    if (node.parent === node) {
+        return node;
+    } else {
+        var root = exports.find(node.parent);
+        // this line is just to speed up subsequent finds by keeping the tree depth low:
+        node.parent = root;
+        return root;
+    }
+};
+
+/**
+*  Kruskal's spanning tree algorithm with union-find
+ * Skiena: The Algorithm Design Manual, p. 196ff
+ * Note: the sites are implied: they consist of the end points of the line segments
+*/
+exports.kruskal = function (lineSegments, type) {
+    type = def(type, 'minimum');
+
+    var nodes = {}; // Dictionary<Node>
+    var mst = []; // Vector<LineSegment>
+    var nodePool = []; // Vector<Node>
+    
+    switch (type) {
+        // note that the compare functions are the reverse of what you'd expect
+        // because (see below) we traverse the lineSegments in reverse order for speed
+    case 'maximum':
+        lineSegments.sort(lineSegmentCore.compareLengths);
+        break;
+    default:
+        lineSegments.sort(lineSegmentCore.compareLengthsMax);
+    }
+
+    var i = lineSegments.length - 1;
+    //for (var i:int = lineSegments.length; --i > -1;)
+    while (i >= 0) {
+        var lineSegment = lineSegments[i];
+        i--;
+        
+        var node0 = nodes[pointCore.hash(lineSegment.p0)];
+        var rootOfSet0;
+        if (node0 === null) {
+            node0 = nodePool.length > 0 ? nodePool.pop() : nodeModule();
+            // intialize the node:
+            rootOfSet0 = node0.parent = node0;
+            node0.treeSize = 1;
+        
+            nodes[pointCore.hash(lineSegment.p0)] = node0;
+        } else {
+            rootOfSet0 = exports.find(node0);
+        }
+        
+        var node1 = nodes[pointCore.hash(lineSegment.p1)];
+        var rootOfSet1;
+        if (node1 === null) {
+            node1 = nodePool.length > 0 ? nodePool.pop() : nodeModule();
+            // intialize the node:
+            rootOfSet1 = node1.parent = node1;
+            node1.treeSize = 1;
+        
+            nodes[pointCore.hash(lineSegment.p1)] = node1;
+        } else {
+            rootOfSet1 = exports.find(node1);
+        }
+        
+        if (rootOfSet0 !== rootOfSet1) {   // nodes not in same set
+            mst.push(lineSegment);
+            
+            // merge the two sets:
+            var treeSize0 = rootOfSet0.treeSize;
+            var treeSize1 = rootOfSet1.treeSize;
+            if (treeSize0 >= treeSize1) {
+                // set0 absorbs set1:
+                rootOfSet1.parent = rootOfSet0;
+                rootOfSet0.treeSize += treeSize1;
+            } else {
+                // set1 absorbs set0:
+                rootOfSet0.parent = rootOfSet1;
+                rootOfSet1.treeSize += treeSize0;
+            }
+        }
+    }
+    
+    _(nodes).each(function (node) {
+        nodePool.push(node);
+    });
+    
+    return mst;
+};
+},{"../../as3/point-core":4,"../../janicek/core":9,"../geom/line-segment":30,"./node":24,"lodash":1}],23:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    LEFT: 'left',
+    RIGHT: 'right',
+
+    other: function (leftRight) {
+        return leftRight === this.LEFT ? this.RIGHT : this.LEFT;
+    }
+};
+},{}],24:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+    return {
+        parent: null,
+        treeSize: 0
+    };
+};
+
+module.exports.pool = [];
+},{}],25:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+var circle = require('../geom/circle');
+var def = require('../../janicek/core').def;
+var rectangle = require('../../as3/rectangle');
+var siteModule = require('./site');
+
+module.exports = function () {
+    var _sites = []; // Vector<Site>
+    var _currentIndex = 0;
+    var _sorted = false;
+
+    var pub = {};
+
+    pub.dispose = function () {
+        if (_sites !== null) {
+            _(_sites).each(function (site) {
+                site.dispose();
+            });
+            _sites = null;
+        }
+    };
+
+    pub.push = function (site) {
+        _sorted = false;
+        return _sites.push(site);
+    };
+
+    Object.defineProperties(pub, {
+        'length': {get: function () { return _sites.length; }}
+    });
+
+    pub.next = function () {
+        if (_sorted === false) {
+            throw 'SiteList::next():  sites have not been sorted';
+        }
+        if (_currentIndex < _sites.length) {
+            return _sites[_currentIndex++];
+        } else {
+            return null;
+        }
+    };
+
+    pub.getSitesBounds = function () {
+        if (_sorted === false) {
+            siteModule.sortSites(_sites);
+            _currentIndex = 0;
+            _sorted = true;
+        }
+        var xmin, xmax, ymin, ymax;
+        if (_sites.length === 0) {
+            return rectangle(0, 0, 0, 0);
+        }
+        
+        xmin = Number.POSITIVE_INFINITY;
+        xmax = Number.POSITIVE_INFINITY;
+        _(_sites).each(function (site) {
+            if (site.x < xmin) {
+                xmin = site.x;
+            }
+            if (site.x > xmax) {
+                xmax = site.x;
+            }
+        });
+        // here's where we assume that the sites have been sorted on y:
+        ymin = _sites[0].y;
+        ymax = _sites[_sites.length - 1].y;
+        
+        return rectangle(xmin, ymin, xmax - xmin, ymax - ymin);
+    };
+
+    pub.siteColors = function (referenceImage) {
+        referenceImage = def(referenceImage, null);
+
+        var colors = []; // Vector<Int>
+        _(_sites).each(function (site) {
+            colors.push(referenceImage !== null ? referenceImage.getPixel(site.x, site.y) : site.color);
+        });
+        return colors;
+    };
+
+    pub.siteCoords = function () {
+        var coords = []; // Vector<Point>
+        _(_sites).each(function (site) {
+            coords.push(site.coord);
+        });
+        return coords;
+    };
+
+    /**
+     * 
+     * @return the largest circle centered at each site that fits in its region;
+     * if the region is infinite, return a circle of radius 0.
+     * 
+     */
+    pub.circles = function () {
+        var circles = []; // Vector<Circle>
+        _(_sites).each(function (site) {
+            //var radius:Number = 0;
+            var nearestEdge = site.nearestEdge();
+            
+            var radius = (!nearestEdge.isPartOfConvexHull()) ? (nearestEdge.sitesDistance() * 0.5): 0;
+            //!nearestEdge.isPartOfConvexHull() && (radius = nearestEdge.sitesDistance() * 0.5);
+            circles.push(circle(site.x, site.y, radius));
+        });
+        return circles;
+    };
+
+    pub.regions = function (plotBounds) {
+        var regions = []; // Vector<Vector<Point>>
+        _(_sites).each(function (site) {
+            regions.push(site.region(plotBounds));
+        });
+        return regions;
+    };
+
+    /**
+     * 
+     * @param proximityMap a BitmapData whose regions are filled with the site index values; see PlanePointsCanvas::fillRegions()
+     * @param x
+     * @param y
+     * @return coordinates of nearest Site to (x, y)
+     * 
+     */
+    pub.nearestSitePoint = function (proximityMap, x, y) {
+        var index = proximityMap.getPixel(x, y);
+        if (index > _sites.length - 1) {
+            return null;
+        }
+        return _sites[index].coord;
+    };
+
+    return pub;
+};
+},{"../../as3/rectangle":5,"../../janicek/core":9,"../geom/circle":29,"./site":26,"lodash":1}],26:[function(require,module,exports){
+/* jshint bitwise:false, es3:false */
+
+'use strict';
+
+var _ = require('lodash');
+var boundsCheck = require('./bounds-check');
+var criterion = require('./criterion');
+var def = require('../../janicek/core').def;
+var edgeModule = require('./edge');
+var edgeReordererModule = require('./edge-reorderer');
+var lr = require('./lr');
+var pointCore = require('../../as3/point-core');
+var polygon = require('../geom/polygon');
+var rect = require('../../as3/rectangle').core;
+var voronoiModule = require('./voronoi');
+var winding = require('../geom/winding');
+
+var _pool = []; // Vector<Site>
+
+
+var EPSILON = 0.005;
+function closeEnough(p0, p1) {
+    return pointCore.distance(p0, p1) < EPSILON;
+}
+
+var Site = function (p, index, weight, color) {
+    this.init(p, index, weight, color);
+};
+
+Site.prototype = {
+    _coord: null,
+    get coord() { return this._coord; },
+    color: 0,
+    weight: 0.0,
+    _siteIndex: 0,
+
+    // the edges that define this Site's Voronoi region:
+    _edges: null, // Vector<Edge>
+    get edges() { return this._edges; },
+
+    // which end of each edge hooks up with the previous edge in _edges:
+    _edgeOrientations: null, // Vector<LR>;
+    // ordered list of points that define the region clipped to bounds:
+    _region: null, // Vector<Point>
+
+    init: function (p, index, weight, color) {
+        this._coord = p;
+        this._siteIndex = index;
+        this.weight = weight;
+        this.color = color;
+        this._edges = [];
+        this._region = null;
+        return this;
+    },
+
+    toString: function () {
+        return 'Site ' + this._siteIndex + ': ' + String(this.coord);
+    },
+
+    dispose: function () {
+        this._coord = null;
+        this._clear();
+        _pool.push(this);
+    },
+
+    _clear: function () {
+        if (this._edges !== null) {
+            this._edges = null;
+        }
+        if (this._edgeOrientations !== null) {
+            this._edgeOrientations = null;
+        }
+        if (this._region !== null) {
+            this._region = null;
+        }
+    },
+
+    addEdge: function (edge) {
+        this._edges.push(edge);
+    },
+
+    nearestEdge: function () {
+        this._edges.sort(edgeModule.compareSitesDistances);
+        return this._edges[0];
+    },
+
+    neighborSites: function () {
+        if (this._edges === null || this._edges.length === 0) {
+            return [];
+        }
+        if (this._edgeOrientations === null) {
+            this._reorderEdges();
+        }
+        var list = []; // Vector<Site>
+
+        _.each(this._edges, function (edge) {
+            list.push(this._neighborSite(edge));
+        });
+
+        return list;
+    },
+
+    _neighborSite: function (edge) {
+        if (this === edge.leftSite) {
+            return edge.rightSite;
+        }
+        if (this === edge.rightSite) {
+            return edge.leftSite;
+        }
+        return null;
+    },
+
+    region: function (clippingBounds) {
+        if (this._edges === null || this._edges.length === 0) {
+            return [];
+        }
+        if (this._edgeOrientations === null) {
+            this._reorderEdges();
+            this._region = this._clipToBounds(clippingBounds);
+            if ((polygon(this._region)).winding() === winding.CLOCKWISE) {
+                this._region.reverse();
+            }
+        }
+        return this._region;
+    },
+
+    _reorderEdges: function () {
+        var reorderer = edgeReordererModule(this._edges, criterion.vertex);
+        this._edges = reorderer.edges;
+        this._edgeOrientations = reorderer.edgeOrientations;
+        reorderer.dispose();
+    },
+
+    _clipToBounds: function (bounds) {
+        var points = []; // Vector<Point>
+        var n = this._edges.length;
+        var i = 0;
+        var edge = null;
+        while (i < n && (this._edges[i].visible === false)) {
+            ++i;
+        }
+        
+        if (i === n) {
+            // no edges visible
+            return [];
+        }
+        edge = this._edges[i];
+        var orientation = this._edgeOrientations[i];
+        points.push(edge.clippedEnds[orientation]);
+        points.push(edge.clippedEnds[lr.other(orientation)]);
+
+        for (var j = (i + 1); j < n; j++) {
+            edge = this._edges[j];
+            if (edge.visible === false) {
+                continue;
+            }
+            this._connect(points, j, bounds);
+        }
+        // close up the polygon by adding another corner point of the bounds if needed:
+        this._connect(points, i, bounds, true);
+        
+        return points;
+    },
+
+    _connect: function (points, j, bounds, closingUp) {
+        closingUp = def(closingUp, false);
+
+        var rightPoint = points[points.length - 1];
+        var newEdge = this._edges[j];
+        var newOrientation = this._edgeOrientations[j];
+        // the point that  must be connected to rightPoint:
+        var newPoint = newEdge.clippedEnds[newOrientation];
+        if (!closeEnough(rightPoint, newPoint)) {
+            // The points do not coincide, so they must have been clipped at the bounds;
+            // see if they are on the same border of the bounds:
+            if (rightPoint.x !== newPoint.x && rightPoint.y !== newPoint.y) {
+                // They are on different borders of the bounds;
+                // insert one or two corners of bounds as needed to hook them up:
+                // (NOTE this will not be correct if the region should take up more than
+                // half of the bounds rect, for then we will have gone the wrong way
+                // around the bounds and included the smaller part rather than the larger)
+                var rightCheck = boundsCheck.check(rightPoint, bounds);
+                var newCheck = boundsCheck.check(newPoint, bounds);
+                var px, py;
+                if ((rightCheck & boundsCheck.RIGHT) !== 0) {
+                    px = rect(bounds).right();
+                    if ((newCheck & boundsCheck.BOTTOM) !== 0) {
+                        py = rect(bounds).bottom();
+                        points.push({x: px, y: py});
+                    }
+                    else if ((newCheck & boundsCheck.TOP) !== 0) {
+                        py = rect(bounds).top();
+                        points.push({x: px, y: py});
+                    }
+                    else if ((newCheck & boundsCheck.LEFT) !== 0) {
+                        if (rightPoint.y - bounds.y + newPoint.y - bounds.y < bounds.height) {
+                            py = rect(bounds).top();
+                        } else {
+                            py = rect(bounds).bottom();
+                        }
+                        points.push({x: px, y: py});
+                        points.push({x: rect(bounds).left(), y: py});
+                    }
+                } else if ((rightCheck & boundsCheck.LEFT) !== 0) {
+                    px = rect(bounds).left();
+                    if ((newCheck & boundsCheck.BOTTOM) !== 0) {
+                        py = rect(bounds).bottom();
+                        points.push({x: px, y: py});
+                    } else if ((newCheck & boundsCheck.TOP) !== 0) {
+                        py = rect(bounds).top();
+                        points.push({x: px, y: py});
+                    } else if ((newCheck & boundsCheck.RIGHT) !== 0) {
+                        if (rightPoint.y - bounds.y + newPoint.y - bounds.y < bounds.height) {
+                            py = rect(bounds).top();
+                        } else {
+                            py = rect(bounds).bottom();
+                        }
+                        points.push({x: px, y: py});
+                        points.push({x: rect(bounds).right(), y: py});
+                    }
+                } else if ((rightCheck & boundsCheck.TOP) !== 0) {
+                    py = rect(bounds).top();
+                    if ((newCheck & boundsCheck.RIGHT) !== 0) {
+                        px = rect(bounds).right();
+                        points.push({x: px, y: py});
+                    } else if ((newCheck & boundsCheck.LEFT) !== 0) {
+                        px = rect(bounds).left();
+                        points.push({x: px, y: py});
+                    } else if ((newCheck & boundsCheck.BOTTOM) !== 0) {
+                        if (rightPoint.x - bounds.x + newPoint.x - bounds.x < bounds.width) {
+                            px = rect(bounds).left();
+                        } else {
+                            px = rect(bounds).right();
+                        }
+                        points.push({x: px, y: py});
+                        points.push({x: px, y: rect(bounds).bottom()});
+                    }
+                } else if ((rightCheck & boundsCheck.BOTTOM) !== 0) {
+                    py = rect(bounds).bottom();
+                    if ((newCheck & boundsCheck.RIGHT) !== 0) {
+                        px = rect(bounds).right();
+                        points.push({x: px, y: py});
+                    } else if ((newCheck & boundsCheck.LEFT) !== 0) {
+                        px = rect(bounds).left();
+                        points.push({x: px, y: py});
+                    } else if ((newCheck & boundsCheck.TOP) !== 0) {
+                        if (rightPoint.x - bounds.x + newPoint.x - bounds.x < bounds.width) {
+                            px = rect(bounds).left();
+                        } else {
+                            px = rect(bounds).right();
+                        }
+                        points.push({x: px, y: py});
+                        points.push({x: px, y: rect(bounds).top()});
+                    }
+                }
+            }
+            if (closingUp) {
+                // newEdge's ends have already been added
+                return;
+            }
+            points.push(newPoint);
+        }
+        var newRightPoint = newEdge.clippedEnds[lr.other(newOrientation)];
+        if (!closeEnough(points[0], newRightPoint)) {
+            points.push(newRightPoint);
+        }
+    },
+
+    get x() { return this._coord.x; },
+
+    get y() { return this._coord.y; },
+
+    dist: function (p) {
+        return pointCore.distance(p.coord, this.coord);
+    }
+};
+
+exports.create = function (p, index, weight, color) {
+    if (_pool.length > 0) {
+        return _pool.pop().init(p, index, weight, color);
+    } else {
+        return new Site(p, index, weight, color);
+    }
+};
+
+/**
+ * sort sites on y, then x, coord
+ * also change each site's _siteIndex to match its new position in the list
+ * so the _siteIndex can be used to identify the site for nearest-neighbor queries
+ * 
+ * haha "also" - means more than one responsibility...
+ * 
+ */
+exports.sortSites = function (sites) {
+    sites.sort(voronoiModule.compareSiteByYThenX);
+    _(sites).each(function (site, i) {
+        sites[i]._siteIndex = i;
+    });
+};
+},{"../../as3/point-core":4,"../../as3/rectangle":5,"../../janicek/core":9,"../geom/polygon":31,"../geom/winding":32,"./bounds-check":14,"./criterion":15,"./edge":19,"./edge-reorderer":18,"./lr":23,"./voronoi":28,"lodash":1}],27:[function(require,module,exports){
+/* jshint es3:false */
+
+'use strict';
+
+var _pool = [];
+var _nvertices = 0;
+
+var Vertex = function (x, y) {
+    this.init(x, y);
+};
+
+Vertex.prototype = {
+    _coord: null,
+
+    get coord() { return this._coord; },
+
+    vertexIndex: 0,
+
+    init: function (x, y) {
+        this._coord = {x: x, y: y};
+        return this;
+    },
+
+    dispose: function () {
+        this._coord = null;
+        _pool.push(this);
+    },
+
+    setIndex: function () {
+        this.vertexIndex = _nvertices++;
+    },
+
+    toString: function () {
+        return 'Vertex (' + this.vertexIndex + ')';
+    },
+
+    get x() {
+        return this._coord.x;
+    },
+
+    get y() {
+        return this._coord.y;
+    }
+
+};
+
+function create(x, y) {
+    if (isNaN(x) || isNaN(y)) {
+        return exports.VERTEX_AT_INFINITY;
+    }
+    if (_pool.length > 0) {
+        return _pool.pop().init(x, y);
+    } else {
+        return new Vertex(x, y);
+    }
+}
+
+exports.VERTEX_AT_INFINITY = new Vertex(NaN, NaN);
+
+/**
+ * This is the only way to make a Vertex
+ * 
+ * @param halfedge0
+ * @param halfedge1
+ * @return 
+ * 
+ */
+exports.intersect = function (halfedge0, halfedge1) {
+    var voronoi = require('./voronoi');
+    var lr = require('./lr');
+
+    var edge0, edge1, edge;
+    var halfedge;
+    var determinant, intersectionX, intersectionY;
+    var rightOfSite;
+
+    edge0 = halfedge0.edge;
+    edge1 = halfedge1.edge;
+    if (edge0 === null || edge1 === null) {
+        return null;
+    }
+    if (edge0.rightSite === edge1.rightSite) {
+        return null;
+    }
+
+    determinant = edge0.a * edge1.b - edge0.b * edge1.a;
+    if (-1.0e-10 < determinant && determinant < 1.0e-10) {
+        // the edges are parallel
+        return null;
+    }
+
+    intersectionX = (edge0.c * edge1.b - edge1.c * edge0.b) / determinant;
+    intersectionY = (edge1.c * edge0.a - edge0.c * edge1.a) / determinant;
+
+    //if (Voronoi.isInfSite(edge0.rightSite, edge1.rightSite))  //HxDelaunay
+    if (voronoi.compareSiteByYThenX(edge0.rightSite, edge1.rightSite) < 0) {
+        halfedge = halfedge0;
+        edge = edge0;
+    } else {
+        halfedge = halfedge1;
+        edge = edge1;
+    }
+    rightOfSite = intersectionX >= edge.rightSite.x;
+    if ((rightOfSite && halfedge.leftRight === lr.LEFT) ||
+        (!rightOfSite && halfedge.leftRight === lr.RIGHT)) {
+        return null;
+    }
+    return create(intersectionX, intersectionY);
+};
+},{"./lr":23,"./voronoi":28}],28:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+var criterion = require('./criterion');
+var core = require('../../janicek/core');
+var def = require('../../janicek/core').def;
+var delaunayModule = require('./delaunay');
+var edgeListModule = require('./edge-list');
+var edgeModule = require('./edge');
+var edgeReordererModule = require('./edge-reorderer');
+var halfEdgeModule = require('./halfedge');
+var halfedgePriorityQueue = require('./halfedge-priority-queue');
+var kruskalModule = require('./kruskal');
+var lr = require('./lr');
+var pointCore = require('../../as3/point-core');
+var prngModule = require('../../polygonal/pm-prng');
+var siteListModule = require('./site-list');
+var siteModule = require('./site');
+var vertexModule = require('./vertex');
+
+exports.make = function (points, colors, plotBoundsArg) {
+
+    var _prng = prngModule();
+    var _sites = siteListModule();
+    var _sitesIndexedByLocation = {}; // Dictionary<Site>
+    var _triangles = []; // Vector<Triangle>
+    var _edges = []; // Vector<Edge>
+
+    var pub = {};
+
+    // TODO generalize this so it doesn't have to be a rectangle;
+    // then we can make the fractal voronois-within-voronois
+    pub.plotBounds = plotBoundsArg;
+
+    pub.dispose = function () {
+        var i, n;
+        if (_sites !== null) {
+            _sites.dispose();
+            _sites = null;
+        }
+        if (_triangles !== null) {
+            n = _triangles.length;
+            for (i = 0; i < n; i++) {
+                _triangles[i].dispose();
+            }
+            //_triangles.length = 0;
+            _triangles = null;
+        }
+        if (_edges !== null) {
+            n = _edges.length;
+            for (i = 0; i < n; i++) {
+                _edges[i].dispose();
+            }
+            //_edges.length = 0;
+            _edges = null;
+        }
+        pub.plotBounds = null;
+        _sitesIndexedByLocation = null;
+    };
+
+    /**
+     * AS3 Dictionary stores object keys by object identity.
+     * Haxe Hash only supports string keys.
+     * This means duplicate coordinates can't be stored in hash.
+     * Prevent this case until it's possible to store duplicate points coords.
+     */
+    function makeSureNoDuplicatePoints(points) {
+        var h = {};
+        _(points).each(function (p) {
+            if (_(h).has(pointCore.hash(p))) {
+                throw 'Duplicate points not supported yet!';
+            }
+            h[pointCore.hash(p)] = p;
+        });
+    }
+
+    function addSites(points, colors) {
+        var length = points.length;
+        for (var i = 0; i < length; i++) {
+            addSite(points[i], (colors !== null) ? colors[i] : 0, i);
+        }
+    }
+
+    function addSite(p, color, index) {
+        var weight = _prng.nextDouble() * 100;
+        var site = siteModule.create(p, index, weight, color);
+        _sites.push(site);
+        _sitesIndexedByLocation[pointCore.hash(p)] = site;
+    }
+
+    pub.edges = function () {
+        return _edges;
+    };
+
+    pub.region = function (p) {
+        var site = _sitesIndexedByLocation[pointCore.hash(p)];
+        if (site === null) {
+            return [];
+        }
+        return site.region(pub.plotBounds);
+    };
+
+    // TODO: bug: if you call this before you call region(), something goes wrong :(
+    pub.neighborSitesForSite = function (coord) {
+        var points = []; // Vector<Point>
+        var site = _sitesIndexedByLocation[pointCore.hash(coord)];
+        if (site === null) {
+            return points;
+        }
+        var sites = site.neighborSites();
+        _(sites).each(function (neighbor) {
+            points.push(neighbor.coord);
+        });
+        return points;
+    };
+
+    pub.circles = function () {
+        return _sites.circles();
+    };
+
+    pub.voronoiBoundaryForSite = function (coord) {
+        return delaunayModule.visibleLineSegments(delaunayModule.selectEdgesForSitePoint(coord, _edges));
+    };
+
+    pub.delaunayLinesForSite = function (coord) {
+        return delaunayModule.delaunayLinesForEdges(delaunayModule.selectEdgesForSitePoint(coord, _edges));
+    };
+
+    pub.voronoiDiagram = function () {
+        return delaunayModule.visibleLineSegments(_edges);
+    };
+
+    pub.delaunayTriangulation = function (keepOutMask) {
+        keepOutMask = def(keepOutMask, null);
+        return delaunayModule.delaunayLinesForEdges(delaunayModule.selectNonIntersectingEdges(keepOutMask, _edges));
+    };
+
+    pub.hull = function () {
+        return delaunayModule.delaunayLinesForEdges(hullEdges());
+    };
+
+    function hullEdges() {
+        return _(_edges).filter(function (edge) {
+            return (edge.isPartOfConvexHull());
+        });
+    }
+
+    pub.hullPointsInOrder = function () {
+        var hullEdges = hullEdges();
+        
+        var points = [];
+        if (hullEdges.length === 0) {
+            return points;
+        }
+        
+        var reorderer = edgeReordererModule(hullEdges, criterion.site);
+        hullEdges = reorderer.edges;
+        var orientations = reorderer.edgeOrientations;
+        reorderer.dispose();
+        
+        var orientation;
+
+        var n = hullEdges.length;
+        var i;
+        for (i = 0; i < n; i++) {
+            var edge = hullEdges[i];
+            orientation = orientations[i];
+            points.push(edge.site(orientation).coord);
+        }
+        return points;
+    };
+
+    pub.spanningTree = function (type, keepOutMask) {
+        type = def(type, 'minimum');
+        keepOutMask = def(keepOutMask, null);
+
+        var edges = delaunayModule.selectNonIntersectingEdges(keepOutMask, _edges);
+        var segments = delaunayModule.delaunayLinesForEdges(edges);
+        return kruskalModule.kruskal(segments, type);
+    };
+
+    pub.regions = function () {
+        return _sites.regions(pub.plotBounds);
+    };
+
+    pub.siteColors = function (referenceImage) {
+        referenceImage = def(referenceImage, null);
+        return _sites.siteColors(referenceImage);
+    };
+
+    /**
+     * 
+     * @param proximityMap a BitmapData whose regions are filled with the site index values; see PlanePointsCanvas::fillRegions()
+     * @param x
+     * @param y
+     * @return coordinates of nearest Site to (x, y)
+     * 
+     */
+    pub.nearestSitePoint = function (proximityMap, x, y) {
+        return _sites.nearestSitePoint(proximityMap, x, y);
+    };
+
+    pub.siteCoords = function () {
+        return _sites.siteCoords();
+    };
+
+    function fortunesAlgorithm() {
+        var newSite, bottomSite, topSite, tempSite;
+        var v, vertex;
+        var newintstar;
+        var leftRight;
+        var lbnd, rbnd, llbnd, rrbnd, bisector;
+        var edge;
+        
+        var dataBounds = _sites.getSitesBounds();
+        
+        var sqrtNsites = core.toInt(Math.sqrt(_sites.length + 4));
+        var heap = halfedgePriorityQueue(dataBounds.y, dataBounds.height, sqrtNsites);
+        var edgeList = edgeListModule(dataBounds.x, dataBounds.width, sqrtNsites);
+        var halfEdges = [];
+        var vertices = [];
+        
+        var bottomMostSite = _sites.next();
+        newSite = _sites.next();
+
+        function leftRegion(he) {
+            var edge = he.edge;
+            if (edge === null) {
+                return bottomMostSite;
+            }
+            return edge.site(he.leftRight);
+        }
+        
+        function rightRegion(he) {
+            var edge = he.edge;
+            if (edge === null) {
+                return bottomMostSite;
+            }
+            return edge.site(lr.other(he.leftRight));
+        }
+        
+        while (true) {
+            if (heap.empty() === false) {
+                newintstar = heap.min();
+            }
+        
+            if (newSite !== null &&  (heap.empty() || exports.comparePointByYThenX(newSite, newintstar) < 0)) {
+                /* new site is smallest */
+                
+                // Step 8:
+                lbnd = edgeList.edgeListLeftNeighbor(newSite.coord);    // the Halfedge just to the left of newSite
+                rbnd = lbnd.edgeListRightNeighbor;      // the Halfedge just to the right
+                bottomSite = rightRegion(lbnd);     // this is the same as leftRegion(rbnd)
+                // this Site determines the region containing the new site
+                
+                // Step 9:
+                edge = edgeModule.createBisectingEdge(bottomSite, newSite);
+                _edges.push(edge);
+                
+                bisector = halfEdgeModule.create(edge, lr.LEFT);
+                halfEdges.push(bisector);
+                // inserting two Halfedges into edgeList constitutes Step 10:
+                // insert bisector to the right of lbnd:
+                edgeList.insert(lbnd, bisector);
+                
+                // first half of Step 11:
+                if ((vertex = vertexModule.intersect(lbnd, bisector)) !== null) {
+                    vertices.push(vertex);
+                    heap.remove(lbnd);
+                    lbnd.vertex = vertex;
+                    lbnd.ystar = vertex.y + newSite.dist(vertex);
+                    heap.insert(lbnd);
+                }
+                
+                lbnd = bisector;
+                bisector = halfEdgeModule.create(edge, lr.RIGHT);
+                halfEdges.push(bisector);
+                // second Halfedge for Step 10:
+                // insert bisector to the right of lbnd:
+                edgeList.insert(lbnd, bisector);
+                
+                // second half of Step 11:
+                if ((vertex = vertexModule.intersect(bisector, rbnd)) !== null) {
+                    vertices.push(vertex);
+                    bisector.vertex = vertex;
+                    bisector.ystar = vertex.y + newSite.dist(vertex);
+                    heap.insert(bisector);
+                }
+                
+                newSite = _sites.next();
+            } else if (heap.empty() === false) {
+                /* intersection is smallest */
+                lbnd = heap.extractMin();
+                llbnd = lbnd.edgeListLeftNeighbor;
+                rbnd = lbnd.edgeListRightNeighbor;
+                rrbnd = rbnd.edgeListRightNeighbor;
+                bottomSite = leftRegion(lbnd);
+                topSite = rightRegion(rbnd);
+                // these three sites define a Delaunay triangle
+                // (not actually using these for anything...)
+                //_triangles.push(new Triangle(bottomSite, topSite, rightRegion(lbnd)));
+                
+                v = lbnd.vertex;
+                v.setIndex();
+                lbnd.edge.setVertex(lbnd.leftRight, v);
+                rbnd.edge.setVertex(rbnd.leftRight, v);
+                edgeList.remove(lbnd);
+                heap.remove(rbnd);
+                edgeList.remove(rbnd);
+                leftRight = lr.LEFT;
+                if (bottomSite.y > topSite.y) {
+                    tempSite = bottomSite;
+                    bottomSite = topSite;
+                    topSite = tempSite;
+                    leftRight = lr.RIGHT;
+                }
+                edge = edgeModule.createBisectingEdge(bottomSite, topSite);
+                _edges.push(edge);
+                bisector = halfEdgeModule.create(edge, leftRight);
+                halfEdges.push(bisector);
+                edgeList.insert(llbnd, bisector);
+                edge.setVertex(lr.other(leftRight), v);
+                if ((vertex = vertexModule.intersect(llbnd, bisector)) !== null) {
+                    vertices.push(vertex);
+                    heap.remove(llbnd);
+                    llbnd.vertex = vertex;
+                    llbnd.ystar = vertex.y + bottomSite.dist(vertex);
+                    heap.insert(llbnd);
+                }
+                if ((vertex = vertexModule.intersect(bisector, rrbnd)) !== null) {
+                    vertices.push(vertex);
+                    bisector.vertex = vertex;
+                    bisector.ystar = vertex.y + bottomSite.dist(vertex);
+                    heap.insert(bisector);
+                }
+            } else {
+                break;
+            }
+        }
+        
+        // heap should be empty now
+        heap.dispose();
+        edgeList.dispose();
+        
+        _(halfEdges).each(function (halfEdge) {
+            halfEdge.reallyDispose();
+        });
+        //halfEdges.length = 0;
+        
+        // we need the vertices to clip the edges
+        _(_edges).each(function (edge) {
+            edge.clipVertices(pub.plotBounds);
+        });
+        // but we don't actually ever use them again!
+        _(vertices).each(function (vertex) {
+            vertex.dispose();
+        });
+        //vertices.length = 0;
+    }
+
+    makeSureNoDuplicatePoints(points);
+    _prng.seed = 1;
+    addSites(points, colors);
+    fortunesAlgorithm();
+
+    return pub;
+};
+
+/**
+ * HxDelaunay
+ */
+exports.isInfSite = function (s1, s2) {
+    return (s1.y < s2.y) || (s1.y === s2.y && s1.x < s2.x);
+};
+
+exports.comparePointByYThenX = function (s1, s2) {
+    return exports.compareByYThenX(s1.x, s1.y, s2.x, s2.y);
+};
+
+exports.compareSiteByYThenX = function (s1, s2) {
+    return exports.compareByYThenX(s1.x, s1.y, s2.x, s2.y);
+};
+
+exports.compareByYThenX = function (s1x, s1y, s2x, s2y) {
+    if (s1y < s2y) { return -1; }
+    if (s1y > s2y) { return 1; }
+    if (s1x < s2x) { return -1; }
+    if (s1x > s2x) { return 1; }
+    return 0;
+};
+},{"../../as3/point-core":4,"../../janicek/core":9,"../../polygonal/pm-prng":33,"./criterion":15,"./delaunay":16,"./edge":19,"./edge-list":17,"./edge-reorderer":18,"./halfedge":21,"./halfedge-priority-queue":20,"./kruskal":22,"./lr":23,"./site":26,"./site-list":25,"./vertex":27,"lodash":1}],29:[function(require,module,exports){
+'use strict';
+
+module.exports = function (centerX, centerY, radius) {
+    return {
+        center: {x: centerX, y: centerY},
+        radius: radius,
+        toString: function () {
+            return 'Circle (center: ' + this.center + '; radius: ' + this.radius + ')';
+        }
+    };
+};
+},{}],30:[function(require,module,exports){
+'use strict';
+
+var pointCore = require('../../as3/point-core');
+
+module.exports = function (p0, p1) {
+    return {
+        p0: p0,
+        p1: p1
+    };
+};
+
+module.exports.core = {
+    compareLengthsMax: function (segment0, segment1) {
+        var length0 = pointCore.distance(segment0.p0, segment0.p1);
+        var length1 = pointCore.distance(segment1.p0, segment1.p1);
+        if (length0 < length1) {
+            return 1;
+        }
+        if (length0 > length1) {
+            return -1;
+        }
+        return 0;
+    },
+
+    compareLengths: function (edge0, edge1) {
+        return - this.compareLengthsMax(edge0, edge1);
+    }
+};
+},{"../../as3/point-core":4}],31:[function(require,module,exports){
+'use strict';
+
+var winding = require('./winding');
+
+var Polygon = function (vertices) {
+    this._vertices = vertices;
+};
+
+Polygon.prototype = {
+    area: function () {
+        return Math.abs(this.signedDoubleArea() * 0.5);
+    },
+
+    winding: function () {
+        var signedDoubleArea = this.signedDoubleArea();
+        if (signedDoubleArea < 0) {
+            return winding.CLOCKWISE;
+        }
+        if (signedDoubleArea > 0) {
+            return winding.COUNTERCLOCKWISE;
+        }
+        return winding.NONE;
+    },
+
+    signedDoubleArea: function () {
+        var index, nextIndex;
+        var n = this._vertices.length;
+        var point, next;
+        var signedDoubleArea = 0;
+        for (index = 0; index < n; index++) {
+            nextIndex = (index + 1) % n;
+            point = this._vertices[index];
+            next = this._vertices[nextIndex];
+            signedDoubleArea += point.x * next.y - next.x * point.y;
+        }
+        return signedDoubleArea;
+    }
+};
+
+module.exports = function (vertices) {
+    return new Polygon(vertices);
+};
+},{"./winding":32}],32:[function(require,module,exports){
+'use strict';
+
+module.exports = {
+    CLOCKWISE: 'clockwise',
+    COUNTERCLOCKWISE: 'counterclockwise',
+    NONE: 'none'
+};
+},{}],33:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+
+    return {
+
+        /**
+         * set seed with a 31 bit unsigned integer
+         * between 1 and 0X7FFFFFFE inclusive. don't use 0!
+         */
+        seed: 1,
+
+        /**
+         * provides the next pseudorandom number
+         * as a float between nearly 0 and nearly 1.0.
+         */
+        nextDouble: function () {
+            return (this.gen() / 2147483647);
+        },
+
+        /**
+         * provides the next pseudorandom number
+         * as an unsigned integer (31 bits) betweeen
+         * a given range.
+         */
+        nextIntRange: function (min, max) {
+            min -= 0.4999;
+            max += 0.4999;
+            return Math.round(min + ((max - min) * this.nextDouble()));
+        },
+
+        /**
+         * provides the next pseudorandom number
+         * as a float between a given range.
+         */
+        nextDoubleRange: function (min, max) {
+            return min + ((max - min) * this.nextDouble());
+        },
+
+        /**
+         * generator:
+         * new-value = (old-value * 16807) mod (2^31 - 1)
+         */
+        gen: function () {
+            //integer version 1, for max int 2^46 - 1 or larger.
+            this.seed = (this.seed * 16807) % 2147483647;
+            return this.seed;
+            
+            /**
+             * integer version 2, for max int 2^31 - 1 (slowest)
+             */
+            //var test:int = 16807 * (seed % 127773 >> 0) - 2836 * (seed / 127773 >> 0);
+            //return seed = (test > 0 ? test : test + 2147483647);
+            
+            /**
+             * david g. carta's optimisation is 15% slower than integer version 1
+             */
+            //var hi:uint = 16807 * (seed >> 16);
+            //var lo:uint = 16807 * (seed & 0xFFFF) + ((hi & 0x7FFF) << 16) + (hi >> 15);
+            //return seed = (lo > 0x7FFFFFFF ? lo - 0x7FFFFFFF : lo);
+        }
+    };
+};
+},{}],34:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+var colorModule = require('../janicek/html-color');
+var convert = require('../as3/conversion-core');
+var core = require('../janicek/core');
+var matrix = require('../as3/matrix');
+var pointCore = require('../as3/point-core');
+var vector3d = require('../as3/vector-3d');
+
+exports.graphicsReset = function (c, mapWidth, mapHeight, displayColors) {
+    c.lineWidth = 1.0;
+    c.clearRect(0, 0, 2000, 2000);
+    c.fillStyle = '#bbbbaa';
+    c.fillRect(0, 0, 2000, 2000);
+    c.fillStyle = colorModule.intToHexColor(displayColors.OCEAN);
+    c.fillRect(0, 0, core.toInt(mapWidth), core.toInt(mapHeight));
+};
+
+var lightVector = vector3d(-1, -1, 0);
+
+exports.calculateLighting = function (p, r, s) {
+    var A = vector3d(p.point.x, p.point.y, p.elevation);
+    var B = vector3d(r.point.x, r.point.y, r.elevation);
+    var C = vector3d(s.point.x, s.point.y, s.elevation);
+    var normal = B.subtract(A).crossProduct(C.subtract(A));
+    if (normal.z < 0) { normal.scaleBy(-1); }
+    normal.normalize();
+    var light = 0.5 + 35 * normal.dotProduct(lightVector);
+    if (light < 0) { light = 0; }
+    if (light > 1) { light = 1; }
+    return light;
+};
+
+exports.colorWithSlope = function (color, p, q, edge, displayColors) {
+    var r = edge.v0;
+    var s = edge.v1;
+    if (_.isNull(r) || _.isNull(s)) {
+        // Edge of the map
+        return displayColors.OCEAN;
+    } else if (p.water) {
+        return color;
+    }
+
+    if (q !== null && p.water === q.water) {
+        color = colorModule.interpolateColor(color, displayColors[q.biome], 0.4);
+    }
+    var colorLow = colorModule.interpolateColor(color, 0x333333, 0.7);
+    var colorHigh = colorModule.interpolateColor(color, 0xffffff, 0.3);
+    var light = exports.calculateLighting(p, r, s);
+    if (light < 0.5) {
+        return colorModule.interpolateColor(colorLow, color, light * 2);
+    } else {
+        return colorModule.interpolateColor(color, colorHigh, light * 2 - 1);
+    }
+};
+
+exports.colorWithSmoothColors = function (color, p, q, edge, displayColors) {
+    if (q !== null && p.water === q.water) {
+        color = colorModule.interpolateColor(displayColors[p.biome], displayColors[q.biome], 0.25);
+    }
+    return color;
+};
+
+exports.renderDebugPolygons = function (context, map, displayColors) {
+
+    var color;
+
+    if (map.centers.length === 0) {
+        // We're still constructing the map so we may have some points
+        
+        context.fillStyle = '#dddddd';
+        context.fillRect(0, 0, core.toInt(map.SIZE.width), core.toInt(map.SIZE.height) /*context.canvas.width, context.canvas.height */); //graphics.drawRect(0, 0, SIZE, SIZE);
+        _(map.points).each(function (point) {
+            context.beginPath();
+            context.strokeStyle = '#000000';
+            context.fillStyle = '#000000';
+            context.arc(point.x, point.y, 1.3, Math.PI, 2 * Math.PI, false);
+            context.closePath();
+            context.fill();
+            context.stroke();
+        });
+    }
+    
+    _(map.centers).each(function (p) {
+        color = !_.isNull(p.biome) ? displayColors[p.biome] : (p.ocean ? displayColors.OCEAN : p.water ? displayColors.RIVER : 0xffffff);
+      
+        //Draw shape
+        context.beginPath();
+        _(p.borders).each(function (edge) {
+            if (!_.isNull(edge.v0) && !_.isNull(edge.v1)) {
+                context.moveTo(p.point.x, p.point.y);
+                context.lineTo(edge.v0.point.x, edge.v0.point.y);
+                context.lineTo(edge.v1.point.x, edge.v1.point.y);
+            }
+        });
+        context.closePath();
+        context.fillStyle = colorModule.intToHexColor(colorModule.interpolateColor(color, 0xdddddd, 0.2));
+        context.fill();
+
+        //Draw borders
+        _(p.borders).each(function (edge) {
+            if (!_.isNull(edge.v0) && !_.isNull(edge.v1)) {
+                context.beginPath();
+                context.moveTo(edge.v0.point.x, edge.v0.point.y);
+                if (edge.river > 0) {
+                    context.lineWidth = 1;
+                    context.strokeStyle = colorModule.intToHexColor(displayColors.RIVER);
+                } else {
+                    context.lineWidth = 0.1;
+                    context.strokeStyle = '#000000';
+                }
+                context.lineTo(edge.v1.point.x, edge.v1.point.y);
+                context.closePath();
+                context.stroke();
+            }
+        });
+        
+        context.beginPath();
+        context.fillStyle = (p.water ? '#003333' : '#000000');
+        context.globalAlpha = 0.7;
+        context.arc(p.point.x, p.point.y, 1.3, Math.PI, 2 * Math.PI, false);
+        context.closePath();
+        context.fill();
+        context.globalAlpha = 1.0;
+        _(p.corners).each(function (q) {
+            context.fillStyle = q.water ? '#0000ff' : '#009900';
+            context.fillRect(core.toInt(q.point.x - 0.7), core.toInt(q.point.y - 0.7), core.toInt(1.5), core.toInt(1.5));
+        });
+    });
+};
+
+/**
+ * Render the paths from each polygon to the ocean, showing watersheds.
+ */
+exports.renderWatersheds = function (graphics, map, watersheds) {
+    var edge, w0, w1;
+
+    _(map.edges).each(function (edge) {
+        if (!_.isNull(edge.d0) && !_.isNull(edge.d1) && !_.isNull(edge.v0) && !_.isNull(edge.v1) && !edge.d0.ocean && !edge.d1.ocean) {
+            w0 = watersheds.watersheds[edge.d0.index];
+            w1 = watersheds.watersheds[edge.d1.index];
+            if (w0 !== w1) {
+                graphics.beginPath();
+                //graphics.lineStyle(3.5, 0x000000, 0.1 * Math.sqrt((map.corners[w0].watershedSize || 1) + (map.corners[w1].watershed.watershedSize || 1)));
+                graphics.lineWidth = 3.5;
+                graphics.strokeStyle = colorModule.rgba(0, 0, 0, 0.1 * Math.sqrt((core.coalesce(map.corners[w0].watershedSize, 1)) + (core.coalesce(map.corners[w1].watershed.watershedSize, 1))));
+                graphics.moveTo(edge.v0.point.x, edge.v0.point.y);
+                graphics.lineTo(edge.v1.point.x, edge.v1.point.y);
+                graphics.closePath(); //graphics.lineStyle();
+                graphics.stroke();
+            }
+        }
+    });
+
+    for (edge in map.edges) {
+        if (convert.booleanFromInt(edge.river)) {
+            graphics.beginPath();
+            //graphics.lineStyle(1.0, 0x6699ff);
+            graphics.lineWidth = 1.0;
+            graphics.strokeStyle = '#6699ff';
+            graphics.moveTo(edge.v0.point.x, edge.v0.point.y);
+            graphics.lineTo(edge.v1.point.x, edge.v1.point.y);
+            //graphics.lineStyle();
+            graphics.closePath();
+            graphics.stroke();
+        }
+    }
+};
+
+function drawPathForwards(graphics, path) {
+    for (var i = 0; i < path.length; i++) {
+        graphics.lineTo(path[i].x, path[i].y);
+    }
+}
+
+/**
+ * Helper function for drawing triangles with gradients. This
+ * function sets up the fill on the graphics object, and then
+ * calls fillFunction to draw the desired path.
+ */
+function drawGradientTriangle(graphics, v1, v2, v3, colors, fillFunction, fillX, fillY) {
+    var m = matrix();
+
+    // Center of triangle:
+    var V = v1.add(v2).add(v3);
+    V.scaleBy(1 / 3.0);
+
+    // Normal of the plane containing the triangle:
+    var N = v2.subtract(v1).crossProduct(v3.subtract(v1));
+    N.normalize();
+
+    // Gradient vector in x-y plane pointing in the direction of increasing z
+    var G = vector3d(-N.x / N.z, -N.y / N.z, 0);
+
+    // Center of the color gradient
+    var C = vector3d(V.x - G.x * ((V.z - 0.5) / G.length / G.length), V.y - G.y * ((V.z - 0.5) / G.length / G.length));
+
+    if (G.length < 1e-6) {
+        // If the gradient vector is small, there's not much
+        // difference in colors across this triangle. Use a plain
+        // fill, because the numeric accuracy of 1/G.length is not to
+        // be trusted.  NOTE: only works for 1, 2, 3 colors in the array
+        var color = colors[0];
+        if (colors.length === 2) {
+            color = colorModule.interpolateColor(colors[0], colors[1], V.z);
+        } else if (colors.length === 3) {
+            if (V.z < 0.5) {
+                color = colorModule.interpolateColor(colors[0], colors[1], V.z * 2);
+            } else {
+                color = colorModule.interpolateColor(colors[1], colors[2], V.z * 2 - 1);
+            }
+        }
+        graphics.fillStyle = colorModule.intToHexColor(color); //graphics.beginFill(color);
+    } else {
+        // The gradient box is weird to set up, so we let Flash set up
+        // a basic matrix and then we alter it:
+        m.createGradientBox(1, 1, 0, 0, 0);
+        m.translate(-0.5, -0.5);
+        m.scale((1 / G.length), (1 / G.length));
+        m.rotate(Math.atan2(G.y, G.x));
+        m.translate(C.x, C.y);
+        var alphas = _(colors).map(function (c) { return 1.0; });
+        var spread = _(colors).map(function (c, index) { return 255 * index / (colors.length - 1); });
+        //graphics.beginGradientFill(GradientType.LINEAR, colors, alphas, spread, m, SpreadMethod.PAD);
+    }
+    fillFunction(graphics, fillX, fillY);
+    graphics.fill(); //graphics.endFill();
+}
+
+/**
+ * Render the interior of polygons
+ */
+exports.renderPolygons = function (graphics, colors, gradientFillProperty, colorOverrideFunction, map, noisyEdges)  {
+    // My Voronoi polygon rendering doesn't handle the boundary
+    // polygons, so I just fill everything with ocean first.
+    graphics.fillStyle = colorModule.intToHexColor(colors.OCEAN);
+    graphics.fillRect(0, 0, core.toInt(map.SIZE.width), core.toInt(map.SIZE.height));
+ 
+    var drawPath0 = function (graphics, x, y) {
+        var path = noisyEdges.path0[edge.index];
+        graphics.moveTo(x, y);
+        graphics.lineTo(path[0].x, path[0].y);
+        drawPathForwards(graphics, path);
+        graphics.lineTo(x, y);
+    };
+
+    var drawPath1 = function (graphics, x, y) {
+        var path = noisyEdges.path1[edge.index];
+        graphics.moveTo(x, y);
+        graphics.lineTo(path[0].x, path[0].y);
+        drawPathForwards(graphics, path);
+        graphics.lineTo(x, y);
+    };
+
+    for (var centerIndex = 0; centerIndex < map.centers.length; centerIndex++) {
+        var p = map.centers[centerIndex];
+        for (var neighborIndex = 0; neighborIndex < p.neighbors.length; neighborIndex++) {
+            var r = p.neighbors[neighborIndex];
+            var edge = map.lookupEdgeFromCenter(p, r);
+            var color = core.coalesce(colors[p.biome], 0);
+            if (colorOverrideFunction !== null) {
+                color = colorOverrideFunction(color, p, r, edge, colors);
+            }
+
+            if (core.isUndefinedOrNull(noisyEdges.path0[edge.index]) || core.isUndefinedOrNull(noisyEdges.path1[edge.index])) {
+                // It's at the edge of the map, where we don't have
+                // the noisy edges computed. TODO: figure out how to
+                // fill in these edges from the voronoi library.
+                continue;
+            }
+
+            if (!core.isUndefinedOrNull(gradientFillProperty)) {
+                // We'll draw two triangles: center - corner0 -
+                // midpoint and center - midpoint - corner1.
+                var corner0 = edge.v0;
+                var corner1 = edge.v1;
+
+                // We pick the midpoint elevation/moisture between
+                // corners instead of between polygon centers because
+                // the resulting gradients tend to be smoother.
+                var midpoint = edge.midpoint;
+                var midpointAttr = 0.5 * (corner0[gradientFillProperty] + corner1[gradientFillProperty]);
+                drawGradientTriangle(
+                    graphics,
+                    vector3d(p.point.x, p.point.y, p[gradientFillProperty]),
+                    vector3d(corner0.point.x, corner0.point.y, corner0[gradientFillProperty]),
+                    vector3d(midpoint.x, midpoint.y, midpointAttr),
+                    [colors.GRADIENT_LOW, colors.GRADIENT_HIGH],
+                    drawPath0, p.point.x, p.point.y
+                );
+                drawGradientTriangle(
+                    graphics,
+                    vector3d(p.point.x, p.point.y, p[gradientFillProperty]),
+                    vector3d(midpoint.x, midpoint.y, midpointAttr),
+                    vector3d(corner1.point.x, corner1.point.y, corner1[gradientFillProperty]),
+                    [colors.GRADIENT_LOW, colors.GRADIENT_HIGH],
+                    drawPath1, p.point.x, p.point.y
+                );
+            } else {
+                graphics.fillStyle = colorModule.intToHexColor(color);
+                graphics.strokeStyle = graphics.fillStyle;
+                graphics.beginPath();
+                drawPath0(graphics, p.point.x, p.point.y);
+                drawPath1(graphics, p.point.x, p.point.y);
+                graphics.closePath();
+                graphics.fill();
+                graphics.stroke();
+            }
+        }
+    }
+};
+
+/**
+ * Render bridges across every narrow river edge. Bridges are
+ * straight line segments perpendicular to the edge. Bridges are
+ * drawn after rivers. TODO: sometimes the bridges aren't long
+ * enough to cross the entire noisy line river. TODO: bridges
+ * don't line up with curved road segments when there are
+ * roads. It might be worth making a shader that draws the bridge
+ * only when there's water underneath.
+ */
+exports.renderBridges = function (graphics, map, roads, colors) {
+    _(map.edges).each(function (edge) {
+        if (edge.river > 0 && edge.river < 4 &&
+            !edge.d0.water && !edge.d1.water &&
+            (edge.d0.elevation > 0.05 || edge.d1.elevation > 0.05)) {
+
+            var n = { x: -(edge.v1.point.y - edge.v0.point.y), y: edge.v1.point.x - edge.v0.point.x };
+            pointCore.normalize(n, 0.25 + (!_.isNull(roads.road[edge.index]) ? 0.5 : 0) + 0.75 * Math.sqrt(edge.river));
+            graphics.beginPath();
+            graphics.lineWidth = 1.1;
+            graphics.strokeStyle = colorModule.intToHexColor(colors.BRIDGE);
+            graphics.lineCap = 'square';
+            graphics.moveTo(edge.midpoint.x - n.x, edge.midpoint.y - n.y);
+            graphics.lineTo(edge.midpoint.x + n.x, edge.midpoint.y + n.y);
+            graphics.closePath();
+            graphics.stroke();
+        }
+    });
+};
+
+/**
+ * Render roads. We draw these before polygon edges, so that rivers overwrite roads.
+ */
+exports.renderRoads = function (graphics, map, roads, colors) {
+    // First draw the roads, because any other feature should draw
+    // over them. Also, roads don't use the noisy lines.
+    var A, B, C;
+    var i, j, d, edge1, edge2, edges;
+
+    /**
+     * Helper function: find the normal vector across edge 'e' and
+     * make sure to point it in a direction towards 'c'.
+     */
+    function normalTowards(e, c, len) {
+        // Rotate the v0-->v1 vector by 90 degrees:
+        var n = { x: -(e.v1.point.y - e.v0.point.y), y: e.v1.point.x - e.v0.point.x };
+        // Flip it around it if doesn't point towards c
+        var d = pointCore.subtract(c, e.midpoint);
+        if (n.x * d.x + n.y * d.y < 0) {
+            n.x = -n.x;
+            n.y = -n.y;
+        }
+        pointCore.normalize(n, len);
+        return n;
+    }
+  
+    _(map.centers).each(function (p) {
+        if (!core.isUndefinedOrNull(roads.roadConnections[p.index])) {
+            if (roads.roadConnections[p.index].length === 2) {
+                // Regular road: draw a spline from one edge to the other.
+                edges = p.borders;
+                for (i = 0; i < edges.length; i++) {
+                    edge1 = edges[i];
+                    if (roads.road[edge1.index] > 0) {
+                        for (j = i + 1; j < edges.length; j++) {
+                            edge2 = edges[j];
+                            if (roads.road[edge2.index] > 0) {
+                                // The spline connects the midpoints of the edges
+                                // and at right angles to them. In between we
+                                // generate two control points A and B and one
+                                // additional vertex C.  This usually works but
+                                // not always.
+                                d = 0.5 * Math.min(
+                                    pointCore.distanceFromOrigin(pointCore.subtract(edge1.midpoint, p.point)),
+                                    pointCore.distanceFromOrigin(pointCore.subtract(edge2.midpoint, p.point))
+                                );
+                                A = pointCore.add(normalTowards(edge1, p.point, d), edge1.midpoint);
+                                B = pointCore.add(normalTowards(edge2, p.point, d), edge2.midpoint);
+                                C = pointCore.interpolate(A, B, 0.5);
+                                graphics.beginPath();
+                                graphics.lineWidth = 1.1;
+                                graphics.strokeStyle = colorModule.intToHexColor(colors['ROAD' + roads.road[edge1.index]]);
+                                graphics.moveTo(edge1.midpoint.x, edge1.midpoint.y);
+                                graphics.quadraticCurveTo(A.x, A.y, C.x, C.y);
+                                graphics.moveTo(C.x, C.y);
+                                graphics.lineWidth = 1.1;
+                                graphics.strokeStyle = colorModule.intToHexColor(colors['ROAD' + roads.road[edge2.index]]);
+                                graphics.quadraticCurveTo(B.x, B.y, edge2.midpoint.x, edge2.midpoint.y);
+                                graphics.stroke();
+                                graphics.closePath();
+                            }
+                        }
+                    }
+                }
+            } else {
+                // Intersection or dead end: draw a road spline from
+                // each edge to the center
+                _(p.borders).each(function (edge1) {
+                    if (roads.road[edge1.index] > 0) {
+                        d = 0.25 * pointCore.distanceFromOrigin(pointCore.subtract(edge1.midpoint, p.point));
+                        A = pointCore.add(normalTowards(edge1, p.point, d), edge1.midpoint);
+                        graphics.beginPath();
+                        graphics.lineWidth = 1.4;
+                        graphics.strokeStyle = colorModule.intToHexColor(colors['ROAD' + roads.road[edge1.index]]);
+                        graphics.moveTo(edge1.midpoint.x, edge1.midpoint.y);
+                        graphics.quadraticCurveTo(A.x, A.y, p.point.x, p.point.y);
+                        graphics.stroke();
+                        graphics.closePath();
+                    }
+                });
+            }
+        }
+    });
+};
+
+function drawPathBackwards(graphics, path) {
+    var i = path.length - 1;
+    while (i >= 0) {
+        graphics.lineTo(path[i].x, path[i].y);
+        i--;
+    }
+}
+
+/**
+ * Render the exterior of polygons: coastlines, lake shores,
+ * rivers, lava fissures. We draw all of these after the polygons
+ * so that polygons don't overwrite any edges.
+ */
+exports.renderEdges = function (graphics, colors, map, noisyEdges, lava, renderRivers) {
+    renderRivers = core.def(renderRivers, true);
+    var edge;
+    
+    for (var centerIndex = 0; centerIndex < map.centers.length; centerIndex++) {
+        var p = map.centers[centerIndex];
+        for (var neighborIndex = 0; neighborIndex < p.neighbors.length; neighborIndex++) {
+            var r = p.neighbors[neighborIndex];
+            edge = map.lookupEdgeFromCenter(p, r);
+            if (core.isUndefinedOrNull(noisyEdges.path0[edge.index]) || core.isUndefinedOrNull(noisyEdges.path1[edge.index])) {
+                // It's at the edge of the map
+                continue;
+            }
+            if (p.ocean !== r.ocean) {
+                // One side is ocean and the other side is land -- coastline
+                graphics.lineWidth = 2;
+                graphics.strokeStyle = colorModule.intToHexColor(colors.COAST);
+            } else if ((convert.intFromBoolean(p.water) > 0) !== (convert.intFromBoolean(r.water) > 0) && p.biome !== 'ICE' && r.biome !== 'ICE') {
+                // Lake boundary
+                graphics.lineWidth = 1;
+                graphics.strokeStyle = colorModule.intToHexColor(colors.LAKESHORE);
+            } else if (p.water || r.water) {
+                // Lake interior – we don't want to draw the rivers here
+                continue;
+            } else if (lava.lava[edge.index]) {
+                // Lava flow
+                graphics.lineWidth = 1;
+                graphics.strokeStyle = colorModule.intToHexColor(colors.LAVA);
+            } else if (edge.river > 0 && renderRivers) {
+                // River edge
+                graphics.lineWidth = Math.sqrt(edge.river);
+                graphics.strokeStyle = colorModule.intToHexColor(colors.RIVER);
+            } else {
+                continue;
+            }
+            
+            graphics.beginPath();
+            graphics.moveTo(noisyEdges.path0[edge.index][0].x, noisyEdges.path0[edge.index][0].y);
+            drawPathForwards(graphics, noisyEdges.path0[edge.index]);
+            drawPathBackwards(graphics, noisyEdges.path1[edge.index]);
+            graphics.stroke();
+            graphics.closePath();
+        }
+    }
+};
+
+exports.renderAllEdges = function (graphics, strokeStyle, map, noisyEdges) {
+    var edge;
+
+    graphics.lineWidth = 5;
+    graphics.strokeStyle = strokeStyle;
+
+    for (var centerIndex = 0; centerIndex < map.centers.length; centerIndex++) {
+        var p = map.centers[centerIndex];
+        for (var neighborIndex = 0; neighborIndex < p.neighbors.length; neighborIndex++) {
+            var r = p.neighbors[neighborIndex];
+            edge = map.lookupEdgeFromCenter(p, r);
+
+            if (core.isUndefinedOrNull(noisyEdges.path0[edge.index]) || core.isUndefinedOrNull(noisyEdges.path1[edge.index]) || p.water) {
+                // It's at the edge of the map or water
+                continue;
+            }
+
+            // edge
+
+            graphics.beginPath();
+            graphics.moveTo(noisyEdges.path0[edge.index][0].x, noisyEdges.path0[edge.index][0].y);
+            drawPathForwards(graphics, noisyEdges.path0[edge.index]);
+            drawPathBackwards(graphics, noisyEdges.path1[edge.index]);
+            graphics.stroke();
+            graphics.closePath();
+        }
+    }
+};
+
+},{"../as3/conversion-core":2,"../as3/matrix":3,"../as3/point-core":4,"../as3/vector-3d":6,"../janicek/core":9,"../janicek/html-color":11,"lodash":1}],35:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+    return {
+        index: null,
+      
+        point: null,        // Point location
+        water: null,        // lake or ocean
+        ocean: null,        // ocean
+        coast: null,        // land polygon touching an ocean
+        border: null,       // at the edge of the map
+        biome: null,          // biome type (see article)
+        elevation: null,     // 0.0-1.0
+        moisture: null,      // 0.0-1.0
+
+        neighbors: null,    // Vector<Center>
+        borders: null,      // Vector<Edge>
+        corners: null       // Vector<Corner>
+    };
+};
+},{}],36:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+    return {
+        index: null,
+      
+        point: null,  // location
+        ocean: null,  // ocean
+        water: null,  // lake or ocean
+        coast: null,  // touches ocean and land polygons
+        border: null,  // at the edge of the map
+        elevation: null,  // 0.0-1.0
+        moisture: null,  // 0.0-1.0
+
+        touches: null,
+        protrudes: null,
+        adjacent: null,
+      
+        river: null,  // 0 if no river, or volume of water in river
+        downslope: null,  // pointer to adjacent corner most downhill
+        watershed: null,  // pointer to coastal corner, or null
+        watershedSize: null
+    };
+};
+},{}],37:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+    return {
+        index: 0,
+        d0: null,  // Delaunay edge
+        d1: null,  // Delaunay edge
+        v0: null,  // Voronoi edge
+        v1: null,  // Voronoi edge
+        midpoint: null,  // halfway between v0,v1
+        river: 0  // volume of water, or 0
+    };
+};
+},{}],38:[function(require,module,exports){
+/* jshint bitwise:false */
+
+/**
+ * Factory class to build the 'inside' function that tells us whether
+ * a point should be on the island or in the water.
+ * 
+ * This class has factory functions for generating islands of
+ * different shapes. The factory returns a function that takes a
+ * normalized point (x and y are -1 to +1) and returns true if the
+ * point should be on the island, and false if it should be water
+ * (lake or ocean).
+ */
+
+'use strict';
+
+var array2d = require('../janicek/array2d');
+var core = require('../janicek/core');
+var distanceFromOrigin = require('../as3/point-core').distanceFromOrigin;
+var perlinNoise = require('../janicek/perlin-noise');
+var prngModule = require('../polygonal/pm-prng');
+var prng = require('../janicek/pseudo-random-number-generators');
+
+/**
+* The radial island radius is based on overlapping sine waves 
+* @param seed
+* @param islandFactor = 1.0 means no small islands; 2.0 leads to a lot
+*/
+exports.makeRadial = function (seed, islandFactor) {
+    islandFactor = core.def(islandFactor, 1.07);
+
+    var islandRandom = prngModule();
+    islandRandom.seed = seed;
+    var bumps = islandRandom.nextIntRange(1, 6);
+    var startAngle = islandRandom.nextDoubleRange(0, 2 * Math.PI);
+    var dipAngle = islandRandom.nextDoubleRange(0, 2 * Math.PI);
+    var dipWidth = islandRandom.nextDoubleRange(0.2, 0.7);
+
+    function inside(q) {
+        var angle = Math.atan2(q.y, q.x);
+        var length = 0.5 * (Math.max(Math.abs(q.x), Math.abs(q.y)) + distanceFromOrigin(q));
+
+        var r1 = 0.5 + 0.40 * Math.sin(startAngle + bumps * angle + Math.cos((bumps + 3) * angle));
+        var r2 = 0.7 - 0.20 * Math.sin(startAngle + bumps * angle - Math.sin((bumps + 2) * angle));
+        if (Math.abs(angle - dipAngle) < dipWidth ||
+            Math.abs(angle - dipAngle + 2 * Math.PI) < dipWidth ||
+            Math.abs(angle - dipAngle - 2 * Math.PI) < dipWidth) {
+            r1 = r2 = 0.2;
+        }
+        return  (length < r1 || (length > r1 * islandFactor && length < r2));
+    }
+
+    return inside;
+};
+
+/**
+ * The Perlin-based island combines perlin noise with the radius.
+ * @param   seed
+ * @param   oceanRatio 0 = least ocean, 1 = most ocean
+ */
+exports.makePerlin = function (seed, oceanRatio) {
+    oceanRatio = core.def(oceanRatio, 0.5);
+
+    var landRatioMinimum = 0.1;
+    var landRatioMaximum = 0.5;
+    oceanRatio = ((landRatioMaximum - landRatioMinimum) * oceanRatio) + landRatioMinimum;  //min: 0.1 max: 0.5
+    var perlin = array2d(perlinNoise.makePerlinNoise(256, 256, 1.0, 1.0, 1.0, seed, 8));
+    //perlin.perlinNoise(64, 64, 8, seed, false, true); //mapgen2
+
+    return function (q) {
+        var c = (perlin.get(core.toInt((q.x + 1) * 128), core.toInt((q.y + 1) * 128)) & 0xff) / 255.0;
+        //var c:Number = (perlin.getPixel(Std.int((q.x+1)*128), Std.int((q.y+1)*128)) & 0xff) / 255.0; //mapgen2
+        return c > (oceanRatio + oceanRatio * distanceFromOrigin(q) * distanceFromOrigin(q));
+    };
+};
+
+/**
+ * The square shape fills the entire space with land
+ */
+exports.makeSquare = function () {
+    return function (q) {
+        return true;
+    };
+};
+
+/**
+* The blob island is shaped like Amit's blob logo
+*/
+exports.makeBlob = function () {
+    return function (q) {
+        var eye1 = distanceFromOrigin({ x: q.x - 0.2, y: q.y / 2 + 0.2 }) < 0.05;
+        var eye2 = distanceFromOrigin({ x: q.x + 0.2, y: q.y / 2 + 0.2 }) < 0.05;
+        var body = distanceFromOrigin(q) < 0.8 - 0.18 * Math.sin(5 * Math.atan2(q.y, q.x));
+        return body && !eye1 && !eye2;
+    };
+};
+
+/**
+ * Make island from bitmap.
+ * @param {[[boolean]]} bitmap
+ */
+exports.makeBitmap = function (bitmap) {
+    bitmap = array2d(bitmap);
+    var dimensions = bitmap.dimensions();
+    return function (q) {
+        var x = core.toInt(((q.x + 1) / 2) * dimensions.x);
+        var y = core.toInt(((q.y + 1) / 2) * dimensions.y);
+        return bitmap.get(x, y);
+    };
+};
+
+/**
+ * Make island from simple noise.
+ */
+exports.makeNoise = function (seed) {
+    return function (q) {
+        seed = prng.nextParkMiller(seed);
+        return prng.toBool(seed);
+    };
+};
+},{"../as3/point-core":4,"../janicek/array2d":8,"../janicek/core":9,"../janicek/perlin-noise":12,"../janicek/pseudo-random-number-generators":13,"../polygonal/pm-prng":33}],39:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+var cc = require('../as3/conversion-core');
+
+module.exports = function () {
+    return {
+
+        // The lava array marks the edges that hava lava.
+        lava: [], // Array<Boolean> edge index -> Boolean
+
+        // Lava fissures are at high elevations where moisture is low
+        createLava: function (map, randomDouble) {
+            _(map.edges).each(function (edge) {
+                if (!cc.booleanFromInt(edge.river) &&
+                    !edge.d0.water && !edge.d1.water &&
+                    edge.d0.elevation > 0.8 && edge.d1.elevation > 0.8 &&
+                    edge.d0.moisture < 0.3 && edge.d1.moisture < 0.3 &&
+                    randomDouble() < exports.FRACTION_LAVA_FISSURES) {
+
+                    this.lava[edge.index] = true;
+                }
+            });
+        }
+
+    };
+};
+
+module.exports.FRACTION_LAVA_FISSURES = 0.2;  // 0 to 1, probability of fissure
+},{"../as3/conversion-core":2,"lodash":1}],40:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+var centerModule = require('./graph/center');
+var convert = require('../as3/conversion-core');
+var cornerModule = require('./graph/corner');
+var core = require('../janicek/core');
+var edgeModule = require('./graph/edge');
+var prng = require('../polygonal/pm-prng');
+var pc = require('../as3/point-core');
+var rectangle = require('../as3/rectangle');
+var voronoiModule = require('../nodename/delaunay/voronoi');
+
+/**
+ * Make a new map.
+ * @param   size width and height of map
+ * @param   riverChance 0 = no rivers, > 0 = more rivers, default = map area / 4
+ */
+var mapModule = function (size) {
+    var pub = {};
+
+    /**
+     * Passed in by the caller:
+     */
+    pub.SIZE = size;
+
+    /**
+     * Island shape is controlled by the islandRandom seed and the
+     * type of island, passed in when we set the island shape. The
+     * islandShape function uses both of them to determine whether any
+     * point should be water or land.
+     */
+    pub.islandShape = null;
+
+
+    /**
+     * Island details are controlled by this random generator. The
+     * initial map upon loading is always deterministic, but
+     * subsequent maps reset this random number generator with a
+     * random seed.
+     */
+    pub.mapRandom = prng();
+
+    // These store the graph data
+    
+    /**
+     * Only useful during map construction
+     */
+    pub.points = []; // Vector<Point>
+    pub.centers = []; // Vector<Center>
+    pub.corners = []; // Vector<Corner>
+    pub.edges = []; // Vector<Edge>
+
+
+    /**
+     * Random parameters governing the overall shape of the island
+     */
+    pub.newIsland = function (islandShape, variant) {
+        pub.islandShape = islandShape;
+        pub.mapRandom.seed = variant;
+    };
+
+    /**
+     * Generate the initial random set of points.
+     */
+    pub.go0PlacePoints = function (numberOfPoints) {
+        numberOfPoints = core.def(numberOfPoints, mapModule.DEFAULT_NUMBER_OF_POINTS);
+        pub.reset();
+        pub.points = pub.generateRandomPoints(numberOfPoints);
+    };
+
+    pub.go1ImprovePoints = function (numLloydIterations) {
+        numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
+        pub.improveRandomPoints(pub.points, numLloydIterations);
+    };
+
+    /**
+     * Create a graph structure from the Voronoi edge list. The
+     * methods in the Voronoi object are somewhat inconvenient for
+     * my needs, so I transform that data into the data I actually
+     * need: edges connected to the Delaunay triangles and the
+     * Voronoi polygons, a reverse map from those four points back
+     * to the edge, a map from these four points to the points
+     * they connect to (both along the edge and crosswise).
+     */
+    pub.go2BuildGraph = function () {
+        var voronoi = voronoiModule.make(pub.points, null, rectangle(0, 0, pub.SIZE.width, pub.SIZE.height));
+        pub.buildGraph(pub.points, voronoi);
+        pub.improveCorners();
+        voronoi.dispose();
+        voronoi = null;
+        pub.points = null;
+    };
+
+    /**
+     * 
+     * @param   lakeThreshold 0 to 1, fraction of water corners for water polygon, default = 0.3
+     */
+    pub.go3AssignElevations = function (lakeThreshold) {
+        lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
+
+        // Determine the elevations and water at Voronoi corners.
+        pub.assignCornerElevations();
+
+        // Determine polygon and corner type: ocean, coast, land.
+        pub.assignOceanCoastAndLand(lakeThreshold);
+
+        // Rescale elevations so that the highest is 1.0, and they're
+        // distributed well. We want lower elevations to be more common
+        // than higher elevations, in proportions approximately matching
+        // concentric rings. That is, the lowest elevation is the
+        // largest ring around the island, and therefore should more
+        // land area than the highest elevation, which is the very
+        // center of a perfectly circular island.
+        pub.redistributeElevations(pub.landCorners(pub.corners));
+
+        // Assign elevations to non-land corners
+        _(pub.corners).each(function (q) {
+            if (q.ocean || q.coast) {
+                q.elevation = 0.0;
+            }
+        });
+
+        // Polygon elevations are the average of their corners
+        pub.assignPolygonElevations();
+    };
+
+    pub.go4AssignMoisture = function (riverChance) {
+        riverChance = core.def(riverChance, null);
+
+        // Determine downslope paths.
+        pub.calculateDownslopes();
+
+        // Determine watersheds: for every corner, where does it flow
+        // out into the ocean? 
+        pub.calculateWatersheds();
+
+        // Create rivers.
+        pub.createRivers(riverChance);
+
+        // Determine moisture at corners, starting at rivers
+        // and lakes, but not oceans. Then redistribute
+        // moisture to cover the entire range evenly from 0.0
+        // to 1.0. Then assign polygon moisture as the average
+        // of the corner moisture.
+        pub.assignCornerMoisture();
+        pub.redistributeMoisture(pub.landCorners(pub.corners));
+        pub.assignPolygonMoisture();
+    };
+
+    pub.go5DecorateMap = function () {
+        pub.assignBiomes();
+    };
+
+    pub.reset = function () {
+        // Break cycles so the garbage collector will release data.
+        if (pub.points !== null) {
+            pub.points.splice(0, pub.points.length);
+        }
+        if (pub.edges !== null) {
+            _(pub.edges).each(function (edge) {
+                edge.d0 = edge.d1 = null;
+                edge.v0 = edge.v1 = null;
+            });
+            pub.edges.splice(0, pub.edges.length);
+        }
+        if (pub.centers !== null) {
+            _(pub.centers).each(function (p) {
+                p.neighbors.splice(0, p.neighbors.length);
+                p.corners.splice(0, p.corners.length);
+                p.borders.splice(0, p.borders.length);
+            });
+            pub.centers.splice(0, pub.centers.length);
+        }
+        if (pub.corners !== null) {
+            _(pub.corners).each(function (q) {
+                q.adjacent.splice(0, q.adjacent.length);
+                q.touches.splice(0, q.touches.length);
+                q.protrudes.splice(0, q.protrudes.length);
+                q.downslope = null;
+                q.watershed = null;
+            });
+            pub.corners.splice(0, pub.corners.length);
+        }
+        // Clear the previous graph data.
+        if (pub.points === null) { pub.points = []; }
+        if (pub.edges === null) { pub.edges = []; }
+        if (pub.centers === null) { pub.centers = []; }
+        if (pub.corners === null) { pub.corners = []; }
+      
+        // Disabled for JavaScript
+        //System.gc();
+    };
+
+    /**
+     * Generate random points and assign them to be on the island or
+     * in the water. Some water points are inland lakes; others are
+     * ocean. We'll determine ocean later by looking at what's
+     * connected to ocean.
+     */
+    pub.generateRandomPoints = function (NUM_POINTS) {
+        var p, i, points = []; //Vector<Point>
+        for (i = 0; i < NUM_POINTS; i++) {
+            p = {
+                x: pub.mapRandom.nextDoubleRange(10, pub.SIZE.width - 10),
+                y: pub.mapRandom.nextDoubleRange(10, pub.SIZE.height - 10)
+            };
+            points.push(p);
+        }
+        return points;
+    };
+
+    /**
+     * Improve the random set of points with Lloyd Relaxation.
+     */
+    pub.improveRandomPoints = function (points, numLloydIterations) {
+      // We'd really like to generate "blue noise". Algorithms:
+      // 1. Poisson dart throwing: check each new point against all
+      //     existing points, and reject it if it's too close.
+      // 2. Start with a hexagonal grid and randomly perturb points.
+      // 3. Lloyd Relaxation: move each point to the centroid of the
+      //     generated Voronoi polygon, then generate Voronoi again.
+      // 4. Use force-based layout algorithms to push points away.
+      // 5. More at http://www.cs.virginia.edu/~gfx/pubs/antimony/
+      // Option 3 is implemented here. If it's run for too many iterations,
+      // it will turn into a grid, but convergence is very slow, and we only
+      // run it a few times.
+
+        var i, voronoi, region;
+        for (i = 0; i < numLloydIterations; i++) {
+            voronoi = voronoiModule.make(points, null, rectangle(0, 0, pub.SIZE.width, pub.SIZE.height));
+            for (var pointsIndex = 0; pointsIndex < points.length; pointsIndex++) {
+                var p = points[pointsIndex];
+                region = voronoi.region(p);
+                p.x = 0.0;
+                p.y = 0.0;
+                for (var regionIndex = 0; regionIndex < region.length; regionIndex++) {
+                    var q = region[regionIndex];
+                    p.x += q.x;
+                    p.y += q.y;
+                }
+                p.x /= region.length;
+                p.y /= region.length;
+                region.splice(0, region.length);
+            }
+            voronoi.dispose();
+        }
+    };
+
+    /**
+     * Although Lloyd relaxation improves the uniformity of polygon
+     * sizes, it doesn't help with the edge lengths. Short edges can
+     * be bad for some games, and lead to weird artifacts on
+     * rivers. We can easily lengthen short edges by moving the
+     * corners, but **we lose the Voronoi property**.  The corners are
+     * moved to the average of the polygon centers around them. Short
+     * edges become longer. Long edges tend to become shorter. The
+     * polygons tend to be more uniform after this step.
+     */
+    pub.improveCorners = function () {
+        var newCorners = []; // Vector<Point>
+        var point, i;
+
+        // First we compute the average of the centers next to each corner.
+        _(pub.corners).each(function (q) {
+            if (q.border) {
+                newCorners[q.index] = q.point;
+            } else {
+                point = {x: 0.0, y: 0.0};
+                _(q.touches).each(function (r) {
+                    point.x += r.point.x;
+                    point.y += r.point.y;
+                });
+                point.x /= q.touches.length;
+                point.y /= q.touches.length;
+                newCorners[q.index] = point;
+            }
+        });
+
+        // Move the corners to the new locations.
+        for (i = 0; i < pub.corners.length; i++) {
+            pub.corners[i].point = newCorners[i];
+        }
+
+        // The edge midpoints were computed for the old corners and need
+        // to be recomputed.
+        _(pub.edges).each(function (edge) {
+            if (edge.v0 !== null && edge.v1 !== null) {
+                edge.midpoint = pc.interpolate(edge.v0.point, edge.v1.point, 0.5);
+            }
+        });
+    };
+
+    /**
+     * Create an array of corners that are on land only, for use by
+     * algorithms that work only on land.  We return an array instead
+     * of a vector because the redistribution algorithms want to sort
+     * this array using Array.sortOn.
+     */
+    pub.landCorners = function (corners) {
+        var locations = [];
+        _(corners).each(function (q) {
+            if (!q.ocean && !q.coast) {
+                locations.push(q);
+            }
+        });
+        return locations;
+    };
+
+    /**
+     * Build graph data structure in 'edges', 'centers', 'corners',
+     * based on information in the Voronoi results: point.neighbors
+     * will be a list of neighboring points of the same type (corner
+     * or center); point.edges will be a list of edges that include
+     * that point. Each edge connects to four points: the Voronoi edge
+     * edge.{v0,v1} and its dual Delaunay triangle edge edge.{d0,d1}.
+     * For boundary polygons, the Delaunay edge will have one null
+     * point, and the Voronoi edge may be null.
+     */
+    pub.buildGraph = function (points, voronoi) {
+        var p;
+        var libedges = voronoi.edges();
+        var centerLookup = {}; // Dictionary<Center>
+
+        // Build Center objects for each of the points, and a lookup map
+        // to find those Center objects again as we build the graph
+        _(points).each(function (point) {
+            p = centerModule();
+            p.index = pub.centers.length;
+            p.point = point;
+            p.neighbors = [];
+            p.borders = [];
+            p.corners = [];
+            pub.centers.push(p);
+            centerLookup[pc.hash(point)] = p;
+        });
+
+        // Workaround for Voronoi lib bug: we need to call region()
+        // before Edges or neighboringSites are available
+        _(pub.centers).each(function (p) {
+            voronoi.region(p.point);
+        });
+      
+        // The Voronoi library generates multiple Point objects for
+        // corners, and we need to canonicalize to one Corner object.
+        // To make lookup fast, we keep an array of Points, bucketed by
+        // x value, and then we only have to look at other Points in
+        // nearby buckets. When we fail to find one, we'll create a new
+        // Corner object.
+        var _cornerMap = [];
+        function makeCorner(point) {
+            var q;
+            if (point === null) { return null; }
+            var bucket;
+            for (bucket = core.toInt(point.x) - 1; bucket < core.toInt(point.x) + 2; bucket++) {
+                if (!core.isUndefinedOrNull(_cornerMap[bucket])) {
+                    for (var z = 0; z < _cornerMap[bucket].length; z++) {
+                        q = _cornerMap[bucket][z];
+                        var dx = point.x - q.point.x;
+                        var dy = point.y - q.point.y;
+                        if (dx * dx + dy * dy < 1e-6) {
+                            return q;
+                        }
+                    }
+                }
+            }
+            bucket = core.toInt(point.x);
+            if (core.isUndefinedOrNull(_cornerMap[bucket])) { _cornerMap[bucket] = []; }
+            q = cornerModule();
+            q.index = pub.corners.length;
+            pub.corners.push(q);
+            q.point = point;
+            q.border = (point.x === 0 || point.x === pub.SIZE.width || point.y === 0 || point.y === pub.SIZE.height);
+            q.touches = [];
+            q.protrudes = [];
+            q.adjacent = [];
+            _cornerMap[bucket].push(q);
+            return q;
+        }
+
+        _(libedges).each(function (libedge) {
+            var dedge = libedge.delaunayLine();
+            var vedge = libedge.voronoiEdge();
+
+            // Fill the graph data. Make an Edge object corresponding to
+            // the edge from the voronoi library.
+            var edge = edgeModule();
+            edge.index = pub.edges.length;
+            edge.river = 0;
+            pub.edges.push(edge);
+            edge.midpoint = (vedge.p0 !== null && vedge.p1 !== null) ? pc.interpolate(vedge.p0, vedge.p1, 0.5) : null;
+          
+            // Edges point to corners. Edges point to centers. 
+            edge.v0 = makeCorner(vedge.p0);
+            edge.v1 = makeCorner(vedge.p1);
+            edge.d0 = centerLookup[pc.hash(dedge.p0)];
+            edge.d1 = centerLookup[pc.hash(dedge.p1)];
+
+            // Centers point to edges. Corners point to edges.
+            if (edge.d0 !== null) { edge.d0.borders.push(edge); }
+            if (edge.d1 !== null) { edge.d1.borders.push(edge); }
+            if (edge.v0 !== null) { edge.v0.protrudes.push(edge); }
+            if (edge.v1 !== null) { edge.v1.protrudes.push(edge); }
+
+            function addToCornerList(v, x) {
+                if (x !== null && v.indexOf(x) < 0) { v.push(x); }
+            }
+            function addToCenterList(v, x) {
+                if (x !== null && v.indexOf(x) < 0) { v.push(x); }
+            }
+          
+            // Centers point to centers.
+            if (edge.d0 !== null && edge.d1 !== null) {
+                addToCenterList(edge.d0.neighbors, edge.d1);
+                addToCenterList(edge.d1.neighbors, edge.d0);
+            }
+
+            // Corners point to corners
+            if (edge.v0 !== null && edge.v1 !== null) {
+                addToCornerList(edge.v0.adjacent, edge.v1);
+                addToCornerList(edge.v1.adjacent, edge.v0);
+            }
+
+            // Centers point to corners
+            if (edge.d0 !== null) {
+                addToCornerList(edge.d0.corners, edge.v0);
+                addToCornerList(edge.d0.corners, edge.v1);
+            }
+            if (edge.d1 !== null) {
+                addToCornerList(edge.d1.corners, edge.v0);
+                addToCornerList(edge.d1.corners, edge.v1);
+            }
+
+            // Corners point to centers
+            if (edge.v0 !== null) {
+                addToCenterList(edge.v0.touches, edge.d0);
+                addToCenterList(edge.v0.touches, edge.d1);
+            }
+            if (edge.v1 !== null) {
+                addToCenterList(edge.v1.touches, edge.d0);
+                addToCenterList(edge.v1.touches, edge.d1);
+            }
+        });
+    };
+
+    /**
+     * Determine elevations and water at Voronoi corners. By
+     * construction, we have no local minima. This is important for
+     * the downslope vectors later, which are used in the river
+     * construction algorithm. Also by construction, inlets/bays
+     * push low elevation areas inland, which means many rivers end
+     * up flowing out through them. Also by construction, lakes
+     * often end up on river paths because they don't raise the
+     * elevation as much as other terrain does.
+     */
+    pub.assignCornerElevations = function () {
+        var queue = []; // Array<Corner>
+      
+        _(pub.corners).each(function (q) {
+            q.water = !pub.inside(q.point);
+        });
+
+        _(pub.corners).each(function (q) {
+            // The edges of the map are elevation 0
+            if (q.border) {
+                q.elevation = 0.0;
+                queue.push(q);
+            } else {
+                q.elevation = Number.POSITIVE_INFINITY;
+            }
+        });
+        // Traverse the graph and assign elevations to each point. As we
+        // move away from the map border, increase the elevations. This
+        // guarantees that rivers always have a way down to the coast by
+        // going downhill (no local minima).
+        while (queue.length > 0) {
+            var q = queue.shift();
+            for (var adjacentIndex = 0; adjacentIndex < q.adjacent.length; adjacentIndex++) {
+                var s = q.adjacent[adjacentIndex];
+
+                // Every step up is epsilon over water or 1 over land. The
+                // number doesn't matter because we'll rescale the
+                // elevations later.
+                var newElevation = 0.01 + q.elevation;
+                if (!q.water && !s.water) {
+                    newElevation += 1;
+                }
+
+                // If this point changed, we'll add it to the queue so
+                // that we can process its neighbors too.
+                if (newElevation < s.elevation) {
+                    s.elevation = newElevation;
+                    queue.push(s);
+                }
+            }
+        }
+    };
+
+    /**
+     * Change the overall distribution of elevations so that lower
+     * elevations are more common than higher
+     * elevations. Specifically, we want elevation X to have frequency
+     * (1-X).  To do this we will sort the corners, then set each
+     * corner to its desired elevation.
+     */
+    pub.redistributeElevations = function (locations) {
+        // SCALE_FACTOR increases the mountain area. At 1.0 the maximum
+        // elevation barely shows up on the map, so we set it to 1.1.
+        var SCALE_FACTOR = 1.1;
+        var i, y, x;
+
+        //JavaScript port
+        //locations.sortOn('elevation', Array.NUMERIC);
+        locations.sort(function (c1, c2) {
+            if (c1.elevation > c2.elevation) { return 1; }
+            if (c1.elevation < c2.elevation) { return -1; }
+            if (c1.index > c2.index) { return 1; }
+            if (c1.index < c2.index) { return -1; }
+            return 0;
+        });
+      
+        for (i = 0; i < locations.length; i++) {
+            // Let y(x) be the total area that we want at elevation <= x.
+            // We want the higher elevations to occur less than lower
+            // ones, and set the area to be y(x) = 1 - (1-x)^2.
+            y = i / (locations.length - 1);
+            // Now we have to solve for x, given the known y.
+            //  *  y = 1 - (1-x)^2
+            //  *  y = 1 - (1 - 2x + x^2)
+            //  *  y = 2x - x^2
+            //  *  x^2 - 2x + y = 0
+            // From this we can use the quadratic equation to get:
+            x = Math.sqrt(SCALE_FACTOR) - Math.sqrt(SCALE_FACTOR * (1 - y));
+            if (x > 1.0) { x = 1.0; }  // TODO: does this break downslopes?
+            locations[i].elevation = x;
+        }
+    };
+
+    /**
+     * Change the overall distribution of moisture to be evenly distributed.
+     */
+    pub.redistributeMoisture = function (locations) {
+        var i;
+      
+        locations.sort(function (c1, c2) {
+            if (c1.moisture > c2.moisture) { return 1; }
+            if (c1.moisture < c2.moisture) { return -1; }
+            if (c1.index > c2.index) { return 1; }
+            if (c1.index < c2.index) { return -1; }
+            return 0;
+        });
+      
+        for (i = 0; i < locations.length; i++) {
+            locations[i].moisture = i / (locations.length - 1);
+        }
+    };
+
+    /**
+     * Determine polygon and corner types: ocean, coast, land.
+     */
+    pub.assignOceanCoastAndLand = function (lakeThreshold) {
+        // Compute polygon attributes 'ocean' and 'water' based on the
+        // corner attributes. Count the water corners per
+        // polygon. Oceans are all polygons connected to the edge of the
+        // map. In the first pass, mark the edges of the map as ocean;
+        // in the second pass, mark any water-containing polygon
+        // connected an ocean as ocean.
+        var queue = []; // Array<Center>
+        var p, numWater;
+      
+        _(pub.centers).each(function (p) {
+            numWater = 0;
+            _(p.corners).each(function (q) {
+                if (q.border) {
+                    p.border = true;
+                    p.ocean = true;
+                    q.water = true;
+                    queue.push(p);
+                }
+                if (q.water) {
+                    numWater += 1;
+                }
+            });
+            p.water = (p.ocean || numWater >= p.corners.length * lakeThreshold);
+        });
+        while (queue.length > 0) {
+            p = queue.shift();
+            for (var neighbourIndex = 0; neighbourIndex < p.neighbors.length; neighbourIndex++) {
+                var r = p.neighbors[neighbourIndex];
+                if (r.water && !r.ocean) {
+                    r.ocean = true;
+                    queue.push(r);
+                }
+            }
+        }
+      
+        // Set the polygon attribute 'coast' based on its neighbors. If
+        // it has at least one ocean and at least one land neighbor,
+        // then this is a coastal polygon.
+        _(pub.centers).each(function (p) {
+            var numOcean = 0;
+            var numLand = 0;
+            _(p.neighbors).each(function (r) {
+                numOcean += convert.intFromBoolean(r.ocean);
+                numLand += convert.intFromBoolean(!r.water);
+            });
+            p.coast = (numOcean > 0) && (numLand > 0);
+        });
+
+
+        // Set the corner attributes based on the computed polygon
+        // attributes. If all polygons connected to this corner are
+        // ocean, then it's ocean; if all are land, then it's land;
+        // otherwise it's coast.
+        _(pub.corners).each(function (q) {
+            var numOcean = 0;
+            var numLand = 0;
+            _(q.touches).each(function (p) {
+                numOcean += convert.intFromBoolean(p.ocean);
+                numLand += convert.intFromBoolean(!p.water);
+            });
+            q.ocean = (numOcean === q.touches.length);
+            q.coast = (numOcean > 0) && (numLand > 0);
+            q.water = q.border || ((numLand !== q.touches.length) && !q.coast);
+        });
+    };
+
+    /**
+     * Polygon elevations are the average of the elevations of their corners.
+     */
+    pub.assignPolygonElevations = function () {
+        var sumElevation;
+        _(pub.centers).each(function (p) {
+            sumElevation = 0.0;
+            _(p.corners).each(function (q) {
+                sumElevation += q.elevation;
+            });
+            p.elevation = sumElevation / p.corners.length;
+        });
+    };
+
+    /**
+     * Calculate downslope pointers.  At every point, we point to the
+     * point downstream from it, or to itself.  This is used for
+     * generating rivers and watersheds.
+     */
+    pub.calculateDownslopes = function () {
+        var r;
+      
+        _(pub.corners).each(function (q) {
+            r = q;
+            _(q.adjacent).each(function (s) {
+                if (s.elevation <= r.elevation) {
+                    r = s;
+                }
+            });
+            q.downslope = r;
+        });
+    };
+
+    /**
+     * Calculate the watershed of every land point. The watershed is
+     * the last downstream land point in the downslope graph. TODO:
+     * watersheds are currently calculated on corners, but it'd be
+     * more useful to compute them on polygon centers so that every
+     * polygon can be marked as being in one watershed.
+     */
+    pub.calculateWatersheds = function () {
+        var r, i, changed;
+      
+        // Initially the watershed pointer points downslope one step.      
+        _(pub.corners).each(function (q) {
+            q.watershed = q;
+            if (!q.ocean && !q.coast) {
+                q.watershed = q.downslope;
+            }
+        });
+        // Follow the downslope pointers to the coast. Limit to 100
+        // iterations although most of the time with NUM_POINTS=2000 it
+        // only takes 20 iterations because most points are not far from
+        // a coast.  TODO: can run faster by looking at
+        // p.watershed.watershed instead of p.downslope.watershed.
+        var cornerIndex, q;
+        for (i = 0; i < 100; i++) {
+            changed = false;
+            for (cornerIndex = 0; cornerIndex < pub.corners.length; cornerIndex++) {
+                q = pub.corners[cornerIndex];
+                if (!q.ocean && !q.coast && !q.watershed.coast) {
+                    r = q.downslope.watershed;
+                    if (!r.ocean) { q.watershed = r; }
+                    changed = true;
+                }
+            }
+            if (!changed) { break; }
+        }
+        // How big is each watershed?
+        for (cornerIndex = 0; cornerIndex < pub.corners.length; cornerIndex++) {
+            q = pub.corners[cornerIndex];
+            r = q.watershed;
+            r.watershedSize = 1 + (r.watershedSize || 0);
+        }
+    };
+
+    /**
+     * Create rivers along edges. Pick a random corner point,
+     * then move downslope. Mark the edges and corners as rivers.
+     * @param   riverChance Higher = more rivers.
+     */
+    pub.createRivers = function (riverChance) {
+        riverChance = core.coalesce(riverChance, core.toInt((pub.SIZE.width + pub.SIZE.height) / 4));
+
+        var i, q, edge;
+      
+        for (i = 0; i < riverChance; i++) {
+            q = pub.corners[pub.mapRandom.nextIntRange(0, pub.corners.length - 1)];
+            if (q.ocean || q.elevation < 0.3 || q.elevation > 0.9) { continue; }
+            // Bias rivers to go west: if (q.downslope.x > q.x) continue;
+            while (!q.coast) {
+                if (q === q.downslope) {
+                    break;
+                }
+                edge = pub.lookupEdgeFromCorner(q, q.downslope);
+                edge.river = edge.river + 1;
+                q.river = (q.river || 0) + 1;
+                q.downslope.river = (q.downslope.river || 0) + 1;  // TODO: fix double count
+                q = q.downslope;
+            }
+        }
+    };
+
+    /**
+     * Calculate moisture. Freshwater sources spread moisture: rivers
+     * and lakes (not oceans). Saltwater sources have moisture but do
+     * not spread it (we set it at the end, after propagation).
+     */
+    pub.assignCornerMoisture = function () {
+        var q, newMoisture;
+        var queue = []; // Array<Corner>
+        // Fresh water
+        _(pub.corners).each(function (q) {
+            if ((q.water || q.river > 0) && !q.ocean) {
+                q.moisture = q.river > 0 ? Math.min(3.0, (0.2 * q.river)) : 1.0;
+                queue.push(q);
+            } else {
+                q.moisture = 0.0;
+            }
+        });
+        while (queue.length > 0) {
+            q = queue.shift();
+
+            for (var adjacentIndex = 0; adjacentIndex < q.adjacent.length; adjacentIndex++) {
+                var r = q.adjacent[adjacentIndex];
+                newMoisture = q.moisture * 0.9;
+                if (newMoisture > r.moisture) {
+                    r.moisture = newMoisture;
+                    queue.push(r);
+                }
+            }
+        }
+        // Salt water
+        _(pub.corners).each(function (q) {
+            if (q.ocean || q.coast) {
+                q.moisture = 1.0;
+            }
+        });
+    };
+
+    /**
+     * Polygon moisture is the average of the moisture at corners
+     */
+    pub.assignPolygonMoisture = function () {
+        var sumMoisture;
+        _(pub.centers).each(function (p) {
+            sumMoisture = 0.0;
+            _(p.corners).each(function (q) {
+                if (q.moisture > 1.0) { q.moisture = 1.0; }
+                sumMoisture += q.moisture;
+            });
+            p.moisture = sumMoisture / p.corners.length;
+        });
+    };
+
+    pub.assignBiomes = function () {
+        _(pub.centers).each(function (p) {
+            p.biome = mapModule.getBiome(p);
+        });
+    };
+
+    /**
+     * Look up a Voronoi Edge object given two adjacent Voronoi
+     * polygons, or two adjacent Voronoi corners
+     */
+    pub.lookupEdgeFromCenter = function (p, r) {
+        for (var i = 0; i < p.borders.length; i++) {
+            var edge = p.borders[i];
+            if (edge.d0 === r || edge.d1 === r) { return edge; }
+        }
+        return null;
+    };
+
+    pub.lookupEdgeFromCorner = function (q, s) {
+        for (var i = 0; i < q.protrudes.length; i++) {
+            var edge = q.protrudes[i];
+            if (edge.v0 === s || edge.v1 === s) { return edge; }
+        }
+        return null;
+    };
+
+    /**
+     * Determine whether a given point should be on the island or in the water.
+     */
+    pub.inside = function (p) {
+        return pub.islandShape({ x: 2 * (p.x / pub.SIZE.width - 0.5), y: 2 * (p.y / pub.SIZE.height - 0.5) });
+    };
+
+    pub.reset();
+
+    return pub;
+};
+
+mapModule.DEFAULT_LAKE_THRESHOLD = 0.3;
+mapModule.DEFAULT_LLOYD_ITERATIONS = 2;
+mapModule.DEFAULT_NUMBER_OF_POINTS = 1000;
+
+/**
+ * Assign a biome type to each polygon. If it has
+ * ocean/coast/water, then that's the biome; otherwise it depends
+ * on low/high elevation and low/medium/high moisture. This is
+ * roughly based on the Whittaker diagram but adapted to fit the
+ * needs of the island map generator.
+ */
+mapModule.getBiome = function (p) {
+    if (p.ocean) {
+        return 'OCEAN';
+    } else if (p.water) {
+        if (p.elevation < 0.1) { return 'MARSH'; }
+        if (p.elevation > 0.8) { return 'ICE'; }
+        return 'LAKE';
+    } else if (p.coast) {
+        return 'BEACH';
+    } else if (p.elevation > 0.8) {
+        if (p.moisture > 0.50) { return 'SNOW'; }
+        else if (p.moisture > 0.33) { return 'TUNDRA'; }
+        else if (p.moisture > 0.16) { return 'BARE'; }
+        else { return 'SCORCHED'; }
+    } else if (p.elevation > 0.6) {
+        if (p.moisture > 0.66) { return 'TAIGA'; }
+        else if (p.moisture > 0.33) { return 'SHRUBLAND'; }
+        else { return 'TEMPERATE_DESERT'; }
+    } else if (p.elevation > 0.3) {
+        if (p.moisture > 0.83) { return 'TEMPERATE_RAIN_FOREST'; }
+        else if (p.moisture > 0.50) { return 'TEMPERATE_DECIDUOUS_FOREST'; }
+        else if (p.moisture > 0.16) { return 'GRASSLAND'; }
+        else { return 'TEMPERATE_DESERT'; }
+    } else {
+        if (p.moisture > 0.66) { return 'TROPICAL_RAIN_FOREST'; }
+        else if (p.moisture > 0.33) { return 'TROPICAL_SEASONAL_FOREST'; }
+        else if (p.moisture > 0.16) { return 'GRASSLAND'; }
+        else { return 'SUBTROPICAL_DESERT'; }
+    }
+};
+
+
+// ------------------------------------------------------------------------
+// Richard Janicek's Extensions
+
+mapModule.countLands = function (centers) {
+    return _(_(centers).filter(function (c) { return !c.water; })).size();
+};
+
+/**
+ * Rebuilds the map varying the number of points until desired number of land centers are generated or timeout is reached.
+ * Not an efficient algorithim, but gets the job done.
+ */
+mapModule.tryMutateMapPointsToGetNumberLands = function (map, numberOfLands, timeoutMilliseconds, initialNumberOfPoints, numLloydIterations, lakeThreshold) {
+    timeoutMilliseconds = core.def(timeoutMilliseconds, 10 * 1000);
+    initialNumberOfPoints = core.def(initialNumberOfPoints, mapModule.DEFAULT_NUMBER_OF_POINTS);
+    numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
+    lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
+
+    var pointCount = initialNumberOfPoints;
+    var startTime = Date.now();
+    var targetLandCountFound = false;
+    do {
+        map.go0PlacePoints(pointCount);
+        map.go1ImprovePoints(numLloydIterations);
+        map.go2BuildGraph();
+        map.go3AssignElevations(lakeThreshold);
+        var lands = mapModule.countLands(map.centers);
+        if (lands === numberOfLands) {
+            targetLandCountFound = true;
+        }
+        else {
+            pointCount += (lands < numberOfLands ? 1 : -1);
+        }
+    } while (!targetLandCountFound && Date.now() - startTime < timeoutMilliseconds);
+    
+    return map;
+};
+
+module.exports = mapModule;
+},{"../as3/conversion-core":2,"../as3/point-core":4,"../as3/rectangle":5,"../janicek/core":9,"../nodename/delaunay/voronoi":28,"../polygonal/pm-prng":33,"./graph/center":35,"./graph/corner":36,"./graph/edge":37,"lodash":1}],41:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+var convert = require('../as3/conversion-core');
+var core = require('../janicek/core');
+var pc = require('../as3/point-core');
+var prng = require('../janicek/pseudo-random-number-generators');
+
+module.exports = function () {
+    var pub = {};
+
+    pub.path0 = []; // Array<Vector<Point>> // edge index -> Vector.<Point>
+    pub.path1 = []; // Array<Vector<Point>> // edge index -> Vector.<Point>
+
+    /**
+     * Build noisy line paths for each of the Voronoi edges. There are
+     * two noisy line paths for each edge, each covering half the
+     * distance: path0 is from v0 to the midpoint and path1 is from v1
+     * to the midpoint. When drawing the polygons, one or the other
+     * must be drawn in reverse order.
+     * @param noisyLineTradeoff low: jagged vedge; high: jagged dedge (default = 0.5)
+     */
+    pub.buildNoisyEdges = function (map, lava, seed, noisyLineTradeoff) {
+        noisyLineTradeoff = core.def(noisyLineTradeoff, 0.5);
+        var gen = prng.randomGenerator(seed, prng.nextParkMiller);
+        _(map.centers).each(function (p) {
+            _(p.borders).each(function (edge) {
+                if (!core.isUndefinedOrNull(edge.d0) && !core.isUndefinedOrNull(edge.d1) && !core.isUndefinedOrNull(edge.v0) && !core.isUndefinedOrNull(edge.v1) && core.isUndefinedOrNull(pub.path0[edge.index])) {
+                    var f = noisyLineTradeoff;
+                    var t = pc.interpolate(edge.v0.point, edge.d0.point, f);
+                    var q = pc.interpolate(edge.v0.point, edge.d1.point, f);
+                    var r = pc.interpolate(edge.v1.point, edge.d0.point, f);
+                    var s = pc.interpolate(edge.v1.point, edge.d1.point, f);
+
+                    var minLength = 10;
+                    if (edge.d0.biome !== edge.d1.biome) { minLength = 3; }
+                    if (edge.d0.ocean && edge.d1.ocean) { minLength = 100; }
+                    if (edge.d0.coast || edge.d1.coast)  { minLength = 1; }
+                    if (convert.booleanFromInt(edge.river) || !core.isUndefinedOrNull(lava.lava[edge.index])) { minLength = 1; }
+                    pub.path0[edge.index] = module.exports.buildNoisyLineSegments(gen(), edge.v0.point, t, edge.midpoint, q, minLength);
+                    pub.path1[edge.index] = module.exports.buildNoisyLineSegments(gen(), edge.v1.point, s, edge.midpoint, r, minLength);
+                }
+            });
+        });
+    };
+
+    return pub;
+};
+
+// Helper function: build a single noisy line in a quadrilateral A-B-C-D,
+// and store the output points in a Vector.
+module.exports.buildNoisyLineSegments = function (seed, A, B, C, D, minLength) {
+    var gen = prng.randomGenerator(seed, prng.nextParkMiller);
+    var points = []; // Vector<Point>
+    
+    // var limit = 10;
+  
+    function subdivide(A, B, C, D) {
+        if (pc.distanceFromOrigin(pc.subtract(A, C)) < minLength || pc.distanceFromOrigin(pc.subtract(B, D)) < minLength) {
+            return;
+        }
+
+        // Subdivide the quadrilateral
+        var p = prng.toFloatRange(gen(), 0.2, 0.8); // vertical (along A-D and B-C)
+        var q = prng.toFloatRange(gen(), 0.2, 0.8); // horizontal (along A-B and D-C)
+
+        // Midpoints
+        var E = pc.interpolate(A, D, p);
+        
+        var F = pc.interpolate(B, C, p);
+        var G = pc.interpolate(A, B, q);
+        var I = pc.interpolate(D, C, q);
+        
+        // Central point
+        var H = pc.interpolate(E, F, q);
+        
+        // Divide the quad into subquads, but meet at H
+        var s = 1.0 - prng.toFloatRange(gen(), -0.4, 0.4); //random.nextDoubleRange(-0.4, 0.4);
+        var t = 1.0 - prng.toFloatRange(gen(), -0.4, 0.4); //random.nextDoubleRange(-0.4, 0.4);
+        
+        //if(limit-- > 0) {trace([p, q, s, t]);}
+        
+        subdivide(A, pc.interpolate(G, B, s), H, pc.interpolate(E, D, t));
+        points.push(H);
+        subdivide(H, pc.interpolate(F, C, s), C, pc.interpolate(I, D, t));
+    }
+
+    points.push(A);
+    subdivide(A, B, C, D);
+    points.push(C);
+    return points;
+};
+},{"../as3/conversion-core":2,"../as3/point-core":4,"../janicek/core":9,"../janicek/pseudo-random-number-generators":13,"lodash":1}],42:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+var core = require('../janicek/core');
+
+module.exports = function () {
+    var pub = {};
+
+    // The road array marks the edges that are roads.  The mark is 1,
+    // 2, or 3, corresponding to the three contour levels. Note that
+    // these are sparse arrays, only filled in where there are roads.
+    pub.road = []; // Array<Int> // edge index -> int contour level
+    pub.roadConnections = []; // Array<Array<Edge>>  // center index -> array of Edges with roads
+
+    // We want to mark different elevation zones so that we can draw
+    // island-circling roads that divide the areas.
+    pub.createRoads = function (map, elevationThresholds) {
+        // Oceans and coastal polygons are the lowest contour zone
+        // (1). Anything connected to contour level K, if it's below
+        // elevation threshold K, or if it's water, gets contour level
+        // K.  (2) Anything not assigned a contour level, and connected
+        // to contour level K, gets contour level K+1.
+        var queue = []; // Array<Center>
+        var p, newLevel;
+        //var elevationThresholds = [0, 0.05, 0.37, 0.64];
+        var cornerContour = []; // Array<Int> // corner index -> int contour level
+        var centerContour = []; //:Array<Int> // center index -> int contour level
+    
+        _(map.centers).each(function (p) {
+            if (p.coast || p.ocean) {
+                centerContour[p.index] = 1;
+                queue.push(p);
+            }
+        });
+      
+        while (queue.length > 0) {
+            p = queue.shift();
+            for (var neighborIndex = 0; neighborIndex < p.neighbors.length; neighborIndex++) {
+                var r = p.neighbors[neighborIndex];
+                newLevel = core.coalesce(centerContour[p.index], 0);
+                while (r.elevation > elevationThresholds[newLevel] && !r.water) {
+                    // NOTE: extend the contour line past bodies of
+                    // water so that roads don't terminate inside lakes.
+                    newLevel += 1;
+                }
+                if (newLevel < core.coalesce(centerContour[r.index], 999)) {
+                    centerContour[r.index] = newLevel;
+                    queue.push(r);
+                }
+            }
+        }
+
+        // A corner's contour level is the MIN of its polygons
+        _(map.centers).each(function (p) {
+            _(p.corners).each(function (q) {
+                cornerContour[q.index] = core.toInt(Math.min(core.coalesce(cornerContour[q.index], 999), core.coalesce(centerContour[p.index], 999)));
+            });
+        });
+
+        // Roads go between polygons that have different contour levels
+        _(map.centers).each(function (p) {
+            _(p.borders).each(function (edge) {
+                if (!_.isNull(edge.v0) && !_.isNull(edge.v1) && cornerContour[edge.v0.index] !== cornerContour[edge.v1.index]) {
+                    pub.road[edge.index] = core.toInt(Math.min(cornerContour[edge.v0.index], cornerContour[edge.v1.index]));
+                    if (core.isUndefinedOrNull(pub.roadConnections[p.index])) {
+                        pub.roadConnections[p.index] = [];
+                    }
+                    pub.roadConnections[p.index].push(edge);
+                }
+            });
+        });
+    };
+
+    return pub;
+};
+},{"../janicek/core":9,"lodash":1}],43:[function(require,module,exports){
+'use strict';
+
+exports.displayColors = {
+    // Features
+    OCEAN: 0x44447a,
+    COAST: 0x33335a,
+    LAKESHORE: 0x225588,
+    LAKE: 0x336699,
+    RIVER: 0x225588,
+    MARSH: 0x2f6666,
+    ICE: 0x99ffff,
+    BEACH: 0xa09077,
+    ROAD1: 0x442211,
+    ROAD2: 0x553322,
+    ROAD3: 0x664433,
+    BRIDGE: 0x686860,
+    LAVA: 0xcc3333,
+
+    // Terrain
+    SNOW: 0xffffff,
+    TUNDRA: 0xbbbbaa,
+    BARE: 0x888888,
+    SCORCHED: 0x555555,
+    TAIGA: 0x99aa77,
+    SHRUBLAND: 0x889977,
+    TEMPERATE_DESERT: 0xc9d29b,
+    TEMPERATE_RAIN_FOREST: 0x448855,
+    TEMPERATE_DECIDUOUS_FOREST: 0x679459,
+    GRASSLAND: 0x88aa55,
+    SUBTROPICAL_DESERT: 0xd2b98b,
+    TROPICAL_RAIN_FOREST: 0x337755,
+    TROPICAL_SEASONAL_FOREST: 0x559944
+};
+
+exports.elevationGradientColors = {
+    OCEAN: 0x008800,
+    GRADIENT_LOW: 0x008800,
+    GRADIENT_HIGH: 0xffff00
+};
+},{}],44:[function(require,module,exports){
+'use strict';
+
+var _ = require('lodash');
+
+module.exports = function () {
+    var pub = {};
+    pub.lowestCorner = [];   // Array<Int> // polygon index -> corner index
+    pub.watersheds = [];     //Array<Int>;  // polygon index -> corner index
+
+    // We want to mark each polygon with the corner where water would
+    // exit the island.
+    pub.createWatersheds = function (map) {
+        var s;
+
+        // Find the lowest corner of the polygon, and set that as the
+        // exit point for rain falling on this polygon
+        _(map.centers).each(function (p) {
+            s = null;
+            _(p.corners).each(function (q) {
+                if (s === null || q.elevation < s.elevation) {
+                    s = q;
+                }
+            });
+            pub.lowestCorner[p.index] = (s === null) ? -1 : s.index;
+            pub.watersheds[p.index] = (s === null) ? -1 : (s.watershed === null) ? -1 : s.watershed.index;
+        });
+    };
+
+    return pub;
+};
+},{"lodash":1}]},{},[7])
+;
