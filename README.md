@@ -18,11 +18,34 @@ Built with JavaScript, JQuery, Lo-Dash, Grunt, Browserify, UglifyJS, Nodeunit, S
 Using [`npm`](http://npmjs.org/):
 
 ```bash
-npm i --save voronoi-map
+npm install --save voronoi-map
 ```
 
-In [Browserify](http://browserify.org/):
+In CommonJS / [Browserify](http://browserify.org/):
 
 ```js
 var vm = require('voronoi-map');
+
+var map = vm.map({width: 1000.0, height: 1000.0});
+map.newIsland(vm.islandShape.makeRadial(1), 1);
+
+map.go0PlacePoints(100);
+map.go1ImprovePoints();
+map.go2BuildGraph();
+map.assignBiomes();
+map.go3AssignElevations();
+map.go4AssignMoisture();
+map.go5DecorateMap();
+
+var lava = vm.lava();
+var roads = vm.roads();
+roads.createRoads(map, [0, 0.05, 0.37, 0.64]);
+var watersheds = vm.watersheds();
+watersheds.createWatersheds(map);
+var noisyEdges = vm.noisyEdges();
+noisyEdges.buildNoisyEdges(map, lava, map.mapRandom.seed);
+
+var canvas = document.createElement('canvas');
+vm.canvasRender.graphicsReset(canvas, map.SIZE.width, map.SIZE.height, vm.style.displayColors);
+vm.canvasRender.renderDebugPolygons(canvas, map, vm.style.displayColors);
 ```
