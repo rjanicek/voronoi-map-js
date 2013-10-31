@@ -9,9 +9,11 @@ Flash dependencies removed.
 
 Built with JavaScript, JQuery, Lo-Dash, Grunt, Browserify, UglifyJS, Nodeunit, Sublime Text.
 
-[Fork me on GitHub](https://github.com/rjanicek/voronoi-map-js)
-
 [Try the demo](http://rjanicek.github.io/voronoi-map-js/)
+
+[Install me from NPM](https://npmjs.org/package/voronoi-map)
+
+[Fork me on GitHub](https://github.com/rjanicek/voronoi-map-js)
 
 ## Installation & usage
 
