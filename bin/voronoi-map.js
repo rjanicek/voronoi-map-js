@@ -6788,6 +6788,11 @@
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 exports.intFromBoolean = function (b) {
@@ -6798,6 +6803,11 @@ exports.booleanFromInt = function (i) {
     return (i === null) ? false : i > 0;
 };
 },{}],3:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 /**
  * Copyright (c) 2010, Jeash contributors.
  * 
@@ -7043,6 +7053,11 @@ var matrix = function (inA, inB, inC, inD, inTx, inTy) {
 
 module.exports = matrix;
 },{"../janicek/core":9}],4:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 module.exports = {
@@ -7110,6 +7125,11 @@ module.exports = {
 
 };
 },{}],5:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 module.exports = function (x, y, width, height) {
@@ -7130,6 +7150,11 @@ module.exports.core = function (rectangle) {
     };
 };
 },{}],6:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 /**
  * Copyright (c) 2010, Jeash contributors.
  * 
@@ -7295,6 +7320,11 @@ Object.defineProperties(vector3d, {
 
 module.exports = vector3d;
 },{"../janicek/core":9}],7:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 module.exports = {
@@ -7302,12 +7332,14 @@ module.exports = {
     islandShape: require('./voronoimap/island-shape'),
     lava: require('./voronoimap/lava'),
     map: require('./voronoimap/map'),
+    mapLands: require('./voronoimap/map-lands'),
     noisyEdges: require('./voronoimap/noisy-edges'),
+    pointSelector: require('./voronoimap/point-selector'),
     roads: require('./voronoimap/roads'),
     style: require('./voronoimap/style'),
     watersheds: require('./voronoimap/watersheds')
 };
-},{"./voronoimap/canvas-render":34,"./voronoimap/island-shape":38,"./voronoimap/lava":39,"./voronoimap/map":40,"./voronoimap/noisy-edges":41,"./voronoimap/roads":42,"./voronoimap/style":43,"./voronoimap/watersheds":44}],8:[function(require,module,exports){
+},{"./voronoimap/canvas-render":34,"./voronoimap/island-shape":38,"./voronoimap/lava":39,"./voronoimap/map":41,"./voronoimap/map-lands":40,"./voronoimap/noisy-edges":42,"./voronoimap/point-selector":43,"./voronoimap/roads":44,"./voronoimap/style":45,"./voronoimap/watersheds":46}],8:[function(require,module,exports){
 /* jshint bitwise:false */
 
 'use strict';
@@ -10182,6 +10214,11 @@ module.exports = function () {
     };
 };
 },{}],34:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 var _ = require('lodash');
@@ -10698,6 +10735,11 @@ exports.renderAllEdges = function (graphics, strokeStyle, map, noisyEdges) {
 };
 
 },{"../as3/conversion-core":2,"../as3/matrix":3,"../as3/point-core":4,"../as3/vector-3d":6,"../janicek/core":9,"../janicek/html-color":11,"lodash":1}],35:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 module.exports = function () {
@@ -10719,6 +10761,11 @@ module.exports = function () {
     };
 };
 },{}],36:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 module.exports = function () {
@@ -10744,6 +10791,11 @@ module.exports = function () {
     };
 };
 },{}],37:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 module.exports = function () {
@@ -10758,7 +10810,10 @@ module.exports = function () {
     };
 };
 },{}],38:[function(require,module,exports){
-/* jshint bitwise:false */
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: false, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
 
 /**
  * Factory class to build the 'inside' function that tells us whether
@@ -10878,6 +10933,11 @@ exports.makeNoise = function (seed) {
     };
 };
 },{"../as3/point-core":4,"../janicek/array2d":8,"../janicek/core":9,"../janicek/perlin-noise":12,"../janicek/pseudo-random-number-generators":13,"../polygonal/pm-prng":33}],39:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 var _ = require('lodash');
@@ -10908,92 +10968,121 @@ module.exports = function () {
 
 module.exports.FRACTION_LAVA_FISSURES = 0.2;  // 0 to 1, probability of fissure
 },{"../as3/conversion-core":2,"lodash":1}],40:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
+'use strict';
+
+var _ = require('lodash');
+var core = require('../janicek/core');
+var mapModule = require('./map');
+
+var api = {};
+
+api.countLands = function (centers) {
+    return _(_(centers).filter(function (c) { return !c.water; })).size();
+};
+
+// Rebuilds the map varying the number of points until desired number of land
+// centers are generated or timeout is reached. Not an efficient algorithim,
+// but gets the job done.
+api.tryMutateMapPointsToGetNumberLands = function (map, pointSelector, numberOfLands, timeoutMilliseconds, initialNumberOfPoints, numLloydIterations, lakeThreshold) {
+    timeoutMilliseconds = core.def(timeoutMilliseconds, 10 * 1000);
+    initialNumberOfPoints = core.def(initialNumberOfPoints, numberOfLands);
+    numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
+    lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
+
+    var pointCount = initialNumberOfPoints;
+    var startTime = Date.now();
+    var targetLandCountFound = false;
+    do {
+        map.go0PlacePoints(pointCount, pointSelector);
+        map.go1BuildGraph();
+        map.go2AssignElevations(lakeThreshold);
+        var lands = api.countLands(map.centers);
+        if (lands === numberOfLands) {
+            targetLandCountFound = true;
+        } else {
+            pointCount += (lands < numberOfLands ? 1 : -1);
+        }
+    } while (!targetLandCountFound && Date.now() - startTime < timeoutMilliseconds);
+    return map;
+};
+
+module.exports = api;
+},{"../janicek/core":9,"./map":41,"lodash":1}],41:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 var _ = require('lodash');
 var centerModule = require('./graph/center');
 var convert = require('../as3/conversion-core');
-var cornerModule = require('./graph/corner');
 var core = require('../janicek/core');
+var cornerModule = require('./graph/corner');
 var edgeModule = require('./graph/edge');
-var prng = require('../polygonal/pm-prng');
 var pc = require('../as3/point-core');
+var pointSelectorModule = require('./point-selector');
+var prng = require('../polygonal/pm-prng');
 var rectangle = require('../as3/rectangle');
 var voronoiModule = require('../nodename/delaunay/voronoi');
 
-/**
- * Make a new map.
- * @param   size width and height of map
- * @param   riverChance 0 = no rivers, > 0 = more rivers, default = map area / 4
- */
+// Make a new map.
+// size: width and height of map
 var mapModule = function (size) {
     var pub = {};
 
-    /**
-     * Passed in by the caller:
-     */
+    // Passed in by the caller:
     pub.SIZE = size;
 
-    /**
-     * Island shape is controlled by the islandRandom seed and the
-     * type of island, passed in when we set the island shape. The
-     * islandShape function uses both of them to determine whether any
-     * point should be water or land.
-     */
+    // Island shape is controlled by the islandRandom seed and the
+    // type of island, passed in when we set the island shape. The
+    // islandShape function uses both of them to determine whether any
+    // point should be water or land.
     pub.islandShape = null;
 
-
-    /**
-     * Island details are controlled by this random generator. The
-     * initial map upon loading is always deterministic, but
-     * subsequent maps reset this random number generator with a
-     * random seed.
-     */
+    // Island details are controlled by this random generator. The initial map
+    // upon loading is always deterministic, but subsequent maps reset this
+    // random number generator with a random seed.
     pub.mapRandom = prng();
+    pub.needsMoreRandomness; // see comment in point-selector.js
 
     // These store the graph data
     
-    /**
-     * Only useful during map construction
-     */
+    // Only useful during map construction
     pub.points = []; // Vector<Point>
     pub.centers = []; // Vector<Center>
     pub.corners = []; // Vector<Corner>
     pub.edges = []; // Vector<Edge>
 
 
-    /**
-     * Random parameters governing the overall shape of the island
-     */
+    // Random parameters governing the overall shape of the island
     pub.newIsland = function (islandShape, variant) {
         pub.islandShape = islandShape;
         pub.mapRandom.seed = variant;
     };
 
-    /**
-     * Generate the initial random set of points.
-     */
-    pub.go0PlacePoints = function (numberOfPoints) {
+    // Generate the initial random set of points.
+    pub.go0PlacePoints = function (numberOfPoints, pointSelector) {
+        pub.needsMoreRandomness = pointSelectorModule.needsMoreRandomness(pointSelector);
         numberOfPoints = core.def(numberOfPoints, mapModule.DEFAULT_NUMBER_OF_POINTS);
         pub.reset();
-        pub.points = pub.generateRandomPoints(numberOfPoints);
+        pub.points = pointSelector(numberOfPoints);
     };
 
-    pub.go1ImprovePoints = function (numLloydIterations) {
-        numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
-        pub.improveRandomPoints(pub.points, numLloydIterations);
-    };
-
-    /**
-     * Create a graph structure from the Voronoi edge list. The
-     * methods in the Voronoi object are somewhat inconvenient for
-     * my needs, so I transform that data into the data I actually
-     * need: edges connected to the Delaunay triangles and the
-     * Voronoi polygons, a reverse map from those four points back
-     * to the edge, a map from these four points to the points
-     * they connect to (both along the edge and crosswise).
-     */
-    pub.go2BuildGraph = function () {
+    // Create a graph structure from the Voronoi edge list. The
+    // methods in the Voronoi object are somewhat inconvenient for
+    // my needs, so I transform that data into the data I actually
+    // need: edges connected to the Delaunay triangles and the
+    // Voronoi polygons, a reverse map from those four points back
+    // to the edge, a map from these four points to the points
+    // they connect to (both along the edge and crosswise).
+    pub.go1BuildGraph = function () {
         var voronoi = voronoiModule.make(pub.points, null, rectangle(0, 0, pub.SIZE.width, pub.SIZE.height));
         pub.buildGraph(pub.points, voronoi);
         pub.improveCorners();
@@ -11002,11 +11091,8 @@ var mapModule = function (size) {
         pub.points = null;
     };
 
-    /**
-     * 
-     * @param   lakeThreshold 0 to 1, fraction of water corners for water polygon, default = 0.3
-     */
-    pub.go3AssignElevations = function (lakeThreshold) {
+    // lakeThreshold: 0 to 1, fraction of water corners for water polygon, default = 0.3
+    pub.go2AssignElevations = function (lakeThreshold) {
         lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
 
         // Determine the elevations and water at Voronoi corners.
@@ -11035,7 +11121,8 @@ var mapModule = function (size) {
         pub.assignPolygonElevations();
     };
 
-    pub.go4AssignMoisture = function (riverChance) {
+    // riverChance: 0 = no rivers, > 0 = more rivers, default = map area / 4
+    pub.go3AssignMoisture = function (riverChance) {
         riverChance = core.def(riverChance, null);
 
         // Determine downslope paths.
@@ -11058,7 +11145,7 @@ var mapModule = function (size) {
         pub.assignPolygonMoisture();
     };
 
-    pub.go5DecorateMap = function () {
+    pub.go4DecorateMap = function () {
         pub.assignBiomes();
     };
 
@@ -11102,71 +11189,14 @@ var mapModule = function (size) {
         //System.gc();
     };
 
-    /**
-     * Generate random points and assign them to be on the island or
-     * in the water. Some water points are inland lakes; others are
-     * ocean. We'll determine ocean later by looking at what's
-     * connected to ocean.
-     */
-    pub.generateRandomPoints = function (NUM_POINTS) {
-        var p, i, points = []; //Vector<Point>
-        for (i = 0; i < NUM_POINTS; i++) {
-            p = {
-                x: pub.mapRandom.nextDoubleRange(10, pub.SIZE.width - 10),
-                y: pub.mapRandom.nextDoubleRange(10, pub.SIZE.height - 10)
-            };
-            points.push(p);
-        }
-        return points;
-    };
-
-    /**
-     * Improve the random set of points with Lloyd Relaxation.
-     */
-    pub.improveRandomPoints = function (points, numLloydIterations) {
-      // We'd really like to generate "blue noise". Algorithms:
-      // 1. Poisson dart throwing: check each new point against all
-      //     existing points, and reject it if it's too close.
-      // 2. Start with a hexagonal grid and randomly perturb points.
-      // 3. Lloyd Relaxation: move each point to the centroid of the
-      //     generated Voronoi polygon, then generate Voronoi again.
-      // 4. Use force-based layout algorithms to push points away.
-      // 5. More at http://www.cs.virginia.edu/~gfx/pubs/antimony/
-      // Option 3 is implemented here. If it's run for too many iterations,
-      // it will turn into a grid, but convergence is very slow, and we only
-      // run it a few times.
-
-        var i, voronoi, region;
-        for (i = 0; i < numLloydIterations; i++) {
-            voronoi = voronoiModule.make(points, null, rectangle(0, 0, pub.SIZE.width, pub.SIZE.height));
-            for (var pointsIndex = 0; pointsIndex < points.length; pointsIndex++) {
-                var p = points[pointsIndex];
-                region = voronoi.region(p);
-                p.x = 0.0;
-                p.y = 0.0;
-                for (var regionIndex = 0; regionIndex < region.length; regionIndex++) {
-                    var q = region[regionIndex];
-                    p.x += q.x;
-                    p.y += q.y;
-                }
-                p.x /= region.length;
-                p.y /= region.length;
-                region.splice(0, region.length);
-            }
-            voronoi.dispose();
-        }
-    };
-
-    /**
-     * Although Lloyd relaxation improves the uniformity of polygon
-     * sizes, it doesn't help with the edge lengths. Short edges can
-     * be bad for some games, and lead to weird artifacts on
-     * rivers. We can easily lengthen short edges by moving the
-     * corners, but **we lose the Voronoi property**.  The corners are
-     * moved to the average of the polygon centers around them. Short
-     * edges become longer. Long edges tend to become shorter. The
-     * polygons tend to be more uniform after this step.
-     */
+    // Although Lloyd relaxation improves the uniformity of polygon
+    // sizes, it doesn't help with the edge lengths. Short edges can
+    // be bad for some games, and lead to weird artifacts on
+    // rivers. We can easily lengthen short edges by moving the
+    // corners, but **we lose the Voronoi property**.  The corners are
+    // moved to the average of the polygon centers around them. Short
+    // edges become longer. Long edges tend to become shorter. The
+    // polygons tend to be more uniform after this step.
     pub.improveCorners = function () {
         var newCorners = []; // Vector<Point>
         var point, i;
@@ -11201,12 +11231,10 @@ var mapModule = function (size) {
         });
     };
 
-    /**
-     * Create an array of corners that are on land only, for use by
-     * algorithms that work only on land.  We return an array instead
-     * of a vector because the redistribution algorithms want to sort
-     * this array using Array.sortOn.
-     */
+    // Create an array of corners that are on land only, for use by
+    // algorithms that work only on land.  We return an array instead
+    // of a vector because the redistribution algorithms want to sort
+    // this array using Array.sortOn.
     pub.landCorners = function (corners) {
         var locations = [];
         _(corners).each(function (q) {
@@ -11217,16 +11245,14 @@ var mapModule = function (size) {
         return locations;
     };
 
-    /**
-     * Build graph data structure in 'edges', 'centers', 'corners',
-     * based on information in the Voronoi results: point.neighbors
-     * will be a list of neighboring points of the same type (corner
-     * or center); point.edges will be a list of edges that include
-     * that point. Each edge connects to four points: the Voronoi edge
-     * edge.{v0,v1} and its dual Delaunay triangle edge edge.{d0,d1}.
-     * For boundary polygons, the Delaunay edge will have one null
-     * point, and the Voronoi edge may be null.
-     */
+    // Build graph data structure in 'edges', 'centers', 'corners',
+    // based on information in the Voronoi results: point.neighbors
+    // will be a list of neighboring points of the same type (corner
+    // or center); point.edges will be a list of edges that include
+    // that point. Each edge connects to four points: the Voronoi edge
+    // edge.{v0,v1} and its dual Delaunay triangle edge edge.{d0,d1}.
+    // For boundary polygons, the Delaunay edge will have one null
+    // point, and the Voronoi edge may be null.
     pub.buildGraph = function (points, voronoi) {
         var p;
         var libedges = voronoi.edges();
@@ -11288,6 +11314,16 @@ var mapModule = function (size) {
             return q;
         }
 
+        // Helper functions for the following for loop; ideally these
+        // would be inlined
+        function addToCornerList(v, x) {
+            if (x !== null && v.indexOf(x) < 0) { v.push(x); }
+        }
+
+        function addToCenterList(v, x) {
+            if (x !== null && v.indexOf(x) < 0) { v.push(x); }
+        }
+
         _(libedges).each(function (libedge) {
             var dedge = libedge.delaunayLine();
             var vedge = libedge.voronoiEdge();
@@ -11311,13 +11347,6 @@ var mapModule = function (size) {
             if (edge.d1 !== null) { edge.d1.borders.push(edge); }
             if (edge.v0 !== null) { edge.v0.protrudes.push(edge); }
             if (edge.v1 !== null) { edge.v1.protrudes.push(edge); }
-
-            function addToCornerList(v, x) {
-                if (x !== null && v.indexOf(x) < 0) { v.push(x); }
-            }
-            function addToCenterList(v, x) {
-                if (x !== null && v.indexOf(x) < 0) { v.push(x); }
-            }
           
             // Centers point to centers.
             if (edge.d0 !== null && edge.d1 !== null) {
@@ -11353,16 +11382,14 @@ var mapModule = function (size) {
         });
     };
 
-    /**
-     * Determine elevations and water at Voronoi corners. By
-     * construction, we have no local minima. This is important for
-     * the downslope vectors later, which are used in the river
-     * construction algorithm. Also by construction, inlets/bays
-     * push low elevation areas inland, which means many rivers end
-     * up flowing out through them. Also by construction, lakes
-     * often end up on river paths because they don't raise the
-     * elevation as much as other terrain does.
-     */
+    // Determine elevations and water at Voronoi corners. By
+    // construction, we have no local minima. This is important for
+    // the downslope vectors later, which are used in the river
+    // construction algorithm. Also by construction, inlets/bays
+    // push low elevation areas inland, which means many rivers end
+    // up flowing out through them. Also by construction, lakes
+    // often end up on river paths because they don't raise the
+    // elevation as much as other terrain does.
     pub.assignCornerElevations = function () {
         var queue = []; // Array<Corner>
       
@@ -11394,6 +11421,17 @@ var mapModule = function (size) {
                 var newElevation = 0.01 + q.elevation;
                 if (!q.water && !s.water) {
                     newElevation += 1;
+                    if (pub.needsMoreRandomness) {
+                        // HACK: the map looks nice because of randomness of
+                        // points, randomness of rivers, and randomness of
+                        // edges. Without random point selection, I needed to
+                        // inject some more randomness to make maps look
+                        // nicer. I'm doing it here, with elevations, but I
+                        // think there must be a better way. This hack is only
+                        // used with square/hexagon grids.
+                        newElevation += pub.mapRandom.nextDouble();
+                    }
+
                 }
 
                 // If this point changed, we'll add it to the queue so
@@ -11406,13 +11444,11 @@ var mapModule = function (size) {
         }
     };
 
-    /**
-     * Change the overall distribution of elevations so that lower
-     * elevations are more common than higher
-     * elevations. Specifically, we want elevation X to have frequency
-     * (1-X).  To do this we will sort the corners, then set each
-     * corner to its desired elevation.
-     */
+    // Change the overall distribution of elevations so that lower
+    // elevations are more common than higher
+    // elevations. Specifically, we want elevation X to have frequency
+    // (1-X).  To do this we will sort the corners, then set each
+    // corner to its desired elevation.
     pub.redistributeElevations = function (locations) {
         // SCALE_FACTOR increases the mountain area. At 1.0 the maximum
         // elevation barely shows up on the map, so we set it to 1.1.
@@ -11446,9 +11482,7 @@ var mapModule = function (size) {
         }
     };
 
-    /**
-     * Change the overall distribution of moisture to be evenly distributed.
-     */
+    // Change the overall distribution of moisture to be evenly distributed.
     pub.redistributeMoisture = function (locations) {
         var i;
       
@@ -11465,9 +11499,7 @@ var mapModule = function (size) {
         }
     };
 
-    /**
-     * Determine polygon and corner types: ocean, coast, land.
-     */
+    // Determine polygon and corner types: ocean, coast, land.
     pub.assignOceanCoastAndLand = function (lakeThreshold) {
         // Compute polygon attributes 'ocean' and 'water' based on the
         // corner attributes. Count the water corners per
@@ -11535,9 +11567,7 @@ var mapModule = function (size) {
         });
     };
 
-    /**
-     * Polygon elevations are the average of the elevations of their corners.
-     */
+    // Polygon elevations are the average of the elevations of their corners.
     pub.assignPolygonElevations = function () {
         var sumElevation;
         _(pub.centers).each(function (p) {
@@ -11549,11 +11579,9 @@ var mapModule = function (size) {
         });
     };
 
-    /**
-     * Calculate downslope pointers.  At every point, we point to the
-     * point downstream from it, or to itself.  This is used for
-     * generating rivers and watersheds.
-     */
+    // Calculate downslope pointers.  At every point, we point to the
+    // point downstream from it, or to itself.  This is used for
+    // generating rivers and watersheds.
     pub.calculateDownslopes = function () {
         var r;
       
@@ -11568,13 +11596,11 @@ var mapModule = function (size) {
         });
     };
 
-    /**
-     * Calculate the watershed of every land point. The watershed is
-     * the last downstream land point in the downslope graph. TODO:
-     * watersheds are currently calculated on corners, but it'd be
-     * more useful to compute them on polygon centers so that every
-     * polygon can be marked as being in one watershed.
-     */
+    // Calculate the watershed of every land point. The watershed is
+    // the last downstream land point in the downslope graph. TODO:
+    // watersheds are currently calculated on corners, but it'd be
+    // more useful to compute them on polygon centers so that every
+    // polygon can be marked as being in one watershed.
     pub.calculateWatersheds = function () {
         var r, i, changed;
       
@@ -11586,7 +11612,7 @@ var mapModule = function (size) {
             }
         });
         // Follow the downslope pointers to the coast. Limit to 100
-        // iterations although most of the time with NUM_POINTS=2000 it
+        // iterations although most of the time with numPoints==2000 it
         // only takes 20 iterations because most points are not far from
         // a coast.  TODO: can run faster by looking at
         // p.watershed.watershed instead of p.downslope.watershed.
@@ -11611,11 +11637,9 @@ var mapModule = function (size) {
         }
     };
 
-    /**
-     * Create rivers along edges. Pick a random corner point,
-     * then move downslope. Mark the edges and corners as rivers.
-     * @param   riverChance Higher = more rivers.
-     */
+    // Create rivers along edges. Pick a random corner point,
+    // then move downslope. Mark the edges and corners as rivers.
+    // riverChance: Higher = more rivers.
     pub.createRivers = function (riverChance) {
         riverChance = core.coalesce(riverChance, core.toInt((pub.SIZE.width + pub.SIZE.height) / 4));
 
@@ -11638,11 +11662,9 @@ var mapModule = function (size) {
         }
     };
 
-    /**
-     * Calculate moisture. Freshwater sources spread moisture: rivers
-     * and lakes (not oceans). Saltwater sources have moisture but do
-     * not spread it (we set it at the end, after propagation).
-     */
+    // Calculate moisture. Freshwater sources spread moisture: rivers
+    // and lakes (not oceans). Saltwater sources have moisture but do
+    // not spread it (we set it at the end, after propagation).
     pub.assignCornerMoisture = function () {
         var q, newMoisture;
         var queue = []; // Array<Corner>
@@ -11675,9 +11697,7 @@ var mapModule = function (size) {
         });
     };
 
-    /**
-     * Polygon moisture is the average of the moisture at corners
-     */
+    // Polygon moisture is the average of the moisture at corners
     pub.assignPolygonMoisture = function () {
         var sumMoisture;
         _(pub.centers).each(function (p) {
@@ -11696,10 +11716,8 @@ var mapModule = function (size) {
         });
     };
 
-    /**
-     * Look up a Voronoi Edge object given two adjacent Voronoi
-     * polygons, or two adjacent Voronoi corners
-     */
+    // Look up a Voronoi Edge object given two adjacent Voronoi
+    // polygons, or two adjacent Voronoi corners
     pub.lookupEdgeFromCenter = function (p, r) {
         for (var i = 0; i < p.borders.length; i++) {
             var edge = p.borders[i];
@@ -11716,9 +11734,7 @@ var mapModule = function (size) {
         return null;
     };
 
-    /**
-     * Determine whether a given point should be on the island or in the water.
-     */
+    // Determine whether a given point should be on the island or in the water.
     pub.inside = function (p) {
         return pub.islandShape({ x: 2 * (p.x / pub.SIZE.width - 0.5), y: 2 * (p.y / pub.SIZE.height - 0.5) });
     };
@@ -11732,13 +11748,11 @@ mapModule.DEFAULT_LAKE_THRESHOLD = 0.3;
 mapModule.DEFAULT_LLOYD_ITERATIONS = 2;
 mapModule.DEFAULT_NUMBER_OF_POINTS = 1000;
 
-/**
- * Assign a biome type to each polygon. If it has
- * ocean/coast/water, then that's the biome; otherwise it depends
- * on low/high elevation and low/medium/high moisture. This is
- * roughly based on the Whittaker diagram but adapted to fit the
- * needs of the island map generator.
- */
+// Assign a biome type to each polygon. If it has
+// ocean/coast/water, then that's the biome; otherwise it depends
+// on low/high elevation and low/medium/high moisture. This is
+// roughly based on the Whittaker diagram but adapted to fit the
+// needs of the island map generator.
 mapModule.getBiome = function (p) {
     if (p.ocean) {
         return 'OCEAN';
@@ -11770,46 +11784,13 @@ mapModule.getBiome = function (p) {
     }
 };
 
-
-// ------------------------------------------------------------------------
-// Richard Janicek's Extensions
-
-mapModule.countLands = function (centers) {
-    return _(_(centers).filter(function (c) { return !c.water; })).size();
-};
-
-/**
- * Rebuilds the map varying the number of points until desired number of land centers are generated or timeout is reached.
- * Not an efficient algorithim, but gets the job done.
- */
-mapModule.tryMutateMapPointsToGetNumberLands = function (map, numberOfLands, timeoutMilliseconds, initialNumberOfPoints, numLloydIterations, lakeThreshold) {
-    timeoutMilliseconds = core.def(timeoutMilliseconds, 10 * 1000);
-    initialNumberOfPoints = core.def(initialNumberOfPoints, mapModule.DEFAULT_NUMBER_OF_POINTS);
-    numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
-    lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
-
-    var pointCount = initialNumberOfPoints;
-    var startTime = Date.now();
-    var targetLandCountFound = false;
-    do {
-        map.go0PlacePoints(pointCount);
-        map.go1ImprovePoints(numLloydIterations);
-        map.go2BuildGraph();
-        map.go3AssignElevations(lakeThreshold);
-        var lands = mapModule.countLands(map.centers);
-        if (lands === numberOfLands) {
-            targetLandCountFound = true;
-        }
-        else {
-            pointCount += (lands < numberOfLands ? 1 : -1);
-        }
-    } while (!targetLandCountFound && Date.now() - startTime < timeoutMilliseconds);
-    
-    return map;
-};
-
 module.exports = mapModule;
-},{"../as3/conversion-core":2,"../as3/point-core":4,"../as3/rectangle":5,"../janicek/core":9,"../nodename/delaunay/voronoi":28,"../polygonal/pm-prng":33,"./graph/center":35,"./graph/corner":36,"./graph/edge":37,"lodash":1}],41:[function(require,module,exports){
+},{"../as3/conversion-core":2,"../as3/point-core":4,"../as3/rectangle":5,"../janicek/core":9,"../nodename/delaunay/voronoi":28,"../polygonal/pm-prng":33,"./graph/center":35,"./graph/corner":36,"./graph/edge":37,"./point-selector":43,"lodash":1}],42:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 var _ = require('lodash');
@@ -11902,7 +11883,136 @@ module.exports.buildNoisyLineSegments = function (seed, A, B, C, D, minLength) {
     points.push(C);
     return points;
 };
-},{"../as3/conversion-core":2,"../as3/point-core":4,"../janicek/core":9,"../janicek/pseudo-random-number-generators":13,"lodash":1}],42:[function(require,module,exports){
+},{"../as3/conversion-core":2,"../as3/point-core":4,"../janicek/core":9,"../janicek/pseudo-random-number-generators":13,"lodash":1}],43:[function(require,module,exports){
+// Factory class to choose points for the graph
+
+// Point selection is random for the original article, with Lloyd
+// Relaxation, but there are other ways of choosing points. Grids in
+// particular can be much simpler to start with, because you don't need
+// Voronoi at all. HOWEVER for ease of implementation, I continue to use
+// Voronoi here, to reuse the graph building code. If you're using a grid,
+// generate the graph directly.
+
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
+'use strict';
+
+var prng = require('../polygonal/pm-prng');
+var rectangle = require('../as3/rectangle');
+var voronoiModule = require('../nodename/delaunay/voronoi');
+
+var api = {
+
+	// The square and hex grid point selection remove randomness from
+	// where the points are; we need to inject more randomness elsewhere
+	// to make the maps look better. I do this in the corner
+	// elevations. However I think more experimentation is needed.
+	needsMoreRandomness: function (fn) {
+		return fn === api.generateSquare || fn === api.generateHexagon;	
+	},
+
+	// Generate points at random locations
+	generateRandom: function (width, height, seed) {
+		return function (numPoints) {
+		  	var mapRandom = prng();
+		  	mapRandom.seed = seed;
+		  	var points = []; // Vector.<Point>
+
+		  	for (var i = 0; i < numPoints; i++) {
+		    	points.push({
+		    		x: mapRandom.nextDoubleRange(10, width - 10),
+		        	y: mapRandom.nextDoubleRange(10, height - 10)
+		    	});
+		  	}
+
+			return points;
+		};
+	},
+
+  	// Improve the random set of points with Lloyd Relaxation
+	generateRelaxed: function (width, height, seed, numLloydRelaxations) {
+	    numLloydRelaxations = numLloydRelaxations || 2;
+	    return function (numPoints) {
+			// We'd really like to generate "blue noise". Algorithms:
+			// 1. Poisson dart throwing: check each new point against all
+			//     existing points, and reject it if it's too close.
+			// 2. Start with a hexagonal grid and randomly perturb points.
+			// 3. Lloyd Relaxation: move each point to the centroid of the
+			//     generated Voronoi polygon, then generate Voronoi again.
+			// 4. Use force-based layout algorithms to push points away.
+			// 5. More at http://www.cs.virginia.edu/~gfx/pubs/antimony/
+			// Option 3 is implemented here. If it's run for too many iterations,
+			// it will turn into a grid, but convergence is very slow, and we only
+			// run it a few times.
+			var points = api.generateRandom(width, height, seed)(numPoints);
+	      	for (var i = 0; i < numLloydRelaxations; i++) {
+	        	var voronoi = voronoiModule.make(points, null, rectangle(0, 0, width, height));
+	        	for (var pointsIndex = 0; pointsIndex < points.length; pointsIndex++) {
+	        		var p = points[pointsIndex];
+		            var region = voronoi.region(p);
+		            p.x = 0.0;
+		            p.y = 0.0;
+		            for (var regionIndex = 0; regionIndex < region.length; regionIndex++) {
+		            	var q = region[regionIndex];
+		                p.x += q.x;
+		                p.y += q.y;
+		            }
+		            p.x /= region.length;
+		            p.y /= region.length;
+		            region.splice(0, region.length);
+	          	}
+	        	voronoi.dispose();
+	      	}
+	      	return points;
+	    };
+  	},
+
+  	// Generate points on a square grid
+	generateSquare: function (width, height) {
+		return function (numPoints) {
+		  	var points = []; // Vector.<Point>
+		  	var n = Math.sqrt(numPoints);
+		  	for (var x = 0; x < n; x++) {
+		    	for (var y = 0; y < n; y++) {
+		      		points.push({
+		      			x: (0.5 + x) / n * width,
+		      			y: (0.5 + y) / n * height
+		      		});
+		    	}
+		  	}
+		  	return points;
+		};
+	},
+
+ 	// Generate points on a square grid
+  	generateHexagon: function (width, height) {
+		return function (numPoints) {
+			var points = []; // Vector.<Point>
+			var n = Math.sqrt(numPoints);
+			for (var x = 0; x < n; x++) {
+				for (var y = 0; y < n; y++) {
+					points.push({
+						x: (0.5 + x) / n * width,
+						y: (0.25 + 0.5 * x % 2 + y) / n * height
+					});
+				}
+			}
+			return points;
+		};
+  	}
+
+};
+
+module.exports = api;
+},{"../as3/rectangle":5,"../nodename/delaunay/voronoi":28,"../polygonal/pm-prng":33}],44:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 var _ = require('lodash');
@@ -11978,7 +12088,12 @@ module.exports = function () {
 
     return pub;
 };
-},{"../janicek/core":9,"lodash":1}],43:[function(require,module,exports){
+},{"../janicek/core":9,"lodash":1}],45:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 exports.displayColors = {
@@ -12018,7 +12133,12 @@ exports.elevationGradientColors = {
     GRADIENT_LOW: 0x008800,
     GRADIENT_HIGH: 0xffff00
 };
-},{}],44:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
+
 'use strict';
 
 var _ = require('lodash');

@@ -8,13 +8,15 @@
     "build_systems":
     [
         {
-            "name": "Grunt",
-            "cmd": ["grunt"],
+            "name": "Build",
+            "cmd": ["npm", "run", "build"],
+            "working_dir": "${project_path:${folder}}",
             "shell": true
         },
         {
-            "name": "Grunt - Debug",
-            "cmd": ["grunt", "debug"],
+            "name": "Build Demo Debug",
+            "cmd": ["npm", "run", "build-demo-debug"],
+            "working_dir": "${project_path:${folder}}",
             "shell": true
         }
     ]        

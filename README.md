@@ -3,11 +3,11 @@ voronoi-map-js
 
 JavaScript port of Amit Patel's mapgen2 https://github.com/amitp/mapgen2 Map generator for games. Generates island maps with a focus on mountains, rivers, coastlines.
 
-Based on commit: 671303ad1c5aff4b2f90726c1f2bcb1e58174cec
+Based on commit: e05075cbb82851e2a3bacaa2e49e4da998894379
 
 Flash dependencies removed.
 
-Built with JavaScript, JQuery, Lo-Dash, Grunt, Browserify, UglifyJS, Nodeunit, Sublime Text.
+Built with JavaScript, Node.js, JQuery, Lo-Dash, Browserify, UglifyJS, Nodeunit, Sublime Text.
 
 [Try the demo](http://rjanicek.github.io/voronoi-map-js/)
 

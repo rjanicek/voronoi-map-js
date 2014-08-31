@@ -1,5 +1,8 @@
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: false, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
 
-/* jshint camelcase:false */
 'use strict';
 
 var _ = require('lodash');
@@ -215,6 +218,7 @@ exports.generate = function () {
     canvas.height = _($(html.S_height).val()).parseInt();
     
     state.map = vm.map({ width: canvas.width + 0.0, height: canvas.height + 0.0 });
+
     var seed = getIntegerOrStringSeed($(html.S_seed).val());
     var shapeSeed = getIntegerOrStringSeed($(html.S_shapeSeed).val());
     
@@ -250,19 +254,25 @@ exports.generate = function () {
     state.noisyEdges = vm.noisyEdges();
     state.lava = vm.lava();
     state.roads = vm.roads();
-    
+
+    var pointSelector = (function (pointSelection, width, height, seed) { switch (pointSelection) {
+        case 'random': return vm.pointSelector.generateRandom(width, height, seed);
+        case 'relaxed': return vm.pointSelector.generateRelaxed(width, height, seed, $(html.S_lloydIterations).val());
+        case 'square': return vm.pointSelector.generateSquare(width, height);
+        case 'hex': return vm.pointSelector.generateHexagon(width, height);
+        default: throw 'unknown point selector ' + pointSelection;
+    }})($('#pointSelection').val(), state.map.SIZE.width, state.map.SIZE.height, state.map.mapRandom.seed);
+
     var numberOfLands = $(html.S_numberOfLands).val();
-    if (_(numberOfLands).isNumber()) {
-        vm.map.tryMutateMapPointsToGetNumberLands(state.map, numberOfLands, 30, numberOfLands * 2);
+    if (numberOfLands.length > 0) {
+        vm.mapLands.tryMutateMapPointsToGetNumberLands(state.map, pointSelector, parseInt(numberOfLands, 10), 30, numberOfLands * 2);
+    } else {
+        state.map.go0PlacePoints($(html.S_numberOfPoints).val(), pointSelector);
+        state.map.go1BuildGraph();
+        state.map.go2AssignElevations($(html.S_lakeThreshold).val());
     }
-    else {
-        state.map.go0PlacePoints($(html.S_numberOfPoints).val());
-        state.map.go1ImprovePoints($(html.S_lloydIterations).val());
-        state.map.go2BuildGraph();
-        state.map.go3AssignElevations($(html.S_lakeThreshold).val());
-    }
-    state.map.go4AssignMoisture($(html.S_riverChance).val());
-    state.map.go5DecorateMap();
+    state.map.go3AssignMoisture($(html.S_riverChance).val());
+    state.map.go4DecorateMap();
     
     var thresholds = $(html.S_roadElevationThresholds).val().split(',');
     state.roads.createRoads(state.map, thresholds);

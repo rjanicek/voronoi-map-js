@@ -1,35 +1,33 @@
-/* jshint camelcase:false */
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: true, camelcase: false, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
 
 'use strict';
 
 var vm = require('./index');
-
-var map = vm.map({width: 1000.0, height: 1000.0});
+var SIZE = 1000.0;
+var map = vm.map({width: SIZE, height: SIZE});
 map.newIsland(vm.islandShape.makeRadial(1), 1);
 var numPoints = 100;
 
 exports.should_place_points = function (test) {
-    map.go0PlacePoints(numPoints);
+    map.go0PlacePoints(numPoints, vm.pointSelector.generateRandom(SIZE, SIZE, map.mapRandom.seed));
 
     test.strictEqual(map.points.length, numPoints);
     test.done();
 };
 
-exports.should_improve_points = function (test) {
-    map.go1ImprovePoints();
-    test.done();
-};
-
 exports.should_build_a_graph = function (test) {
-    map.go2BuildGraph();
+    map.go1BuildGraph();
     map.assignBiomes();
     test.done();
 };
 
 exports.should_add_features = function (test) {
-    map.go3AssignElevations();
-    map.go4AssignMoisture();
-    map.go5DecorateMap();
+    map.go2AssignElevations();
+    map.go3AssignMoisture();
+    map.go4DecorateMap();
     test.done();
 };
 
