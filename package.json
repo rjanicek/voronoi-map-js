@@ -2,21 +2,44 @@
   "name": "voronoi-map",
   "version": "0.0.1",
   "description": "JavaScript port of Amit Patel's mapgen2 https://github.com/amitp/mapgen2 Map generator for games. Generates island maps with a focus on mountains, rivers, coastlines.",
-  "keywords": ["game", "map", "generator", "engine", "voronoi", "delaunay", "geometry", "browser"],
+  "keywords": [
+    "game",
+    "map",
+    "generator",
+    "engine",
+    "voronoi",
+    "delaunay",
+    "geometry",
+    "browser"
+  ],
   "author": "Richard Janicek <r@janicek.co> (http://www.janicek.co)",
   "license": "MIT",
   "homepage": "http://rjanicek.github.io/voronoi-map-js/",
-  "repository" : { "type" : "git", "url" : "https://github.com/rjanicek/voronoi-map-js" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjanicek/voronoi-map-js"
+  },
   "main": "src/index.js",
   "scripts": {
-    "test": "grunt test"
+    "build": "npm run build-core && npm run build-demo",
+    "build-core": "npm run build-core-browserify && npm run build-core-uglify",
+    "build-core-browserify": "browserify -t rfileify src/index.js > bin/voronoi-map.js",
+    "build-core-debug": "browserify -d -t rfileify src/index.js > bin/voronoi-map.js",
+    "build-core-uglify": "uglifyjs bin/voronoi-map.js -m -c -o bin/voronoi-map.min.js",
+    "build-demo": "npm run build-demo-browserify && npm run build-demo-uglify",
+    "build-demo-browserify": "browserify -t rfileify src/demo.js > bin/demo/voronoi-map-demo.js",
+    "build-demo-debug": "browserify -d -t rfileify src/demo.js > bin/demo/voronoi-map-demo.js",
+    "build-demo-uglify": "uglifyjs bin/demo/voronoi-map-demo.js -m -c -o bin/demo/voronoi-map-demo.js",
+    "test": "node test"
   },
   "devDependencies": {
-    "grunt-browserify": "",
-    "grunt-contrib-uglify": "",
-    "grunt-contrib-nodeunit": ""
+    "browserify": "^5.11.0",
+    "glob": "^4.0.5",
+    "nodeunit": "^0.9.0",
+    "rfileify": "^1.3.1",
+    "uglify-js": "^2.4.15"
   },
   "dependencies": {
-    "lodash": ""
+    "lodash": "^2.4.1"
   }
 }
