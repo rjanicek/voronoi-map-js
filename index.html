@@ -27,6 +27,15 @@
 				</select>
 			</div>
 			<div><label for="shapeSeed" title="integer or text">island shape seed</label><input id="shapeSeed" type="text" value="voronoi!" /><button id="shapeRandom">random</button></div>
+			<div>
+				<label for="pointSelection">point selection</label>
+				<select id="pointSelection">
+					<option>random</option>
+					<option selected>relaxed</option>
+					<option>square</option>
+					<option>hex</option>
+				</select>
+			</div>
 			<div style="display:none;"><label for="imageFile" title="black & white images work best">image file</label><input type="file" id="imageFile" name="files[]" /></div>
 			<div style="display:none;"><label for="imageThumb">&nbsp;</label><img id="imageThumb" /></div>
 			<div style="display:none;"><label for="invertImage">invert image?</label><input id="invertImage" type="checkbox" checked /></div>
