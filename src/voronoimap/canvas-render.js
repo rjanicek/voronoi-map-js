@@ -135,9 +135,7 @@ exports.renderDebugPolygons = function (context, map, displayColors) {
     });
 };
 
-/**
- * Render the paths from each polygon to the ocean, showing watersheds.
- */
+// Render the paths from each polygon to the ocean, showing watersheds.
 exports.renderWatersheds = function (graphics, map, watersheds) {
     var edge, w0, w1;
 
@@ -179,11 +177,9 @@ function drawPathForwards(graphics, path) {
     }
 }
 
-/**
- * Helper function for drawing triangles with gradients. This
- * function sets up the fill on the graphics object, and then
- * calls fillFunction to draw the desired path.
- */
+// Helper function for drawing triangles with gradients. This
+// function sets up the fill on the graphics object, and then
+// calls fillFunction to draw the desired path.
 function drawGradientTriangle(graphics, v1, v2, v3, colors, fillFunction, fillX, fillY) {
     var m = matrix();
 
@@ -233,9 +229,7 @@ function drawGradientTriangle(graphics, v1, v2, v3, colors, fillFunction, fillX,
     graphics.fill(); //graphics.endFill();
 }
 
-/**
- * Render the interior of polygons
- */
+// Render the interior of polygons
 exports.renderPolygons = function (graphics, colors, gradientFillProperty, colorOverrideFunction, map, noisyEdges)  {
     // My Voronoi polygon rendering doesn't handle the boundary
     // polygons, so I just fill everything with ocean first.
@@ -316,15 +310,13 @@ exports.renderPolygons = function (graphics, colors, gradientFillProperty, color
     }
 };
 
-/**
- * Render bridges across every narrow river edge. Bridges are
- * straight line segments perpendicular to the edge. Bridges are
- * drawn after rivers. TODO: sometimes the bridges aren't long
- * enough to cross the entire noisy line river. TODO: bridges
- * don't line up with curved road segments when there are
- * roads. It might be worth making a shader that draws the bridge
- * only when there's water underneath.
- */
+// Render bridges across every narrow river edge. Bridges are
+// straight line segments perpendicular to the edge. Bridges are
+// drawn after rivers. TODO: sometimes the bridges aren't long
+// enough to cross the entire noisy line river. TODO: bridges
+// don't line up with curved road segments when there are
+// roads. It might be worth making a shader that draws the bridge
+// only when there's water underneath.
 exports.renderBridges = function (graphics, map, roads, colors) {
     _(map.edges).each(function (edge) {
         if (edge.river > 0 && edge.river < 4 &&
@@ -345,19 +337,15 @@ exports.renderBridges = function (graphics, map, roads, colors) {
     });
 };
 
-/**
- * Render roads. We draw these before polygon edges, so that rivers overwrite roads.
- */
+// Render roads. We draw these before polygon edges, so that rivers overwrite roads.
 exports.renderRoads = function (graphics, map, roads, colors) {
     // First draw the roads, because any other feature should draw
     // over them. Also, roads don't use the noisy lines.
     var A, B, C;
     var i, j, d, edge1, edge2, edges;
 
-    /**
-     * Helper function: find the normal vector across edge 'e' and
-     * make sure to point it in a direction towards 'c'.
-     */
+    // Helper function: find the normal vector across edge 'e' and
+    // make sure to point it in a direction towards 'c'.
     function normalTowards(e, c, len) {
         // Rotate the v0-->v1 vector by 90 degrees:
         var n = { x: -(e.v1.point.y - e.v0.point.y), y: e.v1.point.x - e.v0.point.x };
@@ -438,11 +426,9 @@ function drawPathBackwards(graphics, path) {
     }
 }
 
-/**
- * Render the exterior of polygons: coastlines, lake shores,
- * rivers, lava fissures. We draw all of these after the polygons
- * so that polygons don't overwrite any edges.
- */
+// Render the exterior of polygons: coastlines, lake shores,
+// rivers, lava fissures. We draw all of these after the polygons
+// so that polygons don't overwrite any edges.
 exports.renderEdges = function (graphics, colors, map, noisyEdges, lava, renderRivers) {
     renderRivers = core.def(renderRivers, true);
     var edge;

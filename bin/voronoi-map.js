@@ -7463,17 +7463,18 @@ module.exports.getIndices = function (index, width, blockSize) {
     };
 };
 },{"./core":9,"lodash":1}],9:[function(require,module,exports){
-/* jshint bitwise:false */
+/* jshint 
+    browser: true, jquery: true, node: true,
+    bitwise: false, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
+*/
 
 'use strict';
 
 var _ = require('lodash');
 
 module.exports = {
-    /**
-     * Return value or default if undefined.
-     * Usefull for assigning argument default values.
-     */
+    // Return value or default if undefined.
+    // Usefull for assigning argument default values.
     def: function (value, defaultValue) {
         return _.isUndefined(value) ? defaultValue : value;
     },
@@ -7482,9 +7483,7 @@ module.exports = {
         return something | 0;
     },
 
-    /**
-     * Return first argument that is not undefined and not null.
-     */
+    // Return first argument that is not undefined and not null.
     coalesce: function () {
         return _.find(arguments, function (arg) {
             return !_.isNull(arg) && !_.isUndefined(arg);
@@ -10351,9 +10350,7 @@ exports.renderDebugPolygons = function (context, map, displayColors) {
     });
 };
 
-/**
- * Render the paths from each polygon to the ocean, showing watersheds.
- */
+// Render the paths from each polygon to the ocean, showing watersheds.
 exports.renderWatersheds = function (graphics, map, watersheds) {
     var edge, w0, w1;
 
@@ -10395,11 +10392,9 @@ function drawPathForwards(graphics, path) {
     }
 }
 
-/**
- * Helper function for drawing triangles with gradients. This
- * function sets up the fill on the graphics object, and then
- * calls fillFunction to draw the desired path.
- */
+// Helper function for drawing triangles with gradients. This
+// function sets up the fill on the graphics object, and then
+// calls fillFunction to draw the desired path.
 function drawGradientTriangle(graphics, v1, v2, v3, colors, fillFunction, fillX, fillY) {
     var m = matrix();
 
@@ -10449,9 +10444,7 @@ function drawGradientTriangle(graphics, v1, v2, v3, colors, fillFunction, fillX,
     graphics.fill(); //graphics.endFill();
 }
 
-/**
- * Render the interior of polygons
- */
+// Render the interior of polygons
 exports.renderPolygons = function (graphics, colors, gradientFillProperty, colorOverrideFunction, map, noisyEdges)  {
     // My Voronoi polygon rendering doesn't handle the boundary
     // polygons, so I just fill everything with ocean first.
@@ -10532,15 +10525,13 @@ exports.renderPolygons = function (graphics, colors, gradientFillProperty, color
     }
 };
 
-/**
- * Render bridges across every narrow river edge. Bridges are
- * straight line segments perpendicular to the edge. Bridges are
- * drawn after rivers. TODO: sometimes the bridges aren't long
- * enough to cross the entire noisy line river. TODO: bridges
- * don't line up with curved road segments when there are
- * roads. It might be worth making a shader that draws the bridge
- * only when there's water underneath.
- */
+// Render bridges across every narrow river edge. Bridges are
+// straight line segments perpendicular to the edge. Bridges are
+// drawn after rivers. TODO: sometimes the bridges aren't long
+// enough to cross the entire noisy line river. TODO: bridges
+// don't line up with curved road segments when there are
+// roads. It might be worth making a shader that draws the bridge
+// only when there's water underneath.
 exports.renderBridges = function (graphics, map, roads, colors) {
     _(map.edges).each(function (edge) {
         if (edge.river > 0 && edge.river < 4 &&
@@ -10561,19 +10552,15 @@ exports.renderBridges = function (graphics, map, roads, colors) {
     });
 };
 
-/**
- * Render roads. We draw these before polygon edges, so that rivers overwrite roads.
- */
+// Render roads. We draw these before polygon edges, so that rivers overwrite roads.
 exports.renderRoads = function (graphics, map, roads, colors) {
     // First draw the roads, because any other feature should draw
     // over them. Also, roads don't use the noisy lines.
     var A, B, C;
     var i, j, d, edge1, edge2, edges;
 
-    /**
-     * Helper function: find the normal vector across edge 'e' and
-     * make sure to point it in a direction towards 'c'.
-     */
+    // Helper function: find the normal vector across edge 'e' and
+    // make sure to point it in a direction towards 'c'.
     function normalTowards(e, c, len) {
         // Rotate the v0-->v1 vector by 90 degrees:
         var n = { x: -(e.v1.point.y - e.v0.point.y), y: e.v1.point.x - e.v0.point.x };
@@ -10654,11 +10641,9 @@ function drawPathBackwards(graphics, path) {
     }
 }
 
-/**
- * Render the exterior of polygons: coastlines, lake shores,
- * rivers, lava fissures. We draw all of these after the polygons
- * so that polygons don't overwrite any edges.
- */
+// Render the exterior of polygons: coastlines, lake shores,
+// rivers, lava fissures. We draw all of these after the polygons
+// so that polygons don't overwrite any edges.
 exports.renderEdges = function (graphics, colors, map, noisyEdges, lava, renderRivers) {
     renderRivers = core.def(renderRivers, true);
     var edge;
@@ -10976,7 +10961,6 @@ module.exports.FRACTION_LAVA_FISSURES = 0.2;  // 0 to 1, probability of fissure
 'use strict';
 
 var _ = require('lodash');
-var core = require('../janicek/core');
 var mapModule = require('./map');
 
 var api = {};
@@ -10988,31 +10972,32 @@ api.countLands = function (centers) {
 // Rebuilds the map varying the number of points until desired number of land
 // centers are generated or timeout is reached. Not an efficient algorithim,
 // but gets the job done.
-api.tryMutateMapPointsToGetNumberLands = function (map, pointSelector, numberOfLands, timeoutMilliseconds, initialNumberOfPoints, numLloydIterations, lakeThreshold) {
-    timeoutMilliseconds = core.def(timeoutMilliseconds, 10 * 1000);
-    initialNumberOfPoints = core.def(initialNumberOfPoints, numberOfLands);
-    numLloydIterations = core.def(numLloydIterations, mapModule.DEFAULT_LLOYD_ITERATIONS);
-    lakeThreshold = core.def(lakeThreshold, mapModule.DEFAULT_LAKE_THRESHOLD);
+api.tryMutateMapPointsToGetNumberLands = function (map, pointSelector, numberOfLands, options) {
+    options = _.defaults(options || {}, {
+        timeoutMilliseconds: 10 * 1000,
+        initialNumberOfPoints: numberOfLands,
+        lakeThreshold: mapModule.DEFAULT_LAKE_THRESHOLD
+    });
 
-    var pointCount = initialNumberOfPoints;
+    var pointCount = options.initialNumberOfPoints;
     var startTime = Date.now();
     var targetLandCountFound = false;
     do {
         map.go0PlacePoints(pointCount, pointSelector);
         map.go1BuildGraph();
-        map.go2AssignElevations(lakeThreshold);
+        map.go2AssignElevations(options.lakeThreshold);
         var lands = api.countLands(map.centers);
         if (lands === numberOfLands) {
             targetLandCountFound = true;
         } else {
             pointCount += (lands < numberOfLands ? 1 : -1);
         }
-    } while (!targetLandCountFound && Date.now() - startTime < timeoutMilliseconds);
+    } while (!targetLandCountFound && Date.now() - startTime < options.timeoutMilliseconds);
     return map;
 };
 
 module.exports = api;
-},{"../janicek/core":9,"./map":41,"lodash":1}],41:[function(require,module,exports){
+},{"./map":41,"lodash":1}],41:[function(require,module,exports){
 /* jshint 
     browser: true, jquery: true, node: true,
     bitwise: true, camelcase: true, curly: true, eqeqeq: true, es3: true, evil: true, expr: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, noarg: true, noempty: true, nonew: true, quotmark: single, regexdash: true, strict: true, sub: true, trailing: true, undef: true, unused: vars, white: true
@@ -11987,7 +11972,7 @@ var api = {
 		};
 	},
 
- 	// Generate points on a square grid
+ 	// Generate points on a hexagon grid
   	generateHexagon: function (width, height) {
 		return function (numPoints) {
 			var points = []; // Vector.<Point>

@@ -265,7 +265,7 @@ exports.generate = function () {
 
     var numberOfLands = $(html.S_numberOfLands).val();
     if (numberOfLands.length > 0) {
-        vm.mapLands.tryMutateMapPointsToGetNumberLands(state.map, pointSelector, parseInt(numberOfLands, 10), 30, numberOfLands * 2);
+        vm.mapLands.tryMutateMapPointsToGetNumberLands(state.map, pointSelector, parseInt(numberOfLands, 10));
     } else {
         state.map.go0PlacePoints($(html.S_numberOfPoints).val(), pointSelector);
         state.map.go1BuildGraph();

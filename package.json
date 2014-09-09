@@ -1,6 +1,6 @@
 {
   "name": "voronoi-map",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JavaScript port of Amit Patel's mapgen2 https://github.com/amitp/mapgen2 Map generator for games. Generates island maps with a focus on mountains, rivers, coastlines.",
   "keywords": [
     "game",

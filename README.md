@@ -1,5 +1,5 @@
 voronoi-map-js
---------------
+==============
 
 JavaScript port of Amit Patel's mapgen2 https://github.com/amitp/mapgen2 Map generator for games. Generates island maps with a focus on mountains, rivers, coastlines.
 
@@ -15,7 +15,8 @@ Built with JavaScript, Node.js, JQuery, Lo-Dash, Browserify, UglifyJS, Nodeunit,
 
 [Fork me on GitHub](https://github.com/rjanicek/voronoi-map-js)
 
-## Installation & usage
+Installation & usage
+--------------------
 
 Using [`npm`](http://npmjs.org/):
 
@@ -30,14 +31,12 @@ var vm = require('voronoi-map');
 
 var map = vm.map({width: 1000.0, height: 1000.0});
 map.newIsland(vm.islandShape.makeRadial(1), 1);
-
-map.go0PlacePoints(100);
-map.go1ImprovePoints();
-map.go2BuildGraph();
+map.go0PlacePoints(100, pointSelectorModule.generateRandom(map.SIZE.width, map.SIZE.height, map.mapRandom.seed));
+map.go1BuildGraph();
 map.assignBiomes();
-map.go3AssignElevations();
-map.go4AssignMoisture();
-map.go5DecorateMap();
+map.go2AssignElevations();
+map.go3AssignMoisture();
+map.go4DecorateMap();
 
 var lava = vm.lava();
 var roads = vm.roads();
@@ -51,3 +50,10 @@ var canvas = document.createElement('canvas');
 vm.canvasRender.graphicsReset(canvas, map.SIZE.width, map.SIZE.height, vm.style.displayColors);
 vm.canvasRender.renderDebugPolygons(canvas, map, vm.style.displayColors);
 ```
+
+Tasks
+-----
+
+* fix smooth rendering bug for square point selection
+	* `canvas-render.js` ~line 300, problem is with `graphics.stroke()` original render logic only draws fill paths. HTML canvas fill path does not join other paths and shows a seam between them. stroke() worked to hide the seam but square point selection exposes a bug where some strokes are not the correct color
+* fix point-selector square and hexagon so distribution is symetrical when size is asymetrical

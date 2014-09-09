@@ -101,7 +101,7 @@ var api = {
 		};
 	},
 
- 	// Generate points on a square grid
+ 	// Generate points on a hexagon grid
   	generateHexagon: function (width, height) {
 		return function (numPoints) {
 			var points = []; // Vector.<Point>
