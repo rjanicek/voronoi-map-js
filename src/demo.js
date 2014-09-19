@@ -67,8 +67,13 @@ function updateThumb() {
     $(html.S_imageThumb).attr('src', imageDataUrl);
 }
 
+function getContext() {
+    var canvas = document.getElementById(html.ID_map);
+    return canvas.getContext('2d');
+}
+
 function render(state) {
-    var c = exports.getContext();
+    var c = getContext();
     vm.canvasRender.graphicsReset(c, state.map.SIZE.width, state.map.SIZE.height, vm.style.displayColors);
     switch ($(html.S_view).val()) {
     case 'debug polygons':
@@ -101,94 +106,6 @@ function render(state) {
     }
 }
 
-exports.initializeUi = function () {
-    image = new Image();
-    image.onload = function () {
-        $(html.S_imageThumb).attr('src', image.src);
-        updateThumb();
-    };
-    image.src = 'world-map.jpg';
-    
-    $(html.S_random).click(function () {
-        $(html.S_seed).val(String(prng.makeRandomSeed()));
-    });
-    $(html.S_shapeRandom).click(function () {
-        $(html.S_shapeSeed).val(String(prng.makeRandomSeed()));
-    });
-    
-    $(html.S_islandShape).change(function (e) {
-        $([html.S_islandFactor, html.S_oceanRatio, html.S_shapeSeed, html.S_imageFile, html.S_imageThumb, html.S_invertImage, html.S_imageThreshold].toString()).parent().hide();
-        switch ($(html.S_islandShape).val()) {
-        case 'bitmap':
-            $([html.S_imageFile, html.S_imageThumb, html.S_invertImage, html.S_imageThreshold].toString()).parent().show();
-            break;
-        case 'noise':
-            $(html.S_shapeSeed).parent().show();
-            break;
-        case 'perlin':
-            $([html.S_oceanRatio, html.S_shapeSeed].toString()).parent().show();
-            break;
-        case 'radial':
-            $([html.S_islandFactor, html.S_shapeSeed].toString()).parent().show();
-            break;
-        }
-    });
-    
-    $(html.S_imageFile).change(function (e) {
-        console.log('file changed');
-        var fileUpload = $(html.S_imageFile).get()[0];
-        var files = fileUpload.files;
-        if (files.length === 1) {
-            var file = files[0];
-            if (string(file.type).startsWith('image')) {
-                canvasCore.loadFileIntoImage(file, image);
-            }
-        }
-    });
-
-    $([html.S_invertImage, html.S_imageThreshold].toString()).change(function (e) { updateThumb(); });
-    
-    if ($(html.S_width).val().length === 0) {
-        $(html.S_width).val($(window).width());
-    }
-    if ($(html.S_height).val().length === 0) {
-        $(html.S_height).val($(window).height());
-    }
-    
-    $(html.S_view).change(function (e) {
-        switch ($(html.S_view).val()) {
-        case 'debug polygons':
-            $(html.S_addNoise).removeAttr('checked');
-            break;
-        case 'smooth':
-            $(html.S_addNoise).attr('checked', 'true');
-            break;
-        }
-    });
-    
-    $([html.S_view, html.S_viewRivers, html.S_viewRoads, html.S_viewBridges, html.S_viewWatersheds, html.S_viewEdges, html.S_addNoise].toString()).change(function (e) {
-        render(state);
-    });
-
-    $(html.S_viewRoads).change(function (e) {
-        $(html.S_roadElevationThresholds).parent().toggle();
-    });
-    
-    $(html.S_generate).click(function () { state = exports.generate(); });
-    
-    $(html.S_toggle).click(function () {
-        var fields = $(html.S_fields);
-        fields.toggle(500, function () {
-            $(html.S_toggle).text(fields.is(':visible') ? 'hide' : 'show');
-        });
-    });
-};
-
-exports.getContext = function () {
-    var canvas = document.getElementById(html.ID_map);
-    return canvas.getContext('2d');
-};
-
 function findOrCreateCanvas() {
     var canvas = document.getElementById(html.ID_map);
     if (canvas === null) {
@@ -208,7 +125,7 @@ function getIntegerOrStringSeed(s) {
     return Math.abs(prng.stringToSeed(s));
 }
 
-exports.generate = function () {
+function generate() {
     timer.start();
 
     var state = { map : null, noisyEdges : null, roads : null, watersheds : null, lava : null };
@@ -288,14 +205,97 @@ exports.generate = function () {
     $('#totalMs').text(renderTime.total);
 
     return state;
-};
+}
+
+function initializeUi () {
+    image = new Image();
+    image.onload = function () {
+        $(html.S_imageThumb).attr('src', image.src);
+        updateThumb();
+    };
+    image.src = 'world-map.jpg';
+    
+    $(html.S_random).click(function () {
+        $(html.S_seed).val(String(prng.makeRandomSeed()));
+    });
+    $(html.S_shapeRandom).click(function () {
+        $(html.S_shapeSeed).val(String(prng.makeRandomSeed()));
+    });
+    
+    $(html.S_islandShape).change(function (e) {
+        $([html.S_islandFactor, html.S_oceanRatio, html.S_shapeSeed, html.S_imageFile, html.S_imageThumb, html.S_invertImage, html.S_imageThreshold].toString()).parent().hide();
+        switch ($(html.S_islandShape).val()) {
+        case 'bitmap':
+            $([html.S_imageFile, html.S_imageThumb, html.S_invertImage, html.S_imageThreshold].toString()).parent().show();
+            break;
+        case 'noise':
+            $(html.S_shapeSeed).parent().show();
+            break;
+        case 'perlin':
+            $([html.S_oceanRatio, html.S_shapeSeed].toString()).parent().show();
+            break;
+        case 'radial':
+            $([html.S_islandFactor, html.S_shapeSeed].toString()).parent().show();
+            break;
+        }
+    });
+    
+    $(html.S_imageFile).change(function (e) {
+        console.log('file changed');
+        var fileUpload = $(html.S_imageFile).get()[0];
+        var files = fileUpload.files;
+        if (files.length === 1) {
+            var file = files[0];
+            if (string(file.type).startsWith('image')) {
+                canvasCore.loadFileIntoImage(file, image);
+            }
+        }
+    });
+
+    $([html.S_invertImage, html.S_imageThreshold].toString()).change(function (e) { updateThumb(); });
+    
+    if ($(html.S_width).val().length === 0) {
+        $(html.S_width).val($(window).width());
+    }
+    if ($(html.S_height).val().length === 0) {
+        $(html.S_height).val($(window).height());
+    }
+    
+    $(html.S_view).change(function (e) {
+        switch ($(html.S_view).val()) {
+        case 'debug polygons':
+            $(html.S_addNoise).removeAttr('checked');
+            break;
+        case 'smooth':
+            $(html.S_addNoise).attr('checked', 'true');
+            break;
+        }
+    });
+    
+    $([html.S_view, html.S_viewRivers, html.S_viewRoads, html.S_viewBridges, html.S_viewWatersheds, html.S_viewEdges, html.S_addNoise].toString()).change(function (e) {
+        render(state);
+    });
+
+    $(html.S_viewRoads).change(function (e) {
+        $(html.S_roadElevationThresholds).parent().toggle();
+    });
+    
+    $(html.S_generate).click(function () { state = generate(); });
+    
+    $(html.S_toggle).click(function () {
+        var fields = $(html.S_fields);
+        fields.toggle(500, function () {
+            $(html.S_toggle).text(fields.is(':visible') ? 'hide' : 'show');
+        });
+    });
+}
 
 // ----------------------------------------------------------------------------
 // Main
 
 function main() {
-    exports.initializeUi();
-    state = exports.generate();
+    initializeUi();
+    state = generate();
     require('./janicek/perf').traceCounters();
 }
 
