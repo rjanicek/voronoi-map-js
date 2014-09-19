@@ -7,7 +7,6 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-	<canvas id="map"></canvas>	
 	<fieldset id="fieldset">
 		<div id="fields">
 			<div style="font-size:15px;">voronoi-map-js</div>
@@ -44,7 +43,7 @@
 			<div><label for="oceanRatio" title="0 = least ocean, 1 = most ocean">ocean ratio</label><input id="oceanRatio" type="text" value="0.5" /></div>
 			<div><label for="width">width</label><input id="width" type="text" value="" /></div>
 			<div><label for="height">height</label><input id="height" type="text" value="" /></div>
-			<div><label for="numberOfPoints">number of points</label><input id="numberOfPoints" type="text" value="1000" /></div>
+			<div><label for="numberOfPoints">number of points</label><input id="numberOfPoints" type="text" value="250" /></div>
 			<div><label for="numberOfLands">number of lands</label><input id="numberOfLands" type="text" value="" /></div>
 			<div><label for="lakeThreshold" title="0 to 1, fraction of water corners for water polygon">lake threshold</label><input id="lakeThreshold" type="text" value="0.3" /></div>
 			<div><label for="lloydIterations">number of lloyd iterations</label><input id="lloydIterations" type="text" value="2" /></div>
@@ -56,7 +55,15 @@
 				<button id="generate">generate</button>
 			</div>
 			<div class="section">
-				<label for="view">view</label>
+				<label>renderer</label>
+				<select id="renderer">
+					<option selected>canvas</option>
+					<option>pixi webgl</option>
+					<option>pixi canvas</option>
+				</select>
+			</div>
+			<div class="section">
+				<label>view</label>
 				<select id="view">
 					<option>debug polygons</option>
 					<option selected>smooth</option>
@@ -69,10 +76,6 @@
 			<div><label for="viewWatersheds">watersheds?</label><input id="viewWatersheds" type="checkbox" /></div>
 			<div><label for="viewEdges">edges?</label><input id="viewEdges" type="checkbox" /></div>
 			<div><label for="addNoise">add noise?</label><input id="addNoise" type="checkbox" checked /></div>
-			<br/>
-			<div><label>generate</label><div class="timer"><span id="generateMs">0</span></div> ms</div>
-			<div><label>render</label><div class="timer"><span id="renderMs">0</span></div> ms</div>
-			<div><label>&nbsp;</label><div class="timer"><span id="totalMs" class="total">0</span></div> ms</div>
 		</div>
 		<a id="toggle" style="float:right;">hide</a>
 	</fieldset>

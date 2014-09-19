@@ -6,69 +6,24 @@
 'use strict';
 
 var _ = require('lodash');
-var colorModule = require('../janicek/html-color');
-var convert = require('../as3/conversion-core');
-var core = require('../janicek/core');
-var matrix = require('../as3/matrix');
-var pointCore = require('../as3/point-core');
-var vector3d = require('../as3/vector-3d');
+var colorModule = require('./janicek/html-color');
+var convert = require('./as3/conversion-core');
+var core = require('./janicek/core');
+var PIXI = require('pixi.js');
+var pointCore = require('./as3/point-core');
+var Shape = require('shape2d');
+var NoiseFilter = require('pixi-noise-filter');
 
-exports.graphicsReset = function (c, mapWidth, mapHeight, displayColors) {
-    c.lineWidth = 1.0;
-    c.clearRect(0, 0, 2000, 2000);
-    c.fillStyle = '#bbbbaa';
-    c.fillRect(0, 0, 2000, 2000);
-    c.fillStyle = colorModule.intToHexColor(displayColors.OCEAN);
-    c.fillRect(0, 0, core.toInt(mapWidth), core.toInt(mapHeight));
+exports.graphicsReset = function (context, mapWidth, mapHeight, displayColors) {
+	context.stage = new PIXI.Stage(displayColors.OCEAN);
+    context.root = new PIXI.DisplayObjectContainer();
+    context.stage.addChild(context.root);
+	context.renderer.render(context.stage);
 };
 
-var lightVector = vector3d(-1, -1, 0);
-
-exports.calculateLighting = function (p, r, s) {
-    var A = vector3d(p.point.x, p.point.y, p.elevation);
-    var B = vector3d(r.point.x, r.point.y, r.elevation);
-    var C = vector3d(s.point.x, s.point.y, s.elevation);
-    var normal = B.subtract(A).crossProduct(C.subtract(A));
-    if (normal.z < 0) { normal.scaleBy(-1); }
-    normal.normalize();
-    var light = 0.5 + 35 * normal.dotProduct(lightVector);
-    if (light < 0) { light = 0; }
-    if (light > 1) { light = 1; }
-    return light;
-};
-
-exports.colorWithSlope = function (color, p, q, edge, displayColors) {
-    var r = edge.v0;
-    var s = edge.v1;
-    if (_.isNull(r) || _.isNull(s)) {
-        // Edge of the map
-        return displayColors.OCEAN;
-    } else if (p.water) {
-        return color;
-    }
-
-    if (q !== null && p.water === q.water) {
-        color = colorModule.interpolateColor(color, displayColors[q.biome], 0.4);
-    }
-    var colorLow = colorModule.interpolateColor(color, 0x333333, 0.7);
-    var colorHigh = colorModule.interpolateColor(color, 0xffffff, 0.3);
-    var light = exports.calculateLighting(p, r, s);
-    if (light < 0.5) {
-        return colorModule.interpolateColor(colorLow, color, light * 2);
-    } else {
-        return colorModule.interpolateColor(color, colorHigh, light * 2 - 1);
-    }
-};
-
-exports.colorWithSmoothColors = function (color, p, q, edge, displayColors) {
-    if (q !== null && p.water === q.water) {
-        color = colorModule.interpolateColor(displayColors[p.biome], displayColors[q.biome], 0.25);
-    }
-    return color;
-};
-
+// Render the polygons so that each can be seen clearly
 exports.renderDebugPolygons = function (context, map, displayColors) {
-
+	
     var color;
 
     if (map.centers.length === 0) {
@@ -87,154 +42,112 @@ exports.renderDebugPolygons = function (context, map, displayColors) {
         });
     }
     
+    var graphics = new PIXI.Graphics();
+
     _(map.centers).each(function (p) {
         color = !_.isNull(p.biome) ? displayColors[p.biome] : (p.ocean ? displayColors.OCEAN : p.water ? displayColors.RIVER : 0xffffff);
-      
+
         //Draw shape
-        context.beginPath();
+        graphics.lineStyle();
+        graphics.beginFill(colorModule.interpolateColor(color, 0xdddddd, 0.2)); 
         _(p.borders).each(function (edge) {
-            if (!_.isNull(edge.v0) && !_.isNull(edge.v1)) {
-                context.moveTo(p.point.x, p.point.y);
-                context.lineTo(edge.v0.point.x, edge.v0.point.y);
-                context.lineTo(edge.v1.point.x, edge.v1.point.y);
+            if (edge.v0 && edge.v1) {
+                graphics.moveTo(p.point.x, p.point.y);
+                graphics.lineTo(edge.v0.point.x, edge.v0.point.y);
+                graphics.lineTo(edge.v1.point.x, edge.v1.point.y);
+                graphics.lineTo(p.point.x, p.point.y);
             }
         });
-        context.closePath();
-        context.fillStyle = colorModule.intToHexColor(colorModule.interpolateColor(color, 0xdddddd, 0.2));
-        context.fill();
+        graphics.endFill();
 
         //Draw borders
         _(p.borders).each(function (edge) {
-            if (!_.isNull(edge.v0) && !_.isNull(edge.v1)) {
-                context.beginPath();
-                context.moveTo(edge.v0.point.x, edge.v0.point.y);
+            if (edge.v0 && edge.v1) {
                 if (edge.river > 0) {
-                    context.lineWidth = 1;
-                    context.strokeStyle = colorModule.intToHexColor(displayColors.RIVER);
+                	graphics.lineStyle(2, displayColors.RIVER);
                 } else {
-                    context.lineWidth = 0.1;
-                    context.strokeStyle = '#000000';
+                	graphics.lineStyle(1, 0x000000, 0.2);
                 }
-                context.lineTo(edge.v1.point.x, edge.v1.point.y);
-                context.closePath();
-                context.stroke();
+                graphics.moveTo(edge.v0.point.x, edge.v0.point.y);
+                graphics.lineTo(edge.v1.point.x, edge.v1.point.y);
             }
         });
-        
-        context.beginPath();
-        context.fillStyle = (p.water ? '#003333' : '#000000');
-        context.globalAlpha = 0.7;
-        context.arc(p.point.x, p.point.y, 1.3, Math.PI, 2 * Math.PI, false);
-        context.closePath();
-        context.fill();
-        context.globalAlpha = 1.0;
+
+        graphics.beginFill(p.water ? 0x003333 : 0x000000, 0.7);
+        graphics.drawCircle(p.point.x, p.point.y, 1.3, 1.3);
+        graphics.endFill();
+
+        context.root.addChild(graphics);
+        graphics = new PIXI.Graphics();        
+    });
+
+    _(map.centers).each(function (p) {
         _(p.corners).each(function (q) {
-            context.fillStyle = q.water ? '#0000ff' : '#009900';
-            context.fillRect(core.toInt(q.point.x - 0.7), core.toInt(q.point.y - 0.7), core.toInt(1.5), core.toInt(1.5));
+        	graphics.beginFill(q.water ? 0x0000ff : 0x009900);
+            graphics.drawRect(q.point.x - 1.0, q.point.y - 1.0, 2.0, 2.0);
+            graphics.endFill();
         });
     });
+
+	context.root.addChild(graphics);
+	context.renderer.render(context.stage);
 };
 
 // Render the paths from each polygon to the ocean, showing watersheds.
-exports.renderWatersheds = function (graphics, map, watersheds) {
+exports.renderWatersheds = function (context, map, watersheds) {
     var edge, w0, w1;
 
+    var graphics = new PIXI.Graphics();
+
     _(map.edges).each(function (edge) {
-        if (!_.isNull(edge.d0) && !_.isNull(edge.d1) && !_.isNull(edge.v0) && !_.isNull(edge.v1) && !edge.d0.ocean && !edge.d1.ocean) {
+        if (edge.d0 && edge.d1 && edge.v0 && edge.v1 && !edge.d0.ocean && !edge.d1.ocean) {
             w0 = watersheds.watersheds[edge.d0.index];
             w1 = watersheds.watersheds[edge.d1.index];
             if (w0 !== w1) {
-                graphics.beginPath();
-                //graphics.lineStyle(3.5, 0x000000, 0.1 * Math.sqrt((map.corners[w0].watershedSize || 1) + (map.corners[w1].watershed.watershedSize || 1)));
-                graphics.lineWidth = 3.5;
-                graphics.strokeStyle = colorModule.rgba(0, 0, 0, 0.1 * Math.sqrt((core.coalesce(map.corners[w0].watershedSize, 1)) + (core.coalesce(map.corners[w1].watershed.watershedSize, 1))));
+                graphics.lineStyle(3.5, 0x000000, 0.1 * Math.sqrt((map.corners[w0].watershedSize || 1) + (map.corners[w1].watershed.watershedSize || 1)));
                 graphics.moveTo(edge.v0.point.x, edge.v0.point.y);
                 graphics.lineTo(edge.v1.point.x, edge.v1.point.y);
-                graphics.closePath(); //graphics.lineStyle();
-                graphics.stroke();
             }
         }
     });
 
     for (edge in map.edges) {
         if (convert.booleanFromInt(edge.river)) {
-            graphics.beginPath();
-            //graphics.lineStyle(1.0, 0x6699ff);
-            graphics.lineWidth = 1.0;
-            graphics.strokeStyle = '#6699ff';
+            graphics.lineStyle(1.0, 0x6699ff);
             graphics.moveTo(edge.v0.point.x, edge.v0.point.y);
             graphics.lineTo(edge.v1.point.x, edge.v1.point.y);
-            //graphics.lineStyle();
-            graphics.closePath();
-            graphics.stroke();
         }
     }
+
+    context.root.addChild(graphics);
+    context.renderer.render(context.stage);
 };
 
-function drawPathForwards(graphics, path) {
+function drawPathForwards(graphics, path, step) {
     for (var i = 0; i < path.length; i++) {
         graphics.lineTo(path[i].x, path[i].y);
+        step && step(i, path[i].x, path[i].y);
     }
 }
 
-// Helper function for drawing triangles with gradients. This
-// function sets up the fill on the graphics object, and then
-// calls fillFunction to draw the desired path.
-function drawGradientTriangle(graphics, v1, v2, v3, colors, fillFunction, fillX, fillY) {
-    var m = matrix();
-
-    // Center of triangle:
-    var V = v1.add(v2).add(v3);
-    V.scaleBy(1 / 3.0);
-
-    // Normal of the plane containing the triangle:
-    var N = v2.subtract(v1).crossProduct(v3.subtract(v1));
-    N.normalize();
-
-    // Gradient vector in x-y plane pointing in the direction of increasing z
-    var G = vector3d(-N.x / N.z, -N.y / N.z, 0);
-
-    // Center of the color gradient
-    var C = vector3d(V.x - G.x * ((V.z - 0.5) / G.length / G.length), V.y - G.y * ((V.z - 0.5) / G.length / G.length));
-
-    if (G.length < 1e-6) {
-        // If the gradient vector is small, there's not much
-        // difference in colors across this triangle. Use a plain
-        // fill, because the numeric accuracy of 1/G.length is not to
-        // be trusted.  NOTE: only works for 1, 2, 3 colors in the array
-        var color = colors[0];
-        if (colors.length === 2) {
-            color = colorModule.interpolateColor(colors[0], colors[1], V.z);
-        } else if (colors.length === 3) {
-            if (V.z < 0.5) {
-                color = colorModule.interpolateColor(colors[0], colors[1], V.z * 2);
-            } else {
-                color = colorModule.interpolateColor(colors[1], colors[2], V.z * 2 - 1);
-            }
-        }
-        graphics.fillStyle = colorModule.intToHexColor(color); //graphics.beginFill(color);
-    } else {
-        // The gradient box is weird to set up, so we let Flash set up
-        // a basic matrix and then we alter it:
-        m.createGradientBox(1, 1, 0, 0, 0);
-        m.translate(-0.5, -0.5);
-        m.scale((1 / G.length), (1 / G.length));
-        m.rotate(Math.atan2(G.y, G.x));
-        m.translate(C.x, C.y);
-        var alphas = _(colors).map(function (c) { return 1.0; });
-        var spread = _(colors).map(function (c, index) { return 255 * index / (colors.length - 1); });
-        //graphics.beginGradientFill(GradientType.LINEAR, colors, alphas, spread, m, SpreadMethod.PAD);
+function drawPathBackwards(graphics, path, step) {
+    for (var i = path.length - 1; i >= 0; i--) {
+        graphics.lineTo(path[i].x, path[i].y);
+        step && step(i, path[i].x, path[i].y);
     }
-    fillFunction(graphics, fillX, fillY);
-    graphics.fill(); //graphics.endFill();
 }
 
 // Render the interior of polygons
-exports.renderPolygons = function (graphics, colors, gradientFillProperty, colorOverrideFunction, map, noisyEdges)  {
+exports.renderPolygons = function (context, colors, gradientFillProperty, colorOverrideFunction, map, noisyEdges)  {
+
+    var graphics = new PIXI.Graphics();
+
     // My Voronoi polygon rendering doesn't handle the boundary
     // polygons, so I just fill everything with ocean first.
-    graphics.fillStyle = colorModule.intToHexColor(colors.OCEAN);
-    graphics.fillRect(0, 0, core.toInt(map.SIZE.width), core.toInt(map.SIZE.height));
+    graphics.drawRect(0, 0, map.SIZE.width, map.SIZE.height);
+
+    context.root.addChild(graphics);
+    graphics = new PIXI.Graphics();
  
     var drawPath0 = function (graphics, x, y) {
         var path = noisyEdges.path0[edge.index];
@@ -296,18 +209,17 @@ exports.renderPolygons = function (graphics, colors, gradientFillProperty, color
                     [colors.GRADIENT_LOW, colors.GRADIENT_HIGH],
                     drawPath1, p.point.x, p.point.y
                 );
-            } else {
-                graphics.fillStyle = colorModule.intToHexColor(color);
-                graphics.strokeStyle = graphics.fillStyle;
-                graphics.beginPath();
+            } else if (color !== colors.OCEAN) {
+                graphics.beginFill(color);
                 drawPath0(graphics, p.point.x, p.point.y);
                 drawPath1(graphics, p.point.x, p.point.y);
-                graphics.closePath();
-                graphics.fill();
-                graphics.stroke();
+                graphics.endFill();
             }
         }
     }
+
+    context.root.addChild(graphics);
+    context.renderer.render(context.stage);
 };
 
 // Render bridges across every narrow river edge. Bridges are
@@ -317,7 +229,9 @@ exports.renderPolygons = function (graphics, colors, gradientFillProperty, color
 // don't line up with curved road segments when there are
 // roads. It might be worth making a shader that draws the bridge
 // only when there's water underneath.
-exports.renderBridges = function (graphics, map, roads, colors) {
+exports.renderBridges = function (context, map, roads, colors) {
+    var graphics = new PIXI.Graphics();
+
     _(map.edges).each(function (edge) {
         if (edge.river > 0 && edge.river < 4 &&
             !edge.d0.water && !edge.d1.water &&
@@ -325,20 +239,22 @@ exports.renderBridges = function (graphics, map, roads, colors) {
 
             var n = { x: -(edge.v1.point.y - edge.v0.point.y), y: edge.v1.point.x - edge.v0.point.x };
             pointCore.normalize(n, 0.25 + (!_.isNull(roads.road[edge.index]) ? 0.5 : 0) + 0.75 * Math.sqrt(edge.river));
-            graphics.beginPath();
-            graphics.lineWidth = 1.1;
-            graphics.strokeStyle = colorModule.intToHexColor(colors.BRIDGE);
-            graphics.lineCap = 'square';
+
+            graphics.lineStyle(1.1, colors.BRIDGE);
             graphics.moveTo(edge.midpoint.x - n.x, edge.midpoint.y - n.y);
             graphics.lineTo(edge.midpoint.x + n.x, edge.midpoint.y + n.y);
-            graphics.closePath();
-            graphics.stroke();
         }
     });
+
+    context.root.addChild(graphics);
+    context.renderer.render(context.stage);    
 };
 
 // Render roads. We draw these before polygon edges, so that rivers overwrite roads.
-exports.renderRoads = function (graphics, map, roads, colors) {
+exports.renderRoads = function (context, map, roads, colors) {
+
+    var graphics = new PIXI.Graphics();
+
     // First draw the roads, because any other feature should draw
     // over them. Also, roads don't use the noisy lines.
     var A, B, C;
@@ -382,17 +298,25 @@ exports.renderRoads = function (graphics, map, roads, colors) {
                                 A = pointCore.add(normalTowards(edge1, p.point, d), edge1.midpoint);
                                 B = pointCore.add(normalTowards(edge2, p.point, d), edge2.midpoint);
                                 C = pointCore.interpolate(A, B, 0.5);
-                                graphics.beginPath();
-                                graphics.lineWidth = 1.1;
-                                graphics.strokeStyle = colorModule.intToHexColor(colors['ROAD' + roads.road[edge1.index]]);
+
                                 graphics.moveTo(edge1.midpoint.x, edge1.midpoint.y);
-                                graphics.quadraticCurveTo(A.x, A.y, C.x, C.y);
-                                graphics.moveTo(C.x, C.y);
-                                graphics.lineWidth = 1.1;
-                                graphics.strokeStyle = colorModule.intToHexColor(colors['ROAD' + roads.road[edge2.index]]);
-                                graphics.quadraticCurveTo(B.x, B.y, edge2.midpoint.x, edge2.midpoint.y);
-                                graphics.stroke();
-                                graphics.closePath();
+                                graphics.lineStyle(1.1, colors['ROAD' + roads.road[edge1.index]]);
+
+                                var s = new Shape();
+                                s.steps = 10;
+                                s.moveTo(edge1.midpoint.x, edge1.midpoint.y);
+                                s.quadraticCurveTo(A.x, A.y, C.x, C.y);
+                                s.moveTo(C.x, C.y);
+                                drawPathForwards(graphics, s.points);
+                                
+                                var lastPoint = s.points[s.points.length - 1];
+                                
+                                s = new Shape();
+                                s.steps = 10;
+                                s.moveTo(lastPoint.x, lastPoint.y);
+                                s.quadraticCurveTo(B.x, B.y, edge2.midpoint.x, edge2.midpoint.y);
+                                graphics.lineStyle(1.1, colors['ROAD' + roads.road[edge2.index]]);
+                                drawPathForwards(graphics, s.points);
                             }
                         }
                     }
@@ -404,82 +328,93 @@ exports.renderRoads = function (graphics, map, roads, colors) {
                     if (roads.road[edge1.index] > 0) {
                         d = 0.25 * pointCore.distanceFromOrigin(pointCore.subtract(edge1.midpoint, p.point));
                         A = pointCore.add(normalTowards(edge1, p.point, d), edge1.midpoint);
-                        graphics.beginPath();
-                        graphics.lineWidth = 1.4;
-                        graphics.strokeStyle = colorModule.intToHexColor(colors['ROAD' + roads.road[edge1.index]]);
+                        
                         graphics.moveTo(edge1.midpoint.x, edge1.midpoint.y);
-                        graphics.quadraticCurveTo(A.x, A.y, p.point.x, p.point.y);
-                        graphics.stroke();
-                        graphics.closePath();
+                        graphics.lineStyle(1.4, colors['ROAD' + roads.road[edge1.index]]);
+
+                        var s = new Shape();
+                        s.steps = 10;
+                        s.moveTo(edge1.midpoint.x, edge1.midpoint.y);
+                        s.quadraticCurveTo(A.x, A.y, p.point.x, p.point.y);
+                        drawPathForwards(graphics, s.points);
                     }
                 });
             }
         }
     });
-};
 
-function drawPathBackwards(graphics, path) {
-    var i = path.length - 1;
-    while (i >= 0) {
-        graphics.lineTo(path[i].x, path[i].y);
-        i--;
-    }
-}
+    context.root.addChild(graphics);
+    context.renderer.render(context.stage);
+};
 
 // Render the exterior of polygons: coastlines, lake shores,
 // rivers, lava fissures. We draw all of these after the polygons
 // so that polygons don't overwrite any edges.
-exports.renderEdges = function (graphics, colors, map, noisyEdges, lava, renderRivers) {
+exports.renderEdges = function (context, colors, map, noisyEdges, lava, renderRivers) {
     renderRivers = core.def(renderRivers, true);
     var edge;
-    
+
     for (var centerIndex = 0; centerIndex < map.centers.length; centerIndex++) {
         var p = map.centers[centerIndex];
         for (var neighborIndex = 0; neighborIndex < p.neighbors.length; neighborIndex++) {
             var r = p.neighbors[neighborIndex];
             edge = map.lookupEdgeFromCenter(p, r);
+
             if (core.isUndefinedOrNull(noisyEdges.path0[edge.index]) || core.isUndefinedOrNull(noisyEdges.path1[edge.index])) {
                 // It's at the edge of the map
                 continue;
             }
+
+            var lineWidth = 0;
+            var lineColor = 0;
+
             if (p.ocean !== r.ocean) {
                 // One side is ocean and the other side is land -- coastline
-                graphics.lineWidth = 2;
-                graphics.strokeStyle = colorModule.intToHexColor(colors.COAST);
+                lineWidth = 2;
+                lineColor = colors.COAST;
             } else if ((convert.intFromBoolean(p.water) > 0) !== (convert.intFromBoolean(r.water) > 0) && p.biome !== 'ICE' && r.biome !== 'ICE') {
                 // Lake boundary
-                graphics.lineWidth = 1;
-                graphics.strokeStyle = colorModule.intToHexColor(colors.LAKESHORE);
+                lineWidth = 1;
+                lineColor = colors.LAKESHORE;
             } else if (p.water || r.water) {
                 // Lake interior – we don't want to draw the rivers here
                 continue;
             } else if (lava.lava[edge.index]) {
                 // Lava flow
-                graphics.lineWidth = 1;
-                graphics.strokeStyle = colorModule.intToHexColor(colors.LAVA);
+                lineWidth = 1;
+                lineColor = colors.LAVA;
             } else if (edge.river > 0 && renderRivers) {
                 // River edge
-                graphics.lineWidth = Math.sqrt(edge.river);
-                graphics.strokeStyle = colorModule.intToHexColor(colors.RIVER);
+                lineWidth = Math.sqrt(edge.river);
+                lineColor = colors.RIVER;
             } else {
                 continue;
             }
             
-            graphics.beginPath();
-            graphics.moveTo(noisyEdges.path0[edge.index][0].x, noisyEdges.path0[edge.index][0].y);
+            var graphics = new PIXI.Graphics();
+
+            var start = noisyEdges.path0[edge.index][0];
+            graphics.moveTo(start.x, start.y);
+
+            graphics.lineStyle(lineWidth, lineColor);
+
             drawPathForwards(graphics, noisyEdges.path0[edge.index]);
+
+            context.root.addChild(graphics);
+            graphics = new PIXI.Graphics();
+            graphics.lineStyle(lineWidth, lineColor);
+
             drawPathBackwards(graphics, noisyEdges.path1[edge.index]);
-            graphics.stroke();
-            graphics.closePath();
+
+            context.root.addChild(graphics);
         }
     }
+
+    context.renderer.render(context.stage);
 };
 
-exports.renderAllEdges = function (graphics, strokeStyle, map, noisyEdges) {
+exports.renderAllEdges = function (context, color, alpha, map, noisyEdges) {
     var edge;
-
-    graphics.lineWidth = 5;
-    graphics.strokeStyle = strokeStyle;
 
     for (var centerIndex = 0; centerIndex < map.centers.length; centerIndex++) {
         var p = map.centers[centerIndex];
@@ -493,13 +428,27 @@ exports.renderAllEdges = function (graphics, strokeStyle, map, noisyEdges) {
             }
 
             // edge
-
-            graphics.beginPath();
+            
+            var graphics = new PIXI.Graphics();
             graphics.moveTo(noisyEdges.path0[edge.index][0].x, noisyEdges.path0[edge.index][0].y);
+            graphics.lineStyle(5, color, alpha);
             drawPathForwards(graphics, noisyEdges.path0[edge.index]);
+
+            context.root.addChild(graphics);            
+            graphics = new PIXI.Graphics();
+            graphics.lineStyle(5, color, alpha);
+
             drawPathBackwards(graphics, noisyEdges.path1[edge.index]);
-            graphics.stroke();
-            graphics.closePath();
+
+            context.root.addChild(graphics);
         }
     }
+    context.renderer.render(context.stage);
+};
+
+exports.addNoise = function (context) {
+    var filter = new NoiseFilter();
+    filter.noiseLevelRGBA = [0.05, 0.05, 0.05, 0.0];
+    context.stage.filters = [filter];
+    context.renderer.render(context.stage);
 };

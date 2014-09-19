@@ -5,14 +5,21 @@
 
 'use strict';
 
-var vm = require('./index');
+var islandShape = require('./island-shape');
+var lavaModule = require('./lava');
+var mapModule = require('./map');
+var noisyEdgesModule = require('./noisy-edges');
+var pointSelector = require('./point-selector');
+var roadsModule = require('./roads');
+var watershedsModule = require('./watersheds');
+
 var SIZE = 1000.0;
-var map = vm.map({width: SIZE, height: SIZE});
-map.newIsland(vm.islandShape.makeRadial(1), 1);
+var map = mapModule({width: SIZE, height: SIZE});
+map.newIsland(islandShape.makeRadial(1), 1);
 var numPoints = 100;
 
 exports.should_place_points = function (test) {
-    map.go0PlacePoints(numPoints, vm.pointSelector.generateRandom(SIZE, SIZE, map.mapRandom.seed));
+    map.go0PlacePoints(numPoints, pointSelector.generateRandom(SIZE, SIZE, map.mapRandom.seed));
 
     test.strictEqual(map.points.length, numPoints);
     test.done();
@@ -32,13 +39,13 @@ exports.should_add_features = function (test) {
 };
 
 exports.should_add_edges = function (test) {
-    var lava = vm.lava();
-    var roads = vm.roads();
+    var lava = lavaModule();
+    var roads = roadsModule();
     roads.createRoads(map, [0, 0.05, 0.37, 0.64]);
     // lava.createLava(map, map.mapRandom.nextDouble);
-    var watersheds = vm.watersheds();
+    var watersheds = watershedsModule();
     watersheds.createWatersheds(map);
-    var noisyEdges = vm.noisyEdges();
+    var noisyEdges = noisyEdgesModule();
     noisyEdges.buildNoisyEdges(map, lava, map.mapRandom.seed);
     test.ok(roads);
     test.ok(watersheds);

@@ -8,113 +8,80 @@
 var _ = require('lodash');
 var canvasCore = require('./janicek/canvas');
 var colorModule = require('./janicek/html-color');
+var islandShape = require('./island-shape');
+var lava = require('./lava');
+var map = require('./map');
+var mapLands = require('./map-lands');
+var noisyEdges = require('./noisy-edges');
+var pointSelector = require('./point-selector');
+var PIXI = require('pixi.js');
 var prng = require('./janicek/pseudo-random-number-generators');
+var renderCanvas = require('./render-canvas');
+var renderCore = require('./render-core');
+var renderPixi = require('./render-pixi');
+var roads = require('./roads');
 var string = require('./janicek/string');
-var timer = require('./janicek/timer')();
-var vm = require('./index');
+var style = require('./style');
+var watersheds = require('./watersheds');
 
-var html = {
-    ID_map: 'map',
+var ID_map = 'canvas';
 
-    S_addNoise: '#addNoise',
-    S_edgeNoise: '#edgeNoise',
-    S_fields: '#fields',
-    S_fieldset: '#fieldset',
-    S_generate: '#generate',
-    S_height: '#height',
-    S_imageFile: '#imageFile',
-    S_imageThreshold: '#imageThreshold',
-    S_imageThumb: '#imageThumb',
-    S_invertImage: '#invertImage',
-    S_islandFactor: '#islandFactor',
-    S_islandShape: '#islandShape',
-    S_lakeThreshold: '#lakeThreshold',
-    S_lloydIterations: '#lloydIterations',
-    S_map: '#map',
-    S_numberOfLands: '#numberOfLands',
-    S_numberOfPoints: '#numberOfPoints',
-    S_oceanRatio: '#oceanRatio',
-    S_random: '#random',
-    S_riverChance: '#riverChance',
-    S_roadElevationThresholds: '#roadElevationThresholds',
-    S_seed: '#seed',
-    S_shapeRandom: '#shapeRandom',
-    S_shapeSeed: '#shapeSeed',
-    S_toggle: '#toggle',
-    S_view: '#view',
-    S_viewBridges: '#viewBridges',
-    S_viewEdges: '#viewEdges',
-    S_viewRivers: '#viewRivers',
-    S_viewRoads: '#viewRoads',
-    S_viewWatersheds: '#viewWatersheds',
-    S_width: '#width'
-};
+var S_addNoise = '#addNoise';
+var S_edgeNoise = '#edgeNoise';
+var S_fields = '#fields';
+var S_fieldset = '#fieldset';
+var S_generate = '#generate';
+var S_height = '#height';
+var S_imageFile = '#imageFile';
+var S_imageThreshold = '#imageThreshold';
+var S_imageThumb = '#imageThumb';
+var S_invertImage = '#invertImage';
+var S_islandFactor = '#islandFactor';
+var S_islandShape = '#islandShape';
+var S_lakeThreshold = '#lakeThreshold';
+var S_lloydIterations = '#lloydIterations';
+var S_map = '#map';
+var S_numberOfLands = '#numberOfLands';
+var S_numberOfPoints = '#numberOfPoints';
+var S_oceanRatio = '#oceanRatio';
+var S_random = '#random';
+var S_riverChance = '#riverChance';
+var S_roadElevationThresholds = '#roadElevationThresholds';
+var S_seed = '#seed';
+var S_shapeRandom = '#shapeRandom';
+var S_shapeSeed = '#shapeSeed';
+var S_toggle = '#toggle';
+var S_view = '#view';
+var S_renderer = '#renderer';
+var S_viewBridges = '#viewBridges';
+var S_viewEdges = '#viewEdges';
+var S_viewRivers = '#viewRivers';
+var S_viewRoads = '#viewRoads';
+var S_viewWatersheds = '#viewWatersheds';
+var S_width = '#width';
 
 var image;
 var state;
 
+function getSize() {
+    return {
+        width: _($(S_width).val()).parseInt(),
+        height: _($(S_height).val()).parseInt()
+    };
+}
+
 function updateThumb() {
-    var threshold = $(html.S_imageThreshold).val();
-    var color1 = vm.style.displayColors.OCEAN;
-    var color2 = vm.style.displayColors.GRASSLAND;
-    if ($(html.S_invertImage).is(':checked')) {
+    var threshold = $(S_imageThreshold).val();
+    var color1 = style.displayColors.OCEAN;
+    var color2 = style.displayColors.GRASSLAND;
+    if ($(S_invertImage).is(':checked')) {
         var colorHold = color1;
         color1 = color2;
         color2 = colorHold;
     }
     var thresholdImageData = canvasCore.makeAverageThresholdImageData(canvasCore.getImageData(image), threshold, color1, color2);
     var imageDataUrl = canvasCore.makeImageDataUrlFromImageData(thresholdImageData);
-    $(html.S_imageThumb).attr('src', imageDataUrl);
-}
-
-function getContext() {
-    var canvas = document.getElementById(html.ID_map);
-    return canvas.getContext('2d');
-}
-
-function render(state) {
-    var c = getContext();
-    vm.canvasRender.graphicsReset(c, state.map.SIZE.width, state.map.SIZE.height, vm.style.displayColors);
-    switch ($(html.S_view).val()) {
-    case 'debug polygons':
-        vm.canvasRender.renderDebugPolygons(c, state.map, vm.style.displayColors);
-        break;
-    case 'smooth':
-        vm.canvasRender.renderPolygons(c, vm.style.displayColors, null, vm.canvasRender.colorWithSlope, state.map, state.noisyEdges);
-        vm.canvasRender.renderEdges(c, vm.style.displayColors, state.map, state.noisyEdges, state.lava, $(html.S_viewRivers).is(':checked'));
-        break;
-    }
-
-    if ($(html.S_viewEdges).is(':checked')) {
-        vm.canvasRender.renderAllEdges(c, colorModule.rgba(0xd0, 0xd0, 0xd0, 0.25), state.map, state.noisyEdges);
-    }
-
-    if ($(html.S_viewRoads).is(':checked')) {
-        vm.canvasRender.renderRoads(c, state.map, state.roads, vm.style.displayColors);
-    }
-    
-    if ($(html.S_viewBridges).is(':checked')) {
-        vm.canvasRender.renderBridges(c, state.map, state.roads, vm.style.displayColors);
-    }
-    
-    if ($(html.S_viewWatersheds).is(':checked')) {
-        vm.canvasRender.renderWatersheds(c, state.map, state.watersheds);
-    }
-    
-    if ($(html.S_addNoise).is(':checked')) {
-        canvasCore.addNoiseToCanvas(c, 666, 10, true);
-    }
-}
-
-function findOrCreateCanvas() {
-    var canvas = document.getElementById(html.ID_map);
-    if (canvas === null) {
-        canvas = document.createElement('canvas');
-        canvas.id = html.ID_map;
-        document.body.appendChild(canvas);
-    }
-    
-    return canvas;
+    $(S_imageThumb).attr('src', imageDataUrl);
 }
 
 function getIntegerOrStringSeed(s) {
@@ -126,123 +93,209 @@ function getIntegerOrStringSeed(s) {
 }
 
 function generate() {
-    timer.start();
+    console.time('generate');
+
+    var size = getSize();
 
     var state = { map : null, noisyEdges : null, roads : null, watersheds : null, lava : null };
     
-    var canvas = findOrCreateCanvas();
-    canvas.width = _($(html.S_width).val()).parseInt();
-    canvas.height = _($(html.S_height).val()).parseInt();
-    
-    state.map = vm.map({ width: canvas.width + 0.0, height: canvas.height + 0.0 });
+    state.map = map({ width: size.width + 0.0, height: size.height + 0.0 });
 
-    var seed = getIntegerOrStringSeed($(html.S_seed).val());
-    var shapeSeed = getIntegerOrStringSeed($(html.S_shapeSeed).val());
+    var seed = getIntegerOrStringSeed($(S_seed).val());
+    var shapeSeed = getIntegerOrStringSeed($(S_shapeSeed).val());
     
-    var islandShape = $(html.S_islandShape).val();
-    
-    switch (islandShape) {
+    switch ($(S_islandShape).val()) {
     case 'bitmap' :
         var imageData = canvasCore.getImageData(image);
-        var bitmap = canvasCore.makeAverageThresholdBitmap(imageData, _.parseInt($(html.S_imageThreshold).val()));
-        if ($(html.S_invertImage).is(':checked')) {
+        var bitmap = canvasCore.makeAverageThresholdBitmap(imageData, _.parseInt($(S_imageThreshold).val()));
+        if ($(S_invertImage).is(':checked')) {
             bitmap = canvasCore.invertBitmap(bitmap);
         }
-        state.map.newIsland(vm.islandShape.makeBitmap(bitmap), seed);
+        state.map.newIsland(islandShape.makeBitmap(bitmap), seed);
         break;
     case 'blob' :
-        state.map.newIsland(vm.islandShape.makeBlob(), seed);
+        state.map.newIsland(islandShape.makeBlob(), seed);
         break;
     case 'noise' :
-        state.map.newIsland(vm.islandShape.makeNoise(shapeSeed), seed);
+        state.map.newIsland(islandShape.makeNoise(shapeSeed), seed);
         break;
     case 'perlin' :
-        state.map.newIsland(vm.islandShape.makePerlin(shapeSeed, $(html.S_oceanRatio).val()), seed);
+        state.map.newIsland(islandShape.makePerlin(shapeSeed, $(S_oceanRatio).val()), seed);
         break;
     case 'radial' :
-        state.map.newIsland(vm.islandShape.makeRadial(shapeSeed, $(html.S_islandFactor).val()), seed);
+        state.map.newIsland(islandShape.makeRadial(shapeSeed, $(S_islandFactor).val()), seed);
         break;
     case 'square' :
-        state.map.newIsland(vm.islandShape.makeSquare(), seed);
+        state.map.newIsland(islandShape.makeSquare(), seed);
         break;
     }
     
-    state.watersheds = vm.watersheds();
-    state.noisyEdges = vm.noisyEdges();
-    state.lava = vm.lava();
-    state.roads = vm.roads();
+    state.watersheds = watersheds();
+    state.noisyEdges = noisyEdges();
+    state.lava = lava();
+    state.roads = roads();
 
-    var pointSelector = (function (pointSelection, width, height, seed) { switch (pointSelection) {
-        case 'random': return vm.pointSelector.generateRandom(width, height, seed);
-        case 'relaxed': return vm.pointSelector.generateRelaxed(width, height, seed, $(html.S_lloydIterations).val());
-        case 'square': return vm.pointSelector.generateSquare(width, height);
-        case 'hex': return vm.pointSelector.generateHexagon(width, height);
+    var ps = (function (pointSelection, width, height, seed) { switch (pointSelection) {
+        case 'random': return pointSelector.generateRandom(width, height, seed);
+        case 'relaxed': return pointSelector.generateRelaxed(width, height, seed, $(S_lloydIterations).val());
+        case 'square': return pointSelector.generateSquare(width, height);
+        case 'hex': return pointSelector.generateHexagon(width, height);
         default: throw 'unknown point selector ' + pointSelection;
     }})($('#pointSelection').val(), state.map.SIZE.width, state.map.SIZE.height, state.map.mapRandom.seed);
 
-    var numberOfLands = $(html.S_numberOfLands).val();
+    var numberOfLands = $(S_numberOfLands).val();
     if (numberOfLands.length > 0) {
-        vm.mapLands.tryMutateMapPointsToGetNumberLands(state.map, pointSelector, parseInt(numberOfLands, 10));
+        mapLands.tryMutateMapPointsToGetNumberLands(state.map, ps, parseInt(numberOfLands, 10));
     } else {
-        state.map.go0PlacePoints($(html.S_numberOfPoints).val(), pointSelector);
+        state.map.go0PlacePoints($(S_numberOfPoints).val(), ps);
         state.map.go1BuildGraph();
-        state.map.go2AssignElevations($(html.S_lakeThreshold).val());
+        state.map.go2AssignElevations($(S_lakeThreshold).val());
     }
-    state.map.go3AssignMoisture($(html.S_riverChance).val());
+    state.map.go3AssignMoisture($(S_riverChance).val());
     state.map.go4DecorateMap();
     
-    var thresholds = $(html.S_roadElevationThresholds).val().split(',');
+    var thresholds = $(S_roadElevationThresholds).val().split(',');
     state.roads.createRoads(state.map, thresholds);
     state.watersheds.createWatersheds(state.map);
-    state.noisyEdges.buildNoisyEdges(state.map, state.lava, seed, $(html.S_edgeNoise).val());
+    state.noisyEdges.buildNoisyEdges(state.map, state.lava, seed, $(S_edgeNoise).val());
 
-    $('#generateMs').text(timer.mark().mark);
-    
-    render(state);
-    
-    var renderTime = timer.mark();
-    $('#renderMs').text(renderTime.mark);
-    $('#totalMs').text(renderTime.total);
-
+    console.timeEnd('generate');
     return state;
 }
+
+// ----------------------------------------------------------------------------
+// Renderers
+
+function getCanvasContext() {
+    var canvas = document.getElementById(ID_map);
+    if (canvas === null) {
+        canvas = document.createElement('canvas');
+        canvas.id = ID_map;
+        var size = getSize();
+        canvas.width = size.width;
+        canvas.height = size.height;
+        document.body.insertBefore(canvas, document.getElementById('fieldset'));
+    }
+    return canvas.getContext('2d');
+}
+
+var pixiContext = null;
+
+function getPixiContext() {
+    if (!pixiContext) {
+        var size = getSize();
+        
+        pixiContext = {
+            renderer: $(S_renderer).val() === 'pixi webgl' ?
+                new PIXI.WebGLRenderer(size.width, size.height) :
+                new PIXI.CanvasRenderer(size.width, size.height)
+        };
+
+        var canvas = pixiContext.renderer.view;
+        canvas.id = ID_map;
+        document.body.insertBefore(canvas, document.getElementById('fieldset'));
+    }
+
+    return pixiContext;
+}
+
+function clearRendererContext() {
+    $(ID_map).remove();
+    pixiContext = null;
+}
+
+// ----------------------------------------------------------------------------
+// Render
+
+function renderWithEngine(state, context, engine) {
+    
+    engine.graphicsReset(context, state.map.SIZE.width, state.map.SIZE.height, style.displayColors);
+
+    switch ($(S_view).val()) {
+    case 'debug polygons':
+        engine.renderDebugPolygons(context, state.map, style.displayColors);
+        break;
+    case 'smooth':
+        engine.renderPolygons(context, style.displayColors, null, renderCore.colorWithSlope, state.map, state.noisyEdges);
+        engine.renderEdges(context, style.displayColors, state.map, state.noisyEdges, state.lava, $(S_viewRivers).is(':checked'));
+        break;
+    }
+
+    if ($(S_viewEdges).is(':checked')) {
+        engine.renderAllEdges(context, 0xd0d0d0, 0.25, state.map, state.noisyEdges);
+    }
+
+    if ($(S_viewRoads).is(':checked')) {
+        engine.renderRoads(context, state.map, state.roads, style.displayColors);
+    }
+    
+    if ($(S_viewBridges).is(':checked')) {
+        engine.renderBridges(context, state.map, state.roads, style.displayColors);
+    }
+    
+    if ($(S_viewWatersheds).is(':checked')) {
+        engine.renderWatersheds(context, state.map, state.watersheds);
+    }
+    
+    if ($(S_addNoise).is(':checked')) {
+        engine.addNoise(context, state.map.SIZE.width, state.map.SIZE.height);
+    }
+
+}
+
+function render(state) {
+    console.time('render');
+
+    if ($(S_renderer).val() === 'canvas') {
+        renderWithEngine(state, getCanvasContext(), renderCanvas);
+    } else {
+        renderWithEngine(state, getPixiContext(), renderPixi);
+        var context = getPixiContext();
+        context.renderer.render(context.stage);
+    }
+
+    console.timeEnd('render');
+}
+
+// ----------------------------------------------------------------------------
+// UI
 
 function initializeUi () {
     image = new Image();
     image.onload = function () {
-        $(html.S_imageThumb).attr('src', image.src);
+        $(S_imageThumb).attr('src', image.src);
         updateThumb();
     };
     image.src = 'world-map.jpg';
     
-    $(html.S_random).click(function () {
-        $(html.S_seed).val(String(prng.makeRandomSeed()));
+    $(S_random).click(function () {
+        $(S_seed).val(String(prng.makeRandomSeed()));
     });
-    $(html.S_shapeRandom).click(function () {
-        $(html.S_shapeSeed).val(String(prng.makeRandomSeed()));
+    $(S_shapeRandom).click(function () {
+        $(S_shapeSeed).val(String(prng.makeRandomSeed()));
     });
     
-    $(html.S_islandShape).change(function (e) {
-        $([html.S_islandFactor, html.S_oceanRatio, html.S_shapeSeed, html.S_imageFile, html.S_imageThumb, html.S_invertImage, html.S_imageThreshold].toString()).parent().hide();
-        switch ($(html.S_islandShape).val()) {
+    $(S_islandShape).change(function (e) {
+        $([S_islandFactor, S_oceanRatio, S_shapeSeed, S_imageFile, S_imageThumb, S_invertImage, S_imageThreshold].toString()).parent().hide();
+        switch ($(S_islandShape).val()) {
         case 'bitmap':
-            $([html.S_imageFile, html.S_imageThumb, html.S_invertImage, html.S_imageThreshold].toString()).parent().show();
+            $([S_imageFile, S_imageThumb, S_invertImage, S_imageThreshold].toString()).parent().show();
             break;
         case 'noise':
-            $(html.S_shapeSeed).parent().show();
+            $(S_shapeSeed).parent().show();
             break;
         case 'perlin':
-            $([html.S_oceanRatio, html.S_shapeSeed].toString()).parent().show();
+            $([S_oceanRatio, S_shapeSeed].toString()).parent().show();
             break;
         case 'radial':
-            $([html.S_islandFactor, html.S_shapeSeed].toString()).parent().show();
+            $([S_islandFactor, S_shapeSeed].toString()).parent().show();
             break;
         }
     });
     
-    $(html.S_imageFile).change(function (e) {
+    $(S_imageFile).change(function (e) {
         console.log('file changed');
-        var fileUpload = $(html.S_imageFile).get()[0];
+        var fileUpload = $(S_imageFile).get()[0];
         var files = fileUpload.files;
         if (files.length === 1) {
             var file = files[0];
@@ -252,40 +305,45 @@ function initializeUi () {
         }
     });
 
-    $([html.S_invertImage, html.S_imageThreshold].toString()).change(function (e) { updateThumb(); });
+    $([S_invertImage, S_imageThreshold].toString()).change(function (e) { updateThumb(); });
     
-    if ($(html.S_width).val().length === 0) {
-        $(html.S_width).val($(window).width());
+    if ($(S_width).val().length === 0) {
+        $(S_width).val($(window).width());
     }
-    if ($(html.S_height).val().length === 0) {
-        $(html.S_height).val($(window).height());
+    if ($(S_height).val().length === 0) {
+        $(S_height).val($(window).height());
     }
     
-    $(html.S_view).change(function (e) {
-        switch ($(html.S_view).val()) {
+    $(S_renderer).change(clearRendererContext);
+
+    $(S_view).change(function (e) {
+        switch ($(S_view).val()) {
         case 'debug polygons':
-            $(html.S_addNoise).removeAttr('checked');
+            $(S_addNoise).removeAttr('checked');
             break;
         case 'smooth':
-            $(html.S_addNoise).attr('checked', 'true');
+            $(S_addNoise).attr('checked', 'true');
             break;
         }
     });
     
-    $([html.S_view, html.S_viewRivers, html.S_viewRoads, html.S_viewBridges, html.S_viewWatersheds, html.S_viewEdges, html.S_addNoise].toString()).change(function (e) {
+    $([S_renderer, S_view, S_viewRivers, S_viewRoads, S_viewBridges, S_viewWatersheds, S_viewEdges, S_addNoise].toString()).change(function (e) {
         render(state);
     });
 
-    $(html.S_viewRoads).change(function (e) {
-        $(html.S_roadElevationThresholds).parent().toggle();
+    $(S_viewRoads).change(function (e) {
+        $(S_roadElevationThresholds).parent().toggle();
     });
     
-    $(html.S_generate).click(function () { state = generate(); });
+    $(S_generate).click(function () { 
+        state = generate();
+        render(state);
+    });
     
-    $(html.S_toggle).click(function () {
-        var fields = $(html.S_fields);
+    $(S_toggle).click(function () {
+        var fields = $(S_fields);
         fields.toggle(500, function () {
-            $(html.S_toggle).text(fields.is(':visible') ? 'hide' : 'show');
+            $(S_toggle).text(fields.is(':visible') ? 'hide' : 'show');
         });
     });
 }
@@ -294,9 +352,15 @@ function initializeUi () {
 // Main
 
 function main() {
+    console.time('total');
+
     initializeUi();
+
     state = generate();
-    require('./janicek/perf').traceCounters();
+
+    render(state);
+
+    console.timeEnd('total');
 }
 
 main();

@@ -6,7 +6,7 @@
 'use strict';
 
 var _ = require('lodash');
-var cc = require('../as3/conversion-core');
+var cc = require('./as3/conversion-core');
 
 module.exports = function () {
     return {

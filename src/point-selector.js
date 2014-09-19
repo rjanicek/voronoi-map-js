@@ -14,9 +14,9 @@
 
 'use strict';
 
-var prng = require('../polygonal/pm-prng');
-var rectangle = require('../as3/rectangle');
-var voronoiModule = require('../nodename/delaunay/voronoi');
+var prng = require('./polygonal/pm-prng');
+var rectangle = require('./as3/rectangle');
+var voronoiModule = require('./nodename/delaunay/voronoi');
 
 var api = {
 

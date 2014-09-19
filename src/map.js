@@ -7,15 +7,15 @@
 
 var _ = require('lodash');
 var centerModule = require('./graph/center');
-var convert = require('../as3/conversion-core');
-var core = require('../janicek/core');
+var convert = require('./as3/conversion-core');
+var core = require('./janicek/core');
 var cornerModule = require('./graph/corner');
 var edgeModule = require('./graph/edge');
-var pc = require('../as3/point-core');
+var pc = require('./as3/point-core');
 var pointSelectorModule = require('./point-selector');
-var prng = require('../polygonal/pm-prng');
-var rectangle = require('../as3/rectangle');
-var voronoiModule = require('../nodename/delaunay/voronoi');
+var prng = require('./polygonal/pm-prng');
+var rectangle = require('./as3/rectangle');
+var voronoiModule = require('./nodename/delaunay/voronoi');
 
 // Make a new map.
 // size: width and height of map

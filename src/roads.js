@@ -6,7 +6,7 @@
 'use strict';
 
 var _ = require('lodash');
-var core = require('../janicek/core');
+var core = require('./janicek/core');
 
 module.exports = function () {
     var pub = {};

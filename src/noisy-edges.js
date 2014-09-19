@@ -6,10 +6,10 @@
 'use strict';
 
 var _ = require('lodash');
-var convert = require('../as3/conversion-core');
-var core = require('../janicek/core');
-var pc = require('../as3/point-core');
-var prng = require('../janicek/pseudo-random-number-generators');
+var convert = require('./as3/conversion-core');
+var core = require('./janicek/core');
+var pc = require('./as3/point-core');
+var prng = require('./janicek/pseudo-random-number-generators');
 
 module.exports = function () {
     var pub = {};
