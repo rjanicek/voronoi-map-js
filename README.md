@@ -29,16 +29,16 @@ In CommonJS / [Browserify](http://browserify.org/):
 ```js
 var PIXI = require('pixi.js');
 
-var islandShape = require('voronoi-map/island-shape');
-var lavaModule = require('voronoi-map/lava');
-var mapModule = require('voronoi-map/map');
-var noisyEdgesModule = require('voronoi-map/noisy-edges');
-var pointSelectorModule = require('voronoi-map/point-selector');
-var renderCanvas = require('voronoi-map/render-canvas');
-var renderPixi = require('voronoi-map/render-pixi');
-var roadsModule = require('voronoi-map/roads');
-var style = require('voronoi-map/style');
-var watershedsModule = require('voronoi-map/watersheds');
+var islandShape = require('voronoi-map/src/island-shape');
+var lavaModule = require('voronoi-map/src/lava');
+var mapModule = require('voronoi-map/src/map');
+var noisyEdgesModule = require('voronoi-map/src/noisy-edges');
+var pointSelectorModule = require('voronoi-map/src/point-selector');
+var renderCanvas = require('voronoi-map/src/render-canvas');
+var renderPixi = require('voronoi-map/src/render-pixi');
+var roadsModule = require('voronoi-map/src/roads');
+var style = require('voronoi-map/src/style');
+var watershedsModule = require('voronoi-map/src/watersheds');
 
 var map = mapModule({width: 1000.0, height: 1000.0});
 map.newIsland(islandShape.makeRadial(1), 1);
