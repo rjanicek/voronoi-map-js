@@ -34,6 +34,3 @@ img { width: 110px; }
 .section { margin-top: 10px; }
 
 .hide { display: none; }
-
-.timer { display: inline-block; text-align: right; width: 40px; }
-.total { border-top: solid 1px black; }
